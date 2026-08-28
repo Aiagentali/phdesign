@@ -3,96 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تماس با ما | PH Design</title>
+  <meta name="theme-color" content="#07070A">
+  <title>تماس — PH Design</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◐</text></svg>">
 </head>
 <body>
-
-<nav class="nav" id="navbar">
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">PH<span> Design</span></a>
+    <a href="index.html" class="logo"><span class="dot"></span><b>PH</b><span>Design</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">خانه</a>
-      <a href="portfolio.html">نمونه کارها</a>
+      <a href="portfolio.html">نمونه‌کار</a>
       <a href="shop.html">فروشگاه</a>
-      <a href="about.html">درباره ما</a>
-      <a href="contact.html" class="active">تماس با ما</a>
+      <a href="about.html">درباره</a>
+      <a href="contact.html" class="active">تماس</a>
     </div>
     <div class="nav-actions">
       <div class="theme-toggle" id="themeToggle"></div>
-      <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+      <div class="nav-burger" id="navBurger"><span></span><span></span><span></span></div>
     </div>
   </div>
 </nav>
 
-<section class="section" style="padding-top: 140px;">
+<section class="section" style="padding-top:140px">
   <div class="container">
-    <div class="section-header">
-      <p class="section-label reveal">تماس با ما</p>
-      <h2 class="section-title reveal">بیا صحبت کنیم</h2>
-      <p class="section-desc reveal">فرم زیر رو پر کن یا از طریق اطلاعات تماس با ما ارتباط بگیر</p>
+    <div class="section-head reveal">
+      <div class="section-kicker">تماس با ما</div>
+      <h2 class="section-title">بیا صحبت کنیم</h2>
+      <p class="section-sub">فرم را پر کن یا مستقیماً با ما در ارتباط باش.</p>
     </div>
-
     <div class="contact-grid">
-      <div class="contact-form reveal">
+      <div class="form-box reveal">
         <form id="contactForm">
-          <div class="form-group">
-            <label>نام و نام خانوادگی</label>
-            <input type="text" placeholder="مثال: علی رضایی" required>
-          </div>
-          <div class="form-group">
-            <label>ایمیل</label>
-            <input type="email" placeholder="example@email.com" required>
-          </div>
-          <div class="form-group">
-            <label>شماره تماس</label>
-            <input type="tel" placeholder="۰۹۱۲-۱۲۳-۴۵۶۷">
-          </div>
-          <div class="form-group">
-            <label>موضوع</label>
-            <select style="width: 100%; padding: 14px 18px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; font-family: inherit; font-size: 0.95rem; color: var(--text-primary); direction: rtl;">
-              <option>سفارش طراحی سایت</option>
-              <option>سفارش قالب آماده</option>
-              <option>مشاوره رایگان</option>
-              <option>همکاری</option>
-              <option>سایر</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>پیام شما</label>
-            <textarea placeholder="توضیحات پروژه‌تون رو بنویسید..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">ارسال پیام 🚀</button>
+          <div class="field"><label>نام و نام خانوادگی</label><input type="text" placeholder="مثال: علی رضایی" required></div>
+          <div class="field"><label>ایمیل</label><input type="email" placeholder="you@email.com" required></div>
+          <div class="field"><label>شماره تماس</label><input type="tel" placeholder="۰۹۱۲-۱۲۳-۴۵۶۷"></div>
+          <div class="field"><label>موضوع</label><select><option>سفارش طراحی سایت</option><option>سفارش تمپلیت آماده</option><option>مشاوره رایگان</option><option>همکاری</option></select></div>
+          <div class="field"><label>پیام</label><textarea placeholder="درباره پروژه‌ات بنویس..."></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%">ارسال پیام 🚀</button>
         </form>
       </div>
-
-      <div class="contact-info-cards reveal">
-        <div class="contact-info-card">
-          <div class="contact-info-icon">📧</div>
-          <div><h4>ایمیل</h4><p>info@phdesign.ir</p></div>
-        </div>
-        <div class="contact-info-card">
-          <div class="contact-info-icon">📱</div>
-          <div><h4>تلفن</h4><p>۰۹۱۲-۱۲۳-۴۵۶۷</p></div>
-        </div>
-        <div class="contact-info-card">
-          <div class="contact-info-icon">📍</div>
-          <div><h4>آدرس</h4><p>تهران، ایران</p></div>
-        </div>
-        <div class="contact-info-card">
-          <div class="contact-info-icon">⏰</div>
-          <div><h4>ساعات کاری</h4><p>شنبه تا پنجشنبه — ۹ صبح تا ۶ عصر</p></div>
-        </div>
-        <div class="contact-info-card">
-          <div class="contact-info-icon">💬</div>
-          <div><h4>تلگرام</h4><p>@phdesign</p></div>
-        </div>
-        <div class="contact-info-card">
-          <div class="contact-info-icon">📷</div>
-          <div><h4>اینستاگرام</h4><p>@phdesign</p></div>
-        </div>
+      <div class="reveal d1">
+        <div class="info-row"><div class="ic">✉</div><div><h4>ایمیل</h4><p>info@phdesign.ir</p></div></div>
+        <div class="info-row"><div class="ic">☎</div><div><h4>تلفن</h4><p>۰۹۱۲-۱۲۳-۴۵۶۷</p></div></div>
+        <div class="info-row"><div class="ic">⌖</div><div><h4>آدرس</h4><p>تهران، ایران</p></div></div>
+        <div class="info-row"><div class="ic">◷</div><div><h4>ساعت کاری</h4><p>شنبه تا پنجشنبه — ۹ تا ۱۸</p></div></div>
+        <div class="info-row"><div class="ic">✺</div><div><h4>تلگرام</h4><p>@phdesign</p></div></div>
+        <div class="info-row"><div class="ic">❖</div><div><h4>اینستاگرام</h4><p>@phdesign</p></div></div>
       </div>
     </div>
   </div>
@@ -101,15 +59,14 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><h3>PH Design</h3><p>طراحی سایت‌های حرفه‌ای با UI جذاب و انیمیشن‌های منحصربفرد.</p></div>
-      <div class="footer-col"><h4>لینک‌ها</h4><a href="index.html">خانه</a><a href="portfolio.html">نمونه کارها</a><a href="shop.html">فروشگاه</a><a href="about.html">درباره ما</a></div>
-      <div class="footer-col"><h4>خدمات</h4><a href="#">طراحی وب</a><a href="#">طراحی اپلیکیشن</a><a href="#">سئو و بهینه‌سازی</a></div>
-      <div class="footer-col"><h4>ارتباط</h4><a href="#">info@phdesign.ir</a><a href="#">۰۹۱۲-۱۲۳-۴۵۶۷</a></div>
+      <div><h3>PH Design</h3><p>استودیو طراحی وب با تمرکز بر مینیمالیسم و انیمیشن‌های شیک.</p></div>
+      <div class="footer-col"><h4>لینک‌ها</h4><a href="index.html">خانه</a><a href="portfolio.html">نمونه‌کار</a><a href="shop.html">فروشگاه</a><a href="about.html">درباره</a></div>
+      <div class="footer-col"><h4>خدمات</h4><a href="#">طراحی وب</a><a href="#">فروشگاه</a><a href="#">اپلیکیشن</a><a href="#">برندینگ</a></div>
+      <div class="footer-col"><h4>تماس</h4><a href="#">info@phdesign.ir</a><a href="#">۰۹۱۲-۱۲۳-۴۵۶۷</a><a href="#">تهران</a></div>
     </div>
-    <div class="footer-bottom"><span>© ۱۴۰۴ PH Design</span><span>طراحی با ❤️</span></div>
+    <div class="footer-bottom"><span>© ۱۴۰۴ PH Design</span><span>ساخته شده با ◐</span></div>
   </div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>

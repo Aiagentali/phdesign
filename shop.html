@@ -3,235 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>فروشگاه | PH Design</title>
+  <meta name="theme-color" content="#07070A">
+  <title>فروشگاه — PH Design</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
-  <style>
-    .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
-    .shop-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.4s; }
-    .shop-card:hover { transform: translateY(-8px); box-shadow: var(--card-hover-shadow); }
-    .shop-thumb { aspect-ratio: 16/9; overflow: hidden; position: relative; }
-    .shop-thumb .mock-preview { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #fff; }
-    .shop-badge { position: absolute; top: 12px; right: 12px; padding: 4px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; color: #fff; }
-    .badge-new { background: var(--success); }
-    .badge-popular { background: var(--accent); }
-    .badge-sale { background: var(--danger); }
-    .shop-body { padding: 24px; }
-    .shop-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
-    .shop-body p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.7; }
-    .shop-meta { display: flex; align-items: center; justify-content: space-between; }
-    .shop-price { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
-    .shop-price span { font-size: 0.8rem; font-weight: 400; color: var(--text-muted); }
-    .shop-price .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem; margin-left: 8px; }
-    .shop-tags { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-    .shop-tag { padding: 3px 10px; border-radius: 6px; font-size: 0.7rem; background: var(--bg-tertiary); color: var(--text-secondary); }
-  </style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◐</text></svg>">
 </head>
 <body>
-
-<nav class="nav" id="navbar">
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">PH<span> Design</span></a>
+    <a href="index.html" class="logo"><span class="dot"></span><b>PH</b><span>Design</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">خانه</a>
-      <a href="portfolio.html">نمونه کارها</a>
+      <a href="portfolio.html">نمونه‌کار</a>
       <a href="shop.html" class="active">فروشگاه</a>
-      <a href="about.html">درباره ما</a>
-      <a href="contact.html">تماس با ما</a>
+      <a href="about.html">درباره</a>
+      <a href="contact.html">تماس</a>
     </div>
     <div class="nav-actions">
       <div class="theme-toggle" id="themeToggle"></div>
-      <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+      <div class="nav-burger" id="navBurger"><span></span><span></span><span></span></div>
     </div>
   </div>
 </nav>
 
-<section class="section" style="padding-top: 140px;">
+<section class="section" style="padding-top:140px">
   <div class="container">
-    <div class="section-header">
-      <p class="section-label reveal">فروشگاه تمپلیت</p>
-      <h2 class="section-title reveal">تمپلیت‌های آماده طراحی وب</h2>
-      <p class="section-desc reveal">تمپلیت‌های حرفه‌ای با قیمت مناسب — فقط کافیه سفارش بدی و اختصاصی‌سازی کنی</p>
+    <div class="section-head reveal">
+      <div class="section-kicker">فروشگاه تمپلیت</div>
+      <h2 class="section-title">تمپلیت‌های آماده، اختصاصی‌سازی‌شده برای تو</h2>
+      <p class="section-sub">روی هر محصول کلیک کن — نسخه آزمایشی باز می‌شود، سپس برای شخصی‌سازی سفارش بده.</p>
     </div>
-
-    <div class="shop-grid">
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #0f0c29, #302b63);">🏢</div>
-          <span class="shop-badge badge-popular">محبوب</span>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">شرکتی</span><span class="shop-tag">ری‌اکت</span><span class="shop-tag">انیمیشن</span></div>
-          <h3>قالب شرکتی مدرن</h3>
-          <p>قالب شرکتی حرفه‌ای با انیمیشن‌های سه‌بعدی و بخش‌های متنوع. مناسب شرکت‌های فناوری و استارتاپ‌ها.</p>
-          <div class="shop-meta">
-            <div class="shop-price">۲,۵۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">🛒</div>
-          <span class="shop-badge badge-new">جدید</span>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">فروشگاهی</span><span class="shop-tag">ووکامرس</span></div>
-          <h3>قالب فروشگاهی مُد</h3>
-          <p>فروشگاه آنلاین شیک و مینیمال با فیلتر محصولات و سبد خرید تعاملی.</p>
-          <div class="shop-meta">
-            <div class="shop-price">۳,۰۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7);">🍽️</div>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">رستوران</span><span class="shop-tag">رزرو آنلاین</span></div>
-          <h3>قالب رستوران لاکچری</h3>
-          <p>سایت رستوران با منوی تعاملی، رزرو میز و گالری تصاویر غذاها.</p>
-          <div class="shop-meta">
-            <div class="shop-price">۲,۰۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #fd79a8, #e84393);">📸</div>
-          <span class="shop-badge badge-sale">تخفیف</span>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">پورتفولیو</span><span class="shop-tag">گالری</span></div>
-          <h3>قالب پورتفولیو عکاس</h3>
-          <p>سایت شخصی برای عکاسان با گالری لایتباکس و انیمیشن‌های جذاب.</p>
-          <div class="shop-meta">
-            <div class="shop-price"><span class="old-price">۱,۵۰۰,۰۰۰</span> ۱,۰۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #00b894, #00cec9);">🏥</div>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">پزشکی</span><span class="shop-tag">نوبت‌دهی</span></div>
-          <h3>قالب کلینیک و درمانگاه</h3>
-          <p>وب‌سایت پزشکی با سیستم نوبت‌دهی آنلاین، پروفایل پزشکان و خدمات.</p>
-          <div class="shop-meta">
-            <div class="shop-price">۲,۸۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #0984e3, #6c5ce7);">📱</div>
-          <span class="shop-badge badge-new">جدید</span>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">اپلیکیشن</span><span class="shop-tag">لندینگ</span></div>
-          <h3>قالب لندینگ اپلیکیشن</h3>
-          <p>لندینگ پیج حرفه‌ای برای معرفی اپلیکیشن موبایل با دشبورد تعاملی.</p>
-          <div class="shop-meta">
-            <div class="shop-price">۱,۸۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #636e72, #2d3436);">🏗️</div>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">ساختمانی</span><span class="shop-tag">پورتفولیو</span></div>
-          <h3>قالب شرکت عمرانی</h3>
-          <p>وب‌سایت شرکت ساختمانی با پورتفولیو پروژه‌ها و فرم استعلام قیمت.</p>
-          <div class="shop-meta">
-            <div class="shop-price">۲,۲۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #fdcb6e, #f39c12);">☕</div>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">کافه</span><span class="shop-tag">سفارش آنلاین</span></div>
-          <h3>قالب کافه و کانفتیری</h3>
-          <p>سایت کافه با منوی دیجیتال، سفارش آنلاین و سیستم وفاداری مشتریان.</p>
-          <div class="shop-meta">
-            <div class="shop-price">۱,۵۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="shop-card reveal">
-        <div class="shop-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #55efc4, #00b894);">🌿</div>
-          <span class="shop-badge badge-popular">محبوب</span>
-        </div>
-        <div class="shop-body">
-          <div class="shop-tags"><span class="shop-tag">ارگانیک</span><span class="shop-tag">فروشگاهی</span></div>
-          <h3>قالب فروشگاه محصولات ارگانیک</h3>
-          <p>فروشگاه محصولات طبیعی با طراحی سبز، فیلتر محصولات و سبد خرید.</p>
-          <div class="shop-meta">
-            <div class="shop-price">۲,۰۰۰,۰۰۰ <span>تومان</span></div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">سفارش</a>
-          </div>
-        </div>
-      </div>
-
+    <div class="price-grid" id="shopGrid">
+      <div class="price-card reveal" data-cat="company"><div class="tier">شرکتی</div><div class="amt">۲,۵۰۰,۰۰۰ <small>تومان</small></div><div class="desc">قالب شرکتی مدرن با انیمیشن‌های شیک.</div><ul><li>طراحی کاملاً ریسپانسیو</li><li>۵ بخش اختصاصی</li><li>انیمیشن اسکرول</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
+      <div class="price-card feat reveal d1" data-cat="shop"><div class="tier">فروشگاهی</div><div class="amt">۳,۰۰۰,۰۰۰ <small>تومان</small></div><div class="desc">فروشگاه آنلاین مینیمال با سبد خرید.</div><ul><li>فیلتر محصولات</li><li>چک‌اوت سریع</li><li>پنل ادمین</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
+      <div class="price-card reveal d2" data-cat="restaurant"><div class="tier">رستوران</div><div class="amt">۲,۰۰۰,۰۰۰ <small>تومان</small></div><div class="desc">سایت رستوران با رزرو آنلاین.</div><ul><li>منوی دیجیتال</li><li>فرم رزرو</li><li>گالری غذا</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
+      <div class="price-card reveal" data-cat="portfolio"><div class="tier">پورتفولیو</div><div class="amt">۱,۵۰۰,۰۰۰ <small>تومان</small></div><div class="desc">سایت شخصی با گالری تعاملی.</div><ul><li>لایت‌باکس تصاویر</li><li>بخش درباره</li><li>فرم تماس</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
+      <div class="price-card reveal d1" data-cat="app"><div class="tier">اپلیکیشن</div><div class="amt">۱,۸۰۰,۰۰۰ <small>تومان</small></div><div class="desc">لندینگ اپلیکیشن با دشبورد.</div><ul><li>نمایش ویژگی‌ها</li><li>دانلود از استور</li><li>انیمیشن محصول</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
+      <div class="price-card reveal d2" data-cat="company"><div class="tier">ساختمانی</div><div class="amt">۲,۲۰۰,۰۰۰ <small>تومان</small></div><div class="desc">سایت شرکت عمرانی با پروژه‌ها.</div><ul><li>گالری پروژه</li><li>فرم استعلام</li><li>درباره تیم</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
+      <div class="price-card reveal" data-cat="shop"><div class="tier">ارگانیک</div><div class="amt">۲,۰۰۰,۰۰۰ <small>تومان</small></div><div class="desc">فروشگاه محصولات طبیعی.</div><ul><li>نشان اکو</li><li>فیلتر دسته</li><li>سبد خرید</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
+      <div class="price-card reveal d1" data-cat="app"><div class="tier">آموزشی</div><div class="amt">۱,۹۰۰,۰۰۰ <small>تومان</small></div><div class="desc">پلتفرم آموزش آنلاین.</div><ul><li>کارت دوره</li><li>پلیر ویدیو</li><li>پروفایل مدرس</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
+      <div class="price-card reveal d2" data-cat="restaurant"><div class="tier">کافه</div><div class="amt">۱,۵۰۰,۰۰۰ <small>تومان</small></div><div class="desc">سایت کافه با منوی دیجیتال.</div><ul><li>سفارش آنلاین</li><li>وفاداری مشتری</li><li>گالری فضا</li></ul><a href="contact.html" class="btn btn-primary">سفارش</a></div>
     </div>
   </div>
 </section>
 
-<section class="section stats-section">
+<section class="section" style="background:var(--bg-soft);text-align:center">
   <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item reveal"><h2>۹+</h2><p>تمپلیت آماده</p></div>
-      <div class="stat-item reveal"><h2>۲۴ ساعته</h2><p>پشتیبانی</p></div>
-      <div class="stat-item reveal"><h2>۱۰۰٪</h2><p>ریسپانسیو</p></div>
-      <div class="stat-item reveal"><h2>۷ روز</h2><p>تضمین بازگشت</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="container">
-    <h2 class="cta-title reveal">تمپلیت مورد نظرت پیدا نشد؟</h2>
-    <p class="cta-desc reveal">سفارش اختصاصی بده، از صفر تا صد برات می‌سازیم</p>
-    <a href="contact.html" class="btn btn-primary btn-large reveal">سفارش اختصاصی 🚀</a>
+    <h2 class="section-title reveal" style="margin-bottom:18px">تمپلیت مد نظرت نیست؟</h2>
+    <p class="section-sub reveal" style="max-width:460px;margin:0 auto 30px">از صفر طراحی می‌کنیم دقیقاً همان چیزی که می‌خواهی.</p>
+    <a href="contact.html" class="btn btn-primary reveal">سفارش اختصاصی 🚀</a>
   </div>
 </section>
 
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><h3>PH Design</h3><p>طراحی سایت‌های حرفه‌ای با UI جذاب و انیمیشن‌های منحصربفرد.</p></div>
-      <div class="footer-col"><h4>لینک‌ها</h4><a href="index.html">خانه</a><a href="portfolio.html">نمونه کارها</a><a href="shop.html">فروشگاه</a><a href="about.html">درباره ما</a></div>
-      <div class="footer-col"><h4>خدمات</h4><a href="#">طراحی وب</a><a href="#">طراحی اپلیکیشن</a><a href="#">سئو و بهینه‌سازی</a></div>
-      <div class="footer-col"><h4>ارتباط</h4><a href="#">info@phdesign.ir</a><a href="#">۰۹۱۲-۱۲۳-۴۵۶۷</a></div>
+      <div><h3>PH Design</h3><p>استودیو طراحی وب با تمرکز بر مینیمالیسم و انیمیشن‌های شیک.</p></div>
+      <div class="footer-col"><h4>لینک‌ها</h4><a href="index.html">خانه</a><a href="portfolio.html">نمونه‌کار</a><a href="shop.html">فروشگاه</a><a href="about.html">درباره</a></div>
+      <div class="footer-col"><h4>خدمات</h4><a href="#">طراحی وب</a><a href="#">فروشگاه</a><a href="#">اپلیکیشن</a><a href="#">برندینگ</a></div>
+      <div class="footer-col"><h4>تماس</h4><a href="#">info@phdesign.ir</a><a href="#">۰۹۱۲-۱۲۳-۴۵۶۷</a><a href="#">تهران</a></div>
     </div>
-    <div class="footer-bottom"><span>© ۱۴۰۴ PH Design</span><span>طراحی با ❤️</span></div>
+    <div class="footer-bottom"><span>© ۱۴۰۴ PH Design</span><span>ساخته شده با ◐</span></div>
   </div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>

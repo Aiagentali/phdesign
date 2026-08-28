@@ -3,255 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PH Design | طراحی سایت حرفه‌ای</title>
-  <meta name="description" content="PH Design — طراحی سایت‌های حرفه‌ای با UI جذاب و انیمیشن‌های منحصربفرد">
+  <meta name="theme-color" content="#07070A">
+  <title>PH Design — استودیو طراحی وب</title>
+  <meta name="description" content="PH Design — استودیو طراحی سایت با رویکرد مینیمال، مدرن و انیمیشن‌های شیک. وب‌سایت‌هایی که مشتری را جذب می‌کنند.">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◐</text></svg>">
 </head>
 <body>
 
-<!-- ===== NAV ===== -->
-<nav class="nav" id="navbar">
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">PH<span> Design</span></a>
+    <a href="index.html" class="logo"><span class="dot"></span><b>PH</b><span>Design</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">خانه</a>
-      <a href="portfolio.html">نمونه کارها</a>
+      <a href="portfolio.html">نمونه‌کار</a>
       <a href="shop.html">فروشگاه</a>
-      <a href="about.html">درباره ما</a>
-      <a href="contact.html">تماس با ما</a>
+      <a href="about.html">درباره</a>
+      <a href="contact.html">تماس</a>
     </div>
     <div class="nav-actions">
       <div class="theme-toggle" id="themeToggle" title="تغییر تم"></div>
-      <div class="nav-toggle" id="navToggle">
-        <span></span><span></span><span></span>
-      </div>
+      <div class="nav-burger" id="navBurger"><span></span><span></span><span></span></div>
     </div>
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="hero-particles" id="particles"></div>
-  <div class="hero-content">
-    <div class="hero-badge reveal">✦ طراحی سایت حرفه‌ای</div>
-    <h1 class="hero-title reveal">
-      سایتی که <span class="highlight">مشتری جذب کنه</span> بساز
+  <div class="hero-glow"></div>
+  <div class="container hero-inner">
+    <div class="eyebrow reveal"><span class="dot"></span> استودیو طراحی تجربه‌های دیجیتال</div>
+    <h1 class="reveal">
+      سایتی که<br>
+      <span class="out">مشتری</span> رو <em>مبهوت</em> می‌کند
     </h1>
-    <p class="hero-subtitle reveal">
-      ما سایت‌هایی طراحی می‌کنیم که با انیمیشن‌های جذاب، سرعت بالا و UI منحصربفرد، تجربه‌ای متفاوت به کاربران هدیه بده.
+    <p class="lead reveal">
+      ما در PH Design وب‌سایت‌هایی می‌سازیم که با رویکردی مینیمال، تایپوگرافی بولد و انیمیشن‌های شیک،
+      برند شما را به شکلی متفاوت به نمایش می‌گذارند.
     </p>
-    <div class="hero-buttons reveal">
-      <a href="portfolio.html" class="btn btn-primary btn-large">مشاهده نمونه کارها →</a>
-      <a href="contact.html" class="btn btn-secondary btn-large">سفارش طراحی</a>
+    <div class="hero-cta reveal">
+      <a href="portfolio.html" class="btn btn-primary">مشاهده نمونه‌کارها →</a>
+      <a href="contact.html" class="btn btn-ghost">شروع پروژه</a>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>طراحی UI/UX</span><span>فرانت‌اند</span><span>انیمیشن</span><span>برندینگ</span>
+      <span>فروشگاه</span><span>سئو</span><span>اپلیکیشن</span><span>طراحی UI/UX</span>
+      <span>فرانت‌اند</span><span>انیمیشن</span><span>برندینگ</span><span>فروشگاه</span><span>سئو</span><span>اپلیکیشن</span>
     </div>
   </div>
 </section>
 
-<!-- ===== SERVICES ===== -->
 <section class="section">
   <div class="container">
-    <div class="section-header">
-      <p class="section-label reveal">خدمات ما</p>
-      <h2 class="section-title reveal">چیزی که بهش افتخار می‌کنیم</h2>
-      <p class="section-desc reveal">از طراحی UI تا کدنویسی و راه‌اندازی، همه چیز رو پوشش میدیم</p>
+    <div class="section-head reveal">
+      <div class="section-kicker">چه می‌کنیم</div>
+      <h2 class="section-title">خدمات با کیفیت، بدون قربانی کردن جزئیات</h2>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">🎨</div>
-        <h3>طراحی UI/UX</h3>
-        <p>طراحی رابط کاربری جذاب و تجربه کاربری روان که کاربر رو مبهوت کنه.</p>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">⚡</div>
-        <h3>سرعت بالا</h3>
-        <p>بهینه‌سازی کدها برای لود سریع و عملکرد بی‌نقص در همه دستگاه‌ها.</p>
-      </div>
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon">✨</div>
-        <h3>انیمیشن حرفه‌ای</h3>
-        <p>افزودن انیمیشن‌های منحصربفرد و تعاملی که سایت رو زنده کنه.</p>
-      </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">📱</div>
-        <h3>ریسپانسیو</h3>
-        <p>سازگار با همه نمایشگرها از موبایل تا تلویزیون‌های 4K.</p>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">🚀</div>
-        <h3>SEO و بهینه‌سازی</h3>
-        <p>بهینه‌سازی برای موتورهای جستجو تا سایتت در صفحه اول گوگل باشه.</p>
-      </div>
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon">🛡️</div>
-        <h3>امنیت بالا</h3>
-        <p>پیاده‌سازی استانداردهای امنیتی برای حفاظت از اطلاعات سایت شما.</p>
-      </div>
+    <div class="svc-grid">
+      <div class="svc reveal"><span class="num">01</span><span class="ico">◐</span><h3>طراحی UI/UX</h3><p>رابط‌هایی که کاربر را گم نمی‌کنند. تایپوگرافی درست، سلسله‌مراتب بصری واضح و حس لمسی در هر تعامل.</p></div>
+      <div class="svc reveal d1"><span class="num">02</span><span class="ico">◇</span><h3>توسعه فرانت‌اند</h3><p>کد تمیز، ریسپانسیو و سریع. بهینه‌سازی شده برای لود زیر ۱ ثانیه روی هر دستگاه.</p></div>
+      <div class="svc reveal d2"><span class="num">03</span><span class="ico">✦</span><h3>انیمیشن حرکتی</h3><p>انیمیشن‌های هدفمند که روایت برند را پیش می‌برند — نه دکور بلکه بخشی از تجربه.</p></div>
+      <div class="svc reveal"><span class="num">04</span><span class="ico">▢</span><h3>فروشگاه آنلاین</h3><p>تجربه خرید روان با فیلتر هوشمند، سبد خرید سبک و چک‌اوت بی‌دردسر.</p></div>
+      <div class="svc reveal d1"><span class="num">05</span><span class="ico">◈</span><h3>سئو و سرعت</h3><p>ساختار سئو-فرندلی و بهینه‌سازی Core Web Vitals برای رتبه بهتر در جستجو.</p></div>
+      <div class="svc reveal d2"><span class="num">06</span><span class="ico">❖</span><h3>برندینگ دیجیتال</h3><p>از لوگو تا راهنمای کامل بصری — هویتی که روی وب متمایز به نظر برسد.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== PORTFOLIO PREVIEW ===== -->
-<section class="section" style="background: var(--bg-secondary);">
+<section class="section" style="background:var(--bg-soft);">
   <div class="container">
-    <div class="section-header">
-      <p class="section-label reveal">نمونه کارها</p>
-      <h2 class="section-title reveal">پروژه‌های اخیر ما</h2>
-      <p class="section-desc reveal">نگاهی به برترین طراحی‌های انجام شده توسط تیم ما</p>
+    <div class="section-head center reveal">
+      <div class="section-kicker">منتخب</div>
+      <h2 class="section-title">آخرین پروژه‌ها</h2>
     </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-card reveal reveal-delay-1">
-        <div class="portfolio-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 2rem;">🏢</div>
-          <div class="portfolio-overlay"><a href="demos/demo1.html" target="_blank" class="btn btn-primary">پیش‌نمایش زنده</a></div>
+    <div class="work-grid">
+      <a href="demos/demo1.html" target="_blank" class="work-card reveal">
+        <div class="work-thumb">
+          <div class="bg" style="background:linear-gradient(135deg,#1a1a2e,#16213e);"></div>
+          <span style="position:relative;z-index:1">⬡</span>
         </div>
-        <div class="portfolio-info">
-          <span class="portfolio-category">شرکتی</span>
-          <h3>شرکت فناوری آلفا</h3>
-          <p>طراحی وب‌سایت شرکتی با انیمیشن‌های سه‌بعدی</p>
+        <div class="work-meta"><div><div class="cat">شرکتی</div><h3>آلفا‌تک</h3></div><div class="work-arrow">→</div></div>
+      </a>
+      <a href="demos/demo2.html" target="_blank" class="work-card reveal d1">
+        <div class="work-thumb">
+          <div class="bg" style="background:linear-gradient(135deg,#0d0d12,#1a1a1a);"></div>
+          <span style="position:relative;z-index:1">◈</span>
         </div>
-      </div>
-      <div class="portfolio-card reveal reveal-delay-2">
-        <div class="portfolio-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 2rem;">🛒</div>
-          <div class="portfolio-overlay"><a href="demos/demo2.html" target="_blank" class="btn btn-primary">پیش‌نمایش زنده</a></div>
+        <div class="work-meta"><div><div class="cat">فروشگاهی</div><h3>مد استایل</h3></div><div class="work-arrow">→</div></div>
+      </a>
+      <a href="demos/demo3.html" target="_blank" class="work-card reveal">
+        <div class="work-thumb">
+          <div class="bg" style="background:linear-gradient(135deg,#1a1208,#2a1e10);"></div>
+          <span style="position:relative;z-index:1">❖</span>
         </div>
-        <div class="portfolio-info">
-          <span class="portfolio-category">فروشگاهی</span>
-          <h3>فروشگاه مد استایل</h3>
-          <p>فروشگاه آنلاین مُد با طراحی مینیمال</p>
+        <div class="work-meta"><div><div class="cat">رستوران</div><h3>لاکچری</h3></div><div class="work-arrow">→</div></div>
+      </a>
+      <a href="demos/demo4.html" target="_blank" class="work-card reveal d1">
+        <div class="work-thumb">
+          <div class="bg" style="background:linear-gradient(135deg,#0e0e0e,#1a1a1a);"></div>
+          <span style="position:relative;z-index:1">◐</span>
         </div>
-      </div>
-      <div class="portfolio-card reveal reveal-delay-3">
-        <div class="portfolio-thumb">
-          <div class="mock-preview" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 2rem;">🍽️</div>
-          <div class="portfolio-overlay"><a href="demos/demo3.html" target="_blank" class="btn btn-primary">پیش‌نمایش زنده</a></div>
-        </div>
-        <div class="portfolio-info">
-          <span class="portfolio-category">رستوران</span>
-          <h3>رستوران ایتالیایی لاکچری</h3>
-          <p>سایت رستوران با رزرو آنلاین و منوی تعاملی</p>
-        </div>
-      </div>
+        <div class="work-meta"><div><div class="cat">پورتفولیو</div><h3>رضا عکاس</h3></div><div class="work-arrow">→</div></div>
+      </a>
     </div>
-    <div style="text-align: center; margin-top: 48px;">
-      <a href="portfolio.html" class="btn btn-outline btn-large reveal">مشاهده همه نمونه کارها →</a>
+    <div style="text-align:center;margin-top:50px" class="reveal">
+      <a href="portfolio.html" class="btn btn-ghost">همه پروژه‌ها →</a>
     </div>
   </div>
 </section>
 
-<!-- ===== STATS ===== -->
-<section class="section stats-section">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item reveal reveal-delay-1">
-        <h2 id="stat1">0</h2>
-        <p>پروژه موفق</p>
-      </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <h2 id="stat2">0</h2>
-        <p>مشتری راضی</p>
-      </div>
-      <div class="stat-item reveal reveal-delay-3">
-        <h2 id="stat3">0</h2>
-        <p>سال تجربه</p>
-      </div>
-      <div class="stat-item reveal reveal-delay-4">
-        <h2 id="stat4">0</h2>
-        <p>رضایت مشتریان</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TESTIMONIALS ===== -->
 <section class="section">
   <div class="container">
-    <div class="section-header">
-      <p class="section-label reveal">نظرات مشتریان</p>
-      <h2 class="section-title reveal">مشتریان ما چی میگن؟</h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">«طراحی سایت فروشگاهی من توسط PH Design واقعا عالی بود. انیمیشن‌ها خیره‌کننده و سرعت لود عالیه. مشتریام خیلی استقبال کردن.»</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">م</div>
-          <div>
-            <div class="testimonial-name">محمد رضایی</div>
-            <div class="testimonial-role">مدیر فروشگاه آنلاین</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">«سایت شرکتی ما رو از صفر ساختن. UI خیلی حرفه‌ای و تمیزه. توی موبایل هم عالی نمایش داده میشه. حتما پیشنهاد میکنم.»</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">س</div>
-          <div>
-            <div class="testimonial-name">سارا احمدی</div>
-            <div class="testimonial-role">مدیر مارکتینگ</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-3">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">«تیم PH Design خیلی حرفه‌ای و سریع کار کردن. سایت رستوران من با رزرو آنلاین خیلی مورد استقبال مشتریام قرار گرفته.»</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ع</div>
-          <div>
-            <div class="testimonial-name">علی محمدی</div>
-            <div class="testimonial-role">رستوران ایتالیایی</div>
-          </div>
-        </div>
-      </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="n">۱۵۰<em>+</em></div><div class="l">پروژه تحویل شده</div></div>
+      <div class="stat"><div class="n">۹۸<em>%</em></div><div class="l">رضایت مشتری</div></div>
+      <div class="stat"><div class="n">۶</div><div class="l">سال تجربه</div></div>
+      <div class="stat"><div class="n">۲۴<em>h</em></div><div class="l">پشتیبانی</div></div>
     </div>
   </div>
 </section>
 
-<!-- ===== CTA ===== -->
-<section class="cta-section">
+<section class="section" style="background:var(--bg-soft);">
   <div class="container">
-    <h2 class="cta-title reveal">آماده‌ای سایتت رو شروع کنی؟</h2>
-    <p class="cta-desc reveal">همین الان با ما تماس بگیر و پروژه‌ات رو شروع کن. مشاوره اولیه رایگانه!</p>
-    <a href="contact.html" class="btn btn-primary btn-large reveal">شروع پروژه 🚀</a>
+    <div class="section-head center reveal">
+      <div class="section-kicker">بازخورد</div>
+      <h2 class="section-title">مشتریان چه می‌گویند</h2>
+    </div>
+    <div class="work-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="svc reveal"><span class="ico" style="color:var(--accent-3)">★★★★★</span><p style="margin-top:8px">«سایت ما را از صفر ساختند. سرعت لود شگفت‌انگیز و طراحی تمیز — فروش آنلاین‌مان ۳ برابر شد.»</p><div style="font-size:.85rem;color:var(--text-mute);margin-top:14px">— محمد رضایی، مدیر فروشگاه</div></div>
+      <div class="svc reveal d1"><span class="ico" style="color:var(--accent-2)">★★★★★</span><p style="margin-top:8px">«تیم حرفه‌ای و سریع. انیمیشن‌ها دقیقاً همان چیزی بود که می‌خواستیم. حتماً پیشنهاد می‌کنم.»</p><div style="font-size:.85rem;color:var(--text-mute);margin-top:14px">— سارا احمدی، مدیر برند</div></div>
+      <div class="svc reveal d2"><span class="ico" style="color:var(--accent-4)">★★★★★</span><p style="margin-top:8px">«سایت رستوران‌مان با رزرو آنلاین عالی شد. مشتری‌ها کیفیت کار را تحسین می‌کنند.»</p><div style="font-size:.85rem;color:var(--text-mute);margin-top:14px">— علی محمدی، صاحب رستوران</div></div>
+    </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<section class="section">
+  <div class="container" style="text-align:center">
+    <h2 class="section-title reveal" style="margin-bottom:18px">پروژه بعدی‌ات را اینجا شروع کن</h2>
+    <p class="section-sub reveal" style="max-width:480px;margin:0 auto 32px">مشاوره اولیه رایگان. ایده‌ت را بگو، ما نقشه راه را می‌کشیم.</p>
+    <a href="contact.html" class="btn btn-primary reveal">شروع همکاری 🚀</a>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <h3>PH Design</h3>
-        <p>طراحی سایت‌های حرفه‌ای با UI جذاب، انیمیشن‌های منحصربفرد و سرعت بالا. ما تجربه‌ای متفاوت برای کاربران شما می‌سازیم.</p>
-      </div>
-      <div class="footer-col">
-        <h4>لینک‌ها</h4>
-        <a href="index.html">خانه</a>
-        <a href="portfolio.html">نمونه کارها</a>
-        <a href="shop.html">فروشگاه</a>
-        <a href="about.html">درباره ما</a>
-      </div>
-      <div class="footer-col">
-        <h4>خدمات</h4>
-        <a href="#">طراحی وب</a>
-        <a href="#">طراحی اپلیکیشن</a>
-        <a href="#">سئو و بهینه‌سازی</a>
-        <a href="#">تدوین ویدیو</a>
-      </div>
-      <div class="footer-col">
-        <h4>ارتباط با ما</h4>
-        <a href="#">info@phdesign.ir</a>
-        <a href="#">۰۹۱۲-۱۲۳-۴۵۶۷</a>
-        <a href="#">تهران، ایران</a>
-      </div>
+      <div><h3>PH Design</h3><p>استودیو طراحی وب با تمرکز بر مینیمالیسم، تایپوگرافی و انیمیشن‌های شیک. ما تجربه‌ای می‌سازیم که ماندگار باشد.</p></div>
+      <div class="footer-col"><h4>لینک‌ها</h4><a href="index.html">خانه</a><a href="portfolio.html">نمونه‌کار</a><a href="shop.html">فروشگاه</a><a href="about.html">درباره</a></div>
+      <div class="footer-col"><h4>خدمات</h4><a href="#">طراحی وب</a><a href="#">فروشگاه</a><a href="#">اپلیکیشن</a><a href="#">برندینگ</a></div>
+      <div class="footer-col"><h4>تماس</h4><a href="#">info@phdesign.ir</a><a href="#">۰۹۱۲-۱۲۳-۴۵۶۷</a><a href="#">تهران، ایران</a></div>
     </div>
-    <div class="footer-bottom">
-      <span>© ۱۴۰۴ PH Design. تمامی حقوق محفوظ است.</span>
-      <span>طراحی با ❤️</span>
-    </div>
+    <div class="footer-bottom"><span>© ۱۴۰۴ PH Design. تمامی حقوق محفوظ است.</span><span>ساخته شده با ◐</span></div>
   </div>
 </footer>
 

@@ -2,86 +2,96 @@
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>پورتفولیو عکاس | PH Design</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>رضا عکاس | PH Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0e0e0e;--text:#eee;--text2:#888;--accent:#e74c3c;--border:rgba(255,255,255,0.06)}
-[data-theme="light"]{--bg:#f5f5f5;--text:#111;--text2:#666;--accent:#c0392b;--border:rgba(0,0,0,0.08)}
+:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#C86CA0;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
+[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;transition:all .4s}
+body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
 a{text-decoration:none;color:inherit}
-.back{position:fixed;top:16px;left:16px;z-index:100;padding:8px 16px;background:rgba(255,255,255,0.1);border:1px solid var(--border);border-radius:8px;font-size:.8rem;color:var(--accent);backdrop-filter:blur(10px)}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:20px 0;background:transparent;transition:all .3s}
-nav.scrolled{background:rgba(14,14,14,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
-.logo{font-size:1.2rem;font-weight:800;letter-spacing:4px}
-.nav-links{display:flex;gap:28px}
-.nav-links a{font-size:.85rem;color:var(--text2);transition:color .3s}
-.nav-links a:hover{color:#fff}
-.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#000 0%,#1a1a1a 100%)}
-.hero h1{font-size:clamp(2rem,5vw,4rem);font-weight:900;margin-bottom:12px}
-.hero h1 em{font-style:normal;border-bottom:3px solid var(--accent)}
-.hero p{color:var(--text2);font-size:1rem;max-width:400px;margin:0 auto}
-.gallery{columns:3;column-gap:12px;padding:24px 12px}
-.gallery-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:auto;display:block;width:100%}
-.gallery-item .img-box{width:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;color:#fff;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.gallery-item:hover .img-box{transform:scale(1.05)}
-.gallery-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
-.gallery-item:hover .gallery-overlay{opacity:1}
-.gallery-overlay span{color:#fff;font-size:.9rem;font-weight:600;letter-spacing:1px}
-.section{padding:100px 0}
-.section-header{text-align:center;margin-bottom:60px}
-.section-label{font-size:.75rem;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
-.section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.about-text h3{font-size:1.4rem;font-weight:700;margin-bottom:12px}
-.about-text p{color:var(--text2);line-height:1.9;margin-bottom:12px}
-.stats-row{display:flex;gap:40px;margin-top:24px}
-.stats-row div h2{font-size:2rem;font-weight:900;color:var(--accent)}
-.stats-row div p{font-size:.8rem;color:var(--text2)}
-.cta{text-align:center;padding:100px 0;background:linear-gradient(180deg,var(--bg),#1a1a1a,var(--bg))}
-.cta h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:16px}
-.cta p{color:var(--text2);margin-bottom:28px}
-.btn{padding:14px 32px;border-radius:12px;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .3s}
-.btn-red{background:var(--accent);color:#fff}
-.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(231,76,60,0.3)}
-footer{padding:40px 0;text-align:center;color:var(--text2);font-size:.8rem;border-top:1px solid var(--border)}
-.reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.16,1,.3,1)}.reveal.v{opacity:1;transform:translateY(0)}
-@media(max-width:768px){.gallery{columns:2}.about-grid{grid-template-columns:1fr}.nav-links{display:none}}
+.container{max-width:1100px;margin:0 auto;padding:0 28px}
+.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
+.back-pill:hover{background:var(--accent);color:#07070A}
+.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
+.nav-links a:hover{color:var(--text)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
+.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
+.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
+.hero-in{position:relative;z-index:1}
+.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
+.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
+.btn-p{background:var(--accent);color:#07070A}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
+.btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.section{padding:110px 0}
+.section-head{margin-bottom:56px}
+.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
+.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.svc{background:var(--bg);padding:36px 30px;transition:.4s}
+.svc:hover{background:var(--card)}
+.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
+.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
+.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
+.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
+.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
+.cta-sec p{color:var(--text-soft);margin-bottom:28px}
+footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.v{opacity:1;transform:none}
+@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
+@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
 </style>
 </head>
 <body>
-<a href="../index.html" class="back">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">🌙</button>
-<nav id="nav"><div class="nav-inner"><div class="logo">REZA PHOTO</div><div class="nav-links"><a href="#gallery">گالری</a><a href="#about">درباره من</a><a href="#contact">تماس</a></div></div></nav>
+<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
+<nav><div class="nav-inner"><div class="logo"><span class="d"></span>رضا عکاس</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
 
-<section class="hero"><div><h1>لحظات رو <em>immortalize</em> می‌کنم</h1><p>عکاسی حرفه‌ای پرتره، طبیعت و رویدادها</p></div></section>
-
-<section id="gallery" style="padding:24px 0"><div class="gallery">
-<div class="gallery-item reveal"><div class="img-box" style="height:300px;background:linear-gradient(135deg,#2c3e50,#3498db)">🏔️</div><div class="gallery-overlay"><span>طبیعت</span></div></div>
-<div class="gallery-item reveal"><div class="img-box" style="height:400px;background:linear-gradient(135deg,#8e44ad,#e74c3c)">👤</div><div class="gallery-overlay"><span>پرتره</span></div></div>
-<div class="gallery-item reveal"><div class="img-box" style="height:250px;background:linear-gradient(135deg,#27ae60,#2ecc71)">🌿</div><div class="gallery-overlay"><span>طبیعت</span></div></div>
-<div class="gallery-item reveal"><div class="img-box" style="height:350px;background:linear-gradient(135deg,#e67e22,#e74c3c)">🌅</div><div class="gallery-overlay"><span>غروب</span></div></div>
-<div class="gallery-item reveal"><div class="img-box" style="height:280px;background:linear-gradient(135deg,#1abc9c,#3498db)">🌊</div><div class="gallery-overlay"><span>دریا</span></div></div>
-<div class="gallery-item reveal"><div class="img-box" style="height:320px;background:linear-gradient(135deg,#9b59b6,#e91e63)">👰</div><div class="gallery-overlay"><span>عروسی</span></div></div>
-<div class="gallery-item reveal"><div class="img-box" style="height:260px;background:linear-gradient(135deg,#f39c12,#d35400)">🏙️</div><div class="gallery-overlay"><span>شهری</span></div></div>
-<div class="gallery-item reveal"><div class="img-box" style="height:380px;background:linear-gradient(135deg,#1a1a2e,#e94560)">🎭</div><div class="gallery-overlay"><span>هنری</span></div></div>
-<div class="gallery-item reveal"><div class="img-box" style="height:290px;background:linear-gradient(135deg,#2c3e50,#34495e)">📦</div><div class="gallery-overlay"><span>محصول</span></div></div>
+<section class="hero"><div class="glow"></div><div class="container hero-in">
+<div class="kick reveal"><span class="d"></span> پورتفولیو</div>
+<h1 class="reveal">رضا عکاس<br><em>تجربه‌ای متفاوت</em></h1>
+<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
+<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
 </div></section>
 
-<section class="section" id="about"><div class="container"><div class="about-grid">
-<div class="about-text reveal"><h3>رضا کریمی</h3><p>عکاس حرفه‌ای با بیش از ۸ سال تجربه. تخصص من عکاسی پرتره، طبیعت و رویدادهاست.</p><p>باور دارم هر عکس باید یک داستان بگه و هر لحظه ارزش ثبت شدن داره.</p>
-<div class="stats-row"><div><h2>۵۰۰+</h2><p>پروژه</p></div><div><h2>۸</h2><p>سال تجربه</p></div><div><h2>۵۰+</h2><p>جایزه</p></div></div></div>
-<div class="reveal" style="aspect-ratio:1;background:linear-gradient(135deg,#2c3e50,#e74c3c);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:5rem">📷</div>
-</div></div></section>
+<section class="section"><div class="container">
+<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
+<div class="svc-grid">
+<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>پرتره</h3><p>چهره‌هایی که داستان دارند</p></div>
+<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>طبیعت</h3><p>لحظات بکر از دنیا</p></div>
+<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>رویداد</h3><p>ثبت لحظه‌های ماندگار</p></div>
+</div>
+</div></section>
 
-<section class="cta" id="contact"><div class="container reveal"><h2>پروژه بعدی شما</h2><p>برای رزرو و مشاوره تماس بگیرید</p><a href="mailto:reza@photo.ir" class="btn btn-red">تماس با من →</a></div></section>
-<footer><div class="container">© ۱۴۰۴ رضا کریمی — طراحی شده توسط <a href="../index.html" style="color:var(--accent)">PH Design</a></div></footer>
+<section class="section" style="background:var(--bg-soft)"><div class="container">
+<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">◐</div></div>
+</div></section>
+
+<section class="cta-sec"><div class="container">
+<h2 class="reveal">این مدل برای برند تو؟</h2>
+<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
+<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
+</div></section>
+
+<footer>© ۱۴۰۴ رضا عکاس — طراحی شده توسط PH Design</footer>
 <script>
-window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)});
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
 </script>
 </body></html>

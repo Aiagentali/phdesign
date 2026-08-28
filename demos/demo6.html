@@ -1,511 +1,97 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>اپلیکیشن مدیریت مالی | Finance App</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مالی‌پلاس | PH Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary: #6366f1;
-  --primary-light: #818cf8;
-  --accent: #22d3ee;
-  --green: #34d399;
-  --red: #f87171;
-  --orange: #fb923c;
-  --bg: #0f0f1a;
-  --bg2: #151528;
-  --card: #1c1c35;
-  --card2: #232345;
-  --text: #ffffff;
-  --text2: #8b8ba3;
-  --border: rgba(99,102,241,0.15);
-  --gradient1: linear-gradient(135deg, #6366f1, #8b5cf6);
-  --gradient2: linear-gradient(135deg, #06b6d4, #22d3ee);
-  --gradient3: linear-gradient(135deg, #f59e0b, #fbbf24);
-}
-[data-theme="light"] {
-  --bg: #f8f9fc;
-  --bg2: #eef0f6;
-  --card: #ffffff;
-  --card2: #f3f4f8;
-  --text: #1e1b4b;
-  --text2: #6b7280;
-  --border: rgba(99,102,241,0.12);
-}
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Vazirmatn', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  transition: background 0.4s, color 0.4s;
-}
-
-/* Nav */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0.8rem 2rem;
-  background: rgba(15,15,26,0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-[data-theme="light"] .nav { background: rgba(248,249,252,0.95); }
-.nav-logo {
-  display: flex; align-items: center; gap: 0.5rem;
-  font-weight: 900; font-size: 1.2rem;
-}
-.nav-logo .dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: blink 2s infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-.nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-.nav-links a {
-  color: var(--text2);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-.nav-links a:hover, .nav-links a.active { color: var(--text); }
-.theme-btn {
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s;
-}
-.mobile-btn { display: none; background: none; border: none; cursor: pointer; }
-.mobile-btn span { display: block; width: 20px; height: 2px; background: var(--text); margin: 4px 0; }
-
-/* Dashboard Layout */
-.dashboard {
-  padding: 6rem 2rem 2rem;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.dashboard-header h1 {
-  font-size: 1.6rem;
-  font-weight: 900;
-}
-.dashboard-header h1 span { color: var(--text2); font-weight: 400; font-size: 1rem; display: block; }
-.header-actions { display: flex; gap: 0.8rem; }
-.header-btn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--text);
-  font-family: 'Vazirmatn', sans-serif;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.header-btn.primary {
-  background: var(--gradient1);
-  border: none;
-  color: white;
-}
-.header-btn:hover { transform: translateY(-1px); }
-
-/* Stats Cards */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-.stat-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 1.5rem;
-  transition: transform 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.stat-card:hover { transform: translateY(-4px); }
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 60px; height: 60px;
-  border-radius: 0 0 0 60px;
-  opacity: 0.1;
-}
-.stat-card:nth-child(1)::before { background: var(--primary); }
-.stat-card:nth-child(2)::before { background: var(--green); }
-.stat-card:nth-child(3)::before { background: var(--orange); }
-.stat-card:nth-child(4)::before { background: var(--accent); }
-.stat-label {
-  font-size: 0.8rem;
-  color: var(--text2);
-  margin-bottom: 0.5rem;
-}
-.stat-value {
-  font-size: 1.8rem;
-  font-weight: 900;
-  margin-bottom: 0.5rem;
-}
-.stat-change {
-  font-size: 0.8rem;
-  display: flex; align-items: center; gap: 0.3rem;
-}
-.stat-change.up { color: var(--green); }
-.stat-change.down { color: var(--red); }
-
-/* Chart Area */
-.charts-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-.chart-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 1.5rem;
-}
-.chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-.chart-header h3 { font-size: 1rem; font-weight: 700; }
-.chart-tabs { display: flex; gap: 0.5rem; }
-.chart-tab {
-  padding: 0.3rem 0.8rem;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  color: var(--text2);
-  font-family: 'Vazirmatn', sans-serif;
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.chart-tab.active { background: var(--primary); color: white; }
-
-/* CSS Chart */
-.css-chart {
-  height: 200px;
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  padding: 0 0.5rem;
-}
-.chart-bar {
-  flex: 1;
-  border-radius: 6px 6px 0 0;
-  transition: all 0.4s;
-  position: relative;
-  min-height: 10px;
-  cursor: pointer;
-}
-.chart-bar:hover { opacity: 0.8; }
-.chart-bar::after {
-  content: attr(data-value);
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.7rem;
-  color: var(--text2);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.chart-bar:hover::after { opacity: 1; }
-
-/* Donut Chart (CSS) */
-.donut-chart {
-  width: 150px; height: 150px;
-  border-radius: 50%;
-  position: relative;
-  margin: 0 auto;
-}
-.donut-center {
-  position: absolute;
-  inset: 25px;
-  background: var(--card);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.donut-center .value { font-size: 1.3rem; font-weight: 900; }
-.donut-center .label { font-size: 0.7rem; color: var(--text2); }
-.donut-legend {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  margin-top: 1.5rem;
-}
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-}
-.legend-dot {
-  width: 10px; height: 10px;
-  border-radius: 3px;
-}
-
-/* Transactions */
-.transactions {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 1.5rem;
-}
-.transaction-list { display: flex; flex-direction: column; gap: 0; }
-.transaction-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.3s;
-}
-.transaction-item:last-child { border-bottom: none; }
-.transaction-item:hover { background: var(--card2); margin: 0 -1rem; padding: 1rem; border-radius: 10px; }
-.transaction-left {
-  display: flex; align-items: center; gap: 1rem;
-}
-.transaction-icon {
-  width: 40px; height: 40px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem;
-}
-.transaction-title { font-size: 0.9rem; font-weight: 500; }
-.transaction-date { font-size: 0.75rem; color: var(--text2); }
-.transaction-amount { font-weight: 700; font-size: 0.95rem; }
-.transaction-amount.income { color: var(--green); }
-.transaction-amount.expense { color: var(--red); }
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 2rem;
-  color: var(--text2);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-}
-.footer a { color: var(--primary-light); text-decoration: none; }
-
-.fade-in {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s;
-}
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 1024px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .charts-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 768px) {
-  .nav { padding: 0.7rem 1.2rem; }
-  .nav-links { display: none; }
-  .nav-links.active {
-    display: flex; flex-direction: column;
-    position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--bg); padding: 1.2rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .mobile-btn { display: block; }
-  .stats-grid { grid-template-columns: 1fr; }
-  .dashboard { padding: 5rem 1rem 1rem; }
-  .dashboard-header h1 { font-size: 1.3rem; }
-}
+:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#8CC86C;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
+[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
+a{text-decoration:none;color:inherit}
+.container{max-width:1100px;margin:0 auto;padding:0 28px}
+.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
+.back-pill:hover{background:var(--accent);color:#07070A}
+.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
+.nav-links a:hover{color:var(--text)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
+.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
+.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
+.hero-in{position:relative;z-index:1}
+.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
+.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
+.btn-p{background:var(--accent);color:#07070A}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
+.btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.section{padding:110px 0}
+.section-head{margin-bottom:56px}
+.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
+.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.svc{background:var(--bg);padding:36px 30px;transition:.4s}
+.svc:hover{background:var(--card)}
+.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
+.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
+.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
+.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
+.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
+.cta-sec p{color:var(--text-soft);margin-bottom:28px}
+footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.v{opacity:1;transform:none}
+@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
+@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
 </style>
 </head>
 <body>
+<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
+<nav><div class="nav-inner"><div class="logo"><span class="d"></span>مالی‌پلاس</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
 
-<nav class="nav" id="navbar">
-  <div class="nav-logo"><span class="dot"></span> فینکا</div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#dashboard" class="active">داشبورد</a></li>
-    <li><a href="#transactions">تراکنش‌ها</a></li>
-    <li><a href="../index.html">PH Design</a></li>
-  </ul>
-  <div style="display:flex;gap:0.8rem;align-items:center;">
-    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
-    <button class="mobile-btn" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+<section class="hero"><div class="glow"></div><div class="container hero-in">
+<div class="kick reveal"><span class="d"></span> اپلیکیشن</div>
+<h1 class="reveal">مالی‌پلاس<br><em>تجربه‌ای متفاوت</em></h1>
+<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
+<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
+</div></section>
 
-<main class="dashboard" id="dashboard">
-  <div class="dashboard-header fade-in">
-    <h1>داشبورد مالی <span>خوش آمدید، کاربر گرامی 👋</span></h1>
-    <div class="header-actions">
-      <button class="header-btn">📊 گزارش</button>
-      <button class="header-btn primary">+ تراکنش جدید</button>
-    </div>
-  </div>
+<section class="section"><div class="container">
+<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
+<div class="svc-grid">
+<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>داشبورد</h3><p>مدیریت دارایی در یک نگاه</p></div>
+<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>گزارش</h3><p>تحلیل هوشمند هزینه‌ها</p></div>
+<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>امنیت</h3><p>رمزنگاری سطح بانکی</p></div>
+</div>
+</div></section>
 
-  <div class="stats-grid fade-in">
-    <div class="stat-card">
-      <div class="stat-label"> موجودی کل</div>
-      <div class="stat-value">۴۵,۸۲۰,۰۰۰</div>
-      <div class="stat-change up">↑ ۱۲٪ نسبت به ماه قبل</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">درآمد این ماه</div>
-      <div class="stat-value">۱۲,۵۰۰,۰۰۰</div>
-      <div class="stat-change up">↑ ۸٪ نسبت به ماه قبل</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">هزینه‌ها</div>
-      <div class="stat-value">۷,۲۰۰,۰۰۰</div>
-      <div class="stat-change down">↓ ۳٪ نسبت به ماه قبل</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">سود خالص</div>
-      <div class="stat-value">۵,۳۰۰,۰۰۰</div>
-      <div class="stat-change up">↑ ۲۰٪ نسبت به ماه قبل</div>
-    </div>
-  </div>
+<section class="section" style="background:var(--bg-soft)"><div class="container">
+<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">◧</div></div>
+</div></section>
 
-  <div class="charts-grid fade-in">
-    <div class="chart-card">
-      <div class="chart-header">
-        <h3>نمودار درآمد</h3>
-        <div class="chart-tabs">
-          <button class="chart-tab active">ماهانه</button>
-          <button class="chart-tab">هفتگی</button>
-          <button class="chart-tab">روزانه</button>
-        </div>
-      </div>
-      <div class="css-chart">
-        <div class="chart-bar" style="height:40%;background:var(--gradient1);" data-value="۴M"></div>
-        <div class="chart-bar" style="height:65%;background:var(--gradient1);" data-value="۶.۵M"></div>
-        <div class="chart-bar" style="height:55%;background:var(--gradient1);" data-value="۵.۵M"></div>
-        <div class="chart-bar" style="height:80%;background:var(--gradient1);" data-value="۸M"></div>
-        <div class="chart-bar" style="height:70%;background:var(--gradient1);" data-value="۷M"></div>
-        <div class="chart-bar" style="height:90%;background:var(--gradient1);" data-value="۹M"></div>
-        <div class="chart-bar" style="height:75%;background:var(--gradient1);" data-value="۷.۵M"></div>
-        <div class="chart-bar" style="height:85%;background:var(--gradient1);" data-value="۸.۵M"></div>
-        <div class="chart-bar" style="height:95%;background:var(--gradient1);" data-value="۹.۵M"></div>
-        <div class="chart-bar" style="height:100%;background:var(--accent);" data-value="۱۰M"></div>
-        <div class="chart-bar" style="height:88%;background:var(--gradient1);" data-value="۸.۸M"></div>
-        <div class="chart-bar" style="height:92%;background:var(--gradient1);" data-value="۹.۲M"></div>
-      </div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-header">
-        <h3>توزیع هزینه‌ها</h3>
-      </div>
-      <div class="donut-chart" style="background: conic-gradient(var(--primary) 0% 35%, var(--green) 35% 55%, var(--orange) 55% 75%, var(--accent) 75% 100%);">
-        <div class="donut-center">
-          <span class="value">۱۰۰٪</span>
-          <span class="label">کل هزینه</span>
-        </div>
-      </div>
-      <div class="donut-legend">
-        <div class="legend-item"><span class="legend-dot" style="background:var(--primary);"></span>مسکن — ۳۵٪</div>
-        <div class="legend-item"><span class="legend-dot" style="background:var(--green);"></span>خوراک — ۲۰٪</div>
-        <div class="legend-item"><span class="legend-dot" style="background:var(--orange);"></span>حمل‌ونقل — ۲۰٪</div>
-        <div class="legend-item"><span class="legend-dot" style="background:var(--accent);"></span>تفریح — ۲۵٪</div>
-      </div>
-    </div>
-  </div>
+<section class="cta-sec"><div class="container">
+<h2 class="reveal">این مدل برای برند تو؟</h2>
+<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
+<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
+</div></section>
 
-  <div class="transactions fade-in" id="transactions">
-    <div class="chart-header">
-      <h3>آخرین تراکنش‌ها</h3>
-      <button class="header-btn">مشاهده همه</button>
-    </div>
-    <div class="transaction-list">
-      <div class="transaction-item">
-        <div class="transaction-left">
-          <div class="transaction-icon" style="background:rgba(52,211,153,0.1);">💰</div>
-          <div><div class="transaction-title">دریافت حقوق</div><div class="transaction-date">۲۸ مرداد ۱۴۰۵</div></div>
-        </div>
-        <div class="transaction-amount income">+۱۲,۰۰۰,۰۰۰</div>
-      </div>
-      <div class="transaction-item">
-        <div class="transaction-left">
-          <div class="transaction-icon" style="background:rgba(248,113,113,0.1);">🛒</div>
-          <div><div class="transaction-title">خرید از فروشگاه</div><div class="transaction-date">۲۷ مرداد ۱۴۰۵</div></div>
-        </div>
-        <div class="transaction-amount expense">-۸۵۰,۰۰۰</div>
-      </div>
-      <div class="transaction-item">
-        <div class="transaction-left">
-          <div class="transaction-icon" style="background:rgba(99,102,241,0.1);">🏠</div>
-          <div><div class="transaction-title">اجاره مسکن</div><div class="transaction-date">۲۵ مرداد ۱۴۰۵</div></div>
-        </div>
-        <div class="transaction-amount expense">-۵,۰۰۰,۰۰۰</div>
-      </div>
-      <div class="transaction-item">
-        <div class="transaction-left">
-          <div class="transaction-icon" style="background:rgba(34,211,238,0.1);">☕</div>
-          <div><div class="transaction-title">کافه</div><div class="transaction-date">۲۴ مرداد ۱۴۰۵</div></div>
-        </div>
-        <div class="transaction-amount expense">-۳۲۰,۰۰۰</div>
-      </div>
-      <div class="transaction-item">
-        <div class="transaction-left">
-          <div class="transaction-icon" style="background:rgba(52,211,153,0.1);">📈</div>
-          <div><div class="transaction-title">بازگشت سرمایه‌گذاری</div><div class="transaction-date">۲۳ مرداد ۱۴۰۵</div></div>
-        </div>
-        <div class="transaction-amount income">+۲,۵۰۰,۰۰۰</div>
-      </div>
-    </div>
-  </div>
-</main>
-
-<footer class="footer">
-  © ۱۴۰۵ فینکا — اپلیکیشن مدیریت مالی | <a href="../index.html">بازگشت به PH Design</a>
-</footer>
-
+<footer>© ۱۴۰۴ مالی‌پلاس — طراحی شده توسط PH Design</footer>
 <script>
-function toggleTheme() {
-  const h = document.documentElement;
-  h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-}
-function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('active');
-}
-const obs = new IntersectionObserver(es => {
-  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
-});
-document.querySelectorAll('.chart-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-  });
-});
+const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
 </script>
-</body>
-</html>
+</body></html>
