@@ -1,97 +1,568 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مالی‌پلاس | PH Design</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05070a">
+<title>مالی‌پلاس · داشبورد مالی | PH Design</title>
+<meta name="description" content="داشبورد اپلیکیشن مالی با تم تاریک نئون‌سبز، نمودارهای CSS، کارت‌های شیشه‌ای و تحلیل لحظه‌ای.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#8CC86C;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
-[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
+/* ===== متغیرهای تم: فینتک تاریک / نئون‌سبز ===== */
+:root{
+  --bg:#05070A;
+  --bg-soft:#0A0E13;
+  --panel:rgba(255,255,255,.035);
+  --panel-2:rgba(0,255,156,.06);
+  --glass:linear-gradient(150deg,rgba(0,255,156,.12),rgba(255,255,255,.025) 55%,rgba(0,255,156,.03));
+  --glass-soft:linear-gradient(150deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  --text:#EAF6F0;
+  --text-soft:#9DB3AB;
+  --text-mute:#5C706A;
+  --neon:#00FF9C;
+  --neon-2:#7CFFC0;
+  --neon-glow:0 0 22px rgba(0,255,156,.45);
+  --neon-soft:rgba(0,255,156,.14);
+  --down:#FF486B;
+  --down-soft:rgba(255,72,107,.14);
+  --teal:#00E0FF;
+  --amber:#FFC857;
+  --violet:#B388FF;
+  --line:rgba(0,255,156,.12);
+  --line-2:rgba(0,255,156,.26);
+  --radius:18px;
+  --radius-sm:12px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mono:'Vazirmatn',ui-monospace,monospace;
+}
+[data-theme=light]{
+  --bg:#EAF1ED;
+  --bg-soft:#F4F8F5;
+  --panel:rgba(255,255,255,.6);
+  --panel-2:rgba(0,180,120,.08);
+  --glass:linear-gradient(150deg,rgba(0,200,130,.16),rgba(255,255,255,.55) 55%,rgba(0,200,130,.05));
+  --glass-soft:linear-gradient(150deg,rgba(255,255,255,.7),rgba(255,255,255,.4));
+  --text:#06231A;
+  --text-soft:#3C5A50;
+  --text-mute:#7C938B;
+  --neon:#00B876;
+  --neon-2:#00D98A;
+  --neon-glow:0 0 16px rgba(0,184,118,.3);
+  --neon-soft:rgba(0,184,118,.14);
+  --down:#E03157;
+  --down-soft:rgba(224,49,87,.12);
+  --line:rgba(0,140,90,.18);
+  --line-2:rgba(0,140,90,.32);
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);color:var(--text);
+  direction:rtl;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  transition:background .5s var(--ease),color .5s var(--ease);
+  min-height:100vh;overflow-x:hidden;
+}
+/* پس‌زمینه گرید + درخشش نئون */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(circle at 70% 10%,#000,transparent 75%);
+  opacity:.6;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(circle at 85% -5%,var(--neon-soft),transparent 45%),
+            radial-gradient(circle at 5% 95%,rgba(0,224,255,.10),transparent 40%);
+  filter:blur(20px);opacity:.9;
+}
 a{text-decoration:none;color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
-.back-pill:hover{background:var(--accent);color:#07070A}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
-.nav-links a:hover{color:var(--text)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
-.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
-.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
-.hero-in{position:relative;z-index:1}
-.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
-.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
-.btn-p{background:var(--accent);color:#07070A}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
-.btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
-.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.section{padding:110px 0}
-.section-head{margin-bottom:56px}
-.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
-.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--bg);padding:36px 30px;transition:.4s}
-.svc:hover{background:var(--card)}
-.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
-.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
-.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
-.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
-.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
-.cta-sec p{color:var(--text-soft);margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.app{position:relative;z-index:2;display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+
+/* ===== دکمه‌های شناور ===== */
+.back-pill{
+  position:fixed;top:16px;left:16px;z-index:200;
+  padding:9px 18px;border-radius:30px;font-size:.78rem;font-weight:700;
+  background:color-mix(in srgb,var(--bg) 65%,transparent);
+  backdrop-filter:blur(12px);border:1px solid var(--line-2);
+  color:var(--neon);transition:.3s var(--ease);
+}
+.back-pill:hover{background:var(--neon);color:#05070A;box-shadow:var(--neon-glow)}
+.theme-btn{
+  position:fixed;top:16px;right:16px;z-index:200;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 65%,transparent);
+  backdrop-filter:blur(12px);cursor:pointer;font-size:1.15rem;
+  display:flex;align-items:center;justify-content:center;color:var(--neon);transition:.3s var(--ease);
+}
+.theme-btn:hover{background:var(--neon);color:#05070A;box-shadow:var(--neon-glow)}
+
+/* ===== سایدبار ===== */
+.sidebar{
+  position:sticky;top:0;height:100vh;padding:26px 18px;
+  border-left:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg-soft) 80%,transparent);
+  backdrop-filter:blur(14px);display:flex;flex-direction:column;gap:8px;
+}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 22px}
+.brand .mark{
+  width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.3rem;color:#04130D;
+  background:linear-gradient(135deg,var(--neon),var(--neon-2));
+  box-shadow:var(--neon-glow);
+}
+.brand b{font-size:1.15rem;font-weight:800;letter-spacing:-.5px}
+.brand b span{color:var(--neon)}
+.nav-item{
+  display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:13px;
+  color:var(--text-soft);font-weight:600;font-size:.92rem;transition:.25s var(--ease);
+  border:1px solid transparent;
+}
+.nav-item .ni{font-size:1.15rem;width:22px;text-align:center;filter:grayscale(.2)}
+.nav-item:hover{color:var(--text);background:var(--panel)}
+.nav-item.active{
+  color:var(--neon);background:var(--panel-2);border-color:var(--line-2);
+  box-shadow:inset 3px 0 0 var(--neon);
+}
+.side-card{
+  margin-top:auto;padding:18px;border-radius:16px;border:1px solid var(--line-2);
+  background:var(--glass);position:relative;overflow:hidden;
+}
+.side-card h4{font-size:.92rem;font-weight:800;margin-bottom:6px}
+.side-card p{font-size:.78rem;color:var(--text-soft);line-height:1.7}
+.side-card .btn-mini{
+  margin-top:12px;display:inline-block;padding:8px 16px;border-radius:10px;font-size:.8rem;font-weight:700;
+  background:var(--neon);color:#04130D;transition:.25s var(--ease);
+}
+.side-card .btn-mini:hover{box-shadow:var(--neon-glow);transform:translateY(-2px)}
+
+/* ===== محتوای اصلی ===== */
+.main{padding:30px 34px 60px;min-width:0}
+.topbar{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  padding:14px 18px;margin-bottom:26px;border-radius:16px;
+  border:1px solid var(--line);background:var(--glass-soft);backdrop-filter:blur(10px);
+}
+.search{
+  flex:1;min-width:180px;display:flex;align-items:center;gap:10px;
+  padding:11px 16px;border-radius:12px;border:1px solid var(--line-2);
+  background:color-mix(in srgb,var(--bg) 50%,transparent);color:var(--text-soft);
+}
+.search input{
+  flex:1;background:none;border:none;outline:none;color:var(--text);
+  font-family:inherit;font-size:.9rem;
+}
+.search input::placeholder{color:var(--text-mute)}
+.ghost-btn{
+  padding:11px 18px;border-radius:12px;border:1px solid var(--line-2);
+  color:var(--text-soft);font-weight:600;font-size:.85rem;cursor:pointer;transition:.25s var(--ease);
+}
+.ghost-btn:hover{border-color:var(--neon);color:var(--neon)}
+.avatar{
+  width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:#04130D;background:linear-gradient(135deg,var(--neon),var(--teal));
+  box-shadow:var(--neon-glow);
+}
+
+/* هدر خوش‌آمد */
+.hero{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;
+  margin-bottom:30px;
+}
+.hero .hi{font-size:.82rem;color:var(--neon);font-weight:700;letter-spacing:.5px;margin-bottom:10px}
+.hero h1{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:900;letter-spacing:-1px;line-height:1.15}
+.hero h1 em{font-style:normal;color:var(--neon);text-shadow:var(--neon-glow)}
+.hero p{color:var(--text-soft);font-size:.95rem;max-width:440px;margin-top:10px}
+.hero .pill{
+  padding:13px 22px;border-radius:14px;border:1px solid var(--line-2);background:var(--glass);
+  display:flex;flex-direction:column;gap:4px;
+}
+.hero .pill small{font-size:.72rem;color:var(--text-mute)}
+.hero .pill b{font-size:1.3rem;font-weight:900;color:var(--neon)}
+
+/* کارت‌های آمار */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:26px}
+.card{
+  border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--glass);backdrop-filter:blur(10px);padding:22px;position:relative;overflow:hidden;
+  transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease);
+}
+.card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(140deg,var(--neon),transparent 40%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:.5;pointer-events:none;
+}
+.card:hover{transform:translateY(-5px);border-color:var(--line-2);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.stat-lab{font-size:.82rem;color:var(--text-soft);font-weight:600}
+.delta{
+  font-size:.74rem;font-weight:800;padding:3px 9px;border-radius:20px;
+}
+.delta.up{color:var(--neon);background:var(--neon-soft)}
+.delta.down{color:var(--down);background:var(--down-soft)}
+.stat-val{font-size:clamp(1.4rem,2.4vw,1.9rem);font-weight:900;letter-spacing:-.5px;line-height:1.1}
+.stat-val small{font-size:.7rem;color:var(--text-mute);font-weight:600;margin-right:6px}
+.mini{display:flex;align-items:flex-end;gap:4px;height:38px;margin-top:16px}
+.mini i{flex:1;background:linear-gradient(180deg,var(--neon),var(--neon-soft));border-radius:3px 3px 0 0;opacity:.85}
+
+/* ردیف چارت‌ها */
+.charts{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-bottom:26px}
+.panel{
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--glass);
+  backdrop-filter:blur(10px);padding:22px;
+}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.panel-head h3{font-size:1.05rem;font-weight:800;letter-spacing:-.5px}
+.panel-head .sub{font-size:.76rem;color:var(--text-mute)}
+.legend{display:flex;gap:14px;font-size:.74rem;color:var(--text-soft)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-left:5px;vertical-align:middle}
+
+/* نمودار میله‌ای */
+.bars{display:flex;align-items:flex-end;gap:10px;height:230px;padding-top:18px}
+.bar{position:relative;flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.bar-fill{
+  width:100%;height:var(--h);border-radius:9px 9px 0 0;
+  background:linear-gradient(180deg,var(--neon),rgba(0,255,156,.18));
+  box-shadow:0 0 18px var(--neon-soft);transition:height 1.1s var(--ease),filter .3s;
+}
+.bar:hover .bar-fill{filter:brightness(1.25);box-shadow:var(--neon-glow)}
+.bar-val{
+  position:absolute;top:calc(100% - var(--h) - 22px);font-size:.66rem;font-weight:800;
+  color:var(--neon);opacity:0;transform:translateY(6px);transition:.3s var(--ease);
+}
+.bar:hover .bar-val{opacity:1;transform:none}
+.blabels{display:flex;gap:10px;margin-top:12px}
+.blab{flex:1;text-align:center;font-size:.72rem;color:var(--text-mute)}
+
+/* نمودار خطی (step) با div */
+.line-wrap{position:relative;height:260px;margin-top:6px}
+.grid-line{position:absolute;left:0;right:0;height:1px;background:var(--line);opacity:.6}
+.seg{position:absolute;background:var(--neon);box-shadow:var(--neon-glow)}
+.seg.h{height:2px;transform:translateY(-1px)}
+.seg.v{width:2px;transform:translateX(-1px)}
+.dot{
+  position:absolute;width:9px;height:9px;border-radius:50%;background:var(--neon);
+  box-shadow:var(--neon-glow);transform:translate(-50%,-50%);border:2px solid var(--bg);
+}
+.area{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--neon-soft),transparent 80%);
+  clip-path:polygon(0% 100%, 0.0% 70%, 12.5% 58%, 25.0% 62%, 37.5% 45%, 50.0% 52%, 62.5% 35%, 75.0% 40%, 87.5% 22%, 100.0% 28%, 100% 100%);
+}
+.line-labels{display:flex;justify-content:space-between;margin-top:12px;font-size:.7rem;color:var(--text-mute)}
+
+/* تخصیص دارایی (donut) */
+.alloc-panel{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.donut{
+  width:150px;height:150px;border-radius:50%;flex-shrink:0;position:relative;
+  background:conic-gradient(#00FF9C 0 45%, #00E0FF 45% 65%, #FFC857 65% 80%, #B388FF 80% 92%, #4A5A55 92% 100%);
+  box-shadow:0 0 30px var(--neon-soft);
+}
+.donut::after{
+  content:"";position:absolute;inset:26px;border-radius:50%;
+  background:var(--bg-soft);box-shadow:inset 0 0 20px rgba(0,0,0,.4);
+}
+.donut b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;z-index:2;font-size:1.1rem;font-weight:900;color:var(--neon)}
+.donut b small{font-size:.62rem;color:var(--text-mute);font-weight:600}
+.alloc-leg{flex:1;min-width:160px;display:flex;flex-direction:column;gap:11px}
+.al-row{display:flex;align-items:center;gap:10px;font-size:.84rem}
+.al-row i{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+.al-row b{margin-right:auto;font-weight:700}
+.al-row span{color:var(--text-mute);font-size:.78rem}
+
+/* ردیف پایین */
+.lower{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+/* واچ‌لیست */
+.watch .wrow{display:flex;align-items:center;gap:14px;padding:13px 6px;border-bottom:1px solid var(--line)}
+.watch .wrow:last-child{border-bottom:none}
+.wsym{
+  width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.78rem;color:var(--neon);background:var(--panel-2);border:1px solid var(--line-2);
+}
+.wmeta{display:flex;flex-direction:column;min-width:90px}
+.wmeta b{font-size:.88rem;font-weight:700}
+.wchg{font-size:.76rem;font-weight:800}
+.wchg.up{color:var(--neon)}.wchg.down{color:var(--down)}
+.spark{display:flex;align-items:flex-end;gap:3px;height:34px;margin-right:auto;width:84px}
+.spark i{flex:1;border-radius:2px 2px 0 0;opacity:.9}
+
+/* تراکنش‌ها */
+.tx{display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;align-items:center;padding:12px 6px;border-bottom:1px solid var(--line)}
+.tx:last-child{border-bottom:none}
+.txic{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem}
+.txic.up{color:var(--neon);background:var(--neon-soft)}
+.txic.down{color:var(--down);background:var(--down-soft)}
+.txmeta{display:flex;flex-direction:column;min-width:0}
+.txmeta b{font-size:.88rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.txmeta span{font-size:.72rem;color:var(--text-mute)}
+.txamt{font-weight:800;font-size:.9rem}
+.txamt.up{color:var(--neon)}.txamt.down{color:var(--down)}
+.tximg{font-size:.72rem;color:var(--text-mute);white-space:nowrap}
+
+/* انیمیشن ورود */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.v{opacity:1;transform:none}
-@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:26px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:.78rem;color:var(--text-mute)}
+footer b{color:var(--neon)}
+
+/* ===== ریسپانسیو ===== */
+@media(max-width:1080px){
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .charts,.lower{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:static;height:auto;flex-direction:row;overflow-x:auto;gap:6px;
+    border-left:none;border-bottom:1px solid var(--line);padding:14px}
+  .brand{padding:0 8px}.side-card{display:none}
+  .nav-item{white-space:nowrap}
+  .main{padding:24px 18px 50px}
+}
+@media(max-width:560px){
+  .stats-grid{grid-template-columns:1fr}
+  .topbar{padding:12px}.hero{align-items:flex-start}
+  .bars{height:180px}.line-wrap{height:210px}
+}
 </style>
 </head>
 <body>
+
 <a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
-<nav><div class="nav-inner"><div class="logo"><span class="d"></span>مالی‌پلاس</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
+<button class="theme-btn" id="themeBtn" title="تغییر تم" aria-label="تغییر تم">◐</button>
 
-<section class="hero"><div class="glow"></div><div class="container hero-in">
-<div class="kick reveal"><span class="d"></span> اپلیکیشن</div>
-<h1 class="reveal">مالی‌پلاس<br><em>تجربه‌ای متفاوت</em></h1>
-<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
-<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
-</div></section>
+<div class="app">
+  <!-- سایدبار -->
+  <aside class="sidebar">
+    <div class="brand"><span class="mark">م</span><b>مالی<b><span>‌پلاس</span></b></b></div>
+    <a href="#" class="nav-item active"><span class="ni">▦</span> داشبورد</a>
+    <a href="#" class="nav-item"><span class="ni">⛁</span> کیف‌پول</a>
+    <a href="#" class="nav-item"><span class="ni">⇄</span> تراکنش‌ها</a>
+    <a href="#" class="nav-item"><span class="ni">◈</span> سرمایه‌گذاری</a>
+    <a href="#" class="nav-item"><span class="ni">⚑</span> گزارش‌ها</a>
+    <a href="#" class="nav-item"><span class="ni">⚙</span> تنظیمات</a>
+    <div class="side-card">
+      <h4>ارتقا به پلاس‌پرو</h4>
+      <p>تحلیل هوشمند، هشدارهای لحظه‌ای و کارت‌های نامحدود.</p>
+      <a href="#" class="btn-mini">فعال‌سازی →</a>
+    </div>
+  </aside>
 
-<section class="section"><div class="container">
-<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
-<div class="svc-grid">
-<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>داشبورد</h3><p>مدیریت دارایی در یک نگاه</p></div>
-<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>گزارش</h3><p>تحلیل هوشمند هزینه‌ها</p></div>
-<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>امنیت</h3><p>رمزنگاری سطح بانکی</p></div>
+  <!-- محتوا -->
+  <main class="main">
+    <div class="topbar">
+      <label class="search">⌕ <input placeholder="جستجوی تراکنش، سهم یا فاکتور…"></label>
+      <button class="ghost-btn">خروجی PDF</button>
+      <button class="ghost-btn">فیلترها</button>
+      <div class="avatar">سع</div>
+    </div>
+
+    <section class="hero reveal">
+      <div>
+        <div class="hi">▣ خوش آمدی، سعید</div>
+        <h1>امروز <em>چطوره</em> پولت؟</h1>
+        <p>نگاهی سریع به موجودی، رشد سرمایه و هزینه‌های این ماه — همه در یک صفحه.</p>
+      </div>
+      <div class="pill">
+        <small>بازدهی کل سال</small>
+        <b>+۲۴٫۶٪ 📈</b>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+<div class="card stat reveal">
+      <div class="stat-top"><span class="stat-lab">موجودی کل</span><span class="delta up">+۸٫۲٪</span></div>
+      <div class="stat-val">۴۲۸٬۹۰۰٬۰۰۰<small>تومان</small></div>
+      <div class="mini"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:60%"></i><i style="height:52%"></i><i style="height:70%"></i><i style="height:66%"></i><i style="height:88%"></i></div>
+    </div><div class="card stat reveal">
+      <div class="stat-top"><span class="stat-lab">درآمد ماهانه</span><span class="delta up">+۱۲٪</span></div>
+      <div class="stat-val">۳۸٬۵۰۰٬۰۰۰<small>تومان</small></div>
+      <div class="mini"><i style="height:20%"></i><i style="height:28%"></i><i style="height:25%"></i><i style="height:40%"></i><i style="height:36%"></i><i style="height:52%"></i><i style="height:48%"></i><i style="height:61%"></i></div>
+    </div><div class="card stat reveal">
+      <div class="stat-top"><span class="stat-lab">هزینه‌ها</span><span class="delta down">-۳٫۱٪</span></div>
+      <div class="stat-val">۱۲٬۳۴۰٬۰۰۰<small>تومان</small></div>
+      <div class="mini"><i style="height:50%"></i><i style="height:42%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:60%"></i><i style="height:52%"></i><i style="height:58%"></i><i style="height:46%"></i></div>
+    </div><div class="card stat reveal">
+      <div class="stat-top"><span class="stat-lab">سود سرمایه</span><span class="delta up">+۲۱٪</span></div>
+      <div class="stat-val">۹٬۸۷۰٬۰۰۰<small>تومان</small></div>
+      <div class="mini"><i style="height:10%"></i><i style="height:18%"></i><i style="height:15%"></i><i style="height:30%"></i><i style="height:28%"></i><i style="height:45%"></i><i style="height:50%"></i><i style="height:72%"></i></div>
+    </div>
+    </section>
+
+    <section class="charts">
+      <div class="panel reveal">
+        <div class="panel-head">
+          <div><h3>جریان نقدینگی ماهانه</h3><div class="sub">واحد: میلیون تومان</div></div>
+          <div class="legend"><span><i style="background:var(--neon)"></i>خالص ماه</span></div>
+        </div>
+        <div class="bars"><div class="bar" style="--h:42%"><span class="bar-val">42M</span><span class="bar-fill"></span></div><div class="bar" style="--h:55%"><span class="bar-val">55M</span><span class="bar-fill"></span></div><div class="bar" style="--h:48%"><span class="bar-val">48M</span><span class="bar-fill"></span></div><div class="bar" style="--h:67%"><span class="bar-val">67M</span><span class="bar-fill"></span></div><div class="bar" style="--h:59%"><span class="bar-val">59M</span><span class="bar-fill"></span></div><div class="bar" style="--h:73%"><span class="bar-val">73M</span><span class="bar-fill"></span></div><div class="bar" style="--h:64%"><span class="bar-val">64M</span><span class="bar-fill"></span></div><div class="bar" style="--h:88%"><span class="bar-val">88M</span><span class="bar-fill"></span></div></div>
+        <div class="blabels"><span class="blab">فر</span><span class="blab">ارد</span><span class="blab">خر</span><span class="blab">تی</span><span class="blab">مر</span><span class="blab">شه</span><span class="blab">می</span><span class="blab">آب</span></div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="panel-head">
+          <div><h3>روند ارزش پورتفوی</h3><div class="sub">۹ دوره اخیر</div></div>
+          <div class="legend"><span><i style="background:var(--neon)"></i>ارزش</span></div>
+        </div>
+        <div class="line-wrap">
+          <div class="area"></div>
+          <div class="grid-line" style="top:0"></div>
+          <div class="grid-line" style="top:33%"></div>
+          <div class="grid-line" style="top:66%"></div>
+          <div class="grid-line" style="top:100%"></div>
+<i class="seg h" style="left:0.0%;top:70%;width:12.5%"></i>
+<i class="seg v" style="left:12.5%;top:58%;height:12%"></i>
+<i class="seg h" style="left:12.5%;top:58%;width:12.5%"></i>
+<i class="seg v" style="left:25.0%;top:58%;height:4%"></i>
+<i class="seg h" style="left:25.0%;top:62%;width:12.5%"></i>
+<i class="seg v" style="left:37.5%;top:45%;height:17%"></i>
+<i class="seg h" style="left:37.5%;top:45%;width:12.5%"></i>
+<i class="seg v" style="left:50.0%;top:45%;height:7%"></i>
+<i class="seg h" style="left:50.0%;top:52%;width:12.5%"></i>
+<i class="seg v" style="left:62.5%;top:35%;height:17%"></i>
+<i class="seg h" style="left:62.5%;top:35%;width:12.5%"></i>
+<i class="seg v" style="left:75.0%;top:35%;height:5%"></i>
+<i class="seg h" style="left:75.0%;top:40%;width:12.5%"></i>
+<i class="seg v" style="left:87.5%;top:22%;height:18%"></i>
+<i class="seg h" style="left:87.5%;top:22%;width:12.5%"></i>
+<i class="seg v" style="left:100.0%;top:22%;height:6%"></i>
+<span class="dot" style="left:0.0%;top:70%"></span>
+<span class="dot" style="left:12.5%;top:58%"></span>
+<span class="dot" style="left:25.0%;top:62%"></span>
+<span class="dot" style="left:37.5%;top:45%"></span>
+<span class="dot" style="left:50.0%;top:52%"></span>
+<span class="dot" style="left:62.5%;top:35%"></span>
+<span class="dot" style="left:75.0%;top:40%"></span>
+<span class="dot" style="left:87.5%;top:22%"></span>
+<span class="dot" style="left:100.0%;top:28%"></span>
+        </div>
+        <div class="line-labels"><span>دوره ۱</span><span>دوره ۵</span><span>دوره ۹</span></div>
+      </div>
+    </section>
+
+    <section class="lower">
+      <div class="panel watch reveal">
+        <div class="panel-head"><div><h3>دارایی‌های زیر نظر</h3><div class="sub">به‌روزرسانی لحظه‌ای</div></div>
+          <div class="legend"><span><i style="background:var(--neon)"></i>صعود</span><span><i style="background:var(--down)"></i>نزول</span></div></div>
+<div class="wrow">
+      <span class="wsym">BTC</span>
+      <div class="wmeta"><b>₿ بیت‌کوین</b><span class="wchg down">-3.9%</span></div>
+      <div class="spark"><i style="height:24%;background:var(--down)"></i><i style="height:25%;background:var(--down)"></i><i style="height:12%;background:var(--down)"></i><i style="height:10%;background:var(--down)"></i><i style="height:19%;background:var(--down)"></i><i style="height:11%;background:var(--down)"></i><i style="height:8%;background:var(--down)"></i></div>
+    </div><div class="wrow">
+      <span class="wsym">ETH</span>
+      <div class="wmeta"><b>اتریوم</b><span class="wchg up">+4.2%</span></div>
+      <div class="spark"><i style="height:29%;background:var(--neon)"></i><i style="height:27%;background:var(--neon)"></i><i style="height:26%;background:var(--neon)"></i><i style="height:27%;background:var(--neon)"></i><i style="height:32%;background:var(--neon)"></i><i style="height:41%;background:var(--neon)"></i><i style="height:45%;background:var(--neon)"></i></div>
+    </div><div class="wrow">
+      <span class="wsym">GLD</span>
+      <div class="wmeta"><b>طلا</b><span class="wchg down">-1.8%</span></div>
+      <div class="spark"><i style="height:24%;background:var(--down)"></i><i style="height:19%;background:var(--down)"></i><i style="height:10%;background:var(--down)"></i><i style="height:20%;background:var(--down)"></i><i style="height:13%;background:var(--down)"></i><i style="height:8%;background:var(--down)"></i><i style="height:8%;background:var(--down)"></i></div>
+    </div><div class="wrow">
+      <span class="wsym">USD</span>
+      <div class="wmeta"><b>دلار</b><span class="wchg up">+6.4%</span></div>
+      <div class="spark"><i style="height:32%;background:var(--neon)"></i><i style="height:45%;background:var(--neon)"></i><i style="height:49%;background:var(--neon)"></i><i style="height:50%;background:var(--neon)"></i><i style="height:48%;background:var(--neon)"></i><i style="height:55%;background:var(--neon)"></i><i style="height:56%;background:var(--neon)"></i></div>
+    </div><div class="wrow">
+      <span class="wsym">SP500</span>
+      <div class="wmeta"><b>اس اند پی</b><span class="wchg down">-5.8%</span></div>
+      <div class="spark"><i style="height:22%;background:var(--down)"></i><i style="height:21%;background:var(--down)"></i><i style="height:14%;background:var(--down)"></i><i style="height:17%;background:var(--down)"></i><i style="height:8%;background:var(--down)"></i><i style="height:12%;background:var(--down)"></i><i style="height:8%;background:var(--down)"></i></div>
+    </div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="panel-head"><div><h3>تخصیص دارایی</h3><div class="sub">سبد شما</div></div></div>
+        <div class="alloc-panel">
+          <div class="donut"><b>۱۰۰٪<small>تنوع‌یافته</small></b></div>
+          <div class="alloc-leg">
+            <div class="al-row"><i style="background:var(--neon)"></i> سهام <b>۴۵٪</b><span>۱۹۳M</span></div>
+            <div class="al-row"><i style="background:var(--teal)"></i> طلا <b>۲۰٪</b><span>۸۶M</span></div>
+            <div class="al-row"><i style="background:var(--amber)"></i> ارز <b>۱۵٪</b><span>۶۴M</span></div>
+            <div class="al-row"><i style="background:var(--violet)"></i> رمزارز <b>۱۲٪</b><span>۵۱M</span></div>
+            <div class="al-row"><i style="background:#4A5A55"></i> نقد <b>۸٪</b><span>۳۴M</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lower" style="margin-top:18px">
+      <div class="panel reveal">
+        <div class="panel-head"><div><h3>تراکنش‌های اخیر</h3><div class="sub">۶ مورد آخر</div></div>
+          <div class="legend"><a href="#" style="color:var(--neon)">مشاهده همه ←</a></div></div>
+<div class="tx">
+      <span class="txic down">↗</span>
+      <div class="txmeta"><b>کافه نان و نمک</b><span>برداشت · غذا</span></div>
+      <span class="txamt down">-۲۴۰٬۰۰۰</span>
+      <span class="tximg">۱۴:۰۲</span>
+    </div><div class="tx">
+      <span class="txic up">↘</span>
+      <div class="txmeta"><b>حقوق ماهانه</b><span>واریز · درآمد</span></div>
+      <span class="txamt up">+۳۸٬۵۰۰٬۰۰۰</span>
+      <span class="tximg">۰۹:۳۰</span>
+    </div><div class="tx">
+      <span class="txic down">↗</span>
+      <div class="txmeta"><b>سهام پترول</b><span>خرید · سرمایه</span></div>
+      <span class="txamt down">-۵٬۲۰۰٬۰۰۰</span>
+      <span class="tximg">دیروز</span>
+    </div><div class="tx">
+      <span class="txic up">↘</span>
+      <div class="txmeta"><b>سود سپرده</b><span>واریز · بانک</span></div>
+      <span class="txamt up">+۱٬۱۲۰٬۰۰۰</span>
+      <span class="tximg">دیروز</span>
+    </div><div class="tx">
+      <span class="txic down">↗</span>
+      <div class="txmeta"><b>اشتراک ابری</b><span>خرید · تکنولوژی</span></div>
+      <span class="txamt down">-۳۹۰٬۰۰۰</span>
+      <span class="tximg">۲ روز پیش</span>
+    </div><div class="tx">
+      <span class="txic up">↘</span>
+      <div class="txmeta"><b>بازپرداخت مالیات</b><span>واریز · دولت</span></div>
+      <span class="txamt up">+۹۸۰٬۰۰۰</span>
+      <span class="tximg">۳ روز پیش</span>
+    </div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="panel-head"><div><h3>هدف پس‌انداز</h3><div class="sub">سفر تابستان</div></div></div>
+        <div style="font-size:2.2rem;font-weight:900;color:var(--neon);text-shadow:var(--neon-glow)">۶۸٪</div>
+        <div style="height:14px;border-radius:10px;background:var(--panel);overflow:hidden;margin:14px 0 8px;border:1px solid var(--line)">
+          <div style="height:100%;width:68%;background:linear-gradient(90deg,var(--neon),var(--teal));box-shadow:var(--neon-glow)"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--text-soft)">
+          <span>۳۴٬۰۰۰٬۰۰۰ تومان</span><span style="color:var(--text-mute)">هدف: ۵۰M</span>
+        </div>
+        <div style="margin-top:22px;padding:16px;border-radius:14px;border:1px solid var(--line-2);background:var(--glass)">
+          <div style="font-size:.82rem;color:var(--text-soft);margin-bottom:6px">نکته هوشمند</div>
+          <div style="font-size:.92rem;font-weight:600">اگر ماهانه ۲M بیشتر بگذاری، ۳ ماه زودتر به هدف می‌رسی 🎯</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© ۱۴۰۵ <b>مالی‌پلاس</b> — نمونه‌کار طراحی توسط PH Design</span>
+      <span>داده‌ها نمایشی هستند · تم نئون‌سبز</span>
+    </footer>
+  </main>
 </div>
-</div></section>
 
-<section class="section" style="background:var(--bg-soft)"><div class="container">
-<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">◧</div></div>
-</div></section>
-
-<section class="cta-sec"><div class="container">
-<h2 class="reveal">این مدل برای برند تو؟</h2>
-<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
-<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
-</div></section>
-
-<footer>© ۱۴۰۴ مالی‌پلاس — طراحی شده توسط PH Design</footer>
 <script>
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+(function(){
+  var btn=document.getElementById('themeBtn');
+  btn.addEventListener('click',function(){
+    var h=document.documentElement;
+    h.setAttribute('data-theme',h.getAttribute('data-theme')==='light'?'dark':'light');
+  });
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('v'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
 </script>
-</body></html>
+</body>
+</html>

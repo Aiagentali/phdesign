@@ -1,97 +1,618 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سبزمارکت | PH Design</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0c130d">
+<title>سبزمارکت | فروشگاه ارگانیک — PH Design</title>
+<meta name="description" content="سبزمارکت — فروشگاه آنلاین محصولات ارگانیک و طبیعی. عسل کوهستان، روغن زیتون فرابکر، خرما، زعفران و ده‌ها محصول سالم با بسته‌بندی دوستدار محیط‌زیست.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#8CC86C;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
-[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
+/* ============ TOKENS ============ */
+:root{
+  --bg:#0c130d;
+  --bg-soft:#101a11;
+  --card:#15201a;
+  --card-2:#1b271f;
+  --text:#eef4ea;
+  --text-soft:#aab8a4;
+  --text-mute:#6e7c69;
+  --accent:#8fb573;
+  --accent-2:#d6b06a;
+  --accent-3:#6fae8e;
+  --leaf:#5f8a43;
+  --earth:#c08a4e;
+  --line:rgba(255,255,255,.07);
+  --line-2:rgba(255,255,255,.13);
+  --shadow:0 24px 60px rgba(0,0,0,.45);
+  --ease:cubic-bezier(.16,1,.3,1);
+  /* subtle leaf texture as repeating SVG */
+  --leaf-tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%238fb573' stroke-opacity='0.05'%3E%3Cpath d='M30 8C20 20 20 40 30 52C40 40 40 20 30 8Z'/%3E%3Cpath d='M30 14V46'/%3E%3C/g%3E%3C/svg%3E");
+}
+[data-theme=light]{
+  --bg:#f4f1e7;
+  --bg-soft:#e9e6da;
+  --card:#fffdf6;
+  --card-2:#f3f0e6;
+  --text:#1d261a;
+  --text-soft:#46523f;
+  --text-mute:#86907e;
+  --accent:#5f8a43;
+  --accent-2:#b8863c;
+  --accent-3:#3f8c6e;
+  --leaf:#5f8a43;
+  --earth:#b0792f;
+  --line:rgba(0,0,0,.08);
+  --line-2:rgba(0,0,0,.14);
+  --shadow:0 24px 60px rgba(60,80,40,.14);
+  --leaf-tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%235f8a43' stroke-opacity='0.06'%3E%3Cpath d='M30 8C20 20 20 40 30 52C40 40 40 20 30 8Z'/%3E%3Cpath d='M30 14V46'/%3E%3C/g%3E%3C/svg%3E");
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  direction:rtl;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  transition:background .55s var(--ease),color .55s var(--ease);
+  line-height:1.7;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:var(--leaf-tex);
+  background-size:60px 60px;
+  opacity:.6;
+  pointer-events:none;
+  z-index:0;
+}
 a{text-decoration:none;color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
-.back-pill:hover{background:var(--accent);color:#07070A}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
+img{max-width:100%}
+.container{max-width:1160px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+section{position:relative;z-index:1}
+
+/* ============ FIXED CONTROLS ============ */
+.back-pill{
+  position:fixed;top:18px;left:18px;z-index:200;
+  padding:10px 20px;border-radius:30px;font-size:.82rem;font-weight:600;
+  background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(14px);border:1px solid var(--line-2);
+  color:var(--accent);transition:.35s var(--ease);display:flex;align-items:center;gap:7px;
+}
+.back-pill:hover{background:var(--accent);color:var(--bg);transform:translateY(-2px)}
+.theme-btn{
+  position:fixed;top:18px;right:18px;z-index:200;
+  width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--line-2);
+  background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(14px);cursor:pointer;font-size:1.15rem;
+  display:flex;align-items:center;justify-content:center;transition:.35s var(--ease);
+}
+.theme-btn:hover{transform:rotate(-25deg) scale(1.08);border-color:var(--accent)}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:150;
+  padding:16px 0;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+  transition:padding .35s var(--ease);
+}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:1.25rem;display:flex;align-items:center;gap:10px;letter-spacing:-.5px}
+.logo .leaf{font-size:1.4rem;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--accent) 50%,transparent))}
+.logo .mk{color:var(--accent)}
+.nav-links{display:flex;gap:28px;font-size:.9rem;color:var(--text-soft);font-weight:500}
+.nav-links a{position:relative;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;bottom:-6px;right:0;width:0;height:2px;background:var(--accent);transition:width .3s var(--ease)}
 .nav-links a:hover{color:var(--text)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
-.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
-.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
-.hero-in{position:relative;z-index:1}
-.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
-.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
-.btn-p{background:var(--accent);color:#07070A}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:14px}
+.cart-btn{position:relative;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:transparent;cursor:pointer;color:var(--text);font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:.3s}
+.cart-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cart-count{position:absolute;top:-4px;left:-4px;background:var(--accent);color:var(--bg);font-size:.65rem;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;width:30px}
+.burger span{height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* ============ HERO ============ */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:150px 0 80px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-glow::before{content:"";position:absolute;top:10%;right:-6%;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 26%,transparent),transparent 62%);filter:blur(50px);animation:drift 16s ease-in-out infinite}
+.hero-glow::after{content:"";position:absolute;bottom:-15%;left:-8%;width:42vw;height:42vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent-3) 20%,transparent),transparent 62%);filter:blur(50px);animation:drift2 19s ease-in-out infinite}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.kick{display:inline-flex;gap:9px;align-items:center;font-size:.8rem;letter-spacing:.5px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:8px 18px;margin-bottom:26px;font-weight:600;background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.kick .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.hero h1{font-size:clamp(2.6rem,6.4vw,5rem);font-weight:900;line-height:1.08;letter-spacing:-2px;margin-bottom:24px}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),var(--accent-3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p.lead{font-size:clamp(1rem,2vw,1.2rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.95;margin-bottom:36px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 32px;border-radius:14px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .4s var(--ease)}
+.btn-p{background:var(--accent);color:var(--bg)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 16px 40px color-mix(in srgb,var(--accent) 32%,transparent)}
 .btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
 .btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.section{padding:110px 0}
-.section-head{margin-bottom:56px}
-.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
-.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--bg);padding:36px 30px;transition:.4s}
-.svc:hover{background:var(--card)}
-.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
-.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
-.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
-.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
-.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
-.cta-sec p{color:var(--text-soft);margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+
+/* organic blob visual */
+.blob-wrap{position:relative;display:flex;align-items:center;justify-content:center;min-height:420px}
+.blob{
+  position:relative;width:340px;height:340px;
+  background:linear-gradient(140deg,var(--accent),var(--accent-3));
+  border-radius:42% 58% 63% 37% / 45% 38% 62% 55%;
+  animation:morph 14s ease-in-out infinite;
+  box-shadow:0 30px 70px color-mix(in srgb,var(--accent) 28%,transparent);
+  display:flex;align-items:center;justify-content:center;font-size:9rem;
+}
+.blob::after{content:"";position:absolute;inset:-22px;border:1px dashed color-mix(in srgb,var(--accent) 40%,transparent);border-radius:50% 50% 48% 52% / 55% 50% 50% 45%;animation:spin 26s linear infinite}
+.float-leaf{position:absolute;font-size:2.4rem;animation:bob 7s ease-in-out infinite}
+.fl-1{top:4%;left:6%;animation-delay:.5s}
+.fl-2{bottom:8%;right:4%;animation-delay:1.8s}
+.fl-3{top:42%;right:-4%;animation-delay:3s}
+
+/* ============ ECO BADGES STRIP ============ */
+.eco-strip{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0}
+.eco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.eco{display:flex;align-items:center;gap:14px;padding:6px 4px}
+.eco .badge{
+  width:54px;height:54px;flex:0 0 54px;border-radius:50%;
+  background:color-mix(in srgb,var(--accent) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  color:var(--accent);
+}
+.eco h4{font-size:.95rem;font-weight:700;margin-bottom:2px}
+.eco p{font-size:.78rem;color:var(--text-mute);font-weight:300}
+
+/* ============ SECTIONS ============ */
+.section{padding:120px 0}
+.section-head{margin-bottom:60px;max-width:640px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px;display:inline-block}
+.st{font-size:clamp(1.8rem,3.8vw,2.8rem);font-weight:800;letter-spacing:-1px;line-height:1.2}
+.section-sub{color:var(--text-soft);font-weight:300;margin-top:14px;font-size:1.05rem}
+
+/* ============ PRODUCTS ============ */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.prod{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;
+  overflow:hidden;transition:transform .45s var(--ease),border-color .45s,box-shadow .45s;
+  display:flex;flex-direction:column;
+}
+.prod:hover{transform:translateY(-8px);border-color:color-mix(in srgb,var(--accent) 45%,transparent);box-shadow:var(--shadow)}
+.prod-img{position:relative;height:200px;display:flex;align-items:center;justify-content:center;font-size:5.5rem;overflow:hidden;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--accent) 16%,transparent),var(--card-2))}
+.prod-img::after{content:"";position:absolute;inset:0;background-image:var(--leaf-tex);background-size:46px;opacity:.5}
+.prod-tag{position:absolute;top:14px;right:14px;z-index:2;font-size:.7rem;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--accent);color:var(--bg)}
+.prod-tag.alt{background:var(--accent-2);color:var(--bg)}
+.prod-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+.prod-cat{font-size:.72rem;color:var(--text-mute);font-weight:600;letter-spacing:.5px}
+.prod h3{font-size:1.1rem;font-weight:700}
+.prod .desc{font-size:.8rem;color:var(--text-soft);font-weight:300;line-height:1.7;flex:1}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.price{font-size:1.15rem;font-weight:800;color:var(--accent)}
+.price small{font-size:.7rem;font-weight:500;color:var(--text-mute)}
+.add{width:42px;height:42px;border-radius:12px;border:1px solid var(--line-2);background:transparent;color:var(--text);cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:.3s}
+.add:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+
+/* ============ WHY ORGANIC (leaf texture feature) ============ */
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.feat-visual{position:relative;aspect-ratio:1/1;border-radius:28px;background:linear-gradient(150deg,color-mix(in srgb,var(--accent) 30%,transparent),var(--card));border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:10rem;overflow:hidden}
+.feat-visual::after{content:"";position:absolute;inset:0;background-image:var(--leaf-tex);background-size:52px;opacity:.7}
+.feat-list{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+.feat-list li{list-style:none;display:flex;gap:14px;align-items:flex-start}
+.feat-list .ico{flex:0 0 44px;width:44px;height:44px;border-radius:12px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.feat-list h4{font-size:1rem;font-weight:700;margin-bottom:3px}
+.feat-list p{font-size:.85rem;color:var(--text-soft);font-weight:300}
+
+/* ============ CATEGORIES ============ */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;display:flex;align-items:flex-end;padding:22px;color:#fff;font-weight:700;font-size:1.1rem;border:1px solid var(--line);transition:transform .45s var(--ease);background:var(--card)}
+.cat:hover{transform:translateY(-6px)}
+.cat .emoji{position:absolute;top:18px;right:18px;font-size:2.6rem;opacity:.9}
+.cat .ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.6));z-index:1}
+.cat span{position:relative;z-index:2}
+.cat small{position:relative;z-index:2;display:block;font-size:.72rem;font-weight:400;opacity:.85}
+
+/* ============ TESTIMONIALS ============ */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.testi{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;position:relative;transition:transform .45s var(--ease),border-color .45s}
+.testi:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.testi .q{position:absolute;top:18px;right:22px;font-size:3rem;color:color-mix(in srgb,var(--accent) 30%,transparent);font-family:Georgia,serif;line-height:1}
+.testi .stars{color:var(--accent-2);font-size:.9rem;margin-bottom:14px;letter-spacing:2px}
+.testi p{font-size:.92rem;color:var(--text-soft);font-weight:300;line-height:1.95;position:relative;z-index:2}
+.testi .who{display:flex;align-items:center;gap:12px;margin-top:22px}
+.testi .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(140deg,var(--accent),var(--accent-3));display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--bg);font-size:1.1rem}
+.testi .who b{font-size:.92rem;display:block}
+.testi .who small{font-size:.74rem;color:var(--text-mute)}
+
+/* ============ NEWSLETTER CTA ============ */
+.cta-sec{text-align:center;padding:110px 0;background:var(--bg-soft);position:relative;overflow:hidden}
+.cta-sec .blob-bg{position:absolute;width:420px;height:420px;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 20%,transparent),transparent 65%);filter:blur(40px);top:-120px;left:50%;transform:translateX(-50%)}
+.cta-sec h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;margin-bottom:16px;position:relative}
+.cta-sec p{color:var(--text-soft);margin-bottom:30px;font-weight:300;position:relative}
+.news{display:flex;gap:12px;max-width:480px;margin:0 auto;position:relative;flex-wrap:wrap;justify-content:center}
+.news input{flex:1;min-width:240px;padding:15px 20px;border-radius:14px;border:1px solid var(--line-2);background:var(--card);color:var(--text);font-family:inherit;font-size:.92rem;outline:none;transition:.3s}
+.news input:focus{border-color:var(--accent)}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:64px 0 36px;background:var(--bg-soft)}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+footer h3{font-size:1.2rem;font-weight:800;margin-bottom:16px}
+footer h3 .leaf{color:var(--accent)}
+footer p{font-size:.86rem;color:var(--text-mute);font-weight:300;line-height:1.9;max-width:300px}
+.footer-col h4{font-size:.9rem;font-weight:700;margin-bottom:16px}
+.footer-col a{display:block;font-size:.84rem;color:var(--text-soft);font-weight:300;margin-bottom:10px;transition:color .3s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:.8rem;color:var(--text-mute);flex-wrap:wrap;gap:12px}
+
+/* ============ REVEAL ANIMATIONS ============ */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .reveal.v{opacity:1;transform:none}
-@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(26px,-26px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-22px,18px)}}
+@keyframes morph{0%,100%{border-radius:42% 58% 63% 37% / 45% 38% 62% 55%}50%{border-radius:58% 42% 38% 62% / 55% 62% 38% 45%}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-16px) rotate(6deg)}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .hero-in{grid-template-columns:1fr;text-align:center}
+  .hero p.lead{margin-left:auto;margin-right:auto}
+  .hero-cta{justify-content:center}
+  .blob-wrap{min-height:340px;margin-top:20px}
+  .feat{grid-template-columns:1fr;gap:36px}
+  .prod-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .eco-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .prod-grid,.testi-grid,.eco-grid,.cat-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .section{padding:80px 0}
+  .back-pill{font-size:.72rem;padding:8px 14px}
+}
 </style>
 </head>
 <body>
+
 <a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
-<nav><div class="nav-inner"><div class="logo"><span class="d"></span>سبزمارکت</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
+<button class="theme-btn" id="themeToggle" title="تغییر تم" aria-label="تغییر تم">🌙</button>
 
-<section class="hero"><div class="glow"></div><div class="container hero-in">
-<div class="kick reveal"><span class="d"></span> ارگانیک</div>
-<h1 class="reveal">سبزمارکت<br><em>تجربه‌ای متفاوت</em></h1>
-<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
-<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
-</div></section>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="leaf">🌿</span>سبز<span class="mk">مارکت</span></a>
+    <div class="nav-links">
+      <a href="#home">خانه</a>
+      <a href="#shop">فروشگاه</a>
+      <a href="#why">چرا ارگانیک</a>
+      <a href="#testi">نظرات</a>
+      <a href="#contact">تماس</a>
+    </div>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartBtn" title="سبد خرید">🛒<span class="cart-count" id="cartCount">۰</span></button>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</nav>
 
-<section class="section"><div class="container">
-<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
-<div class="svc-grid">
-<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>محصولات</h3><p>ارگانیک و بومی</p></div>
-<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>نشان اکو</h3><p>دوستدار محیط زیست</p></div>
-<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>ارسال</h3><p>به دستت در کوتاه‌ترین زمان</p></div>
-</div>
-</div></section>
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="container hero-in">
+    <div>
+      <div class="kick reveal"><span class="dot"></span> فروشگاه آنلاین محصولات ارگانیک</div>
+      <h1 class="reveal">طبیعت را<br><em>در سفره‌ات</em> بیاور</h1>
+      <p class="lead reveal">سبزمارکت ده‌ها محصول سالم، بومی و بدون سموم را از دست کشاورزان محلی مستقیم به آشپزخانه‌ی تو می‌رساند. با بسته‌بندی تجزیه‌پذیر و ارسال سبز.</p>
+      <div class="hero-cta reveal">
+        <a href="#shop" class="btn btn-p">مشاهده محصولات →</a>
+        <a href="#why" class="btn btn-g">بیشتر بدانید</a>
+      </div>
+    </div>
+    <div class="blob-wrap reveal">
+      <div class="blob">🌿</div>
+      <span class="float-leaf fl-1">🍃</span>
+      <span class="float-leaf fl-2">🌱</span>
+      <span class="float-leaf fl-3">🍂</span>
+    </div>
+  </div>
+</section>
 
-<section class="section" style="background:var(--bg-soft)"><div class="container">
-<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">❀</div></div>
-</div></section>
+<!-- ============ ECO BADGES ============ -->
+<section class="eco-strip">
+  <div class="container">
+    <div class="eco-grid">
+      <div class="eco reveal"><div class="badge">🌿</div><div><h4>گواهی ارگانیک</h4><p>محصولات تأیید‌شده بدون سموم</p></div></div>
+      <div class="eco reveal d1"><div class="badge">♻️</div><div><h4>بسته‌بندی سبز</h4><p>کاملاً تجزیه‌پذیر در طبیعت</p></div></div>
+      <div class="eco reveal d2"><div class="badge">🚚</div><div><h4>ارسال دوستدار زمین</h4><p>با کمترین ردپای کربن</p></div></div>
+      <div class="eco reveal d3"><div class="badge">🤝</div><div><h4>حمایت از کشاورز</h4><p>خرید مستقیم، سود عادلانه</p></div></div>
+    </div>
+  </div>
+</section>
 
-<section class="cta-sec"><div class="container">
-<h2 class="reveal">این مدل برای برند تو؟</h2>
-<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
-<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
-</div></section>
+<!-- ============ PRODUCTS ============ -->
+<section class="section" id="shop">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="sk">محصولات منتخب</span>
+      <h2 class="st">تازه‌ترین‌های باغ سبزمارکت</h2>
+      <p class="section-sub">هر محصول با دقت انتخاب و از نزدیک‌ترین مزارع پایدار تهیه شده است.</p>
+    </div>
+    <div class="prod-grid">
 
-<footer>© ۱۴۰۴ سبزمارکت — طراحی شده توسط PH Design</footer>
+      <div class="prod reveal">
+        <div class="prod-img">🍯<span class="prod-tag">ارگانیک</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">شیرینی طبیعی</span>
+          <h3>عسل طبیعی کوهستان</h3>
+          <p class="desc">عسل خالص گل‌های کوهستان البرز، بدون هیچ افزودنی و حرارت‌دیدگی.</p>
+          <div class="prod-foot"><span class="price">۱۸۰,۰۰۰ <small>تومان</small></span><button class="add" data-name="عسل طبیعی کوهستان">+</button></div>
+        </div>
+      </div>
+
+      <div class="prod reveal d1">
+        <div class="prod-img">🫒<span class="prod-tag alt">فرابکر</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">روغن‌های خوراکی</span>
+          <h3>روغن زیتون فرابکر</h3>
+          <p class="desc">روغن زیتون سرد‌پرس درجه یک از باغ‌های کهگیلویه با طعمی میوه‌ای.</p>
+          <div class="prod-foot"><span class="price">۲۴۰,۰۰۰ <small>تومان</small></span><button class="add" data-name="روغن زیتون فرابکر">+</button></div>
+        </div>
+      </div>
+
+      <div class="prod reveal d2">
+        <div class="prod-img">🌴<span class="prod-tag">تازه</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">خشکبار</span>
+          <h3>خرمای بم ممتاز</h3>
+          <p class="desc">خرمای بم مرغوب با بافتی نرم و شیرینی ملایم، منبع انرژی طبیعی.</p>
+          <div class="prod-foot"><span class="price">۹۵,۰۰۰ <small>تومان</small></span><button class="add" data-name="خرمای بم ممتاز">+</button></div>
+        </div>
+      </div>
+
+      <div class="prod reveal">
+        <div class="prod-img">🍵<span class="prod-tag">ارگانیک</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">نوشیدنی‌ها</span>
+          <h3>چای سبز ارگانیک</h3>
+          <p class="desc">برگ چای سبز کشت‌شده بدون سم، با عطری ملایم و آنتی‌اکسیدان بالا.</p>
+          <div class="prod-foot"><span class="price">۱۲۰,۰۰۰ <small>تومان</small></span><button class="add" data-name="چای سبز ارگانیک">+</button></div>
+        </div>
+      </div>
+
+      <div class="prod reveal d1">
+        <div class="prod-img">🌸<span class="prod-tag alt">درجه یک</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">ادویه و طعم‌دهنده</span>
+          <h3>زعفران سرگل نیشابور</h3>
+          <p class="desc">زعفران سرگل خالص با رنگ‌دهی و عطر استثنایی، بسته‌بندی بهداشتی.</p>
+          <div class="prod-foot"><span class="price">۳۹۰,۰۰۰ <small>تومان</small></span><button class="add" data-name="زعفران سرگل نیشابور">+</button></div>
+        </div>
+      </div>
+
+      <div class="prod reveal d2">
+        <div class="prod-img">🌰<span class="prod-tag">تازه</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">خشکبار</span>
+          <h3>گردوی تازه کوهی</h3>
+          <p class="desc">گردوی چند ساله‌ی باغ‌های ارومیه با مغز پر و طعمی دلنشین.</p>
+          <div class="prod-foot"><span class="price">۱۵۰,۰۰۰ <small>تومان</small></span><button class="add" data-name="گردوی تازه کوهی">+</button></div>
+        </div>
+      </div>
+
+      <div class="prod reveal">
+        <div class="prod-img">🧂<span class="prod-tag alt">طبیعی</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">نمک و ادویه</span>
+          <h3>نمک صورتی هیمالیا</h3>
+          <p class="desc">نمک معدنی سرشار از املاح، بدون تصفیه شیمیایی و ید‌دار طبیعی.</p>
+          <div class="prod-foot"><span class="price">۶۵,۰۰۰ <small>تومان</small></span><button class="add" data-name="نمک صورتی هیمالیا">+</button></div>
+        </div>
+      </div>
+
+      <div class="prod reveal d1">
+        <div class="prod-img">🍅<span class="prod-tag">ارگانیک</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">کنسرو طبیعی</span>
+          <h3>رب گوجه ارگانیک</h3>
+          <p class="desc">رب گوجه از گوجه‌های کشت‌بدون‌سم، بدون نگه‌دارنده و شکر افزوده.</p>
+          <div class="prod-foot"><span class="price">۸۵,۰۰۰ <small>تومان</small></span><button class="add" data-name="رب گوجه ارگانیک">+</button></div>
+        </div>
+      </div>
+
+      <div class="prod reveal d2">
+        <div class="prod-img">🌿<span class="prod-tag alt">صادراتی</span></div>
+        <div class="prod-body">
+          <span class="prod-cat">عصاره‌ها</span>
+          <h3>عصاره وانیل طبیعی</h3>
+          <p class="desc">عصاره وانیل دانه‌ی حقیقی، بدون وانیلین مصنوعی برای شیرینی‌پزی.</p>
+          <div class="prod-foot"><span class="price">۲۱۰,۰۰۰ <small>تومان</small></span><button class="add" data-name="عصاره وانیل طبیعی">+</button></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ORGANIC ============ -->
+<section class="section" id="why" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="feat">
+      <div class="feat-visual reveal">🌾</div>
+      <div>
+        <span class="sk reveal">چرا ارگانیک؟</span>
+        <h2 class="st reveal">سلامتی از زمین شروع می‌شود</h2>
+        <p class="section-sub reveal">ما فقط محصول نمی‌فروشیم؛ شیوه‌ای از زندگی را ترویج می‌کنیم که در آن غذا، خاک و آینده به هم پیوسته‌اند.</p>
+        <ul class="feat-list">
+          <li class="reveal"><span class="ico">🌿</span><div><h4>بدون سموم شیمیایی</h4><p>هیچ آفت‌کش یا کود شیمیایی در چرخه تولید محصولات ما جایی ندارد.</p></div></li>
+          <li class="reveal d1"><span class="ico">💧</span><div><h4>حفظ منابع آب</h4><p>کشاورزان ما با روش‌های آبیاری هوشمند، مصرف آب را تا ۴۰٪ کاهش می‌دهند.</p></div></li>
+          <li class="reveal d2"><span class="ico">🐝</span><div><h4>حامی زنبورها</h4><p>بخشی از سود هر سفارش صرف حفاظت از گونه‌های گرده‌افشان می‌شود.</p></div></li>
+          <li class="reveal d3"><span class="ico">📦</span><div><h4>بسته‌بندی صفر‌ضایعات</h4><p>از پلاستیک‌های تجزیه‌ناپذیر خداحافظی کرده‌ایم؛ بسته‌بندی ما کاملاً گیاهی است.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="sk">دسته‌بندی‌ها</span>
+      <h2 class="st">هر آنچه برای یک زندگی سالم نیاز داری</h2>
+    </div>
+    <div class="cat-grid">
+      <a href="#shop" class="cat reveal" style="background:linear-gradient(160deg,#3f6b2e,#1d2c16)"><span class="emoji">🍯</span><span>عسل و شیرینی طبیعی<small>۱۲ محصول</small></span></a>
+      <a href="#shop" class="cat reveal d1" style="background:linear-gradient(160deg,#6b5a2e,#2c2416)"><span class="emoji">🫒</span><span>روغن و چربی‌ها<small>۸ محصول</small></span></a>
+      <a href="#shop" class="cat reveal d2" style="background:linear-gradient(160deg,#2e6b4f,#162c22)"><span class="emoji">🌰</span><span>خشکبار و دانه‌ها<small>۱۵ محصول</small></span></a>
+      <a href="#shop" class="cat reveal d3" style="background:linear-gradient(160deg,#6b3f3f,#2c1616)"><span class="emoji">🌸</span><span>ادویه و عصاره‌ها<small>۱۰ محصول</small></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section" id="testi" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="sk">بازخورد مشتریان</span>
+      <h2 class="st">خانواده سبزمارکت چه می‌گویند</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <span class="q">"</span>
+        <div class="stars">★★★★★</div>
+        <p>عسل کوهستان‌شان بهترین چیزیه که تا حالا چشیدم. کیفیت واقعاً حس می‌شه و بسته‌بندی‌شون هم قشنگه.</p>
+        <div class="who"><div class="av">گ</div><div><b>گل آقایی</b><small>مشتری ثابت، تهران</small></div></div>
+      </div>
+      <div class="testi reveal d1">
+        <span class="q">"</span>
+        <div class="stars">★★★★★</div>
+        <p>از وقتی زعفران و روغن زیتون رو از سبزمارکت می‌گیرم، دیگه جای دیگه اعتماد نمی‌کنم. ارسال هم همیشه سر وقته.</p>
+        <div class="who"><div class="av">س</div><div><b>سارا محمدی</b><small>آشپزخانه سلامت</small></div></div>
+      </div>
+      <div class="testi reveal d2">
+        <span class="q">"</span>
+        <div class="stars">★★★★★</div>
+        <p>ایده‌ی بسته‌بندی تجزیه‌پذیر برام خیلی مهم بود. هم محصول عالیه هم وجدانم راحته که زمین رو کثیف نمی‌کنم.</p>
+        <div class="who"><div class="av">ع</div><div><b>علی رضایی</b><small>فعال محیط‌زیست</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER CTA ============ -->
+<section class="cta-sec" id="contact">
+  <div class="blob-bg"></div>
+  <div class="container">
+    <h2 class="reveal">باغچه‌ی سبزمارکت به خونه‌ت برسه</h2>
+    <p class="reveal">در خبرنامه عضو شو تا از تازه‌ترین برداشت‌ها، تخفیف‌های فصلی و نکات زندگی سبز باخبر بشی.</p>
+    <form class="news reveal" onsubmit="return subscribe(event)">
+      <input type="email" id="email" placeholder="ایمیل یا شماره تماس خود را وارد کنید" required>
+      <button class="btn btn-p" type="submit">عضویت 🌱</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3><span class="leaf">🌿</span> سبزمارکت</h3>
+        <p>فروشگاه آنلاین محصولات ارگانیک و طبیعی. ما باور داریم غذای سالم حق همه است و زمین سالم آینده‌ی ماست.</p>
+      </div>
+      <div class="footer-col"><h4>فروشگاه</h4><a href="#shop">همه محصولات</a><a href="#shop">عسل و شیرینی</a><a href="#shop">روغن‌ها</a><a href="#shop">خشکبار</a></div>
+      <div class="footer-col"><h4>درباره</h4><a href="#why">چرا ارگانیک</a><a href="#testi">نظرات</a><a href="#">داستان ما</a><a href="#">همکاری با ما</a></div>
+      <div class="footer-col"><h4>تماس</h4><a href="#">info@sabzmarket.ir</a><a href="#">۰۲۱-۱۲۳۴۵۶۷۸</a><a href="#">تهران، ایران</a><a href="#">اینستاگرام</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© ۱۴۰۴ سبزمارکت — طراحی شده توسط <a href="../index.html" style="color:var(--accent)">PH Design</a></span>
+      <span>ساخته شده با 🌿 برای زمین</span>
+    </div>
+  </div>
+</footer>
+
 <script>
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+/* ---------- THEME TOGGLE ---------- */
+const root = document.documentElement;
+const themeBtn = document.getElementById('themeToggle');
+function setTheme(t){
+  root.setAttribute('data-theme', t);
+  themeBtn.textContent = t === 'dark' ? '🌙' : '☀️';
+  try{ localStorage.setItem('sabz-theme', t); }catch(e){}
+}
+themeBtn.addEventListener('click', () => {
+  setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+(function(){ try{
+  const saved = localStorage.getItem('sabz-theme');
+  if(saved) setTheme(saved);
+}catch(e){} })();
+
+/* ---------- CART (decorative) ---------- */
+let cart = 0;
+const cartCount = document.getElementById('cartCount');
+document.querySelectorAll('.add').forEach(b => {
+  b.addEventListener('click', () => {
+    cart++;
+    cartCount.textContent = cart.toLocaleString('fa-IR');
+    b.textContent = '✓';
+    b.style.background = 'var(--accent)';
+    b.style.color = 'var(--bg)';
+    setTimeout(() => { b.textContent = '+'; b.style.background=''; b.style.color=''; }, 900);
+  });
+});
+
+/* ---------- MOBILE MENU ---------- */
+const burger = document.getElementById('burger');
+const navLinks = document.querySelector('.nav-links');
+burger.addEventListener('click', () => {
+  const open = navLinks.style.display === 'flex';
+  if(open){ navLinks.style.display=''; }
+  else{
+    navLinks.style.display='flex';
+    navLinks.style.position='absolute';
+    navLinks.style.top='70px';
+    navLinks.style.right='28px';
+    navLinks.style.flexDirection='column';
+    navLinks.style.background='var(--card)';
+    navLinks.style.padding='20px 26px';
+    navLinks.style.borderRadius='16px';
+    navLinks.style.border='1px solid var(--line-2)';
+    navLinks.style.gap='16px';
+  }
+});
+
+/* ---------- NEWSLETTER ---------- */
+function subscribe(e){
+  e.preventDefault();
+  const v = document.getElementById('email').value;
+  e.target.querySelector('button').textContent = 'ثبت شد ✅';
+  document.getElementById('email').value='';
+  setTimeout(()=>{ e.target.querySelector('button').textContent='عضویت 🌱'; }, 2200);
+  return false;
+}
+
+/* ---------- SCROLL REVEAL ---------- */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(en => {
+    if(en.isIntersecting){ en.target.classList.add('v'); obs.unobserve(en.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ---------- NAV SHRINK ON SCROLL ---------- */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 40){ navEl.style.padding = '10px 0'; }
+  else { navEl.style.padding = '16px 0'; }
+});
 </script>
-</body></html>
+</body>
+</html>

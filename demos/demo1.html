@@ -1,97 +1,653 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>آلفا‌تک | PH Design</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050507">
+<title>پالس‌تک | زیرساخت هوشمند برای عصر دیجیتال</title>
+<meta name="description" content="پالس‌تک — شرکت فناوری سازنده ابر، هوش مصنوعی و پلتفرم‌های توسعه. زیرساختی که با کسب‌وکار شما می‌تپد.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#6CA8C8;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
-[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
+/* ============================================================
+   پالس‌تک — دموی بروتالیست/نئون  (متمایز از تم مینیمال برنزی والد)
+   ============================================================ */
+:root{
+  --bg:#050507;
+  --bg-soft:#0a0a0f;
+  --panel:#0d0d14;
+  --ink:#f5f5fa;
+  --ink-soft:#a4a4b8;
+  --ink-mute:#5c5c70;
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.20);
+  /* نئون‌ها */
+  --cy:#00f0ff;     /* cyan */
+  --mg:#ff2bd6;     /* magenta */
+  --lm:#b6ff00;     /* lime */
+  --or:#ff6a00;     /* orange */
+  --glow-cy:0 0 18px rgba(0,240,255,.55);
+  --glow-mg:0 0 18px rgba(255,43,214,.55);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mono:'Courier New',ui-monospace,monospace;
+}
+[data-theme=light]{
+  --bg:#f3f1ea;
+  --bg-soft:#e9e6dc;
+  --panel:#ffffff;
+  --ink:#0a0a0f;
+  --ink-soft:#3a3a44;
+  --ink-mute:#7a7a86;
+  --line:rgba(0,0,0,.16);
+  --line-2:rgba(0,0,0,.34);
+  --cy:#0098a8;
+  --mg:#c4009e;
+  --lm:#5a8a00;
+  --or:#c24100;
+  --glow-cy:0 0 0 rgba(0,0,0,0);
+  --glow-mg:0 0 0 rgba(0,0,0,0);
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  direction:rtl;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.7;
+  transition:background .45s var(--ease),color .45s var(--ease);
+}
+/* گرید و اسکن‌لاین پس‌زمینه */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:46px 46px;
+  mask-image:radial-gradient(circle at 50% 30%,#000,transparent 90%);
+  opacity:.55;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);
+  mix-blend-mode:overlay;opacity:.35;
+}
 a{text-decoration:none;color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
-.back-pill:hover{background:var(--accent);color:#07070A}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
-.nav-links a:hover{color:var(--text)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
-.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
-.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
-.hero-in{position:relative;z-index:1}
-.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
-.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
-.btn-p{background:var(--accent);color:#07070A}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
-.btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
-.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.section{padding:110px 0}
-.section-head{margin-bottom:56px}
-.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
-.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--bg);padding:36px 30px;transition:.4s}
-.svc:hover{background:var(--card)}
-.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
-.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
-.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
-.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
-.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
-.cta-sec p{color:var(--text-soft);margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+img,svg{display:block}
+.container{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+.mono{font-family:var(--mono);letter-spacing:.5px}
+
+/* ---------- دکمه‌های ثابت: بازگشت + تم ---------- */
+.back-pill{
+  position:fixed;top:16px;left:16px;z-index:120;
+  padding:9px 18px;border:2px solid var(--cy);border-radius:0;
+  font-size:.74rem;font-weight:700;background:var(--bg);color:var(--cy);
+  text-transform:uppercase;letter-spacing:1px;transition:.25s var(--ease);
+  box-shadow:var(--glow-cy);
+}
+.back-pill:hover{background:var(--cy);color:var(--bg);box-shadow:none;transform:translateX(-3px)}
+.theme-btn{
+  position:fixed;top:16px;right:16px;z-index:120;width:44px;height:44px;
+  border:2px solid var(--mg);border-radius:0;background:var(--bg);color:var(--mg);
+  cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;
+  transition:.25s var(--ease);box-shadow:var(--glow-mg);
+}
+.theme-btn:hover{background:var(--mg);color:var(--bg);box-shadow:none}
+
+/* ---------- ناوبری ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:99;background:var(--bg);border-bottom:2px solid var(--line-2)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:15px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.25rem;letter-spacing:-.5px}
+.logo .mark{
+  width:34px;height:34px;border:2px solid var(--cy);display:flex;align-items:center;justify-content:center;
+  color:var(--cy);font-family:var(--mono);font-weight:700;box-shadow:var(--glow-cy);transform:rotate(0);
+  transition:.3s var(--ease);
+}
+.logo:hover .mark{transform:rotate(45deg)}
+.logo b{color:var(--cy)}
+.nav-links{display:flex;gap:6px;align-items:center;font-size:.85rem;font-weight:600}
+.nav-links a{padding:8px 14px;border:2px solid transparent;color:var(--ink-soft);transition:.2s var(--ease);text-transform:uppercase;letter-spacing:.5px}
+.nav-links a:hover{border-color:var(--line-2);color:var(--ink)}
+.nav-links a.cta{border-color:var(--lm);color:var(--lm)}
+.nav-links a.cta:hover{background:var(--lm);color:var(--bg)}
+
+/* ---------- هیرو ---------- */
+.hero{padding:150px 0 90px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-glow::before,.hero-glow::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+.hero-glow::before{width:42vw;height:42vw;top:8%;right:-6%;background:radial-gradient(circle,var(--cy),transparent 65%)}
+.hero-glow::after{width:34vw;height:34vw;bottom:-10%;left:-4%;background:radial-gradient(circle,var(--mg),transparent 65%)}
+.kicker{
+  display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:.74rem;
+  letter-spacing:2px;text-transform:uppercase;color:var(--lm);border:2px solid var(--lm);
+  padding:7px 16px;margin-bottom:30px;font-weight:700;
+}
+.kicker .dot{width:8px;height:8px;background:var(--lm);border-radius:50%;box-shadow:0 0 10px var(--lm);animation:blink 1.4s steps(2) infinite}
+@keyframes blink{50%{opacity:.2}}
+.hero h1{
+  font-size:clamp(2.6rem,8vw,6.2rem);font-weight:900;line-height:.98;letter-spacing:-2px;
+  margin-bottom:26px;text-transform:uppercase;
+}
+.hero h1 .glitch{position:relative;display:inline-block;color:var(--cy);text-shadow:var(--glow-cy)}
+.hero h1 .glitch::before,.hero h1 .glitch::after{
+  content:attr(data-t);position:absolute;inset:0;clip-path:inset(0 0 0 0);
+}
+.hero h1 .glitch::before{color:var(--mg);animation:gl1 2.6s infinite linear alternate-reverse;left:2px}
+.hero h1 .glitch::after{color:var(--lm);animation:gl2 3.1s infinite linear alternate-reverse;left:-2px}
+@keyframes gl1{0%{clip-path:inset(0 0 82% 0)}20%{clip-path:inset(38% 0 40% 0)}40%{clip-path:inset(70% 0 8% 0)}60%{clip-path:inset(12% 0 70% 0)}80%{clip-path:inset(50% 0 30% 0)}100%{clip-path:inset(85% 0 2% 0)}}
+@keyframes gl2{0%{clip-path:inset(80% 0 4% 0)}25%{clip-path:inset(20% 0 60% 0)}50%{clip-path:inset(55% 0 25% 0)}75%{clip-path:inset(8% 0 78% 0)}100%{clip-path:inset(40% 0 40% 0)}}
+.hero h1 em{font-style:normal;color:var(--mg);text-shadow:var(--glow-mg)}
+.hero p.lead{font-size:clamp(1rem,2.1vw,1.2rem);color:var(--ink-soft);max-width:600px;font-weight:300;line-height:1.95;margin-bottom:38px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:16px 34px;font-family:inherit;
+  font-size:.95rem;font-weight:800;cursor:pointer;border:2px solid var(--cy);border-radius:0;
+  background:var(--cy);color:var(--bg);text-transform:uppercase;letter-spacing:.5px;transition:.25s var(--ease);
+  box-shadow:var(--glow-cy);
+}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--mg)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2);box-shadow:none}
+.btn-ghost:hover{border-color:var(--mg);color:var(--mg);box-shadow:6px 6px 0 var(--cy)}
+.hero-tags{margin-top:46px;display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:var(--ink-mute)}
+.hero-tags span{border:1px solid var(--line-2);padding:5px 12px;text-transform:uppercase;letter-spacing:1px}
+
+/* ---------- مارکی تیکر ---------- */
+.ticker{border-top:2px solid var(--cy);border-bottom:2px solid var(--cy);background:var(--bg-soft);overflow:hidden;padding:14px 0;position:relative;z-index:2}
+.ticker-track{display:flex;gap:48px;white-space:nowrap;width:max-content;animation:scroll 26s linear infinite;font-family:var(--mono);font-size:.9rem;font-weight:700;color:var(--cy);letter-spacing:1px}
+.ticker-track span{display:inline-flex;align-items:center;gap:48px}
+.ticker-track b{color:var(--mg)}
+@keyframes scroll{to{transform:translateX(50%)}}
+
+/* ---------- بخش‌های عمومی ---------- */
+.section{padding:110px 0;position:relative;z-index:2}
+.sec-head{margin-bottom:60px;display:flex;flex-direction:column;gap:14px}
+.sec-num{font-family:var(--mono);font-size:.8rem;color:var(--mg);letter-spacing:3px;font-weight:700}
+.sec-head h2{font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:900;letter-spacing:-1.5px;line-height:1.05;text-transform:uppercase}
+.sec-head h2 u{text-decoration:none;color:var(--cy);text-shadow:var(--glow-cy)}
+.sec-head p{color:var(--ink-soft);max-width:560px;font-weight:300;font-size:1.02rem}
+
+/* ---------- نوار آمار بروتالیست ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:2px solid var(--line-2);background:var(--bg-soft)}
+.stat{padding:40px 28px;border-left:2px solid var(--line-2);position:relative;overflow:hidden}
+.stat:last-child{border-left:none}
+.stat .v{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;letter-spacing:-2px;color:var(--cy);line-height:1}
+.stat .v small{font-size:1.2rem;color:var(--mg)}
+.stat .l{margin-top:14px;font-family:var(--mono);font-size:.74rem;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft)}
+.stat::after{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--mg);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--ease)}
+.stat:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ---------- سرویس‌ها ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--line-2)}
+.svc{padding:42px 34px;border-left:2px solid var(--line-2);border-bottom:2px solid var(--line-2);background:var(--panel);transition:.3s var(--ease);position:relative}
+.svc:nth-child(3n){border-left:none}
+.svc:nth-last-child(-n+3){border-bottom:none}
+.svc .n{font-family:var(--mono);font-size:.78rem;color:var(--ink-mute);font-weight:700;letter-spacing:2px}
+.svc .ic{font-size:2.1rem;margin:18px 0 16px;display:block;color:var(--cy)}
+.svc h3{font-size:1.3rem;font-weight:800;margin-bottom:12px;letter-spacing:-.5px}
+.svc p{font-size:.9rem;color:var(--ink-soft);font-weight:300;line-height:1.95}
+.svc:hover{background:var(--cy);color:var(--bg)}
+.svc:hover .ic,.svc:hover h3{color:var(--bg)}
+.svc:hover p{color:rgba(5,5,7,.8)}
+.svc:hover .n{color:var(--mg)}
+
+/* ---------- خط لوله ---------- */
+.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--line-2)}
+.step{padding:38px 26px;border-left:2px solid var(--line-2);position:relative;background:var(--bg-soft);transition:.3s var(--ease)}
+.step:last-child{border-left:none}
+.step .idx{font-family:var(--mono);font-size:2.4rem;font-weight:700;color:var(--bg);background:var(--mg);display:inline-flex;width:54px;height:54px;align-items:center;justify-content:center;box-shadow:var(--glow-mg)}
+.step h4{margin:20px 0 10px;font-size:1.15rem;font-weight:800}
+.step p{font-size:.86rem;color:var(--ink-soft);font-weight:300;line-height:1.9}
+.step:hover{background:var(--panel)}
+.step:hover .idx{background:var(--cy);box-shadow:var(--glow-cy)}
+
+/* ---------- تکنولوژی + ترمینال ---------- */
+.tech-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--line-2)}
+.tags{padding:44px 36px;display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start;border-left:2px solid var(--line-2);background:var(--panel)}
+.tags .t{font-family:var(--mono);font-size:.82rem;padding:9px 16px;border:2px solid var(--cy);color:var(--cy);text-transform:uppercase;letter-spacing:1px;transition:.2s var(--ease)}
+.tags .t:hover{background:var(--cy);color:var(--bg);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--mg)}
+.tags .t.m{border-color:var(--mg);color:var(--mg)}
+.tags .t.m:hover{background:var(--mg);color:var(--bg)}
+.tags .t.l{border-color:var(--lm);color:var(--lm)}
+.tags .t.l:hover{background:var(--lm);color:var(--bg)}
+.terminal{background:#020203;color:#caffd0;font-family:var(--mono);font-size:.84rem;padding:30px 28px;line-height:1.85;overflow:auto}
+.terminal .bar{display:flex;gap:8px;margin-bottom:18px}
+.terminal .bar i{width:13px;height:13px;border-radius:50%;display:block}
+.terminal .bar i:nth-child(1){background:var(--mg)}
+.terminal .bar i:nth-child(2){background:var(--lm)}
+.terminal .bar i:nth-child(3){background:var(--cy)}
+.terminal .p{color:var(--cy)}
+.terminal .c{color:var(--lm)}
+.terminal .o{color:#8de89a}
+.terminal .dim{color:#4f6b55}
+.cursor{display:inline-block;width:9px;height:1.05em;background:var(--lm);vertical-align:-2px;animation:blink 1s steps(2) infinite}
+
+/* ---------- تعرفه ---------- */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--line-2)}
+.plan{padding:44px 34px;border-left:2px solid var(--line-2);background:var(--panel);position:relative;transition:.3s var(--ease);display:flex;flex-direction:column}
+.plan:last-child{border-left:none}
+.plan.feat{background:var(--bg-soft);border-top:4px solid var(--cy)}
+.plan .tag{position:absolute;top:-2px;left:24px;background:var(--cy);color:var(--bg);font-family:var(--mono);font-size:.7rem;font-weight:700;padding:6px 14px;letter-spacing:1px}
+.plan h3{font-size:1.4rem;font-weight:900;text-transform:uppercase;letter-spacing:-.5px}
+.plan .cost{font-size:2.8rem;font-weight:900;letter-spacing:-2px;margin:18px 0 4px;color:var(--cy)}
+.plan .cost small{font-size:1rem;color:var(--ink-mute);font-weight:400}
+.plan ul{list-style:none;margin:26px 0 32px;display:flex;flex-direction:column;gap:13px}
+.plan ul li{font-size:.9rem;color:var(--ink-soft);font-weight:300;display:flex;gap:10px;align-items:flex-start}
+.plan ul li::before{content:"▣";color:var(--mg);font-size:.85rem}
+.plan .btn{width:100%;justify-content:center}
+.plan:hover{transform:translateY(-6px)}
+
+/* ---------- نظرات ---------- */
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.quote{border:2px solid var(--line-2);padding:34px 30px;background:var(--panel);position:relative;transition:.3s var(--ease)}
+.quote:hover{border-color:var(--cy);box-shadow:var(--glow-cy)}
+.quote .star{color:var(--lm);letter-spacing:3px;font-size:.9rem;margin-bottom:14px}
+.quote p{font-size:.98rem;color:var(--ink);font-weight:300;line-height:2;margin-bottom:22px}
+.quote .who{font-family:var(--mono);font-size:.78rem;color:var(--cy);letter-spacing:1px;text-transform:uppercase}
+.quote .who span{color:var(--ink-mute);display:block;margin-top:4px}
+
+/* ---------- فراخوان بزرگ ---------- */
+.cta-band{border:2px solid var(--cy);background:var(--bg-soft);padding:80px 40px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--glow-cy)}
+.cta-band::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 14px,rgba(0,240,255,.05) 14px 28px)}
+.cta-band h2{font-size:clamp(2rem,5vw,3.6rem);font-weight:900;letter-spacing:-1.5px;text-transform:uppercase;position:relative;line-height:1.05}
+.cta-band h2 em{font-style:normal;color:var(--mg);text-shadow:var(--glow-mg)}
+.cta-band p{color:var(--ink-soft);margin:20px auto 34px;max-width:540px;font-weight:300;position:relative}
+.cta-band .hero-cta{justify-content:center;position:relative}
+
+/* ---------- فوتر ---------- */
+footer{border-top:2px solid var(--line-2);padding:60px 0 40px;margin-top:40px;position:relative;z-index:2}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
+.foot-grid .brand .logo{margin-bottom:18px}
+.foot-grid p{color:var(--ink-soft);font-size:.86rem;font-weight:300;max-width:280px;line-height:1.9}
+.foot-col h5{font-family:var(--mono);font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--mg);margin-bottom:16px}
+.foot-col a{display:block;color:var(--ink-soft);font-size:.88rem;padding:6px 0;transition:.2s var(--ease)}
+.foot-col a:hover{color:var(--cy);transform:translateX(-4px)}
+.foot-bottom{margin-top:46px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:.74rem;color:var(--ink-mute);letter-spacing:1px}
+
+/* ---------- انیمیشن‌های اسکرول ---------- */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .reveal.v{opacity:1;transform:none}
-@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+.reveal-l{opacity:0;transform:translateX(60px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal-l.v{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(-60px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal-r.v{opacity:1;transform:none}
+
+/* ---------- ریسپانسیو ---------- */
+@media(max-width:980px){
+  .tech-wrap,.quotes{grid-template-columns:1fr}
+  .tags{border-left:none;border-bottom:2px solid var(--line-2)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-left:none}
+  .stat:nth-child(3),.stat:nth-child(4){border-top:2px solid var(--line-2)}
+  .pipe{grid-template-columns:repeat(2,1fr)}
+  .step:nth-child(2){border-left:none}
+  .step:nth-child(3),.step:nth-child(4){border-top:2px solid var(--line-2)}
+  .price-grid{grid-template-columns:1fr}
+  .plan{border-left:none;border-bottom:2px solid var(--line-2)}
+  .plan:last-child{border-bottom:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .nav-links{display:none}
+  .svc-grid{grid-template-columns:1fr}
+  .svc{border-left:none!important;border-bottom:2px solid var(--line-2)!important}
+  .svc:last-child{border-bottom:none!important}
+  .stats,.pipe{grid-template-columns:1fr}
+  .stat,.step{border-left:none!important;border-top:2px solid var(--line-2)!important}
+  .stat:first-child,.step:first-child{border-top:none!important}
+  .hero{padding-top:130px}
+  .foot-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+
+<!-- دکمه‌های ثابت -->
 <a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
-<nav><div class="nav-inner"><div class="logo"><span class="d"></span>آلفا‌تک</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
+<button class="theme-btn" id="themeBtn" title="تغییر تم" aria-label="تغییر تم">◐</button>
 
-<section class="hero"><div class="glow"></div><div class="container hero-in">
-<div class="kick reveal"><span class="d"></span> شرکت فناوری</div>
-<h1 class="reveal">آلفا‌تک<br><em>تجربه‌ای متفاوت</em></h1>
-<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
-<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
-</div></section>
+<!-- ناوبری -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="mark">P</span><span>پالس<b>‌تک</b></span></a>
+    <div class="nav-links">
+      <a href="#services">خدمات</a>
+      <a href="#pipeline">فرآیند</a>
+      <a href="#tech">تکنولوژی</a>
+      <a href="#pricing">تعرفه</a>
+      <a href="#contact" class="cta">شروع کنید</a>
+    </div>
+  </div>
+</nav>
 
-<section class="section"><div class="container">
-<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
-<div class="svc-grid">
-<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>توسعه وب</h3><p>سایت‌های مدرن با استانداردهای روز</p></div>
-<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>اپلیکیشن موبایل</h3><p>iOS و Android با رابط جذاب</p></div>
-<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>ابر و زیرساخت</h3><p>معماری مقیاس‌پذیر و امن</p></div>
+<!-- هیرو -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="kicker reveal"><span class="dot"></span> شرکت فناوری · تهران / سن‌خوزه</div>
+    <h1 class="reveal">
+      زیرساختی که<br>
+      با تو <span class="glitch" data-t="می‌تپد">می‌تپد</span><br>
+      <em>// PULSE_TECH</em>
+    </h1>
+    <p class="lead reveal">
+      ما در پالس‌تک، ابر، هوش مصنوعی و پلتفرم‌های توسعه می‌سازیم که با سرعت کسب‌وکار شما مقیاس می‌شوند.
+      بدون پیچیدگی. بدون ترمز. فقط قدرت محض در هر درخواست.
+    </p>
+    <div class="hero-cta reveal">
+      <a href="#pricing" class="btn">راه‌اندازی رایگان →</a>
+      <a href="#services" class="btn btn-ghost">مشاهده خدمات</a>
+    </div>
+    <div class="hero-tags reveal">
+      <span>99.99% UPTIME</span><span>EDGE GLOBAL</span><span>ZERO-DOWNTIME</span><span>API-FIRST</span>
+    </div>
+  </div>
+</header>
+
+<!-- تیکر -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>ابر مقیاس‌پذیر <b>✦</b> هوش مصنوعی مولد <b>✦</b> امنیت لایه‌صفر <b>✦</b> تحلیل بلادرنگ <b>✦</b> DevOps خودکار <b>✦</b> پلتفرم توسعه <b>✦</b></span>
+    <span>ابر مقیاس‌پذیر <b>✦</b> هوش مصنوعی مولد <b>✦</b> امنیت لایه‌صفر <b>✦</b> تحلیل بلادرنگ <b>✦</b> DevOps خودکار <b>✦</b> پلتفرم توسعه <b>✦</b></span>
+  </div>
 </div>
-</div></section>
 
-<section class="section" style="background:var(--bg-soft)"><div class="container">
-<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">◈</div></div>
-</div></section>
+<!-- آمار -->
+<section class="section">
+  <div class="container">
+    <div class="stats reveal">
+      <div class="stat"><div class="v" data-count="99.99" data-suffix="%">0</div><div class="l">آپ‌تایم تضمینی</div></div>
+      <div class="stat"><div class="v" data-count="4.2" data-suffix="M">0<small>/s</small></div><div class="l">درخواست در ثانیه</div></div>
+      <div class="stat"><div class="v" data-count="38">0</div><div class="l">گره لبه در ۶ قاره</div></div>
+      <div class="stat"><div class="v" data-count="1200" data-suffix="+">0</div><div class="l">تیم و سازمان مشتری</div></div>
+    </div>
+  </div>
+</section>
 
-<section class="cta-sec"><div class="container">
-<h2 class="reveal">این مدل برای برند تو؟</h2>
-<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
-<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
-</div></section>
+<!-- خدمات -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">[ ۰۱ ] — ما چه می‌سازیم</div>
+      <h2>مجموعه‌ای از <u>ابزارهای فتنه‌انگیز</u></h2>
+      <p>از زیرساخت خام تا مدل‌های هوش مصنوعی آماده‌ی تولید — همه‌چیز در یک پلتفرم یکپارچه.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc">
+        <span class="n">S-01</span><span class="ic">☁</span>
+        <h3>ابر مقیاس‌پذیر</h3>
+        <p>میزبانی بدون سرور روی گره‌های لبه با زمان پاسخ زیر ۴۰ میلی‌ثانیه در هر نقطه از جهان.</p>
+      </div>
+      <div class="svc">
+        <span class="n">S-02</span><span class="ic">◈</span>
+        <h3>هوش مصنوعی مولد</h3>
+        <p>استقرار مدل‌های زبانی و بینایی با یک خط کد. استنتاج سریع روی سخت‌افزار اختصاصی.</p>
+      </div>
+      <div class="svc">
+        <span class="n">S-03</span><span class="ic">⛨</span>
+        <h3>امنیت لایه‌صفر</h3>
+        <p>احراز هویت سراسری، رمزنگاری اند‑تو‑اند و نظارت آنی بر هر بایت ترافیک ورودی و خروجی.</p>
+      </div>
+      <div class="svc">
+        <span class="n">S-04</span><span class="ic">▤</span>
+        <h3>تحلیل بلادرنگ</h3>
+        <p>داشبوردهای زنده و پرس‌وجوهای جریانی روی میلیاردها رویداد در ثانیه، بدون تأخیر.</p>
+      </div>
+      <div class="svc">
+        <span class="n">S-05</span><span class="ic">⎇</span>
+        <h3>DevOps خودکار</h3>
+        <p>لوله‌کشی CI/CD، کانتینرسازی و گسترش خودکار از کامیت تا تولید در کمتر از ۹۰ ثانیه.</p>
+      </div>
+      <div class="svc">
+        <span class="n">S-06</span><span class="ic">⬡</span>
+        <h3>پلتفرم توسعه</h3>
+        <p>SDKهای چندزبانه، مستندات زنده و محیط آزمایشی ابری که با هر مرورگری کار می‌کند.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<footer>© ۱۴۰۴ آلفا‌تک — طراحی شده توسط PH Design</footer>
+<!-- خط لوله -->
+<section class="section" id="pipeline">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">[ ۰۲ ] — فرآیند کار</div>
+      <h2>از <u>ایده</u> تا <u>تولید</u> در چهار ضرب</h2>
+      <p>خط لوله‌ای شفاف که هر گام را قابل اندازه‌گیری و قابل اتکا می‌کند.</p>
+    </div>
+    <div class="pipe reveal">
+      <div class="step">
+        <span class="idx">01</span>
+        <h4>اتصال</h4>
+        <p>حساب را می‌سازید، کلید API می‌گیرید و در کمتر از ۶۰ ثانیه اولین منبع را وصل می‌کنید.</p>
+      </div>
+      <div class="step">
+        <span class="idx">02</span>
+        <h4>تعریف</h4>
+        <p>زیرساخت را با فایل پیکربندی یا رابط بصری توصیف می‌کنید؛ ما بقیه را خودکار می‌سازیم.</p>
+      </div>
+      <div class="step">
+        <span class="idx">03</span>
+        <h4>گسترش</h4>
+        <p>هر کامیت از طریق لوله‌کشی خودکار تست، ساخته و روی گره‌های لبه پخش می‌شود.</p>
+      </div>
+      <div class="step">
+        <span class="idx">04</span>
+        <h4>نظارت</h4>
+        <p>هشدارهای آنی، تحلیل ترافیک و مقیاس‌بندی خودکار اجازه نمی‌دهد ترمزی کار را متوقف کند.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- تکنولوژی + ترمینال -->
+<section class="section" id="tech">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">[ ۰۳ ] — پشت صحنه</div>
+      <h2>روی <u>تکنولوژی</u> درست ساخته شده</h2>
+      <p>تکه‌های بازمتن که دوست داریم، و یک خط واقعی برای شروع کار با پالس‌تک.</p>
+    </div>
+    <div class="tech-wrap reveal">
+      <div class="tags">
+        <span class="t">Rust</span><span class="t">Go</span><span class="t m">Kubernetes</span>
+        <span class="t">PostgreSQL</span><span class="t l">WebAssembly</span><span class="t">Redis</span>
+        <span class="t m">gRPC</span><span class="t">Kafka</span><span class="t l">TensorRT</span>
+        <span class="t">Terraform</span><span class="t m">GraphQL</span><span class="t">eBPF</span>
+        <span class="t l">Vite</span><span class="t">Nix</span><span class="t m">Prometheus</span>
+      </div>
+      <div class="terminal">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div><span class="p">$</span> curl -fsSL https://pulsetech.io/install | sh</div>
+        <div class="o">[✓] بارگیری موتور پالس‌تک  v3.8.1</div>
+        <div class="o">[✓] احراز هویت کلید API ... موفق</div>
+        <div class="dim"># ایجاد اولین سرویس ابری</div>
+        <div><span class="p">$</span> pulse deploy --region <span class="c">edge-all</span> --scale auto</div>
+        <div class="o">[→] ساخت تصویر ... تمام شد (4.2s)</div>
+        <div class="o">[→] توزیع روی 38 گره لبه ... انجام شد</div>
+        <div class="o">[✔] سرویس فعال: https://app.pulsetech.io</div>
+        <div class="dim"># آماده‌ای؟ حلقه زنده را ببین:</div>
+        <div><span class="p">$</span> pulse watch --metrics<span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- تعرفه -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">[ ۰۴ ] — تعرفه</div>
+      <h2>انتخاب <u>ضرب‌آهنگ</u> خودت</h2>
+      <p>شروع رایگان، ارتقا وقتی واقعاً رشد کردی. بدون قرارداد قفل‌شده.</p>
+    </div>
+    <div class="price-grid reveal">
+      <div class="plan">
+        <h3>استارتاپ</h3>
+        <div class="cost">۰ <small>تومان / ماه</small></div>
+        <ul>
+          <li>تا ۳ سرویس ابری</li>
+          <li>۱ میلیون درخواست ماهانه</li>
+          <li>۲ گره لبه منطقه‌ای</li>
+          <li>پشتیبانی انجمن</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">شروع رایگان</a>
+      </div>
+      <div class="plan feat">
+        <span class="tag">محبوب‌ترین</span>
+        <h3>تیم</h3>
+        <div class="cost">۴۹۰ <small>هزار تومان / ماه</small></div>
+        <ul>
+          <li>سرویس‌های نامحدود</li>
+          <li>۵۰ میلیون درخواست ماهانه</li>
+          <li>گره‌های لبه جهانی</li>
+          <li>هوش مصنوعی مولد included</li>
+          <li>پشتیبانی اولویت‌دار</li>
+        </ul>
+        <a href="#contact" class="btn">انتخاب تیم</a>
+      </div>
+      <div class="plan">
+        <h3>سازمانی</h3>
+        <div class="cost">تماس <small>بگیرید</small></div>
+        <ul>
+          <li>زیرساخت اختصاصی (VPC)</li>
+          <li>مقیاس نامحدود + SLA 99.99%</li>
+          <li>امنیت لایه‌صفر سفارشی</li>
+          <li>مدیر حساب اختصاصی</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">صحبت با فروش</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- نظرات -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">[ ۰۵ ] — مشتریان می‌گویند</div>
+      <h2>صدای <u>تیم‌های واقعی</u></h2>
+    </div>
+    <div class="quotes reveal">
+      <div class="quote">
+        <div class="star">★★★★★</div>
+        <p>«با پالس‌تک زمان گسترش ما از ۲۰ دقیقه به ۹۰ ثانیه رسید. دیگر کسی نگران خوابیدن سرورها نیست.»</p>
+        <div class="who">سارا محمودی<span>مدیر فنی — استارتاپ لاجیت</span></div>
+      </div>
+      <div class="quote">
+        <div class="star">★★★★★</div>
+        <p>«مدل‌های هوش مصنوعی را در عرض یک روز به تولید رساندیم. مستنداتشان از خیلی ابرهای بزرگ‌تر تمیزتر است.»</p>
+        <div class="who">کاوه رضایی<span>بنیان‌گذار — نورون‌لب</span></div>
+      </div>
+      <div class="quote">
+        <div class="star">★★★★★</div>
+        <p>«تحلیل بلادرنگ روی ترافیک میلیاردی، چیزی بود که قبلاً جرات نمی‌کردیم حتی رؤیایش را ببینیم.»</p>
+        <div class="who">الناز شریفی<span>معمار داده — گروه پارس‌کلاد</span></div>
+      </div>
+      <div class="quote">
+        <div class="star">★★★★★</div>
+        <p>«پشتیبانی‌شان مثل خود پلتفرم‌شان سریع است. یک بار ساعت ۳ صبح جواب گرفتیم.»</p>
+        <div class="who">مهدی عباسی<span>مهندس DevOps — پی‌پِی</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- فراخوان -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>بیا <em>بسازیم</em> که می‌تپد</h2>
+      <p>حساب رایگان بساز، اولین سرویس را ظرف یک دقیقه بالا بیاور و وقتی رشد کردی مقیاسش بده.</p>
+      <div class="hero-cta">
+        <a href="../index.html" class="btn">ساخت حساب رایگان →</a>
+        <a href="../index.html" class="btn btn-ghost">تماس با ما</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- فوتر -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="brand">
+        <a href="#" class="logo"><span class="mark">P</span><span>پالس<b>‌تک</b></span></a>
+        <p>شرکت فناوری سازنده ابر، هوش مصنوعی و پلتفرم‌های توسعه. زیرساختی که با کسب‌وکار شما می‌تپد.</p>
+      </div>
+      <div class="foot-col">
+        <h5>محصول</h5>
+        <a href="#services">ابر</a>
+        <a href="#services">هوش مصنوعی</a>
+        <a href="#tech">تکنولوژی</a>
+        <a href="#pricing">تعرفه</a>
+      </div>
+      <div class="foot-col">
+        <h5>شرکت</h5>
+        <a href="#">درباره ما</a>
+        <a href="#">مشتریان</a>
+        <a href="#">وبلاگ</a>
+        <a href="#contact">تماس</a>
+      </div>
+      <div class="foot-col">
+        <h5>منابع</h5>
+        <a href="#">مستندات</a>
+        <a href="#">وضعیت سیستم</a>
+        <a href="#">انجمن</a>
+        <a href="#">داکر‌هاب</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© ۱۴۰۴ پالس‌تک — طراحی شده توسط PH Design</span>
+      <span class="mono">STATUS: ● ALL SYSTEMS OPERATIONAL</span>
+    </div>
+  </div>
+</footer>
+
 <script>
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+/* تغییر تم با ذخیره‌سازی */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  try{var s=localStorage.getItem('pulse-theme');if(s)root.setAttribute('data-theme',s);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',cur);
+    try{localStorage.setItem('pulse-theme',cur);}catch(e){}
+  });
+})();
+
+/* انیمیشن‌های اسکرول */
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('v'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(function(el){io.observe(el);});
+})();
+
+/* شمارنده آمار */
+(function(){
+  var els=document.querySelectorAll('.stat .v[data-count]');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target, end=parseFloat(el.getAttribute('data-count')),
+          suf=el.getAttribute('data-suffix')||'', small=el.querySelector('small'),
+          start=null, dur=1400;
+      function step(t){
+        if(!start)start=t;
+        var p=Math.min((t-start)/dur,1);
+        var val=(end*(1-Math.pow(1-p,3))).toFixed(end%1!==0?2:0);
+        el.firstChild.nodeValue=val+suf;
+        if(p<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      io.unobserve(el);
+    });
+  },{threshold:.5});
+  els.forEach(function(el){io.observe(el);});
+})();
 </script>
-</body></html>
+</body>
+</html>

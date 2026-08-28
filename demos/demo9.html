@@ -1,97 +1,720 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ساخت‌پلاس | PH Design</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#161618">
+<meta name="description" content="سازه‌گستر — شرکت ساختمانی و عمرانی صنعتی. اجرای پروژه‌های بتنی، فولادی و زیربنایی با نظارت مهندسی.">
+<title>سازه‌گستر | SAZEH-CO — شرکت ساختمانی صنعتی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#8CC86C;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
-[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
+/* ============================================================
+   SAZEH-CO — Industrial Construction Theme
+   Concrete grey + hazard yellow · Blueprint grid · Heavy feel
+   ============================================================ */
+:root{
+  --bg:#161618;
+  --bg-soft:#1d1d20;
+  --panel:#242429;
+  --panel-2:#2c2c32;
+  --text:#edece7;
+  --text-soft:#a8a8a1;
+  --mute:#6e6e69;
+  --line:rgba(255,255,255,.09);
+  --line-2:rgba(255,255,255,.16);
+  --hazard:#ffce00;
+  --hazard-deep:#e6b800;
+  --ink:#0c0c0e;
+  --shadow:8px 8px 0 rgba(0,0,0,.55);
+  --shadow-sm:4px 4px 0 rgba(0,0,0,.5);
+  --radius:4px;
+  --max:1180px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mono:'Vazirmatn',ui-monospace,monospace;
+}
+[data-theme=light]{
+  --bg:#cfcdc6;
+  --bg-soft:#c3c1b9;
+  --panel:#dedcd4;
+  --panel-2:#e7e5dd;
+  --text:#161618;
+  --text-soft:#46453f;
+  --mute:#6f6e67;
+  --line:rgba(0,0,0,.12);
+  --line-2:rgba(0,0,0,.22);
+  --hazard:#f0b800;
+  --hazard-deep:#cc9c00;
+  --ink:#101012;
+  --shadow:8px 8px 0 rgba(0,0,0,.28);
+  --shadow-sm:4px 4px 0 rgba(0,0,0,.25);
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  direction:rtl;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.7;
+  transition:background .5s var(--ease),color .5s var(--ease);
+}
 a{text-decoration:none;color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
-.back-pill:hover{background:var(--accent);color:#07070A}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
+img{max-width:100%;display:block}
+.container{max-width:var(--max);margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- Blueprint grid background ---------- */
+.blueprint{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px),
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+  background-position:0 0;
+  opacity:.6;
+}
+.blueprint::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80% -10%,color-mix(in srgb,var(--hazard) 9%,transparent),transparent 55%),
+             radial-gradient(circle at 0% 110%,color-mix(in srgb,var(--hazard) 6%,transparent),transparent 50%);
+}
+
+/* ---------- Hazard stripe bar ---------- */
+.hazard-strip{
+  height:8px;width:100%;
+  background:repeating-linear-gradient(45deg,var(--hazard) 0 18px,var(--ink) 18px 36px);
+}
+
+/* ---------- Back pill + theme button ---------- */
+.back-pill{
+  position:fixed;top:18px;left:18px;z-index:200;
+  padding:10px 18px;border-radius:30px;font-size:.82rem;font-weight:700;
+  background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(12px);border:1px solid var(--line-2);
+  color:var(--text);transition:.3s;letter-spacing:.3px;
+}
+.back-pill b{color:var(--hazard)}
+.back-pill:hover{background:var(--hazard);color:var(--ink);border-color:var(--hazard)}
+.theme-btn{
+  position:fixed;top:18px;right:18px;z-index:200;
+  width:44px;height:44px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line-2);
+  background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(12px);font-size:1.15rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:.3s;
+}
+.theme-btn:hover{border-color:var(--hazard);color:var(--hazard)}
+
+/* ---------- Top utility bar ---------- */
+.topbar{
+  border-bottom:1px solid var(--line);
+  background:var(--ink);color:#d8d8d2;font-size:.78rem;
+  position:relative;z-index:5;
+}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;height:38px}
+.topbar .t-left{display:flex;gap:22px;color:#b8b8b2}
+.topbar .t-left span{display:inline-flex;align-items:center;gap:6px}
+.topbar .t-left b{color:var(--hazard)}
+.topbar .t-right{letter-spacing:1px;font-weight:600;text-transform:uppercase}
+
+/* ---------- Nav ---------- */
+nav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);border-bottom:2px solid var(--hazard)}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;height:74px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.35rem;letter-spacing:-.5px}
+.logo .mark{
+  width:38px;height:38px;background:var(--hazard);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;font-weight:900;
+  border-radius:var(--radius);box-shadow:var(--shadow-sm);font-size:1.1rem;
+}
+.logo .sub{font-size:.62rem;letter-spacing:2px;color:var(--mute);font-weight:700;text-transform:uppercase;display:block;margin-top:-4px}
+.nav-links{display:flex;gap:30px;font-size:.9rem;font-weight:600;color:var(--text-soft)}
+.nav-links a{position:relative;padding:6px 0;transition:.25s}
+.nav-links a::after{content:'';position:absolute;right:0;left:0;bottom:0;height:3px;background:var(--hazard);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
 .nav-links a:hover{color:var(--text)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
-.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
-.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
-.hero-in{position:relative;z-index:1}
-.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
-.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
-.btn-p{background:var(--accent);color:#07070A}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
-.btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
-.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.section{padding:110px 0}
-.section-head{margin-bottom:56px}
-.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
-.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--bg);padding:36px 30px;transition:.4s}
-.svc:hover{background:var(--card)}
-.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
-.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
-.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
-.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
-.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
-.cta-sec p{color:var(--text-soft);margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--hazard);color:var(--ink);padding:11px 22px;border-radius:var(--radius);font-weight:800;font-size:.85rem;box-shadow:var(--shadow-sm);transition:.25s}
+.nav-cta:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.burger span{width:26px;height:3px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;z-index:1;padding:80px 0 70px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.tag{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--line-2);border-radius:30px;
+  padding:8px 18px;font-size:.8rem;font-weight:700;color:var(--hazard);
+  letter-spacing:.5px;margin-bottom:26px;background:color-mix(in srgb,var(--hazard) 8%,transparent);
+}
+.tag .dot{width:8px;height:8px;border-radius:50%;background:var(--hazard);box-shadow:0 0 12px var(--hazard)}
+.hero h1{font-size:clamp(2.6rem,6.5vw,5rem);font-weight:900;line-height:1.04;letter-spacing:-2px;margin-bottom:22px}
+.hero h1 em{font-style:normal;color:var(--hazard);position:relative;display:inline-block}
+.hero h1 em::after{content:'';position:absolute;right:0;left:0;bottom:6px;height:10px;background:color-mix(in srgb,var(--hazard) 28%,transparent);z-index:-1}
+.hero p.lead{font-size:clamp(1rem,1.6vw,1.18rem);color:var(--text-soft);font-weight:300;max-width:560px;margin-bottom:34px;line-height:2}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 32px;border-radius:var(--radius);font-weight:800;font-size:.95rem;
+  cursor:pointer;border:2px solid transparent;transition:.28s var(--ease);font-family:inherit;
+}
+.btn-primary{background:var(--hazard);color:var(--ink);box-shadow:var(--shadow-sm)}
+.btn-primary:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--hazard);color:var(--hazard);transform:translate(-3px,-3px);box-shadow:var(--shadow-sm)}
+
+/* hero spec card (blueprint) */
+.spec-card{
+  background:var(--panel);border:2px solid var(--line-2);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;position:relative;
+}
+.spec-card .head{
+  background:var(--ink);color:var(--hazard);padding:14px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.8rem;letter-spacing:1px;font-weight:700;text-transform:uppercase;
+  border-bottom:3px solid var(--hazard);
+}
+.spec-card .body{padding:24px 22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.spec-item{border:1px solid var(--line);border-radius:var(--radius);padding:14px;background:var(--panel-2)}
+.spec-item .k{font-size:.72rem;color:var(--mute);font-weight:600;letter-spacing:.5px}
+.spec-item .v{font-size:1.5rem;font-weight:900;font-family:var(--mono);color:var(--text);margin-top:4px}
+.spec-item .v b{color:var(--hazard)}
+.spec-card .foot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 20px;background:repeating-linear-gradient(45deg,var(--hazard) 0 14px,var(--ink) 14px 28px);
+}
+.spec-card .foot span{font-size:.72rem;font-weight:800;color:var(--ink);background:var(--hazard);padding:4px 10px;border-radius:3px}
+
+/* ---------- Marquee ---------- */
+.marquee{border-top:2px solid var(--line-2);border-bottom:2px solid var(--line-2);background:var(--bg-soft);overflow:hidden;padding:14px 0;margin-top:36px;position:relative;z-index:1}
+.marquee-track{display:flex;gap:48px;white-space:nowrap;animation:scroll 26s linear infinite;font-weight:800;font-size:1rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft)}
+.marquee-track span{display:inline-flex;align-items:center;gap:14px}
+.marquee-track span::before{content:'◆';color:var(--hazard);font-size:.7rem}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- Section scaffolding ---------- */
+.section{position:relative;z-index:1;padding:100px 0}
+.section.alt{background:var(--bg-soft)}
+.section-head{margin-bottom:60px;max-width:680px}
+.sk{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--hazard);font-weight:800;margin-bottom:16px}
+.sk::before{content:'';width:34px;height:3px;background:var(--hazard)}
+.st{font-size:clamp(1.8rem,4vw,2.9rem);font-weight:900;letter-spacing:-1.2px;line-height:1.15}
+.section-head p{color:var(--text-soft);margin-top:18px;font-weight:300;line-height:2;max-width:560px}
+
+/* ---------- Stats strip ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:2px solid var(--line-2);border-radius:var(--radius);overflow:hidden;position:relative;z-index:1}
+.stat{background:var(--panel);padding:34px 24px;text-align:center;position:relative}
+.stat::before{content:'';position:absolute;top:0;right:0;width:30px;height:5px;background:var(--hazard)}
+.stat .n{font-size:2.6rem;font-weight:900;font-family:var(--mono);line-height:1}
+.stat .n em{color:var(--hazard);font-style:normal;font-size:1.6rem}
+.stat .l{color:var(--text-soft);font-size:.85rem;margin-top:12px;font-weight:600}
+
+/* ---------- Services ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.svc{
+  background:var(--panel);border:2px solid var(--line);border-radius:var(--radius);
+  padding:34px 28px;position:relative;transition:.35s var(--ease);box-shadow:var(--shadow-sm);
+}
+.svc:hover{transform:translate(-4px,-4px);box-shadow:var(--shadow);border-color:var(--hazard)}
+.svc .num{position:absolute;top:16px;left:18px;font-family:var(--mono);font-weight:800;font-size:.9rem;color:var(--mute)}
+.svc .ico{
+  width:56px;height:56px;background:var(--panel-2);border:2px solid var(--line-2);
+  border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;color:var(--hazard);margin-bottom:20px;transition:.35s;
+}
+.svc:hover .ico{background:var(--hazard);color:var(--ink);border-color:var(--hazard)}
+.svc h3{font-size:1.25rem;font-weight:800;margin-bottom:10px}
+.svc p{color:var(--text-soft);font-size:.88rem;font-weight:300;line-height:1.95}
+.svc .more{margin-top:18px;font-size:.8rem;font-weight:700;color:var(--hazard);display:inline-flex;gap:6px;align-items:center}
+
+/* ---------- Projects / progress bars ---------- */
+.proj-grid{display:flex;flex-direction:column;gap:20px}
+.proj{
+  background:var(--panel);border:2px solid var(--line);border-radius:var(--radius);
+  padding:26px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;
+  transition:.35s var(--ease);position:relative;overflow:hidden;
+}
+.proj:hover{border-color:var(--hazard);transform:translateX(-4px)}
+.proj .badge{
+  width:64px;height:64px;border-radius:var(--radius);background:var(--ink);color:var(--hazard);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;
+  border:2px solid var(--hazard);
+}
+.proj .badge .pc{font-family:var(--mono);font-weight:900;font-size:1.1rem;line-height:1}
+.proj .badge .pl{font-size:.55rem;letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+.proj .info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px}
+.proj .info .meta{font-size:.8rem;color:var(--mute);font-weight:600;margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap}
+.proj .info .meta span{display:inline-flex;gap:6px;align-items:center}
+.bar{height:18px;background:var(--panel-2);border:2px solid var(--line-2);border-radius:2px;position:relative;overflow:hidden}
+.bar .fill{
+  position:absolute;inset:0;width:0;border-radius:0;
+  background:repeating-linear-gradient(45deg,var(--hazard) 0 12px,var(--hazard-deep) 12px 24px);
+  transition:width 1.6s var(--ease);
+}
+.bar .fill::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--ink)}
+.proj .pct{font-family:var(--mono);font-weight:900;font-size:1.5rem;color:var(--hazard);min-width:74px;text-align:left}
+.proj .pct small{display:block;font-size:.65rem;color:var(--mute);font-weight:600;letter-spacing:1px}
+
+/* process steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:2px solid var(--line-2);border-radius:var(--radius);overflow:hidden}
+.step{background:var(--panel);padding:30px 24px;position:relative}
+.step .sn{font-family:var(--mono);font-size:2.4rem;font-weight:900;color:var(--line-2);line-height:1}
+.step .sn b{color:var(--hazard)}
+.step h4{font-size:1.05rem;font-weight:800;margin:14px 0 8px}
+.step p{font-size:.82rem;color:var(--text-soft);font-weight:300;line-height:1.9}
+
+/* equipment */
+.eq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.eq{background:var(--panel);border:2px solid var(--line);border-radius:var(--radius);padding:24px 20px;text-align:center;transition:.3s}
+.eq:hover{border-color:var(--hazard);transform:translateY(-4px)}
+.eq .gi{font-size:2.4rem;margin-bottom:14px;filter:grayscale(.1)}
+.eq h4{font-size:1rem;font-weight:800;margin-bottom:6px}
+.eq p{font-size:.78rem;color:var(--text-soft);font-weight:300}
+
+/* why us */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why-card{background:var(--panel);border:2px solid var(--line);border-right:5px solid var(--hazard);border-radius:var(--radius);padding:30px 26px}
+.why-card .qc{font-family:var(--mono);font-weight:900;color:var(--hazard);font-size:1.6rem;margin-bottom:12px}
+.why-card h3{font-size:1.15rem;font-weight:800;margin-bottom:10px}
+.why-card p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.95}
+
+/* team */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.member{background:var(--panel);border:2px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.35s var(--ease)}
+.member:hover{transform:translateY(-5px);border-color:var(--hazard);box-shadow:var(--shadow)}
+.member .ph{aspect-ratio:1;background:linear-gradient(135deg,var(--panel-2),var(--ink));display:flex;align-items:center;justify-content:center;font-size:3.4rem;border-bottom:3px solid var(--hazard);color:var(--hazard)}
+.member .mt{padding:18px 18px 22px}
+.member .mt h4{font-size:1.05rem;font-weight:800}
+.member .mt .role{font-size:.78rem;color:var(--hazard);font-weight:700;margin:4px 0 8px}
+.member .mt p{font-size:.78rem;color:var(--text-soft);font-weight:300;line-height:1.85}
+
+/* testimonials */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tcard{background:var(--panel);border:2px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative}
+.tcard::before{content:'"';position:absolute;top:6px;right:18px;font-size:4rem;color:var(--hazard);opacity:.25;font-weight:900;font-family:var(--mono)}
+.tcard .stars{color:var(--hazard);letter-spacing:3px;margin-bottom:14px;font-size:.95rem}
+.tcard p{font-size:.9rem;color:var(--text-soft);font-weight:300;line-height:2;margin-bottom:18px}
+.tcard .who{display:flex;align-items:center;gap:12px}
+.tcard .who .av{width:42px;height:42px;border-radius:50%;background:var(--hazard);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0}
+.tcard .who .nm{font-weight:800;font-size:.9rem}
+.tcard .who .rl{font-size:.74rem;color:var(--mute)}
+
+/* CTA band */
+.cta-band{position:relative;z-index:1;background:var(--ink);border-top:4px solid var(--hazard);border-bottom:4px solid var(--hazard);padding:80px 0;overflow:hidden}
+.cta-band .blueprint-inner{position:absolute;inset:0;opacity:.4;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px}
+.cta-band .container{position:relative;z-index:2;text-align:center}
+.cta-band h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1px;margin-bottom:18px}
+.cta-band h2 em{font-style:normal;color:var(--hazard)}
+.cta-band p{color:#c4c4be;max-width:520px;margin:0 auto 32px;font-weight:300;line-height:2}
+.cta-band .hero-cta{justify-content:center}
+
+/* contact strip */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:2px solid var(--line-2);border-radius:var(--radius);overflow:hidden}
+.contact-cell{background:var(--panel);padding:30px 26px}
+.contact-cell .cl{font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--hazard);font-weight:800;margin-bottom:10px}
+.contact-cell .cv{font-size:1.05rem;font-weight:700}
+
+/* footer */
+footer{position:relative;z-index:1;background:var(--ink);color:#b6b6b0;padding:60px 0 30px;border-top:3px solid var(--hazard)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:34px;margin-bottom:40px}
+footer h3{color:var(--hazard);font-weight:900;font-size:1.2rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+footer h4{color:#e6e6e0;font-size:.95rem;margin-bottom:16px;font-weight:800}
+footer p{font-size:.85rem;line-height:1.95;font-weight:300;max-width:340px}
+footer .fcol a{display:block;font-size:.85rem;color:#b6b6b0;padding:5px 0;transition:.25s}
+footer .fcol a:hover{color:var(--hazard);padding-right:6px}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:#888}
+.foot-bottom .hz{display:flex;align-items:center;gap:8px}
+.foot-bottom .hz i{width:10px;height:10px;background:var(--hazard);display:inline-block}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .reveal.v{opacity:1;transform:none}
-@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* responsive */
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .spec-card{order:-1}
+  .stats,.steps,.eq-grid,.team-grid,.why,.tgrid,.contact-grid{grid-template-columns:repeat(2,1fr)}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  .nav-mobile{display:none;flex-direction:column;background:var(--bg-soft);border-bottom:2px solid var(--hazard)}
+  .nav-mobile.open{display:flex}
+  .nav-mobile a{padding:16px 28px;border-bottom:1px solid var(--line);font-weight:700}
+  .stats,.steps,.eq-grid,.team-grid,.why,.tgrid,.contact-grid,.svc-grid{grid-template-columns:1fr}
+  .proj{grid-template-columns:1fr;gap:18px;text-align:center}
+  .proj .info .meta{justify-content:center}
+  .proj .pct{text-align:center}
+  .topbar .t-left{display:none}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;gap:12px}
+  .container{padding:0 18px}
+}
 </style>
 </head>
 <body>
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
-<nav><div class="nav-inner"><div class="logo"><span class="d"></span>ساخت‌پلاس</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
 
-<section class="hero"><div class="glow"></div><div class="container hero-in">
-<div class="kick reveal"><span class="d"></span> ساختمانی</div>
-<h1 class="reveal">ساخت‌پلاس<br><em>تجربه‌ای متفاوت</em></h1>
-<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
-<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
-</div></section>
+<div class="blueprint"></div>
+<div class="hazard-strip"></div>
 
-<section class="section"><div class="container">
-<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
-<div class="svc-grid">
-<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>پروژه‌ها</h3><p>نمونه کارهای اجرا شده</p></div>
-<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>استعلام</h3><p>برآورد سریع قیمت</p></div>
-<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>تیم</h3><p>مهندسان با‌تجربه</p></div>
+<a href="../index.html" class="back-pill">← بازگشت به <b>PH Design</b></a>
+<button class="theme-btn" id="themeBtn" title="تغییر تم">☀</button>
+
+<!-- Top utility bar -->
+<div class="topbar">
+  <div class="container">
+    <div class="t-left">
+      <span>📞 <b>۰۲۱-۴۴۵۵۶۷۸۹</b></span>
+      <span>✉ <b>info@sazeh-co.ir</b></span>
+      <span>⏱ پاسخ‌گویی ۲۴ ساعته</span>
+    </div>
+    <div class="t-right">SAZEH-CO · EST. ۱۳۸۵</div>
+  </div>
 </div>
-</div></section>
 
-<section class="section" style="background:var(--bg-soft)"><div class="container">
-<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">▦</div></div>
-</div></section>
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="mark">س</span>
+      <span>سازه‌گستر<span class="sub">Construction Co.</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#home">خانه</a>
+      <a href="#services">خدمات</a>
+      <a href="#projects">پروژه‌ها</a>
+      <a href="#process">فرآیند</a>
+      <a href="#team">تیم</a>
+      <a href="#contact">تماس</a>
+    </div>
+    <a href="#contact" class="nav-cta">استعلام قیمت ←</a>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#home">خانه</a>
+    <a href="#services">خدمات</a>
+    <a href="#projects">پروژه‌ها</a>
+    <a href="#process">فرآیند</a>
+    <a href="#team">تیم</a>
+    <a href="#contact">تماس</a>
+  </div>
+</nav>
 
-<section class="cta-sec"><div class="container">
-<h2 class="reveal">این مدل برای برند تو؟</h2>
-<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
-<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
-</div></section>
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <div class="tag reveal"><span class="dot"></span> مهندسی · اجرا · نظارت</div>
+      <h1 class="reveal">ساختن<br>زیربنای <em>ایمن</em></h1>
+      <p class="lead reveal">سازه‌گستر با بیش از دو دهه تجربه، پروژه‌های بتنی، فولادی و عمرانی را از صفر تا صد با استانداردهای ملی و ایمنی کارگاهی اجرا می‌کند.</p>
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn btn-primary">مشاهده پروژه‌ها ←</a>
+        <a href="#contact" class="btn btn-ghost">درخواست مشاوره</a>
+      </div>
+    </div>
+    <div class="spec-card reveal d1">
+      <div class="head"><span>برگه مشخصات پروژه</span><span class="mono">PRJ-۰۹</span></div>
+      <div class="body">
+        <div class="spec-item"><div class="k">پروژه‌های فعال</div><div class="v"><b>۲۴</b></div></div>
+        <div class="spec-item"><div class="k">تن بتن ریزی</div><div class="v">۱۸۰<small style="font-size:.9rem">k</small></div></div>
+        <div class="spec-item"><div class="k">نیروی متخصص</div><div class="v">۶۵۰<small style="font-size:.9rem">+</small></div></div>
+        <div class="spec-item"><div class="k">تجهیزات سنگین</div><div class="v"><b>۱۲۰</b></div></div>
+      </div>
+      <div class="foot"><span>گواهینامه ISO ۹۰۰۱</span><span>ایمنی HSE</span></div>
+    </div>
+  </div>
 
-<footer>© ۱۴۰۴ ساخت‌پلاس — طراحی شده توسط PH Design</footer>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>سازه بتنی</span><span>سوله صنعتی</span><span>راه و پل</span><span>تأسیسات زیربنایی</span><span>نظارت مهندسی</span><span>تخریب و بازسازی</span>
+      <span>سازه بتنی</span><span>سوله صنعتی</span><span>راه و پل</span><span>تأسیسات زیربنایی</span><span>نظارت مهندسی</span><span>تخریب و بازسازی</span>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section" style="padding-top:70px">
+  <div class="container">
+    <div class="stats reveal">
+      <div class="stat"><div class="n">۱۸<em>+</em></div><div class="l">سال تجربه اجرایی</div></div>
+      <div class="stat"><div class="n">۳۲۰<em>+</em></div><div class="l">پروژه تحویل شده</div></div>
+      <div class="stat"><div class="n">۹۹<em>%</em></div><div class="l">تحویل در موعد</div></div>
+      <div class="stat"><div class="n">۰<em></em></div><div class="l">حادثه منجر به فوت</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section alt" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sk">خدمات ما</div>
+      <h2 class="st">از طراحی تا تحویل کلید به دست</h2>
+      <p>مجموعه‌ای یکپارچه از خدمات عمرانی با تکیه بر ماشین‌آلات سنگین، مهندسان با‌تجربه و نظارت دقیق در هر مرحله.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal"><div class="num">01</div><div class="ico">🏗</div><h3>سازه‌های بتنی</h3><p>اجرای فونداسیون، دیوار برشی، سقف‌های بتنی و سازه‌های مسلح با کیفیت بالای بتن‌ریزی.</p><span class="more">جزئیات ←</span></div>
+      <div class="svc reveal d1"><div class="num">02</div><div class="ico">⚙</div><h3>سوله و اسکلت فولادی</h3><p>طراحی و نصب سوله‌های صنعتی، انبار و سالن‌های تولید با سازه فولادی سبک و سنگین.</p><span class="more">جزئیات ←</span></div>
+      <div class="svc reveal d2"><div class="num">03</div><div class="ico">🌉</div><h3>راه، پل و زیرسازی</h3><p>احداث جاده، پل، تونل و عملیات خاکی سنگین با ماشین‌آلات راه‌سازی مدرن.</p><span class="more">جزئیات ←</span></div>
+      <div class="svc reveal"><div class="num">04</div><div class="ico">🛠</div><h3>تأسیسات زیربنایی</h3><p>شبکه آب، فاضلاب، گازرسانی و تأسیسات برقی پروژه‌های مسکونی و صنعتی.</p><span class="more">جزئیات ←</span></div>
+      <div class="svc reveal d1"><div class="num">05</div><div class="ico">🔍</div><h3>نظارت و بازرسی</h3><p>کنترل کیفیت، تست‌های غیرمخرب و نظارت مهندسی مطابق با آیین‌نامه‌های ملی.</p><span class="more">جزئیات ←</span></div>
+      <div class="svc reveal d2"><div class="num">06</div><div class="ico">💥</div><h3>تخریب و بازسازی</h3><p>عملیات تخریب ایمن، بازسازی و مقاوم‌سازی سازه‌های فرسوده و آسیب‌دیده.</p><span class="more">جزئیات ←</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects with progress bars -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sk">پروژه‌های در جریان</div>
+      <h2 class="st">وضعیت پیشرفت کارگاه‌ها</h2>
+      <p>گزارش لحظه‌ای پیشرفت فیزیکی پروژه‌های فعال — شفافیت کامل در هر مرحله اجرا.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj reveal">
+        <div class="badge"><span class="pc" data-target="86">0</span><span class="pl">%</span></div>
+        <div class="info">
+          <h3>مجتمع مسکونی آسمان</h3>
+          <div class="meta"><span>📍 تهران، منطقه ۲۲</span><span>📅 تحویل: خرداد ۱۴۰۵</span><span>👷 ۹۵ نفر</span></div>
+          <div class="bar"><div class="fill" data-pct="86"></div></div>
+        </div>
+        <div class="pct"><span class="mono pct-num" data-target="86">0</span>%<small>پیشرفت</small></div>
+      </div>
+      <div class="proj reveal d1">
+        <div class="badge"><span class="pc" data-target="62">0</span><span class="pl">%</span></div>
+        <div class="info">
+          <h3>سوله تولیدی پارس</h3>
+          <div class="meta"><span>📍 شهریار، شهرک صنعتی</span><span>📅 تحویل: آذر ۱۴۰۴</span><span>👷 ۴۸ نفر</span></div>
+          <div class="bar"><div class="fill" data-pct="62"></div></div>
+        </div>
+        <div class="pct"><span class="mono pct-num" data-target="62">0</span>%<small>پیشرفت</small></div>
+      </div>
+      <div class="proj reveal">
+        <div class="badge"><span class="pc" data-target="41">0</span><span class="pl">%</span></div>
+        <div class="info">
+          <h3>پل روگذر شمال</h3>
+          <div class="meta"><span>📍 کرج، بزرگراه شمالی</span><span>📅 تحویل: تیر ۱۴۰۵</span><span>👷 ۱۲۰ نفر</span></div>
+          <div class="bar"><div class="fill" data-pct="41"></div></div>
+        </div>
+        <div class="pct"><span class="mono pct-num" data-target="41">0</span>%<small>پیشرفت</small></div>
+      </div>
+      <div class="proj reveal d1">
+        <div class="badge"><span class="pc" data-target="97">0</span><span class="pl">%</span></div>
+        <div class="info">
+          <h3>تصفیه‌خانه غرب</h3>
+          <div class="meta"><span>📍 قزوین، منطقه ویژه</span><span>📅 تحویل: مهر ۱۴۰۴</span><span>👷 ۷۶ نفر</span></div>
+          <div class="bar"><div class="fill" data-pct="97"></div></div>
+        </div>
+        <div class="pct"><span class="mono pct-num" data-target="97">0</span>%<small>پیشرفت</small></div>
+      </div>
+      <div class="proj reveal">
+        <div class="badge"><span class="pc" data-target="28">0</span><span class="pl">%</span></div>
+        <div class="info">
+          <h3>مجتمع تجاری الماس</h3>
+          <div class="meta"><span>📍 اصفهان، چهارباغ</span><span>📅 تحویل: اسفند ۱۴۰۵</span><span>👷 ۱۰۴ نفر</span></div>
+          <div class="bar"><div class="fill" data-pct="28"></div></div>
+        </div>
+        <div class="pct"><span class="mono pct-num" data-target="28">0</span>%<small>پیشرفت</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section alt" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sk">فرآیند اجرا</div>
+      <h2 class="st">شش گام از ایده تا بهره‌برداری</h2>
+      <p>روش اجرایی استاندارد ما برای تضمین کیفیت، زمان‌بندی و ایمنی در هر پروژه.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="sn"><b>01</b></div><h4>مطالعات اولیه</h4><p>بررسی زمین، خاک‌شناسی و امکان‌سنجی فنی و اقتصادی پروژه.</p></div>
+      <div class="step"><div class="sn"><b>02</b></div><h4>طراحی و نقشه</h4><p>تهیه نقشه‌های اجرایی، محاسبات سازه و تأیید نظارتی.</p></div>
+      <div class="step"><div class="sn"><b>03</b></div><h4>تأمین و تجهیز</h4><p>تدارک مصالح، استقرار ماشین‌آلات و ایمن‌سازی کارگاه.</p></div>
+      <div class="step"><div class="sn"><b>04</b></div><h4>عملیات اجرایی</h4><p>خاک‌برداری، بتن‌ریزی و نصب سازه با نظارت مستمر.</p></div>
+      <div class="step"><div class="sn"><b>05</b></div><h4>تجهیز و تست</h4><p>نصب تأسیسات، تست‌های عملکردی و کنترل کیفیت.</p></div>
+      <div class="step"><div class="sn"><b>06</b></div><h4>تحویل و گارانتی</h4><p>تحویل رسمی، آموزش بهره‌برداری و دوره گارانتی.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Equipment -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sk">ناوگان ماشین‌آلات</div>
+      <h2 class="st">تجهیزات سنگین ما</h2>
+    </div>
+    <div class="eq-grid">
+      <div class="eq reveal"><div class="gi">🚜</div><h4>بیل مکانیکی</h4><p>۳۲ دستگاه هیدرولیک</p></div>
+      <div class="eq reveal d1"><div class="gi">🏗</div><h4>جرثقیل برجی</h4><p>۱۴ دستگاه تا ۱۲ تن</p></div>
+      <div class="eq reveal d2"><div class="gi">🚛</div><h4>کامیون بتن</h4><p>۲۸ دستگاه میکسر</p></div>
+      <div class="eq reveal d3"><div class="gi">⛏</div><h4>دریل حفاری</h4><p>۱۸ دستگاه صنعتی</p></div>
+      <div class="eq reveal"><div class="gi">🔩</div><h4>پمپ بتن</h4><p>۲۲ دستگاه پمپاژ</p></div>
+      <div class="eq reveal d1"><div class="gi">🛞</div><h4>غلتک راه‌ساز</h4><p>۱۶ دستگاه فشرده‌ساز</p></div>
+      <div class="eq reveal d2"><div class="gi">🪜</div><h4>داربست سیستم</h4><p>تجهیزات ایمنی کامل</p></div>
+      <div class="eq reveal d3"><div class="gi">🔌</div><h4>ژنراتور صنعتی</h4><p>۳۰ دستگاه برق اضطراری</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why us -->
+<section class="section alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sk">چرا سازه‌گستر</div>
+      <h2 class="st">تعهد ما به ایمنی و کیفیت</h2>
+    </div>
+    <div class="why">
+      <div class="why-card reveal"><div class="qc">✓</div><h3>ایمنی در اولویت</h3><p>اجرای کامل پروتکل‌های HSE، آموزش مستمر کارگران و بیمه کارگاهی برای هر پروژه.</p></div>
+      <div class="why-card reveal d1"><div class="qc">⏱</div><h3>تعهد به زمان</h3><p>برنامه‌ریزی دقیق و پیگیری هفتگی برای تحویل پروژه بدون تأخیر و جریمه.</p></div>
+      <div class="why-card reveal d2"><div class="qc">💎</div><h3>کیفیت مصالح</h3><p>تأمین مصالح درجه‌یک با آزمایشگاه کنترل کیفیت مستقل در کارگاه.</p></div>
+      <div class="why-card reveal"><div class="qc">📐</div><h3>نظارت مهندسی</h3><p>حضور مداوم مهندسین ناظر و ارسال گزارش تصویری به کارفرما.</p></div>
+      <div class="why-card reveal d1"><div class="qc">💰</div><h3>قیمت‌گذاری شفاف</h3><p>برآورد دقیق بدون هزینه پنهان و صورت‌وضعیت‌های مستند.</p></div>
+      <div class="why-card reveal d2"><div class="qc">🛡</div><h3>گارانتی اجرا</h3><p>۵ سال ضمانت سازه و پشتیبانی فنی پس از تحویل پروژه.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sk">تیم مهندسی</div>
+      <h2 class="st">متخصصان پشت هر پروژه</h2>
+    </div>
+    <div class="team-grid">
+      <div class="member reveal"><div class="ph">م</div><div class="mt"><h4>مهندس محمدی</h4><div class="role">مدیر فنی</div><p>۲۲ سال سابقه در سازه‌های بتنی و فولادی.</p></div></div>
+      <div class="member reveal d1"><div class="ph">ر</div><div class="mt"><h4>مهندس رضایی</h4><div class="role">سرپرست کارگاه</div><p>متخصص عملیات خاکی و راه‌سازی سنگین.</p></div></div>
+      <div class="member reveal d2"><div class="ph">س</div><div class="mt"><h4>مهندس سادات</h4><div class="role">ناظر کیفیت</div><p>کنترل کیفیت و تست‌های غیرمخرب سازه.</p></div></div>
+      <div class="member reveal d3"><div class="ph">ع</div><div class="mt"><h4>مهندس علوی</h4><div class="role">مدیر HSE</div><p>مسئول ایمنی کارگاه و آموزش تیم اجرا.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sk">بازخورد کارفرمایان</div>
+      <h2 class="st">آنچه مشتریان ما می‌گویند</h2>
+    </div>
+    <div class="tgrid">
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>«پروژه مجتمع ما را در موعد مقرر و با کیفیت استثنایی تحویل دادند. گزارش‌دهی بسیار شفاف بود.»</p><div class="who"><span class="av">ک</span><div><div class="nm">کیان کریمی</div><div class="rl">مدیر عامل، گروه ساختمانی آریا</div></div></div></div>
+      <div class="tcard reveal d1"><div class="stars">★★★★★</div><p>«ایمنی کارگاه‌شان الگوی صنعت بود. هیچ حادثه‌ای در ۱۴ ماه اجرا رخ نداد.»</p><div class="who"><span class="av">ن</span><div><div class="nm">نرگس نصیری</div><div class="rl">مدیر پروژه، شرکت پارس صنعت</div></div></div></div>
+      <div class="tcard reveal d2"><div class="stars">★★★★★</div><p>«از برآورد اولیه تا تحویل، هیچ هزینه پنهانی نداشتیم. کار با آن‌ها آسوده‌خاطر بود.»</p><div class="who"><span class="av">ب</span><div><div class="nm">بهرام بیات</div><div class="rl">صاحب کارخانه، شهرک صنعتی</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="cta-band">
+  <div class="blueprint-inner"></div>
+  <div class="container">
+    <h2 class="reveal">پروژه بعدی‌ت را<br><em>با ما بساز</em></h2>
+    <p class="reveal">مشاوره اولیه رایگان و بازدید از کارگاه. ایده‌ات را بگو، ما نقشه راه اجرایی‌اش را می‌کشیم.</p>
+    <div class="hero-cta reveal">
+      <a href="#contact" class="btn btn-primary">درخواست استعلام ←</a>
+      <a href="tel:02144556789" class="btn btn-ghost">تماس مستقیم</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sk">تماس با ما</div>
+      <h2 class="st">آماده همکاری در پروژه بعدی</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-cell"><div class="cl">تلفن</div><div class="cv mono">۰۲۱-۴۴۵۵۶۷۸۹</div></div>
+      <div class="contact-cell"><div class="cl">ایمیل</div><div class="cv">info@sazeh-co.ir</div></div>
+      <div class="contact-cell"><div class="cl">آدرس دفتر</div><div class="cv">تهران، خیابان آزادی، مجتمع صنعت، طبقه ۴</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h3>🏗 سازه‌گستر</h3>
+        <p>شرکت مهندسی و اجرایی سازه‌گستر — اجرای پروژه‌های بتنی، فولادی و زیربنایی با تعهد به ایمنی، کیفیت و زمان‌بندی.</p>
+      </div>
+      <div class="fcol"><h4>خدمات</h4><a href="#services">سازه بتنی</a><a href="#services">سوله فولادی</a><a href="#services">راه و پل</a><a href="#services">تأسیسات</a></div>
+      <div class="fcol"><h4>شرکت</h4><a href="#projects">پروژه‌ها</a><a href="#team">تیم ما</a><a href="#process">فرآیند</a><a href="#contact">تماس</a></div>
+      <div class="fcol"><h4>قانونی</h4><a href="#">حریم خصوصی</a><a href="#">شرایط خدمات</a><a href="#">گواهینامه‌ها</a><a href="#">پرسش‌های متداول</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© ۱۴۰۴ سازه‌گستر — تمامی حقوق محفوظ است.</span>
+      <span class="hz"><i></i> ساخته شده با استانداردهای ملی ایران</span>
+    </div>
+  </div>
+</footer>
+
 <script>
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+(function(){
+  /* Theme toggle */
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  var saved=localStorage.getItem('sazeh-theme');
+  if(saved){root.setAttribute('data-theme',saved);}
+  btn.textContent=root.getAttribute('data-theme')==='dark'?'☀':'🌙';
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    localStorage.setItem('sazeh-theme',next);
+    btn.textContent=next==='dark'?'☀':'🌙';
+  });
+
+  /* Mobile nav */
+  var burger=document.getElementById('burger'), mob=document.getElementById('navMobile');
+  burger.addEventListener('click',function(){mob.classList.toggle('open');});
+  mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mob.classList.remove('open');});});
+
+  /* Reveal on scroll */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  /* Animated progress bars + counters */
+  var pio=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target;
+      // fill bar
+      var fill=el.querySelector('.fill');
+      if(fill){fill.style.width=fill.getAttribute('data-pct')+'%';}
+      // count up numbers
+      el.querySelectorAll('[data-target]').forEach(function(num){
+        var t=+num.getAttribute('data-target'),start=0,dur=1400,ts=null;
+        function step(tstamp){
+          if(!ts)ts=tstamp;
+          var p=Math.min((tstamp-ts)/dur,1);
+          var val=Math.floor(p*t);
+          num.textContent=val;
+          if(p<1)requestAnimationFrame(step);else num.textContent=t;
+        }
+        requestAnimationFrame(step);
+      });
+      pio.unobserve(el);
+    });
+  },{threshold:.3});
+  document.querySelectorAll('.proj').forEach(function(el){pio.observe(el);});
+})();
 </script>
-</body></html>
+</body>
+</html>

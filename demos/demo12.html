@@ -1,97 +1,795 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" data-theme="dark">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>یادگیری‌پلاس | PH Design</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>آموزش‌گاه نیلی — پلتفرم یادگیری آنلاین</title>
+<meta name="description" content="پلتفرم آموزش آنلاین مدرن با دوره‌های ویدیویی، مدرسان حرفه‌ای و سیستم پیشرفت تحصیلی" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#6CA8C8;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
-[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
-a{text-decoration:none;color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
-.back-pill:hover{background:var(--accent);color:#07070A}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
-.nav-links a:hover{color:var(--text)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
-.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
-.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
-.hero-in{position:relative;z-index:1}
-.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
-.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
-.btn-p{background:var(--accent);color:#07070A}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
-.btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
-.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.section{padding:110px 0}
-.section-head{margin-bottom:56px}
-.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
-.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--bg);padding:36px 30px;transition:.4s}
-.svc:hover{background:var(--card)}
-.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
-.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
-.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
-.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
-.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
-.cta-sec p{color:var(--text-soft);margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.reveal.v{opacity:1;transform:none}
-@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+  /* ============ متغیرهای تم ============ */
+  :root {
+    --indigo-50:  #eef2ff;
+    --indigo-100: #e0e7ff;
+    --indigo-200: #c7d2fe;
+    --indigo-300: #a5b4fc;
+    --indigo-400: #818cf8;
+    --indigo-500: #6366f1;
+    --indigo-600: #4f46e5;
+    --indigo-700: #4338ca;
+    --blue-400:   #60a5fa;
+    --blue-500:   #3b82f6;
+    --blue-600:   #2563eb;
+
+    --bg:        #f5f7ff;
+    --bg-soft:   #eef2ff;
+    --surface:   #ffffff;
+    --surface-2: #f8faff;
+    --border:    #e2e8f7;
+    --text:      #1e2440;
+    --text-soft: #5b6483;
+    --text-mute: #8a91ab;
+    --shadow:    0 10px 30px -12px rgba(79, 70, 229, 0.25);
+    --shadow-lg: 0 24px 60px -20px rgba(79, 70, 229, 0.35);
+    --grad:      linear-gradient(135deg, var(--indigo-600), var(--blue-500));
+    --grad-soft: linear-gradient(135deg, var(--indigo-100), var(--blue-400));
+    --radius:    18px;
+    --radius-sm: 12px;
+    --maxw:      1180px;
+    --transition: .35s cubic-bezier(.16,1,.3,1);
+  }
+
+  [data-theme="dark"] {
+    --bg:        #0b1020;
+    --bg-soft:   #111831;
+    --surface:   #141b33;
+    --surface-2: #1a2240;
+    --border:    #25304f;
+    --text:      #eef1ff;
+    --text-soft: #aab3d6;
+    --text-mute: #7b85a8;
+    --shadow:    0 10px 30px -12px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+    --grad:      linear-gradient(135deg, var(--indigo-500), var(--blue-600));
+    --grad-soft: linear-gradient(135deg, #1e2a4f, #1a3a6b);
+  }
+
+  /* ============ پایه ============ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Vazirmatn", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x: hidden;
+    transition: background var(--transition), color var(--transition);
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+  .section { padding: 90px 0; }
+
+  .grad-text {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--indigo-600);
+    background: var(--indigo-100);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  [data-theme="dark"] .tag { color: var(--indigo-300); background: rgba(99,102,241,.18); }
+
+  .section-title { font-size: 2.1rem; font-weight: 800; margin-bottom: 12px; }
+  .section-sub { color: var(--text-soft); max-width: 560px; font-size: 1.02rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: inherit; font-weight: 600; font-size: .95rem;
+    padding: 12px 24px; border-radius: 999px; cursor: pointer;
+    border: 1px solid transparent; transition: var(--transition);
+  }
+  .btn-primary { background: var(--grad); color: #fff; box-shadow: var(--shadow); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn-ghost { background: var(--surface); color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--indigo-400); color: var(--indigo-600); }
+
+  /* ============ هدر ============ */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; font-size: 1.2rem; }
+  .brand .logo {
+    width: 38px; height: 38px; border-radius: 11px; background: var(--grad);
+    display: grid; place-items: center; color: #fff; font-size: 1.1rem;
+    box-shadow: var(--shadow);
+  }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a { font-size: .95rem; font-weight: 500; color: var(--text-soft); transition: color .2s; }
+  .nav-links a:hover { color: var(--indigo-600); }
+
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+  /* دکمه تغییر تم */
+  .theme-toggle {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface);
+    cursor: pointer; display: grid; place-items: center;
+    color: var(--indigo-600); transition: var(--transition);
+  }
+  .theme-toggle:hover { transform: rotate(20deg) scale(1.05); border-color: var(--indigo-400); }
+  .theme-toggle svg { width: 22px; height: 22px; }
+
+  .back-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: .85rem; font-weight: 600; color: var(--text-soft);
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 9px 16px; border-radius: 999px; transition: var(--transition);
+  }
+  .back-link:hover { color: var(--indigo-600); border-color: var(--indigo-400); transform: translateX(-3px); }
+
+  .menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+  /* ============ قهرمان (Hero) ============ */
+  .hero { position: relative; padding: 80px 0 100px; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(600px 400px at 85% 10%, rgba(99,102,241,.16), transparent),
+      radial-gradient(500px 400px at 5% 80%, rgba(59,130,246,.14), transparent);
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; }
+  .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.3; margin-bottom: 20px; }
+  .hero p { color: var(--text-soft); font-size: 1.1rem; margin-bottom: 30px; max-width: 520px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-stats { display: flex; gap: 32px; margin-top: 42px; }
+  .hero-stats .stat strong { display: block; font-size: 1.7rem; font-weight: 800; }
+  .hero-stats .stat span { color: var(--text-mute); font-size: .9rem; }
+
+  /* ماکت پخش‌کننده ویدیو */
+  .video-mock {
+    background: var(--surface); border-radius: var(--radius);
+    border: 1px solid var(--border); box-shadow: var(--shadow-lg);
+    overflow: hidden; position: relative;
+  }
+  .video-stage {
+    aspect-ratio: 16/10; position: relative;
+    background: linear-gradient(135deg, #312e81, #1e3a8a 60%, #1d4ed8);
+    display: grid; place-items: center;
+  }
+  .video-stage::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.18), transparent 45%);
+  }
+  .play-btn {
+    width: 78px; height: 78px; border-radius: 50%;
+    background: rgba(255,255,255,.92); display: grid; place-items: center;
+    cursor: pointer; position: relative; z-index: 2;
+    box-shadow: 0 14px 40px rgba(0,0,0,.35); transition: transform .3s;
+    animation: pulse 2.4s infinite;
+  }
+  .play-btn:hover { transform: scale(1.08); }
+  .play-btn::before {
+    content: ""; border-style: solid; border-width: 13px 0 13px 22px;
+    border-color: transparent transparent transparent var(--indigo-600);
+    margin-inline-start: 5px;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,.5); }
+    50% { box-shadow: 0 0 0 18px rgba(255,255,255,0); }
+  }
+  .video-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 18px; background: var(--surface-2); border-top: 1px solid var(--border);
+  }
+  .video-bar .vtime { font-size: .82rem; color: var(--text-mute); font-variant-numeric: tabular-nums; }
+  .video-progress { flex: 1; height: 6px; border-radius: 999px; background: var(--border); overflow: hidden; }
+  .video-progress > i { display: block; height: 100%; width: 38%; background: var(--grad); border-radius: 999px; }
+  .video-bar .vicon { color: var(--indigo-600); display: grid; place-items: center; }
+
+  /* ============ دسته‌بندی‌ها ============ */
+  .cats { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .cat-chip {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: .92rem;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-soft);
+    cursor: pointer; transition: var(--transition);
+  }
+  .cat-chip:hover, .cat-chip.active { color: #fff; background: var(--grad); border-color: transparent; transform: translateY(-2px); }
+  .cat-chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--indigo-400); }
+  .cat-chip.active .dot, .cat-chip:hover .dot { background: #fff; }
+
+  /* ============ کارت‌های دوره ============ */
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 38px; flex-wrap: wrap; }
+  .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .course-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; transition: var(--transition); box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .course-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--indigo-300); }
+  .course-thumb { height: 168px; position: relative; display: grid; place-items: center; color: #fff; font-size: 2.6rem; }
+  .course-thumb.t1 { background: linear-gradient(135deg, #6366f1, #3b82f6); }
+  .course-thumb.t2 { background: linear-gradient(135deg, #4338ca, #06b6d4); }
+  .course-thumb.t3 { background: linear-gradient(135deg, #4f46e5, #8b5cf6); }
+  .course-thumb.t4 { background: linear-gradient(135deg, #2563eb, #14b8a6); }
+  .course-thumb.t5 { background: linear-gradient(135deg, #7c3aed, #3b82f6); }
+  .course-thumb.t6 { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+  .course-badge {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(255,255,255,.9); color: var(--indigo-700);
+    font-size: .72rem; font-weight: 700; padding: 5px 11px; border-radius: 999px;
+  }
+  .course-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+  .course-meta { display: flex; gap: 14px; font-size: .8rem; color: var(--text-mute); margin-bottom: 10px; }
+  .course-meta span { display: inline-flex; align-items: center; gap: 5px; }
+  .course-title { font-size: 1.12rem; font-weight: 700; margin-bottom: 8px; }
+  .course-teacher { display: flex; align-items: center; gap: 9px; font-size: .85rem; color: var(--text-soft); margin-bottom: 16px; }
+  .course-teacher .avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--grad-soft); display: grid; place-items: center; font-size: .75rem; font-weight: 700; color: var(--indigo-700); }
+  .progress-wrap { margin-top: auto; }
+  .progress-label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--text-soft); margin-bottom: 7px; }
+  .progress-label strong { color: var(--indigo-600); }
+  .progress-bar { height: 9px; border-radius: 999px; background: var(--bg-soft); overflow: hidden; }
+  .progress-bar > i { display: block; height: 100%; border-radius: 999px; background: var(--grad); width: 0; transition: width 1.4s cubic-bezier(.16,1,.3,1); }
+
+  /* ============ مدرسان ============ */
+  .teachers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .teacher-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 22px; text-align: center; transition: var(--transition); box-shadow: var(--shadow);
+  }
+  .teacher-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .teacher-ava {
+    width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 16px;
+    background: var(--grad-soft); display: grid; place-items: center;
+    font-size: 1.7rem; font-weight: 800; color: var(--indigo-700);
+    border: 3px solid var(--surface); box-shadow: var(--shadow);
+  }
+  .teacher-name { font-size: 1.1rem; font-weight: 700; }
+  .teacher-role { color: var(--indigo-600); font-size: .85rem; font-weight: 600; margin-bottom: 10px; }
+  .teacher-bio { color: var(--text-soft); font-size: .86rem; margin-bottom: 14px; }
+  .teacher-stats { display: flex; justify-content: center; gap: 18px; font-size: .8rem; color: var(--text-mute); border-top: 1px solid var(--border); padding-top: 14px; }
+  .teacher-stats b { display: block; color: var(--text); font-size: 1.05rem; }
+
+  /* ============ ویژگی‌ها ============ */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 30px 26px; box-shadow: var(--shadow); transition: var(--transition);
+  }
+  .feature:hover { transform: translateY(-5px); border-color: var(--indigo-300); }
+  .feature .ico {
+    width: 54px; height: 54px; border-radius: 14px; background: var(--indigo-100);
+    display: grid; place-items: center; color: var(--indigo-600); margin-bottom: 18px; font-size: 1.5rem;
+  }
+  [data-theme="dark"] .feature .ico { background: rgba(99,102,241,.18); }
+  .feature h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 9px; }
+  .feature p { color: var(--text-soft); font-size: .92rem; }
+
+  /* ============ فراخوان (CTA) ============ */
+  .cta {
+    position: relative; border-radius: 28px; overflow: hidden;
+    background: var(--grad); color: #fff; padding: 60px 40px; text-align: center;
+    box-shadow: var(--shadow-lg);
+  }
+  .cta::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(255,255,255,.22), transparent 40%);
+  }
+  .cta h2 { font-size: 2.1rem; font-weight: 800; margin-bottom: 14px; position: relative; }
+  .cta p { max-width: 520px; margin: 0 auto 26px; opacity: .92; position: relative; }
+  .cta .btn-ghost { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.4); position: relative; }
+  .cta .btn-ghost:hover { background: rgba(255,255,255,.26); }
+
+  /* ============ فوتر ============ */
+  footer { border-top: 1px solid var(--border); padding: 50px 0 30px; margin-top: 40px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 36px; }
+  .footer-grid h4 { font-size: .98rem; font-weight: 700; margin-bottom: 16px; }
+  .footer-grid a { display: block; color: var(--text-soft); font-size: .9rem; margin-bottom: 10px; transition: color .2s; }
+  .footer-grid a:hover { color: var(--indigo-600); }
+  .footer-about p { color: var(--text-soft); font-size: .9rem; max-width: 280px; }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 22px; text-align: center; color: var(--text-mute); font-size: .85rem; }
+
+  /* ============ انیمیشن اسکرول ============ */
+  .reveal { opacity: 0; transform: translateY(38px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .08s; }
+  .reveal.d2 { transition-delay: .16s; }
+  .reveal.d3 { transition-delay: .24s; }
+  .reveal.d4 { transition-delay: .32s; }
+  .reveal.d5 { transition-delay: .4s; }
+  .reveal.d6 { transition-delay: .48s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .play-btn { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ============ واکنش‌گرا ============ */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .courses-grid { grid-template-columns: repeat(2, 1fr); }
+    .teachers-grid { grid-template-columns: repeat(2, 1fr); }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .hero h1 { font-size: 2.4rem; }
+  }
+  @media (max-width: 620px) {
+    .nav-links { display: none; }
+    .menu-btn { display: block; }
+    .courses-grid, .teachers-grid, .features-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2rem; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .section { padding: 60px 0; }
+    .back-link span.txt { display: none; }
+  }
 </style>
 </head>
 <body>
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
-<nav><div class="nav-inner"><div class="logo"><span class="d"></span>یادگیری‌پلاس</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
 
-<section class="hero"><div class="glow"></div><div class="container hero-in">
-<div class="kick reveal"><span class="d"></span> آموزشی</div>
-<h1 class="reveal">یادگیری‌پلاس<br><em>تجربه‌ای متفاوت</em></h1>
-<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
-<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
-</div></section>
+<!-- ============ هدر ============ -->
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="brand">
+      <span class="logo">ن</span>
+      <span>آموزش‌گاه <span class="grad-text">نیلی</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#courses">دوره‌ها</a>
+      <a href="#teachers">مدرسان</a>
+      <a href="#features">ویژگی‌ها</a>
+      <a href="#join">عضویت</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="../index.html" class="back-link" title="بازگشت به نمونه‌کار">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14l5-5-5-5"/></svg>
+        <span class="txt">بازگشت به نمونه‌کار</span>
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="menu-btn" aria-label="منو">☰</button>
+    </div>
+  </div>
+</header>
 
-<section class="section"><div class="container">
-<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
-<div class="svc-grid">
-<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>دوره‌ها</h3><p>از مبتدی تا پیشرفته</p></div>
-<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>پلیر</h3><p>تماشای آفلاین و آنلاین</p></div>
-<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>مدرسان</h3><p>متخصصان صنعت</p></div>
-</div>
-</div></section>
+<!-- ============ قهرمان ============ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <span class="tag">⚡ یادگیری مدرن، هر جا و هر زمان</span>
+      <h1>آینده‌ت را با <span class="grad-text">یادگیری آنلاین</span> بساز</h1>
+      <p>هزاران دقیقه آموزش ویدیویی باکیفیت، مدرسان برجسته و سیستم پیشرفت هوشمند — همه در یک پلتفرم تمیز و دلنشین.</p>
+      <div class="hero-cta">
+        <a href="#courses" class="btn btn-primary">مشاهده دوره‌ها
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </a>
+        <a href="#join" class="btn btn-ghost">عضویت رایگان</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>۸۴۰+</strong><span>دوره آموزشی</span></div>
+        <div class="stat"><strong>۱۲۰هزار</strong><span>دانش‌آموز فعال</span></div>
+        <div class="stat"><strong>۴.۸/۵</strong><span>امتیاز رضایت</span></div>
+      </div>
+    </div>
 
-<section class="section" style="background:var(--bg-soft)"><div class="container">
-<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">◉</div></div>
-</div></section>
+    <div class="reveal d2">
+      <div class="video-mock">
+        <div class="video-stage">
+          <div class="play-btn" id="playBtn" title="پخش"></div>
+        </div>
+        <div class="video-bar">
+          <span class="vicon" id="vToggle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <div class="video-progress"><i id="vFill"></i></div>
+          <span class="vtime" id="vTime">۰۴:۱۲ / ۱۱:۰۵</span>
+          <span class="vicon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="cta-sec"><div class="container">
-<h2 class="reveal">این مدل برای برند تو؟</h2>
-<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
-<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
-</div></section>
+<!-- ============ دسته‌بندی‌ها ============ -->
+<section class="section" style="padding-top:30px;">
+  <div class="container">
+    <div class="cats reveal">
+      <span class="cat-chip active"><span class="dot"></span>همه</span>
+      <span class="cat-chip"><span class="dot"></span>برنامه‌نویسی</span>
+      <span class="cat-chip"><span class="dot"></span>طراحی</span>
+      <span class="cat-chip"><span class="dot"></span>بازاریابی</span>
+      <span class="cat-chip"><span class="dot"></span>زبان</span>
+      <span class="cat-chip"><span class="dot"></span>علوم داده</span>
+    </div>
+  </div>
+</section>
 
-<footer>© ۱۴۰۴ یادگیری‌پلاس — طراحی شده توسط PH Design</footer>
+<!-- ============ دوره‌ها ============ -->
+<section class="section" id="courses">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="tag">📚 دوره‌های محبوب</span>
+        <h2 class="section-title">مسیر یادگیری خود را انتخاب کن</h2>
+        <p class="section-sub">دوره‌هایی با پیشرفت شخصی‌سازی‌شده که دقیقاً می‌دانی چقدر از مسیر را طی کرده‌ای.</p>
+      </div>
+      <a href="#" class="btn btn-ghost">مشاهده همه دوره‌ها</a>
+    </div>
+
+    <div class="courses-grid">
+      <!-- کارت ۱ -->
+      <article class="course-card reveal d1">
+        <div class="course-thumb t1">💻<span class="course-badge">مقدماتی</span></div>
+        <div class="course-body">
+          <div class="course-meta">
+            <span>⏱ ۱۲ ساعت</span><span>🎬 ۴۸ جلسه</span><span>⭐ ۴.۹</span>
+          </div>
+          <h3 class="course-title">توسعه وب با جاوااسکریپت</h3>
+          <div class="course-teacher"><span class="avatar">س</span> سارا احمدی</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>پیشرفت دوره</span><strong>۷۵٪</strong></div>
+            <div class="progress-bar"><i data-w="75"></i></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- کارت ۲ -->
+      <article class="course-card reveal d2">
+        <div class="course-thumb t2">🎨<span class="course-badge">متوسط</span></div>
+        <div class="course-body">
+          <div class="course-meta">
+            <span>⏱ ۹ ساعت</span><span>🎬 ۳۶ جلسه</span><span>⭐ ۴.۸</span>
+          </div>
+          <h3 class="course-title">طراحی رابط کاربری با Figma</h3>
+          <div class="course-teacher"><span class="avatar">م</span> مهدی کریمی</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>پیشرفت دوره</span><strong>۴۰٪</strong></div>
+            <div class="progress-bar"><i data-w="40"></i></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- کارت ۳ -->
+      <article class="course-card reveal d3">
+        <div class="course-thumb t3">📊<span class="course-badge">پیشرفته</span></div>
+        <div class="course-body">
+          <div class="course-meta">
+            <span>⏱ ۱۶ ساعت</span><span>🎬 ۶۰ جلسه</span><span>⭐ ۴.۹</span>
+          </div>
+          <h3 class="course-title">علم داده و یادگیری ماشین</h3>
+          <div class="course-teacher"><span class="avatar">ن</span> نرگس صادقی</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>پیشرفت دوره</span><strong>۲۰٪</strong></div>
+            <div class="progress-bar"><i data-w="20"></i></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- کارت ۴ -->
+      <article class="course-card reveal d1">
+        <div class="course-thumb t4">📱<span class="course-badge">مقدماتی</span></div>
+        <div class="course-body">
+          <div class="course-meta">
+            <span>⏱ ۱۰ ساعت</span><span>🎬 ۴۲ جلسه</span><span>⭐ ۴.۷</span>
+          </div>
+          <h3 class="course-title">برنامه‌نویسی اندروید</h3>
+          <div class="course-teacher"><span class="avatar">ع</span> علی رضایی</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>پیشرفت دوره</span><strong>۹۰٪</strong></div>
+            <div class="progress-bar"><i data-w="90"></i></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- کارت ۵ -->
+      <article class="course-card reveal d2">
+        <div class="course-thumb t5">🌐<span class="course-badge">متوسط</span></div>
+        <div class="course-body">
+          <div class="course-meta">
+            <span>⏱ ۸ ساعت</span><span>🎬 ۳۰ جلسه</span><span>⭐ ۴.۶</span>
+          </div>
+          <h3 class="course-title">بازاریابی دیجیتال</h3>
+          <div class="course-teacher"><span class="avatar">ف</span> فاطمه نوری</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>پیشرفت دوره</span><strong>۵۵٪</strong></div>
+            <div class="progress-bar"><i data-w="55"></i></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- کارت ۶ -->
+      <article class="course-card reveal d3">
+        <div class="course-thumb t6">🗣️<span class="course-badge">مقدماتی</span></div>
+        <div class="course-body">
+          <div class="course-meta">
+            <span>⏱ ۱۴ ساعت</span><span>🎬 ۵۲ جلسه</span><span>⭐ ۴.۸</span>
+          </div>
+          <h3 class="course-title">زبان انگلیسی کسب‌وکار</h3>
+          <div class="course-teacher"><span class="avatar">ح</span> حسین موسوی</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>پیشرفت دوره</span><strong>۱۰٪</strong></div>
+            <div class="progress-bar"><i data-w="10"></i></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ مدرسان ============ -->
+<section class="section" id="teachers" style="background:var(--bg-soft);">
+  <div class="container">
+    <div class="section-head reveal" style="justify-content:center; text-align:center; flex-direction:column; align-items:center;">
+      <span class="tag">👨‍🏫 تیم مدرسان</span>
+      <h2 class="section-title">از بهترین‌ها بیاموز</h2>
+      <p class="section-sub" style="text-align:center;">مدرسان ما متخصصان صنعت هستند که تجربه واقعی را به کلاس می‌آورند.</p>
+    </div>
+
+    <div class="teachers-grid">
+      <div class="teacher-card reveal d1">
+        <div class="teacher-ava">س</div>
+        <div class="teacher-name">سارا احمدی</div>
+        <div class="teacher-role">مهندس نرم‌افزار</div>
+        <p class="teacher-bio">۱۰ سال تجربه در توسعه وب و مربی دوره‌های جاوااسکریپت.</p>
+        <div class="teacher-stats"><div><b>۲۴</b>دوره</div><div><b>۱۸هزار</b>دانش‌آموز</div></div>
+      </div>
+      <div class="teacher-card reveal d2">
+        <div class="teacher-ava">م</div>
+        <div class="teacher-name">مهدی کریمی</div>
+        <div class="teacher-role">طراح محصول</div>
+        <p class="teacher-bio">متخصص تجربه کاربری و مربی دوره‌های طراحی بصری.</p>
+        <div class="teacher-stats"><div><b>۱۸</b>دوره</div><div><b>۱۲هزار</b>دانش‌آموز</div></div>
+      </div>
+      <div class="teacher-card reveal d3">
+        <div class="teacher-ava">ن</div>
+        <div class="teacher-name">نرگس صادقی</div>
+        <div class="teacher-role">دانشمند داده</div>
+        <p class="teacher-bio">پژوهشگر یادگیری ماشین و مدرس علوم داده کاربردی.</p>
+        <div class="teacher-stats"><div><b>۱۵</b>دوره</div><div><b>۹هزار</b>دانش‌آموز</div></div>
+      </div>
+      <div class="teacher-card reveal d4">
+        <div class="teacher-ava">ع</div>
+        <div class="teacher-name">علی رضایی</div>
+        <div class="teacher-role">توسعه‌دهنده موبایل</div>
+        <p class="teacher-bio">سازنده اپلیکیشن‌های میلیونی و مربی برنامه‌نویسی اندروید.</p>
+        <div class="teacher-stats"><div><b>۲۰</b>دوره</div><div><b>۱۵هزار</b>دانش‌آموز</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ویژگی‌ها ============ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="tag">✨ چرا نیلی؟</span>
+        <h2 class="section-title">امکاناتی که یادگیری را آسان می‌کند</h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature reveal d1">
+        <div class="ico">🎯</div>
+        <h3>مسیر یادگیری شخصی</h3>
+        <p>برنامه‌ای متناسب با هدف و سطح شما که قدم به قدم پیش می‌رود.</p>
+      </div>
+      <div class="feature reveal d2">
+        <div class="ico">📈</div>
+        <h3>پیگیری پیشرفت</h3>
+        <p>نمودارهای زنده پیشرفت به شما نشان می‌دهد چقدر رشد کرده‌اید.</p>
+      </div>
+      <div class="feature reveal d3">
+        <div class="ico">💬</div>
+        <h3>پشتیبانی مستقیم</h3>
+        <p>پرسش‌های خود را از مدرس بپرسید و در کمترین زمان پاسخ بگیرید.</p>
+      </div>
+      <div class="feature reveal d1">
+        <div class="ico">📱</div>
+        <h3>آموزش آفلاین</h3>
+        <p>دوره‌ها را دانلود کنید و در سفر یا بدون اینترنت مطالعه نمایید.</p>
+      </div>
+      <div class="feature reveal d2">
+        <div class="ico">🏆</div>
+        <h3>گواهینامه معتبر</h3>
+        <p>پس از تکمیل هر دوره، گواهینامه رسمی دریافت می‌کنید.</p>
+      </div>
+      <div class="feature reveal d3">
+        <div class="ico">🤝</div>
+        <h3>انجمن دانش‌آموزان</h3>
+        <p>با هم‌مسیرهای خود همکاری کنید و از تجربه هم بیاموزید.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ فراخوان ============ -->
+<section class="section" id="join">
+  <div class="container">
+    <div class="cta reveal">
+      <h2>امروز یادگیری‌ات را آغاز کن</h2>
+      <p>عضویت در نیلی رایگان است. اولین دوره خود را همین حالا شروع کن و به جامعه ۱۲۰ هزار نفری ما بپیوند.</p>
+      <a href="#" class="btn btn-ghost">ثبت‌نام رایگان</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ فوتر ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="../index.html" class="brand" style="margin-bottom:14px;">
+          <span class="logo">ن</span><span>آموزش‌گاه <span class="grad-text">نیلی</span></span>
+        </a>
+        <p>پلتفرم یادگیری آنلاین مدرن با تمرکز بر کیفیت، سادگی و تجربه‌ای دلنشین برای همه.</p>
+      </div>
+      <div>
+        <h4>دوره‌ها</h4>
+        <a href="#courses">برنامه‌نویسی</a>
+        <a href="#courses">طراحی</a>
+        <a href="#courses">علوم داده</a>
+        <a href="#courses">زبان</a>
+      </div>
+      <div>
+        <h4>شرکت</h4>
+        <a href="#">درباره ما</a>
+        <a href="#">مدرسان</a>
+        <a href="#">تماس با ما</a>
+        <a href="#">همکاری</a>
+      </div>
+      <div>
+        <h4>پشتیبانی</h4>
+        <a href="#">سوالات متداول</a>
+        <a href="#">راهنما</a>
+        <a href="#">قوانین</a>
+        <a href="#">حریم خصوصی</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © ۱۴۰۵ آموزش‌گاه نیلی — ساخته شده با عشق برای یادگیری بهتر. بازگشت به <a href="../index.html" style="color:var(--indigo-600);font-weight:600;">نمونه‌کار</a>
+    </div>
+  </div>
+</footer>
+
 <script>
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+  /* ============ تغییر تم ============ */
+  (function () {
+    var root = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    var iconMoon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    var iconSun = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+    var saved = null;
+    try { saved = localStorage.getItem('nili-theme'); } catch (e) {}
+    if (saved) { root.setAttribute('data-theme', saved); }
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      root.setAttribute('data-theme', 'dark');
+    }
+    function updateIcon() {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      toggle.querySelector('svg').innerHTML = isDark ? iconSun : iconMoon;
+    }
+    updateIcon();
+    toggle.addEventListener('click', function () {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      var next = isDark ? 'light' : 'dark';
+      if (isDark) { root.removeAttribute('data-theme'); }
+      else { root.setAttribute('data-theme', 'dark'); }
+      try { localStorage.setItem('nili-theme', next); } catch (e) {}
+      updateIcon();
+    });
+  })();
+
+  /* ============ انیمیشن اسکرول ============ */
+  (function () {
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ============ پر شدن نوارهای پیشرفت ============ */
+  (function () {
+    var bars = document.querySelectorAll('.progress-bar > i[data-w]');
+    if (!('IntersectionObserver' in window)) {
+      bars.forEach(function (b) { b.style.width = b.getAttribute('data-w') + '%'; });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var b = entry.target;
+          requestAnimationFrame(function () { b.style.width = b.getAttribute('data-w') + '%'; });
+          io.unobserve(b);
+        }
+      });
+    }, { threshold: 0.4 });
+    bars.forEach(function (b) { io.observe(b); });
+  })();
+
+  /* ============ تعامل ماکت ویدیو ============ */
+  (function () {
+    var playing = false;
+    var fill = document.getElementById('vFill');
+    var timeEl = document.getElementById('vTime');
+    var playBtn = document.getElementById('playBtn');
+    var toggle = document.getElementById('vToggle');
+    var total = 11 * 60 + 5; // ۱۱:۰۵
+    var cur = 4 * 60 + 12;   // ۰۴:۱۲
+    var timer = null;
+
+    function fmt(s) {
+      var m = Math.floor(s / 60), sec = Math.floor(s % 60);
+      var toPersian = function (n) {
+        return n.toString().replace(/\d/g, function (d) { return '۰۱۲۳۴۵۶۷۸۹'[d]; });
+      };
+      return toPersian(m) + ':' + (sec < 10 ? toPersian('0') : '') + toPersian(sec);
+    }
+    function render() {
+      fill.style.width = (cur / total * 100) + '%';
+      timeEl.textContent = fmt(cur) + ' / ' + fmt(total);
+    }
+    function tick() {
+      cur += 1;
+      if (cur >= total) { cur = total; pause(); }
+      render();
+    }
+    function play() {
+      playing = true;
+      playBtn.style.opacity = '.55';
+      timer = setInterval(tick, 1000);
+    }
+    function pause() {
+      playing = false;
+      playBtn.style.opacity = '1';
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    render();
+    playBtn.addEventListener('click', function () { playing ? pause() : play(); });
+    toggle.addEventListener('click', function () { playing ? pause() : play(); });
+  })();
+
+  /* ============ فیلتر دسته‌بندی‌ها ============ */
+  (function () {
+    var chips = document.querySelectorAll('.cat-chip');
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        chips.forEach(function (x) { x.classList.remove('active'); });
+        c.classList.add('active');
+      });
+    });
+  })();
 </script>
-</body></html>
+</body>
+</html>

@@ -1,97 +1,701 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مد استایل | PH Design</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0c">
+<title>ژورنال نوی — فروشگاه مد لوکس | PH Design</title>
+<meta name="description" content="نوی — مجله و فروشگاه مد لوکس به سبک ادیتوریال. کالکشنی از لباس، کیف و اکسسوار با تایپوگرافی بزرگ و مونوکروم و یک رنگ تأکیدی.">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#C8956C;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
-[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
+/* ============================================================
+   NOY — Luxe Editorial Fashion Store
+   Monochrome + Crimson accent · Huge display type · RTL
+   ============================================================ */
+:root{
+  --bg:#0a0a0c;
+  --bg-soft:#101013;
+  --bg-2:#16161a;
+  --card:#121216;
+  --text:#f3f1ee;
+  --text-soft:#a7a4a0;
+  --text-mute:#6b6864;
+  --accent:#d61f3a;          /* crimson — the only colour */
+  --accent-soft:color-mix(in srgb,var(--accent) 18%,transparent);
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.16);
+  --mono:#8d8a86;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --serif:'Vazirmatn',serif;
+}
+[data-theme=light]{
+  --bg:#f4f2ee;
+  --bg-soft:#ece9e3;
+  --bg-2:#e3dfd8;
+  --card:#fbf9f5;
+  --text:#121012;
+  --text-soft:#4a4742;
+  --text-mute:#8a857d;
+  --accent:#b3122b;
+  --accent-soft:color-mix(in srgb,var(--accent) 14%,transparent);
+  --line:rgba(0,0,0,.10);
+  --line-2:rgba(0,0,0,.20);
+  --mono:#9a948b;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  direction:rtl;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+  transition:background .55s var(--ease),color .55s var(--ease);
+}
 a{text-decoration:none;color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
-.back-pill:hover{background:var(--accent);color:#07070A}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
-.nav-links a:hover{color:var(--text)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
-.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
-.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
-.hero-in{position:relative;z-index:1}
-.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
-.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
-.btn-p{background:var(--accent);color:#07070A}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
-.btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
+img{display:block;max-width:100%}
+::selection{background:var(--accent);color:#fff}
+
+/* ---------- Fixed chrome ---------- */
+.back-pill{
+  position:fixed;top:18px;left:18px;z-index:200;
+  padding:9px 18px;border-radius:40px;font-size:.78rem;font-weight:600;
+  background:color-mix(in srgb,var(--bg) 68%,transparent);
+  backdrop-filter:blur(14px);border:1px solid var(--line-2);
+  color:var(--text);transition:.35s var(--ease);display:flex;align-items:center;gap:7px;
+}
+.back-pill:hover{background:var(--text);color:var(--bg);transform:translateY(-2px)}
+.back-pill .arr{color:var(--accent);font-size:.95rem}
+.theme-btn{
+  position:fixed;top:18px;right:18px;z-index:200;
+  width:44px;height:44px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line-2);
+  background:color-mix(in srgb,var(--bg) 68%,transparent);
+  backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;font-size:1.15rem;
+  transition:.35s var(--ease);color:var(--text);
+}
+.theme-btn:hover{transform:rotate(25deg) scale(1.06);border-color:var(--accent);color:var(--accent)}
+.cart-pill{
+  position:fixed;top:18px;right:72px;z-index:200;
+  padding:9px 16px;border-radius:40px;font-size:.78rem;font-weight:700;
+  background:color-mix(in srgb,var(--bg) 68%,transparent);
+  backdrop-filter:blur(14px);border:1px solid var(--line-2);
+  color:var(--text);transition:.35s var(--ease);display:flex;align-items:center;gap:7px;cursor:pointer;
+}
+.cart-pill:hover{border-color:var(--accent);color:var(--accent)}
+.cart-pill .num{
+  min-width:20px;height:20px;padding:0 5px;border-radius:20px;background:var(--accent);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;
+}
+
+/* ---------- Masthead / Nav ---------- */
+.masthead{
+  position:relative;z-index:50;
+  border-bottom:1px solid var(--line);
+  padding:64px 0 22px;
+}
+.mast-top{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mono);
+  max-width:1240px;margin:0 auto;padding:0 32px;
+}
+.mast-top .iss{color:var(--accent);font-weight:700}
+.brand{
+  text-align:center;padding:26px 0 14px;
+}
+.brand .word{
+  font-weight:900;font-size:clamp(3.4rem,12vw,8.5rem);
+  letter-spacing:-.04em;line-height:.86;
+  display:inline-block;
+}
+.brand .word em{
+  font-style:normal;color:var(--accent);
+}
+.brand .sub{
+  margin-top:14px;font-size:.8rem;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--text-mute);font-weight:500;
+}
+.mast-nav{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  max-width:1240px;margin:18px auto 0;
+}
+.mast-nav a{
+  padding:14px 26px;font-size:.82rem;font-weight:600;letter-spacing:.06em;
+  color:var(--text-soft);position:relative;transition:color .3s;
+}
+.mast-nav a::after{
+  content:'';position:absolute;right:26px;left:26px;bottom:8px;height:1px;
+  background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);
+}
+.mast-nav a:hover{color:var(--text)}
+.mast-nav a:hover::after{transform:scaleX(1)}
+
+/* ---------- Marquee ---------- */
+.marquee{
+  border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;
+  background:var(--bg-soft);padding:11px 0;
+}
+.marquee .track{
+  display:inline-block;animation:scroll 26s linear infinite;
+}
+.marquee span{
+  font-size:.82rem;letter-spacing:.28em;text-transform:uppercase;color:var(--text-soft);
+  margin:0 26px;font-weight:600;
+}
+.marquee span b{color:var(--accent)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- Layout ---------- */
+.container{max-width:1240px;margin:0 auto;padding:0 32px}
+.section{padding:120px 0}
+.section--soft{background:var(--bg-soft)}
+.kicker{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;font-weight:700;
+  color:var(--accent);margin-bottom:26px;
+}
+.kicker::before{content:'';width:34px;height:1px;background:var(--accent)}
+.sec-num{
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.2em;color:var(--text-mute);
+  display:block;margin-bottom:14px;
+}
+
+/* ---------- Hero / Cover ---------- */
+.cover{
+  position:relative;min-height:86vh;display:flex;flex-direction:column;justify-content:center;
+  padding:90px 0 70px;overflow:hidden;
+}
+.cover .grain{
+  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);
+  background-size:4px 4px;
+}
+.cover .num-bg{
+  position:absolute;z-index:0;left:-2%;bottom:-14%;font-weight:900;
+  font-size:42vw;line-height:.7;color:var(--bg-2);pointer-events:none;user-select:none;
+}
+.cover-in{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 32px}
+.cover .issue{
+  font-size:.8rem;letter-spacing:.4em;text-transform:uppercase;color:var(--mono);
+  margin-bottom:30px;font-weight:600;
+}
+.cover h1{
+  font-weight:900;line-height:.92;letter-spacing:-.04em;
+  font-size:clamp(3rem,11vw,9.2rem);
+}
+.cover h1 .em{color:var(--accent);display:block}
+.cover h1 .out{
+  -webkit-text-stroke:1.5px var(--text-soft);color:transparent;
+}
+.cover .lede{
+  margin-top:38px;max-width:540px;font-size:clamp(1rem,1.7vw,1.18rem);
+  font-weight:300;color:var(--text-soft);line-height:1.95;
+}
+.cover .lede b{color:var(--text);font-weight:600}
+.cover-cta{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:2px;
+  font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;border:1px solid transparent;
+  transition:all .4s var(--ease);letter-spacing:.02em;
+}
+.btn-p{background:var(--accent);color:#fff}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 16px 40px var(--accent-soft)}
+.btn-g{background:transparent;color:var(--text);border-color:var(--line-2)}
 .btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.section{padding:110px 0}
-.section-head{margin-bottom:56px}
-.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
-.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--bg);padding:36px 30px;transition:.4s}
-.svc:hover{background:var(--card)}
-.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
-.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
-.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
-.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
-.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
-.cta-sec p{color:var(--text-soft);margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.btn .arr{transition:transform .4s var(--ease)}
+.btn:hover .arr{transform:translateX(-5px)}
+
+/* ---------- Manifesto (drop cap) ---------- */
+.manifesto{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
+.manifesto .big{
+  font-weight:900;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;
+}
+.manifesto .big em{font-style:normal;color:var(--accent)}
+.manifesto .body{font-size:1.02rem;font-weight:300;color:var(--text-soft);line-height:2.05}
+.manifesto .body p{margin-bottom:22px}
+.manifesto .body p:first-of-type::first-letter{
+  font-weight:900;float:right;font-size:4.4rem;line-height:.78;padding:8px 14px 0 0;color:var(--accent);
+}
+.rule{height:1px;background:var(--line);margin:0}
+
+/* ---------- Featured lookbook split ---------- */
+.feature{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:0;
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;
+}
+.feature .art{
+  min-height:560px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 30% 20%,var(--bg-2),transparent 60%),
+    linear-gradient(135deg,#1a1a1f,#0c0c0f);
+  display:flex;align-items:flex-end;padding:40px;
+}
+.feature .art .plate{
+  position:absolute;top:32px;right:36px;font-family:var(--mono);
+  font-size:.78rem;letter-spacing:.26em;color:var(--text-mute);text-transform:uppercase;
+}
+.feature .art .figure{
+  position:relative;z-index:2;font-weight:900;font-size:clamp(3.4rem,9vw,7rem);
+  line-height:.84;letter-spacing:-.04em;color:var(--text);
+}
+.feature .art .figure b{color:var(--accent)}
+.feature .art .shadow{
+  position:absolute;inset:0;
+  background:radial-gradient(60% 50% at 50% 120%,var(--accent-soft),transparent 70%);
+  z-index:1;
+}
+.feature .meta{padding:56px 50px;display:flex;flex-direction:column;justify-content:center}
+.feature .meta .tag{
+  align-self:flex-start;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--accent);border:1px solid var(--accent);border-radius:30px;padding:6px 16px;margin-bottom:24px;
+}
+.feature .meta h3{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:18px}
+.feature .meta p{color:var(--text-soft);font-weight:300;line-height:1.95;margin-bottom:28px}
+.feature .meta .price{font-size:1.4rem;font-weight:800;margin-bottom:26px}
+.feature .meta .price s{color:var(--text-mute);font-weight:400;font-size:1rem;margin-right:12px}
+
+/* ---------- Products grid ---------- */
+.shop-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:54px}
+.shop-head h2{font-weight:900;font-size:clamp(2.4rem,6vw,4.4rem);letter-spacing:-.03em;line-height:.95}
+.shop-head h2 em{font-style:normal;color:var(--accent)}
+.shop-head .filters{display:flex;gap:10px;flex-wrap:wrap}
+.chip{
+  padding:9px 18px;border-radius:30px;border:1px solid var(--line-2);font-size:.8rem;font-weight:600;
+  color:var(--text-soft);cursor:pointer;transition:.3s;background:transparent;font-family:inherit;
+}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.chip.active:hover{color:var(--bg)}
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;
+}
+.card{background:var(--bg);padding:0;display:flex;flex-direction:column;transition:background .4s}
+.card:hover{background:var(--bg-soft)}
+.card .thumb{
+  aspect-ratio:3/4;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,var(--bg-2),var(--bg-soft));
+  display:flex;align-items:center;justify-content:center;
+}
+.card .thumb .bg-no{
+  position:absolute;font-weight:900;font-size:9rem;color:var(--bg-2);user-select:none;
+  letter-spacing:-.04em;
+}
+.card .thumb .text{
+  position:relative;z-index:2;text-align:center;padding:0 20px;
+}
+.card .thumb .text .name-fa{font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
+.card .thumb .text .name-en{font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;color:var(--text-mute);text-transform:uppercase;margin-top:8px}
+.card .thumb .badge{
+  position:absolute;top:14px;right:14px;z-index:3;background:var(--accent);color:#fff;
+  font-size:.68rem;font-weight:700;padding:5px 11px;border-radius:30px;letter-spacing:.04em;
+}
+.card .thumb .add{
+  position:absolute;bottom:14px;left:14px;z-index:3;width:40px;height:40px;border-radius:50%;
+  background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(8px);
+  border:1px solid var(--line-2);color:var(--text);cursor:pointer;font-size:1.2rem;
+  display:flex;align-items:center;justify-content:center;transition:.3s;
+}
+.card .thumb .add:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.1)}
+.card .info{padding:22px 22px 26px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card .info .ttl{font-weight:700;font-size:1.02rem}
+.card .info .cat{font-size:.74rem;color:var(--text-mute);margin-top:4px;letter-spacing:.04em}
+.card .info .pr{font-weight:800;font-size:1.05rem;white-space:nowrap}
+.card .info .pr span{color:var(--accent)}
+
+/* ---------- Editorial double spread ---------- */
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.spread.rev{direction:ltr}
+.spread .pic{
+  aspect-ratio:4/5;border-radius:4px;border:1px solid var(--line);position:relative;overflow:hidden;
+  background:radial-gradient(120% 90% at 70% 20%,var(--bg-2),transparent 60%),linear-gradient(140deg,#17171b,#0b0b0e);
+  display:flex;align-items:center;justify-content:center;
+}
+.spread .pic .quote{font-weight:900;font-size:clamp(2rem,6vw,4rem);line-height:.95;letter-spacing:-.03em;text-align:center;padding:0 24px}
+.spread .pic .quote em{font-style:normal;color:var(--accent)}
+.spread .pic .grain-2{position:absolute;inset:0;background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:4px 4px;opacity:.6}
+.spread .copy h3{font-weight:800;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:20px}
+.spread .copy .lede{color:var(--text-soft);font-weight:300;line-height:2;margin-bottom:24px;font-size:1rem}
+.spread .copy .byline{font-family:var(--mono);font-size:.76rem;letter-spacing:.2em;color:var(--text-mute);text-transform:uppercase}
+.spread .copy .byline b{color:var(--accent)}
+
+/* ---------- Stats band ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
+.stat{background:var(--bg);padding:46px 28px;text-align:center}
+.stat .n{font-weight:900;font-size:clamp(2.4rem,5vw,3.6rem);letter-spacing:-.03em}
+.stat .n em{font-style:normal;color:var(--accent)}
+.stat .l{margin-top:10px;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-mute)}
+
+/* ---------- Newsletter ---------- */
+.news{text-align:center;max-width:680px;margin:0 auto}
+.news .kicker{justify-content:center}
+.news h2{font-weight:900;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.03em;line-height:.98;margin-bottom:18px}
+.news h2 em{font-style:normal;color:var(--accent)}
+.news p{color:var(--text-soft);font-weight:300;line-height:1.95;margin-bottom:34px}
+.news form{display:flex;gap:12px;max-width:520px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.news input{
+  flex:1;min-width:240px;padding:15px 20px;border-radius:2px;background:var(--bg-soft);
+  border:1px solid var(--line-2);color:var(--text);font-family:inherit;font-size:.95rem;transition:.3s;
+}
+.news input:focus{outline:none;border-color:var(--accent)}
+.news .ok{margin-top:18px;font-size:.85rem;color:var(--accent);font-weight:600;opacity:0;transition:.4s}
+.news .ok.show{opacity:1}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line);padding:70px 0 40px;background:var(--bg-soft)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.foot-grid .fbrand .word{font-weight:900;font-size:2rem;letter-spacing:-.03em}
+.foot-grid .fbrand .word em{font-style:normal;color:var(--accent)}
+.foot-grid .fbrand p{color:var(--text-mute);font-size:.85rem;margin-top:14px;line-height:1.9;max-width:280px}
+.fcol h4{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--text-mute);margin-bottom:18px}
+.fcol a{display:block;color:var(--text-soft);font-size:.9rem;padding:7px 0;transition:.3s}
+.fcol a:hover{color:var(--accent);transform:translateX(-4px)}
+.foot-bot{
+  border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;
+  flex-wrap:wrap;gap:14px;font-size:.78rem;color:var(--text-mute);letter-spacing:.04em;
+}
+.foot-bot .social{display:flex;gap:18px}
+.foot-bot .social a:hover{color:var(--accent)}
+
+/* ---------- Reveal ---------- */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .reveal.v{opacity:1;transform:none}
-@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+[data-theme=dark] .reveal{transition-delay:0s}
+
+/* ---------- Toast ---------- */
+.toast{
+  position:fixed;bottom:26px;right:26px;z-index:300;
+  background:var(--text);color:var(--bg);padding:14px 22px;border-radius:4px;
+  font-size:.85rem;font-weight:700;box-shadow:0 16px 40px rgba(0,0,0,.4);
+  transform:translateY(120px);opacity:0;transition:.5s var(--ease);display:flex;align-items:center;gap:10px;
+}
+.toast.show{transform:none;opacity:1}
+.toast .d{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+[data-theme=light] .toast{box-shadow:0 16px 40px rgba(0,0,0,.18)}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1024px){
+  .manifesto{grid-template-columns:1fr;gap:36px}
+  .feature{grid-template-columns:1fr}
+  .feature .art{min-height:420px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .spread{grid-template-columns:1fr;gap:40px}
+  .spread.rev{direction:rtl}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .container,.cover-in,.mast-top{padding-left:20px;padding-right:20px}
+  .section{padding:80px 0}
+  .mast-nav a{padding:12px 16px;font-size:.76rem}
+  .grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .back-pill,.cart-pill{font-size:.72rem}
+  .cart-pill{right:66px}
+  .cover h1{font-size:clamp(2.6rem,15vw,5rem)}
+}
 </style>
 </head>
 <body>
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
-<nav><div class="nav-inner"><div class="logo"><span class="d"></span>مد استایل</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
 
-<section class="hero"><div class="glow"></div><div class="container hero-in">
-<div class="kick reveal"><span class="d"></span> فروشگاه مد</div>
-<h1 class="reveal">مد استایل<br><em>تجربه‌ای متفاوت</em></h1>
-<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
-<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
-</div></section>
+<!-- Chrome -->
+<a href="../index.html" class="back-pill"><span class="arr">←</span> بازگشت به PH Design</a>
+<button class="theme-btn" id="themeBtn" title="تغییر تم">☀</button>
+<div class="cart-pill" id="cartPill">🛍<span class="num" id="cartNum">۰</span></div>
 
-<section class="section"><div class="container">
-<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
-<div class="svc-grid">
-<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>کالکشن جدید</h3><p>تازه‌ترین‌های مد ایرانی</p></div>
-<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>سفارش اختصاصی</h3><p>دوخت شده دقیقاً برای تو</p></div>
-<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>ارسال سریع</h3><p>تحویل در کمترین زمان</p></div>
+<!-- Masthead -->
+<header class="masthead">
+  <div class="mast-top">
+    <span>شماره ۰۴ — پاییز ۱۴۰۴</span>
+    <span class="iss">NOY · JOURNAL</span>
+    <span>تهران — پاریس</span>
+  </div>
+  <div class="brand">
+    <div class="word">ن<em>و</em>ی</div>
+    <div class="sub">مجله و فروشگاه مد</div>
+  </div>
+  <nav class="mast-nav">
+    <a href="#cover">جلد</a>
+    <a href="#manifest">بیانیه</a>
+    <a href="#feature">کالکشن ویژه</a>
+    <a href="#shop">فروشگاه</a>
+    <a href="#editorial">ادیتوریال</a>
+    <a href="#news">خبرنامه</a>
+  </nav>
+</header>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="track">
+    <span>کالکشن پاییزه <b>۴۰٪ تخفیف</b></span><span>·</span>
+    <span>دوخت اختصاصی <b> Made to Measure</b></span><span>·</span>
+    <span>ارسال رایگان بالای ۵ میلیون <b>✦</b></span><span>·</span>
+    <span>کالکشن پاییزه <b>۴۰٪ تخفیف</b></span><span>·</span>
+    <span>دوخت اختصاصی <b> Made to Measure</b></span><span>·</span>
+    <span>ارسال رایگان بالای ۵ میلیون <b>✦</b></span><span>·</span>
+  </div>
 </div>
-</div></section>
 
-<section class="section" style="background:var(--bg-soft)"><div class="container">
-<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">❖</div></div>
-</div></section>
+<!-- Cover / Hero -->
+<section class="cover" id="cover">
+  <div class="grain"></div>
+  <div class="num-bg">۰۴</div>
+  <div class="cover-in">
+    <div class="issue reveal">جلد چهارم — فصل سیاه و سرخ</div>
+    <h1 class="reveal">
+      مدی که
+      <span class="out">دیده</span>
+      <span class="em">نمی‌شود،</span>
+      حس می‌شود
+    </h1>
+    <p class="lede reveal">
+      نوی یک <b>مجلهٔ پوشیدنی</b> است. کالکشنی مونوکروم با یک رنگ تأکیدی —
+      سرخِ ژورنالی — برای کسانی که تایپوگرافی را به عنوانِ لباس می‌پوشند.
+    </p>
+    <div class="cover-cta reveal">
+      <a href="#shop" class="btn btn-p">ورود به فروشگاه <span class="arr">←</span></a>
+      <a href="#manifest" class="btn btn-g">بیانیهٔ برند</a>
+    </div>
+  </div>
+</section>
 
-<section class="cta-sec"><div class="container">
-<h2 class="reveal">این مدل برای برند تو؟</h2>
-<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
-<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
-</div></section>
+<!-- Manifesto -->
+<section class="section" id="manifest">
+  <div class="container">
+    <div class="sec-num reveal">۰۱ — بیانیه</div>
+    <div class="kicker reveal">فلسفهٔ نوی</div>
+    <div class="manifesto">
+      <div class="big reveal">لباس، <em>ساکت‌ترین</em> شکلِ فریاد زدن است.</div>
+      <div class="body reveal">
+        <p>ما به مینیمالیسمی باور داریم که سرد نباشد. هر قطعه در نوی از یک پالتِ مونوکروم آغاز می‌شود — سیاه، خاکستری، استخوانی — و تنها یک نقطهٔ سرخ در آن روشن می‌شود تا داستان را بگوید.</p>
+        <p>طراحی ما ادیتوریال است: مثل صفحات یک مجلهٔ لوکس، با تایپوگرافی بزرگ، فاصله‌های تنفس‌دار و جزئیاتی که فقط در نزدیکی دیده می‌شوند. ما نمی‌فروشیم، روایت می‌کنیم.</p>
+        <p>تمام محصولات با پارچه‌های طبیعی، دوخت دستی و شماره‌گذاری محدود تولید می‌شوند. هر عددی که می‌بینید، تعدادِ باقی‌مانده از آن کالا است.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<footer>© ۱۴۰۴ مد استایل — طراحی شده توسط PH Design</footer>
+<div class="rule"></div>
+
+<!-- Featured lookbook -->
+<section class="section section--soft" id="feature">
+  <div class="container">
+    <div class="sec-num reveal">۰۲ — کالکشن ویژه</div>
+    <div class="kicker reveal">نگاه این ماه</div>
+    <div class="feature reveal">
+      <div class="art">
+        <div class="shadow"></div>
+        <div class="plate">LOOK ۰۱ / AW۴۴</div>
+        <div class="figure">سایهٔ <b>سرخ</b></div>
+      </div>
+      <div class="meta">
+        <span class="tag">فقط ۱۲ عدد</span>
+        <h3>کتِ اورسایز «سایهٔ سرخ»</h3>
+        <p>پالتوی پشمی با یقهٔ برش‌خورده و دکمه‌های دست‌ساز مسی. طراحی شده برای غروب‌های بلند پاییزی — بین سکوت و بیان.</p>
+        <div class="price"><s>۹٬۸۰۰٬۰۰۰</s> ۵٬۸۸۰٬۰۰۰ تومان</div>
+        <div class="cover-cta">
+          <button class="btn btn-p" data-add="کت اورسایز سایهٔ سرخ">افزودن به سبد <span class="arr">←</span></button>
+          <a href="#shop" class="btn btn-g">دیدن همه</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shop / Products -->
+<section class="section" id="shop">
+  <div class="container">
+    <div class="shop-head">
+      <div>
+        <div class="sec-num reveal">۰۳ — فروشگاه</div>
+        <h2 class="reveal">کالکشن <em>پاییزه</em></h2>
+      </div>
+      <div class="filters reveal">
+        <button class="chip active" data-f="all">همه</button>
+        <button class="chip" data-f="wear">لباس</button>
+        <button class="chip" data-f="bag">کیف</button>
+        <button class="chip" data-f="shoe">کفش</button>
+        <button class="chip" data-f="acc">اکسسوار</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Editorial spread -->
+<section class="section section--soft" id="editorial">
+  <div class="container">
+    <div class="sec-num reveal">۰۴ — ادیتوریال</div>
+    <div class="kicker reveal">از صفحات مجله</div>
+
+    <div class="spread reveal" style="margin-bottom:90px">
+      <div class="pic">
+        <div class="grain-2"></div>
+        <div class="quote">«سیاه، <em>رنگی</em> است که همهٔ رنگ‌ها را در خود نگه می‌دارد.»</div>
+      </div>
+      <div class="copy">
+        <h3>هنرِ نپوشیدنِ رنگ</h3>
+        <p class="lede">در دنیایی که هر برندی فریاد می‌زند، نوی انتخاب کرده که زمزمه کند. مونوکروم برای ما نه کمبود، که وفورِ ظرافت است. یک کمد نوی، کمتر اما درست‌تر.</p>
+        <div class="byline">نوشتهٔ <b>سارا کاوه</b> — سردبیر مد</div>
+      </div>
+    </div>
+
+    <div class="spread rev reveal">
+      <div class="pic">
+        <div class="grain-2"></div>
+        <div class="quote">«یک <em>نقطهٔ</em> سرخ، کافی است.»</div>
+      </div>
+      <div class="copy">
+        <h3>تأکید، نه تکرار</h3>
+        <p class="lede">ما به جای پاشیدن رنگ روی همه‌چیز، یک نقطهٔ سرخ می‌گذاریم — روی یقه، روی بند، روی جلد. همین یک نقطه، کلِ روایت را می‌سازد.</p>
+        <div class="byline">عکس: <b>استودیو نوی</b> — پاریس</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section" style="padding:0">
+  <div class="stats reveal">
+    <div class="stat"><div class="n">۱۲<em>+</em></div><div class="l">کالای شماره‌گذاری‌شده</div></div>
+    <div class="stat"><div class="n">۱۰۰<em>٪</em></div><div class="l">پارچهٔ طبیعی</div></div>
+    <div class="stat"><div class="n">۴۸<em>ساعت</em></div><div class="l">ارسال درون‌شهری</div></div>
+    <div class="stat"><div class="n">۹<em>/</em>۱۰</div><div class="l">رضایت مشتریان</div></div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section" id="news">
+  <div class="container">
+    <div class="news reveal">
+      <div class="kicker">خبرنامهٔ ژورنال</div>
+      <h2>شمارهٔ بعد را <em>اول</em> بخوانید</h2>
+      <p>هر دوهفته یک ایمیل — بیانیه‌ای کوتاه، یک کالای جدید، و یک نقل‌قول از صفحات نوی. بدون اسپم، فقط زیبایی.</p>
+      <form id="newsForm">
+        <input type="email" id="newsMail" placeholder="ایمیل شما…" required>
+        <button type="submit" class="btn btn-p">مشترک شدن <span class="arr">←</span></button>
+      </form>
+      <div class="ok" id="newsOk">✓ مشترک شدید — به زودی شمارهٔ پنجم می‌رسد.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="fbrand">
+        <div class="word">ن<em>و</em>ی</div>
+        <p>مجله و فروشگاه مد لوکس. مونوکروم، با یک نقطهٔ سرخ. طراحی‌شده توسط PH Design.</p>
+      </div>
+      <div class="fcol">
+        <h4>فروشگاه</h4>
+        <a href="#shop">کالکشن پاییزه</a>
+        <a href="#shop">لباس</a>
+        <a href="#shop">کیف و کفش</a>
+        <a href="#shop">اکسسوار</a>
+      </div>
+      <div class="fcol">
+        <h4>برند</h4>
+        <a href="#manifest">بیانیه</a>
+        <a href="#editorial">ادیتوریال</a>
+        <a href="#feature">کالکشن ویژه</a>
+        <a href="../about.html">دربارهٔ ما</a>
+      </div>
+      <div class="fcol">
+        <h4>پشتیبانی</h4>
+        <a href="../contact.html">تماس با ما</a>
+        <a href="../contact.html">راهنمای سایز</a>
+        <a href="../contact.html">بازگشت کالا</a>
+        <a href="../index.html">PH Design</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© ۱۴۰۴ نوی — تمامی حقوق محفوظ است.</span>
+      <div class="social">
+        <a href="#">اینستاگرام</a>
+        <a href="#">پینترست</a>
+        <a href="#">تلگرام</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"><span class="d"></span><span id="toastMsg">افزوده شد</span></div>
+
 <script>
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+/* ---------- Theme ---------- */
+const root=document.documentElement, themeBtn=document.getElementById('themeBtn');
+(function(){const t=localStorage.getItem('noy-theme');if(t)root.setAttribute('data-theme',t);sync();})();
+function sync(){themeBtn.textContent=root.getAttribute('data-theme')==='dark'?'☀':'☾';}
+themeBtn.onclick=()=>{const n=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',n);localStorage.setItem('noy-theme',n);sync();};
+
+/* ---------- Products ---------- */
+const PRODUCTS=[
+  {id:1,fa:'کت اورسایز',en:'Oversize Coat',cat:'wear',catFa:'لباس',pr:'۵٬۸۸۰٬۰۰۰',no:'۰۱',badge:'ویژه'},
+  {id:2,fa:'پالتوی پشمی',en:'Wool Overcoat',cat:'wear',catFa:'لباس',pr:'۷٬۲۰۰٬۰۰۰',no:'۰۲'},
+  {id:3,fa:'کیف چرم دستی',en:'Leather Tote',cat:'bag',catFa:'کیف',pr:'۳٬۴۰۰٬۰۰۰',no:'۰۳',badge:'جدید'},
+  {id:4,fa:'بوت چلسی',en:'Chelsea Boot',cat:'shoe',catFa:'کفش',pr:'۴٬۱۰۰٬۰۰۰',no:'۰۴'},
+  {id:5,fa:'شال ابریشم',en:'Silk Scarf',cat:'acc',catFa:'اکسسوار',pr:'۱٬۲۵۰٬۰۰۰',no:'۰۵'},
+  {id:6,fa:'کیف کمری',en:'Waist Bag',cat:'bag',catFa:'کیف',pr:'۲٬۱۰۰٬۰۰۰',no:'۰۶'},
+  {id:7,fa:'کفش صندل',en:'Leather Mule',cat:'shoe',catFa:'کفش',pr:'۲٬۹۵۰٬۰۰۰',no:'۰۷'},
+  {id:8,fa:'پیراهن کتان',en:'Linen Shirt',cat:'wear',catFa:'لباس',pr:'۱٬۸۸۰٬۰۰۰',no:'۰۸'},
+  {id:9,fa:'انگشتر برنز',en:'Bronze Ring',cat:'acc',catFa:'اکسسوار',pr:'۸۹۰٬۰۰۰',no:'۰۹',badge:'محدود'},
+];
+const grid=document.getElementById('grid');
+function render(filter='all'){
+  grid.innerHTML='';
+  PRODUCTS.filter(p=>filter==='all'||p.cat===filter).forEach(p=>{
+    const el=document.createElement('div');el.className='card reveal';
+    el.innerHTML=`
+      <div class="thumb">
+        <div class="bg-no">${p.no}</div>
+        <div class="text"><div class="name-fa">${p.fa}</div><div class="name-en">${p.en}</div></div>
+        ${p.badge?`<div class="badge">${p.badge}</div>`:''}
+        <button class="add" data-add="${p.fa}" title="افزودن">+</button>
+      </div>
+      <div class="info">
+        <div><div class="ttl">${p.fa}</div><div class="cat">${p.catFa} · شماره ${p.no}</div></div>
+        <div class="pr"><span>${p.pr}</span> ت</div>
+      </div>`;
+    grid.appendChild(el);
+  });
+  observe();
+}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+  c.classList.add('active');render(c.dataset.f);
+});
+render('all');
+
+/* ---------- Cart ---------- */
+let cart=0;const cartNum=document.getElementById('cartNum'),toast=document.getElementById('toast'),toastMsg=document.getElementById('toastMsg');
+const toFarsi=n=>String(n).replace(/\d/g,d=>({'0':'۰','1':'۱','2':'۲','3':'۳','4':'۴','5':'۵','6':'۶','7':'۷','8':'۸','9':'۹'}[d]));
+function addItem(name){cart++;cartNum.textContent=toFarsi(cart);toastMsg.textContent=`«${name}» به سبد افزوده شد`;toast.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>toast.classList.remove('show'),2200);}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b)addItem(b.dataset.add);});
+
+/* ---------- Newsletter ---------- */
+document.getElementById('newsForm').onsubmit=ev=>{ev.preventDefault();const m=document.getElementById('newsMail').value;if(m){document.getElementById('newsOk').classList.add('show');ev.target.reset();}};
+
+/* ---------- Reveal ---------- */
+let io;
+function observe(){
+  if(io)io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal:not(.v)').forEach(el=>io.observe(el));
+}
+observe();
 </script>
-</body></html>
+</body>
+</html>

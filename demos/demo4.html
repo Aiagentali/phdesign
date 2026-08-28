@@ -1,97 +1,573 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>رضا عکاس | PH Design</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07070A">
+<title>گالری سیاه‌وسفید | PH Design</title>
+<meta name="description" content="پورتفولیو عکاسی سینمایی — گالری مِیسونری تک‌رنگ، تمرکز خالص روی تصویر.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#C86CA0;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
-[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
+/* ===========================================================
+   PH Design — Demo 04
+   Concept : Cinematic FULL-BLEED masonry photography portfolio
+   Mood    : Monochrome · pure image focus · minimal chrome
+   Type    : Persian (RTL) · Vazirmatn only · standalone
+   =========================================================== */
+
+/* ---------- Design tokens ---------- */
+:root{
+  --bg:#07070A;            /* near-black canvas */
+  --bg-soft:#0d0d12;
+  --bg-elev:#16161d;
+  --text:#f4f4f6;
+  --text-soft:#b8b8c0;
+  --text-mute:#6e6e78;
+  --accent:#C8956C;        /* parent bronze */
+  --accent-deep:#9a6c45;
+  --line:rgba(255,255,255,.07);
+  --line-2:rgba(255,255,255,.13);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --gap:8px;               /* cinematic gutter */
+  --pad:clamp(14px,3vw,40px);
+}
+[data-theme=light]{
+  --bg:#f4f2ee;
+  --bg-soft:#eceae5;
+  --bg-elev:#ffffff;
+  --text:#121013;
+  --text-soft:#4a4540;
+  --text-mute:#8a837c;
+  --accent:#9a6c45;
+  --line:rgba(0,0,0,.08);
+  --line-2:rgba(0,0,0,.15);
+}
+
+/* ---------- Reset ---------- */
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Vazirmatn',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  direction:rtl;line-height:1.85;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  transition:background .5s var(--ease),color .5s var(--ease);
+}
+img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
-.back-pill:hover{background:var(--accent);color:#07070A}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
-.nav-links a:hover{color:var(--text)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
-.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
-.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
-.hero-in{position:relative;z-index:1}
-.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
-.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
-.btn-p{background:var(--accent);color:#07070A}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
-.btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
-.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.section{padding:110px 0}
-.section-head{margin-bottom:56px}
-.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
-.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--bg);padding:36px 30px;transition:.4s}
-.svc:hover{background:var(--card)}
-.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
-.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
-.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
-.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
-.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
-.cta-sec p{color:var(--text-soft);margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
+::selection{background:var(--accent);color:#07070A}
+
+/* ---------- Floating chrome (back + theme) ---------- */
+.floating{
+  position:fixed;top:18px;z-index:1200;
+  display:flex;align-items:center;gap:10px;
+}
+.back-pill{
+  left:18px;
+  padding:10px 20px;border-radius:40px;font-size:.82rem;font-weight:600;
+  background:color-mix(in srgb,var(--bg) 68%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line-2);color:var(--accent);
+  transition:.35s var(--ease);letter-spacing:.2px;
+}
+.back-pill:hover{background:var(--accent);color:#07070A;transform:translateY(-2px)}
+.theme-btn{
+  right:18px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line-2);cursor:pointer;
+  background:color-mix(in srgb,var(--bg) 68%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  color:var(--text);font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:.35s var(--ease);
+}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);transform:rotate(18deg)}
+
+/* ---------- Cinematic hero ---------- */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:140px var(--pad) 90px;
+  overflow:hidden;
+}
+/* slow drifting bronze glow + grain */
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60vw 60vw at 78% 18%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 60%),
+    radial-gradient(50vw 50vw at 12% 88%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 62%);
+  filter:blur(20px);
+  animation:drift 18s ease-in-out infinite alternate;
+}
+.hero::after{ /* subtle vignette to push focus inward */
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(120% 120% at 50% 40%,transparent 55%,color-mix(in srgb,var(--bg) 75%,transparent) 100%);
+}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-3%,2%) scale(1.06)}}
+.hero-in{position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%}
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.78rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);font-weight:600;margin-bottom:28px;
+  border:1px solid var(--line-2);border-radius:40px;padding:8px 18px;
+}
+.kicker .d{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.hero h1{
+  font-size:clamp(2.8rem,9vw,7rem);font-weight:900;line-height:.98;
+  letter-spacing:-2px;margin-bottom:26px;
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{
+  font-size:clamp(1rem,2vw,1.2rem);font-weight:300;color:var(--text-soft);
+  max-width:560px;line-height:2;margin-bottom:38px;
+}
+.hero-meta{
+  display:flex;gap:36px;flex-wrap:wrap;margin-top:46px;
+  border-top:1px solid var(--line);padding-top:30px;
+}
+.hero-meta .m .n{font-size:1.7rem;font-weight:800;color:var(--text)}
+.hero-meta .m .l{font-size:.78rem;color:var(--text-mute);letter-spacing:1px}
+
+.scroll-cue{
+  position:absolute;bottom:26px;left:50%;transform:translateX(50%);
+  z-index:1;font-size:.72rem;letter-spacing:3px;color:var(--text-mute);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.scroll-cue .bar{width:1px;height:42px;background:linear-gradient(var(--accent),transparent);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ---------- Section heading ---------- */
+.section-head{
+  max-width:1100px;margin:0 auto;padding:0 var(--pad);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;margin-bottom:34px;
+}
+.section-head .sk{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600}
+.section-head h2{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:800;letter-spacing:-1px;margin-top:8px}
+.section-head .hint{font-size:.85rem;color:var(--text-mute);font-weight:300}
+
+/* ---------- Filter bar ---------- */
+.filters{
+  max-width:1100px;margin:0 auto 26px;padding:0 var(--pad);
+  display:flex;gap:10px;flex-wrap:wrap;
+}
+.filters button{
+  font-family:inherit;font-size:.82rem;font-weight:500;cursor:pointer;
+  padding:9px 18px;border-radius:40px;color:var(--text-soft);
+  background:transparent;border:1px solid var(--line-2);transition:.3s var(--ease);
+}
+.filters button:hover{color:var(--text);border-color:var(--accent)}
+.filters button.active{background:var(--accent);color:#07070A;border-color:var(--accent)}
+
+/* ---------- Full-bleed masonry gallery ---------- */
+.gallery-wrap{padding:0 var(--pad) 30px}
+.gallery{
+  max-width:1600px;margin:0 auto;
+  column-count:4;column-gap:var(--gap);
+}
+figure.shot{
+  position:relative;break-inside:avoid;margin:0 0 var(--gap);
+  overflow:hidden;border-radius:5px;cursor:zoom-in;
+  background:var(--bg-elev);
+  opacity:0;transform:translateY(26px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease),filter .6s var(--ease);
+}
+figure.shot.in{opacity:1;transform:none}
+figure.shot img{
+  width:100%;height:auto;display:block;
+  filter:grayscale(1) contrast(1.04) brightness(.96);
+  transition:transform 1s var(--ease),filter .6s var(--ease);
+}
+figure.shot:hover img{transform:scale(1.045);filter:grayscale(1) contrast(1.12) brightness(1.04)}
+/* hover caption */
+figure.shot figcaption{
+  position:absolute;inset:auto 0 0 0;z-index:2;
+  padding:34px 18px 16px;
+  background:linear-gradient(transparent,color-mix(in srgb,var(--bg) 88%,transparent));
+  transform:translateY(12px);opacity:0;
+  transition:.45s var(--ease);
+  pointer-events:none;
+}
+figure.shot:hover figcaption{transform:none;opacity:1}
+figure.shot figcaption .cat{
+  font-size:.68rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent);font-weight:600;margin-bottom:4px;
+}
+figure.shot figcaption .ttl{font-size:1.02rem;font-weight:700;color:var(--text)}
+/* tiny corner index */
+figure.shot .idx{
+  position:absolute;top:12px;left:12px;z-index:2;
+  font-family:monospace;font-size:.7rem;color:var(--text-soft);
+  background:color-mix(in srgb,var(--bg) 55%,transparent);
+  padding:3px 8px;border-radius:20px;opacity:0;transition:.4s var(--ease);
+}
+figure.shot:hover .idx{opacity:1}
+
+/* ---------- Lightbox ---------- */
+.lb{
+  position:fixed;inset:0;z-index:2000;display:none;
+  background:color-mix(in srgb,var(--bg) 94%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:clamp(16px,4vw,60px);
+}
+.lb.open{display:flex;animation:lbfade .4s var(--ease)}
+@keyframes lbfade{from{opacity:0}to{opacity:1}}
+.lb-img-wrap{position:relative;max-width:92vw;max-height:84vh;display:flex;flex-direction:column;align-items:center}
+.lb-img-wrap img{
+  max-width:92vw;max-height:78vh;width:auto;height:auto;border-radius:4px;
+  filter:grayscale(1) contrast(1.05);
+  box-shadow:0 40px 120px rgba(0,0,0,.6);
+  animation:lbscale .5s var(--ease);
+}
+@keyframes lbscale{from{transform:scale(.94);opacity:.4}to{transform:scale(1);opacity:1}}
+.lb-cap{margin-top:16px;text-align:center;color:var(--text-soft)}
+.lb-cap .cat{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600}
+.lb-cap .ttl{font-size:1.1rem;font-weight:700;color:var(--text)}
+.lb-close{
+  position:absolute;top:22px;right:22px;z-index:2001;
+  width:46px;height:46px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 60%,transparent);
+  color:var(--text);font-size:1.3rem;display:flex;align-items:center;justify-content:center;
+  transition:.3s var(--ease);
+}
+.lb-close:hover{background:var(--accent);color:#07070A;border-color:var(--accent);transform:rotate(90deg)}
+.lb-nav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2001;
+  width:54px;height:54px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 55%,transparent);
+  color:var(--text);font-size:1.4rem;display:flex;align-items:center;justify-content:center;
+  transition:.3s var(--ease);
+}
+.lb-nav:hover{background:var(--accent);color:#07070A;border-color:var(--accent)}
+.lb-prev{right:22px}.lb-next{left:22px}  /* RTL: prev on right, next on left */
+.lb-count{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2001;
+  font-family:monospace;font-size:.85rem;color:var(--text-mute);letter-spacing:1px;
+}
+
+/* ---------- Footer ---------- */
+.foot{
+  border-top:1px solid var(--line);
+  padding:60px var(--pad);text-align:center;color:var(--text-mute);
+}
+.foot .logo{font-weight:800;font-size:1.2rem;display:inline-flex;align-items:center;gap:8px;color:var(--text);margin-bottom:14px}
+.foot .logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.foot p{font-size:.82rem;font-weight:300;line-height:2}
+.foot a{color:var(--accent)}
+
+/* ---------- Reveal ---------- */
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .reveal.v{opacity:1;transform:none}
-@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1200px){.gallery{column-count:3}}
+@media(max-width:820px){.gallery{column-count:2}.hero-meta{gap:24px}}
+@media(max-width:520px){
+  .gallery{column-count:1}
+  .back-pill{padding:9px 14px;font-size:.74rem}
+  .section-head{align-items:flex-start}
+  .lb-prev{right:10px}.lb-next{left:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  figure.shot{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
-<nav><div class="nav-inner"><div class="logo"><span class="d"></span>رضا عکاس</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
 
-<section class="hero"><div class="glow"></div><div class="container hero-in">
-<div class="kick reveal"><span class="d"></span> پورتفولیو</div>
-<h1 class="reveal">رضا عکاس<br><em>تجربه‌ای متفاوت</em></h1>
-<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
-<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
-</div></section>
-
-<section class="section"><div class="container">
-<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
-<div class="svc-grid">
-<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>پرتره</h3><p>چهره‌هایی که داستان دارند</p></div>
-<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>طبیعت</h3><p>لحظات بکر از دنیا</p></div>
-<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>رویداد</h3><p>ثبت لحظه‌های ماندگار</p></div>
+<!-- floating chrome -->
+<div class="floating">
+  <a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
 </div>
-</div></section>
+<button class="theme-btn" id="themeBtn" title="تغییر تم" aria-label="تغییر تم">☀</button>
 
-<section class="section" style="background:var(--bg-soft)"><div class="container">
-<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">◐</div></div>
-</div></section>
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-in">
+    <span class="kicker reveal"><span class="d"></span> پورتفولیو عکاسی</span>
+    <h1 class="reveal">سیاه‌وسفید،<br><em>بی‌کلام.</em></h1>
+    <p class="reveal">مجموعه‌ای سینمایی از قاب‌های تک‌رنگ — بدون حاشیه، بدون رنگ اضافه.
+       فقط نور، سایه و لحظه. روی هر عکس کلیک کنید تا در ابعاد کامل باز شود.</p>
+    <div class="hero-meta reveal">
+      <div class="m"><div class="n">۱۸</div><div class="l">فریم منتخب</div></div>
+      <div class="m"><div class="n">۶</div><div class="l">دسته‌بندی</div></div>
+      <div class="m"><div class="n">۱۴۰۴</div><div class="l">سال تولید</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>پایین</span><span class="bar"></span></div>
+</header>
 
-<section class="cta-sec"><div class="container">
-<h2 class="reveal">این مدل برای برند تو؟</h2>
-<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
-<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
-</div></section>
+<!-- ============ GALLERY ============ -->
+<section style="padding-top:40px">
+  <div class="section-head reveal">
+    <div>
+      <div class="sk">گالری</div>
+      <h2>نگاهی به دنیا، بی‌رنگ</h2>
+    </div>
+    <div class="hint">کلیک روی هر عکس → نمایش تمام‌صفحه</div>
+  </div>
 
-<footer>© ۱۴۰۴ رضا عکاس — طراحی شده توسط PH Design</footer>
+  <div class="filters reveal" id="filters">
+    <button class="active" data-filter="all">همه</button>
+    <button data-filter="پرتره">پرتره</button>
+    <button data-filter="معماری">معماری</button>
+    <button data-filter="طبیعت">طبیعت</button>
+    <button data-filter="خیابان">خیابان</button>
+    <button data-filter="مستند">مستند</button>
+    <button data-filter="انتزاعی">انتزاعی</button>
+  </div>
+
+  <div class="gallery-wrap">
+    <div class="gallery" id="gallery">
+
+      <figure class="shot" data-cat="پرتره">
+        <span class="idx">01</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-portrait1/800/1100?grayscale" data-full="https://picsum.photos/seed/ph-portrait1/1400/1925?grayscale" alt="پرتره — سکوت">
+        <figcaption><div class="cat">پرتره</div><div class="ttl">سکوت</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="خیابان">
+        <span class="idx">02</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-street2/800/600?grayscale" data-full="https://picsum.photos/seed/ph-street2/1400/1050?grayscale" alt="خیابان — شلوغی">
+        <figcaption><div class="cat">خیابان</div><div class="ttl">شلوغی</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="معماری">
+        <span class="idx">03</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-arch3/800/1000?grayscale" data-full="https://picsum.photos/seed/ph-arch3/1400/1750?grayscale" alt="معماری — سایه‌ها">
+        <figcaption><div class="cat">معماری</div><div class="ttl">سایه‌ها</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="طبیعت">
+        <span class="idx">04</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-nature4/800/900?grayscale" data-full="https://picsum.photos/seed/ph-nature4/1400/1575?grayscale" alt="طبیعت — مه">
+        <figcaption><div class="cat">طبیعت</div><div class="ttl">مه</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="انتزاعی">
+        <span class="idx">05</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-abstract5/800/800?grayscale" data-full="https://picsum.photos/seed/ph-abstract5/1400/1400?grayscale" alt="انتزاعی — خطوط">
+        <figcaption><div class="cat">انتزاعی</div><div class="ttl">خطوط</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="مستند">
+        <span class="idx">06</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-doc6/800/1200?grayscale" data-full="https://picsum.photos/seed/ph-doc6/1400/2100?grayscale" alt="مستند — کوچه">
+        <figcaption><div class="cat">مستند</div><div class="ttl">کوچه</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="پرتره">
+        <span class="idx">07</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-portrait7/800/700?grayscale" data-full="https://picsum.photos/seed/ph-portrait7/1400/1225?grayscale" alt="پرتره — نگاه">
+        <figcaption><div class="cat">پرتره</div><div class="ttl">نگاه</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="معماری">
+        <span class="idx">08</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-arch8/800/1100?grayscale" data-full="https://picsum.photos/seed/ph-arch8/1400/1925?grayscale" alt="معماری — طاق">
+        <figcaption><div class="cat">معماری</div><div class="ttl">طاق</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="خیابان">
+        <span class="idx">09</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-street9/800/600?grayscale" data-full="https://picsum.photos/seed/ph-street9/1400/1050?grayscale" alt="خیابان — شب">
+        <figcaption><div class="cat">خیابان</div><div class="ttl">شب</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="طبیعت">
+        <span class="idx">10</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-nature10/800/1000?grayscale" data-full="https://picsum.photos/seed/ph-nature10/1400/1750?grayscale" alt="طبیعت — کوه">
+        <figcaption><div class="cat">طبیعت</div><div class="ttl">کوه</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="انتزاعی">
+        <span class="idx">11</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-abstract11/800/900?grayscale" data-full="https://picsum.photos/seed/ph-abstract11/1400/1575?grayscale" alt="انتزاعی — ریتم">
+        <figcaption><div class="cat">انتزاعی</div><div class="ttl">ریتم</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="مستند">
+        <span class="idx">12</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-doc12/800/800?grayscale" data-full="https://picsum.photos/seed/ph-doc12/1400/1400?grayscale" alt="مستند — بازار">
+        <figcaption><div class="cat">مستند</div><div class="ttl">بازار</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="پرتره">
+        <span class="idx">13</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-portrait13/800/1000?grayscale" data-full="https://picsum.photos/seed/ph-portrait13/1400/1750?grayscale" alt="پرتره — زن">
+        <figcaption><div class="cat">پرتره</div><div class="ttl">زن</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="معماری">
+        <span class="idx">14</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-arch14/800/700?grayscale" data-full="https://picsum.photos/seed/ph-arch14/1400/1225?grayscale" alt="معماری — پله">
+        <figcaption><div class="cat">معماری</div><div class="ttl">پله</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="خیابان">
+        <span class="idx">15</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-street15/800/1100?grayscale" data-full="https://picsum.photos/seed/ph-street15/1400/1925?grayscale" alt="خیابان — باران">
+        <figcaption><div class="cat">خیابان</div><div class="ttl">باران</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="طبیعت">
+        <span class="idx">16</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-nature16/800/1200?grayscale" data-full="https://picsum.photos/seed/ph-nature16/1400/2100?grayscale" alt="طبیعت — دریا">
+        <figcaption><div class="cat">طبیعت</div><div class="ttl">دریا</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="انتزاعی">
+        <span class="idx">17</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-abstract17/800/700?grayscale" data-full="https://picsum.photos/seed/ph-abstract17/1400/1225?grayscale" alt="انتزاعی — ذرات">
+        <figcaption><div class="cat">انتزاعی</div><div class="ttl">ذرات</div></figcaption>
+      </figure>
+
+      <figure class="shot" data-cat="مستند">
+        <span class="idx">18</span>
+        <img loading="lazy" src="https://picsum.photos/seed/ph-doc18/800/900?grayscale" data-full="https://picsum.photos/seed/ph-doc18/1400/1575?grayscale" alt="مستند — کارگر">
+        <figcaption><div class="cat">مستند</div><div class="ttl">کارگر</div></figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot reveal">
+  <div class="logo"><span class="d"></span> PH Design</div>
+  <p>نمونه پورتفولیو عکاسی — طراحی شده با تمرکز روی تصویر.<br>
+     برای سفارش نسخه اختصاصی با <a href="../contact.html">ما</a> در تماس باشید.</p>
+  <p style="margin-top:14px">© ۱۴۰۴ PH Design — تمامی حقوق محفوظ است.</p>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lb" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="بستن">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="قبلی">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="بعدی">›</button>
+  <div class="lb-img-wrap">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-cap"><div class="cat" id="lbCat"></div><div class="ttl" id="lbTtl"></div></div>
+  </div>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
 <script>
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+/* ---------- Theme toggle (persisted in session) ---------- */
+(function(){
+  var btn=document.getElementById('themeBtn');
+  var root=document.documentElement;
+  function sync(){
+    btn.textContent = root.getAttribute('data-theme')==='dark' ? '☀' : '☾';
+  }
+  btn.addEventListener('click',function(){
+    var next = root.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme',next);
+    try{ sessionStorage.setItem('ph-theme',next); }catch(e){}
+    sync();
+  });
+  try{
+    var saved=sessionStorage.getItem('ph-theme');
+    if(saved){ root.setAttribute('data-theme',saved); }
+  }catch(e){}
+  sync();
+})();
+
+/* ---------- Reveal on scroll ---------- */
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('v'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+
+/* ---------- Gallery reveal (staggered) ---------- */
+(function(){
+  var shots=Array.prototype.slice.call(document.querySelectorAll('figure.shot'));
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        var i=shots.indexOf(e.target);
+        e.target.style.transitionDelay=(i%6)*60+'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.08});
+  shots.forEach(function(el){ io.observe(el); });
+})();
+
+/* ---------- Category filter ---------- */
+(function(){
+  var bar=document.getElementById('filters');
+  var shots=Array.prototype.slice.call(document.querySelectorAll('figure.shot'));
+  bar.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    bar.querySelectorAll('button').forEach(function(x){ x.classList.remove('active'); });
+    b.classList.add('active');
+    var f=b.getAttribute('data-filter');
+    shots.forEach(function(s){
+      var show = (f==='all' || s.getAttribute('data-cat')===f);
+      s.style.display = show ? '' : 'none';
+    });
+  });
+})();
+
+/* ---------- Lightbox ---------- */
+(function(){
+  var lb=document.getElementById('lightbox');
+  var img=document.getElementById('lbImg');
+  var cat=document.getElementById('lbCat');
+  var ttl=document.getElementById('lbTtl');
+  var cnt=document.getElementById('lbCount');
+  var shots=Array.prototype.slice.call(document.querySelectorAll('figure.shot'));
+  var visible=shots.filter(function(s){return s.style.display!=='none';});
+  var cur=0;
+
+  function render(){
+    var fig=visible[cur];
+    var im=fig.querySelector('img');
+    img.src=im.getAttribute('data-full')||im.src;
+    img.alt=im.alt;
+    cat.textContent=fig.getAttribute('data-cat');
+    ttl.textContent=fig.querySelector('.ttl').textContent;
+    cnt.textContent=(cur+1)+' / '+visible.length;
+  }
+  function open(i){
+    visible=shots.filter(function(s){return s.style.display!=='none';});
+    cur=i; render();
+    lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function close(){
+    lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  function step(d){
+    cur=(cur+d+visible.length)%visible.length; render();
+  }
+
+  shots.forEach(function(s,i){
+    s.addEventListener('click',function(){
+      var vi=visible.indexOf(s);
+      open(vi<0?i:vi);
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',function(){step(1);});
+  document.getElementById('lbNext').addEventListener('click',function(){step(-1);});
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    else if(e.key==='ArrowRight') step(1);   /* RTL: right = next */
+    else if(e.key==='ArrowLeft') step(-1);
+  });
+})();
 </script>
-</body></html>
+</body>
+</html>

@@ -1,97 +1,662 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>طراح UI | PH Design</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0712">
+<title>نوید رنگین | پورتفولیو طراح رابط کاربری — PH Design</title>
+<meta name="description" content="پورتفولیو تعاملی یک طراح UI/UX با مش بندی گرادیانت نامتقارن ارغوانی/صورتی، موکاپ‌های پروژه و دنبال‌کننده ماوس بازیگوش.">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07070A;--bg-soft:#0d0d12;--card:#101015;--text:#f4f4f6;--text-soft:#b8b8c0;--text-mute:#6e6e78;--accent:#C86CA0;--line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);--ease:cubic-bezier(.16,1,.3,1)}
-[data-theme=light]{--bg:#fafafa;--bg-soft:#f0f0f3;--card:#fff;--text:#0d0d12;--text-soft:#44444c;--text-mute:#8a8a94;--line:rgba(0,0,0,.08);--line-2:rgba(0,0,0,.14)}
+/* =========================================================
+   demo10 — UI Designer Portfolio
+   Creative ASYMMETRIC gradient-mesh (purple/pink)
+   Playful cursor-follow · project mockups · skills
+   ========================================================= */
+
+:root{
+  --bg:#08060f;
+  --bg-soft:#0d0a18;
+  --card:#120d20;
+  --card-2:#170f29;
+  --text:#f6f2ff;
+  --text-soft:#c4b8e0;
+  --text-mute:#7d6f9c;
+  /* purple/pink mesh palette */
+  --p1:#8b2fd6;   /* deep purple */
+  --p2:#c33bf0;   /* violet */
+  --p3:#ff4fd8;   /* pink */
+  --p4:#ff89c2;   /* soft pink */
+  --p5:#5b1fb8;   /* indigo */
+  --accent:#ff4fd8;
+  --accent-2:#8b2fd6;
+  --line:rgba(255,255,255,.07);
+  --line-2:rgba(255,255,255,.13);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --maxw:1180px;
+}
+[data-theme=light]{
+  --bg:#f7f2fb;
+  --bg-soft:#efe7f7;
+  --card:#fff;
+  --card-2:#f6effb;
+  --text:#1a0f2e;
+  --text-soft:#4a3a66;
+  --text-mute:#8a7aa8;
+  --line:rgba(0,0,0,.08);
+  --line-2:rgba(0,0,0,.14);
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  direction:rtl;
+  overflow-x:hidden;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  transition:background .6s var(--ease),color .6s var(--ease);
+  cursor:none;
+}
+@media (hover:none){ body{cursor:auto} }
+
 a{text-decoration:none;color:inherit}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.back-pill{position:fixed;top:16px;left:16px;z-index:100;padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);color:var(--accent);transition:.3s}
-.back-pill:hover{background:var(--accent);color:#07070A}
-.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
-nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
-.logo .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.nav-links{display:flex;gap:26px;font-size:.88rem;color:var(--text-soft)}
+img{max-width:100%;display:block}
+::selection{background:var(--p3);color:#1a0f2e}
+
+.container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ---------- floating controls ---------- */
+.back-pill{
+  position:fixed;top:16px;left:16px;z-index:200;
+  padding:9px 18px;border-radius:30px;font-size:.8rem;font-weight:700;
+  background:color-mix(in srgb,var(--card) 65%,transparent);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--line-2);color:var(--p3);
+  transition:.35s var(--ease);
+}
+.back-pill:hover{background:var(--p3);color:#1a0f2e;transform:translateY(-2px)}
+.theme-btn{
+  position:fixed;top:16px;right:16px;z-index:200;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line-2);
+  background:color-mix(in srgb,var(--card) 65%,transparent);
+  backdrop-filter:blur(12px);cursor:pointer;font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:.35s var(--ease);color:var(--text);
+}
+.theme-btn:hover{border-color:var(--p3);transform:rotate(20deg) scale(1.05)}
+
+/* ---------- playful cursor follower ---------- */
+.cur-dot{
+  position:fixed;top:0;left:0;z-index:9999;pointer-events:none;
+  width:9px;height:9px;border-radius:50%;background:var(--p3);
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 14px var(--p3);
+  transition:width .25s var(--ease),height .25s var(--ease),background .25s;
+  mix-blend-mode:screen;
+}
+.cur-ring{
+  position:fixed;top:0;left:0;z-index:9998;pointer-events:none;
+  width:42px;height:42px;border-radius:50%;
+  border:1.5px solid color-mix(in srgb,var(--p2) 80%,transparent);
+  transform:translate(-50%,-50%);
+  transition:width .3s var(--ease),height .3s var(--ease),border-color .3s,opacity .3s;
+}
+.cur-label{
+  position:fixed;top:0;left:0;z-index:9999;pointer-events:none;
+  font-size:.62rem;font-weight:700;letter-spacing:.5px;
+  color:#fff;transform:translate(-50%,-50%);
+  opacity:0;transition:opacity .25s;padding:3px 9px;border-radius:20px;
+  background:color-mix(in srgb,var(--p2) 85%,transparent);
+  white-space:nowrap;
+}
+body.cur-hover .cur-dot{width:16px;height:16px;background:var(--p4)}
+body.cur-hover .cur-ring{width:64px;height:64px;border-color:var(--p4);opacity:.7}
+body.cur-label-show .cur-label{opacity:1}
+@media (hover:none){ .cur-dot,.cur-ring,.cur-label{display:none} }
+
+/* ---------- gradient mesh background ---------- */
+.mesh{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mesh span{
+  position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;
+  mix-blend-mode:screen;transition:background .6s var(--ease);
+}
+[data-theme=light] .mesh span{mix-blend-mode:multiply;opacity:.4}
+.m1{top:-12%;right:-8%;width:52vw;height:52vw;background:radial-gradient(circle,var(--p1),transparent 62%);animation:drift1 22s ease-in-out infinite}
+.m2{top:18%;left:-14%;width:46vw;height:46vw;background:radial-gradient(circle,var(--p3),transparent 60%);animation:drift2 26s ease-in-out infinite}
+.m3{bottom:-16%;right:6%;width:44vw;height:44vw;background:radial-gradient(circle,var(--p2),transparent 60%);animation:drift3 19s ease-in-out infinite}
+.m4{bottom:2%;left:-6%;width:38vw;height:38vw;background:radial-gradient(circle,var(--p5),transparent 62%);animation:drift1 30s ease-in-out infinite reverse}
+.m5{top:38%;right:36%;width:26vw;height:26vw;background:radial-gradient(circle,var(--p4),transparent 64%);animation:drift2 24s ease-in-out infinite reverse}
+.grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  background-image:radial-gradient(circle,#fff 1px,transparent 1px);
+  background-size:4px 4px;
+}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 0;
+  background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(18px);border-bottom:1px solid var(--line);
+  transition:padding .4s var(--ease)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 28px;
+  display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:9px}
+.logo .d{width:9px;height:9px;border-radius:50%;
+  background:linear-gradient(140deg,var(--p3),var(--p2));
+  box-shadow:0 0 16px var(--p3);animation:pulse 2.6s ease-in-out infinite}
+.logo b{font-weight:900}
+.logo span{color:var(--text-mute);font-weight:400}
+.nav-links{display:flex;gap:28px;font-size:.88rem;color:var(--text-soft);font-weight:500}
+.nav-links a{position:relative;padding:4px 0;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:0;right:0;width:0;height:2px;
+  background:var(--p3);transition:width .35s var(--ease)}
 .nav-links a:hover{color:var(--text)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 70px;position:relative}
-.glow{position:absolute;inset:0;z-index:0;pointer-events:none}
-.glow::before{content:'';position:absolute;top:15%;right:-8%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);filter:blur(45px);animation:fl 14s ease-in-out infinite}
-.hero-in{position:relative;z-index:1}
-.kick{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;letter-spacing:1px;color:var(--accent);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;margin-bottom:26px;font-weight:600}
-.kick .d{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-soft);max-width:520px;font-weight:300;line-height:1.9;margin-bottom:34px}
+.nav-links a:hover::after{width:100%}
+
+/* ---------- hero (asymmetric) ---------- */
+.hero{position:relative;z-index:2;padding:160px 0 90px;min-height:100vh;
+  display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:center}
+.hero-copy{position:relative}
+.kick{display:inline-flex;gap:9px;align-items:center;font-size:.78rem;letter-spacing:1px;
+  color:var(--p4);border:1px solid var(--line-2);border-radius:30px;padding:7px 16px;
+  margin-bottom:28px;font-weight:600;background:color-mix(in srgb,var(--card) 40%,transparent)}
+.kick .d{width:6px;height:6px;border-radius:50%;background:var(--p3);box-shadow:0 0 10px var(--p3)}
+.hero h1{font-size:clamp(2.6rem,6.4vw,5rem);font-weight:900;line-height:1.06;
+  letter-spacing:-1.5px;margin-bottom:24px}
+.hero h1 .g{
+  background:linear-gradient(115deg,var(--p3),var(--p2) 55%,var(--p5));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero h1 em{font-style:normal;-webkit-text-stroke:1.5px var(--text-mute);color:transparent}
+.hero p.lead{font-size:clamp(1rem,2vw,1.18rem);color:var(--text-soft);
+  max-width:460px;font-weight:300;line-height:1.95;margin-bottom:34px}
 .cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:all .35s var(--ease)}
-.btn-p{background:var(--accent);color:#07070A}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px color-mix(in srgb,var(--accent) 30%,transparent)}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;border-radius:12px;
+  font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;border:none;
+  transition:all .35s var(--ease)}
+.btn-p{background:linear-gradient(120deg,var(--p3),var(--p2));color:#fff;
+  box-shadow:0 12px 34px color-mix(in srgb,var(--p2) 35%,transparent)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 18px 44px color-mix(in srgb,var(--p3) 45%,transparent)}
 .btn-g{background:transparent;color:var(--text);border:1px solid var(--line-2)}
-.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.section{padding:110px 0}
-.section-head{margin-bottom:56px}
-.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.st{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin:60px 0}
-.visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--accent) 20%,transparent),var(--card));display:flex;align-items:center;justify-content:center;font-size:7rem}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--bg);padding:36px 30px;transition:.4s}
-.svc:hover{background:var(--card)}
-.svc .n{font-size:.78rem;color:var(--text-mute);font-weight:700;margin-bottom:18px;font-family:monospace}
-.svc .i{font-size:1.6rem;margin-bottom:14px;display:block;color:var(--accent)}
-.svc h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.svc p{font-size:.85rem;color:var(--text-soft);font-weight:300;line-height:1.9}
-.cta-sec{text-align:center;padding:90px 0;background:var(--bg-soft)}
-.cta-sec h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
-.cta-sec p{color:var(--text-soft);margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:50px 0;text-align:center;color:var(--text-mute);font-size:.82rem}
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.btn-g:hover{border-color:var(--p3);color:var(--p3);transform:translateY(-3px)}
+
+/* hero side card — asymmetric floating mockup */
+.hero-card{
+  position:relative;align-self:start;margin-top:30px;
+  background:color-mix(in srgb,var(--card) 80%,transparent);
+  border:1px solid var(--line-2);border-radius:24px;padding:22px;
+  backdrop-filter:blur(8px);
+  transform:rotate(3deg);
+  box-shadow:0 40px 80px rgba(0,0,0,.45);
+  animation:floaty 7s ease-in-out infinite;
+}
+.hero-card .bar{display:flex;gap:7px;margin-bottom:16px}
+.hero-card .bar i{width:11px;height:11px;border-radius:50%;display:block}
+.hero-card .bar i:nth-child(1){background:var(--p3)}
+.hero-card .bar i:nth-child(2){background:var(--p4)}
+.hero-card .bar i:nth-child(3){background:var(--p2)}
+.hero-card .mock{
+  border-radius:14px;height:200px;position:relative;overflow:hidden;
+  background:radial-gradient(circle at 70% 20%,var(--p2),var(--p5) 70%);
+  display:flex;align-items:flex-end;padding:16px;
+}
+.hero-card .mock::after{content:'';position:absolute;top:14px;right:14px;
+  width:54px;height:54px;border-radius:50%;background:color-mix(in srgb,var(--p4) 70%,transparent)}
+.hero-card .mock .tag{position:relative;z-index:1;font-size:.72rem;font-weight:700;
+  background:rgba(255,255,255,.18);padding:5px 12px;border-radius:20px;color:#fff}
+.hero-card .row{display:flex;gap:10px;margin-top:14px}
+.hero-card .row b{flex:1;height:9px;border-radius:6px;background:var(--line-2)}
+.hero-card .row b:last-child{flex:.5}
+
+/* ---------- marquee ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:22px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2;margin-top:30px}
+.marquee-track{display:inline-flex;gap:54px;animation:scroll-x 30s linear infinite}
+.marquee-track span{font-size:1.3rem;font-weight:800;color:var(--text-mute);
+  display:inline-flex;align-items:center;gap:54px}
+.marquee-track span::after{content:'✦';color:var(--p3)}
+
+/* ---------- section frame ---------- */
+.section{position:relative;z-index:2;padding:120px 0}
+.section-head{margin-bottom:60px;max-width:640px}
+.section-head.right{margin-left:auto}
+.sk{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--p3);
+  font-weight:700;margin-bottom:14px;display:inline-flex;gap:8px;align-items:center}
+.sk .d{width:18px;height:2px;background:var(--p3);border-radius:2px}
+.st{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:800;letter-spacing:-1px;line-height:1.2}
+.section-sub{color:var(--text-soft);margin-top:14px;font-weight:300;max-width:500px}
+
+/* ---------- featured asymmetric project ---------- */
+.feat{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center;
+  margin:70px 0;position:relative}
+.feat.rev{grid-template-columns:1.1fr .9fr}
+.feat.rev .feat-vis{order:2}
+.feat-vis{position:relative;border-radius:24px;overflow:hidden;
+  border:1px solid var(--line-2);
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,var(--p5),var(--p2) 55%,var(--p3));
+  box-shadow:0 40px 80px rgba(0,0,0,.4);
+  transition:transform .6s var(--ease)}
+.feat-vis:hover{transform:scale(1.02) rotate(-1deg)}
+.feat-vis .glass{position:absolute;inset:18px;border-radius:16px;
+  background:rgba(255,255,255,.08);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.16);
+  padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.feat-vis .glass .pill{font-size:.7rem;font-weight:700;color:#fff;
+  background:rgba(255,255,255,.18);padding:5px 12px;border-radius:20px;align-self:flex-start}
+.feat-vis .glass .mini{display:flex;gap:8px}
+.feat-vis .glass .mini b{height:8px;border-radius:5px;background:rgba(255,255,255,.35);flex:1}
+.feat-vis .glass .mini b:last-child{flex:.4}
+.feat-vis .circle{position:absolute;width:90px;height:90px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);top:30%;right:24%}
+.feat-copy h3{font-size:1.6rem;font-weight:800;margin-bottom:12px}
+.feat-copy .meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.feat-copy .meta span{font-size:.74rem;font-weight:600;color:var(--p4);
+  border:1px solid var(--line-2);border-radius:20px;padding:5px 13px}
+.feat-copy p{color:var(--text-soft);font-weight:300;line-height:1.95;margin-bottom:22px}
+.feat-copy .lnk{display:inline-flex;align-items:center;gap:8px;font-weight:700;
+  color:var(--p3);transition:gap .3s var(--ease)}
+.feat-copy .lnk:hover{gap:14px}
+
+/* ---------- project mockups grid (asymmetric) ---------- */
+.mock-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:22px;margin-top:30px}
+.mk{grid-column:span 2;border-radius:20px;overflow:hidden;
+  border:1px solid var(--line-2);background:var(--card);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);position:relative}
+.mk:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,.4);border-color:var(--p3)}
+.mk.wide{grid-column:span 3}
+.mk.tall{grid-column:span 3}
+.mk .top{height:170px;position:relative;overflow:hidden;display:flex;
+  align-items:flex-end;padding:16px}
+.mk.wide .top{height:210px}
+.mk .top .ic{position:absolute;top:16px;right:16px;font-size:1.6rem;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+.mk .top .chip{position:relative;z-index:1;font-size:.7rem;font-weight:700;color:#fff;
+  background:rgba(0,0,0,.28);padding:5px 12px;border-radius:20px}
+.mk .bot{padding:18px 20px}
+.mk .bot h4{font-size:1.05rem;font-weight:700;margin-bottom:6px}
+.mk .bot p{font-size:.8rem;color:var(--text-mute);font-weight:300}
+.mk .bot .yr{font-size:.72rem;color:var(--p4);font-weight:600;margin-top:10px;
+  font-family:monospace}
+.m-a{background:linear-gradient(135deg,#3a0d6e,#8b2fd6)}
+.m-b{background:linear-gradient(135deg,#c33bf0,#ff4fd8)}
+.m-c{background:linear-gradient(135deg,#5b1fb8,#c33bf0)}
+.m-d{background:linear-gradient(135deg,#ff4fd8,#ff89c2)}
+.m-e{background:linear-gradient(135deg,#2a0d52,#5b1fb8)}
+.m-f{background:linear-gradient(135deg,#8b2fd6,#ff4fd8)}
+
+/* ---------- skills ---------- */
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:20px}
+.skill{background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px;transition:.45s var(--ease);position:relative;overflow:hidden}
+.skill::before{content:'';position:absolute;left:-40%;top:-40%;width:80%;height:80%;
+  border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--p3) 30%,transparent),transparent 70%);
+  opacity:0;transition:opacity .5s}
+.skill:hover{transform:translateY(-6px);border-color:var(--p3)}
+.skill:hover::before{opacity:1}
+.skill .si{font-size:1.5rem;margin-bottom:12px;display:block}
+.skill h4{font-size:1.05rem;font-weight:700;margin-bottom:6px}
+.skill p{font-size:.82rem;color:var(--text-soft);font-weight:300;margin-bottom:16px;position:relative;z-index:1}
+.skill .meter{height:7px;border-radius:6px;background:var(--line-2);overflow:hidden;position:relative;z-index:1}
+.skill .meter i{display:block;height:100%;border-radius:6px;
+  background:linear-gradient(90deg,var(--p2),var(--p3));width:0;transition:width 1.4s var(--ease)}
+.skill .pct{font-size:.72rem;color:var(--text-mute);margin-top:8px;font-family:monospace;position:relative;z-index:1}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:20px}
+.stat{background:var(--bg);padding:40px 24px;text-align:center;transition:.4s}
+.stat:hover{background:var(--card)}
+.stat .n{font-size:2.4rem;font-weight:900;
+  background:linear-gradient(120deg,var(--p3),var(--p2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat .n em{font-style:normal;font-size:1.2rem}
+.stat .l{font-size:.84rem;color:var(--text-mute);margin-top:6px;font-weight:500}
+
+/* ---------- process timeline (asymmetric) ---------- */
+.proc{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+.step{background:color-mix(in srgb,var(--card) 75%,transparent);
+  border:1px solid var(--line);border-radius:18px;padding:28px 24px;position:relative}
+.step .no{font-family:monospace;font-size:.8rem;font-weight:700;color:var(--p3);
+  border:1px solid var(--line-2);border-radius:50%;width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.step h4{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.step p{font-size:.82rem;color:var(--text-soft);font-weight:300;line-height:1.9}
+
+/* ---------- testimonial ---------- */
+.quote{position:relative;z-index:2;margin-top:30px;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--p2) 22%,var(--card)),var(--card));
+  border:1px solid var(--line-2);border-radius:24px;padding:50px 44px;
+  text-align:center}
+.quote .stars{color:var(--p3);font-size:1.1rem;letter-spacing:3px;margin-bottom:18px}
+.quote p{font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:300;line-height:1.9;
+  max-width:720px;margin:0 auto 22px}
+.quote .who{font-size:.9rem;color:var(--text-mute);font-weight:600}
+
+/* ---------- cta ---------- */
+.cta-sec{text-align:center;padding:100px 0;position:relative;z-index:2}
+.cta-sec h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:16px}
+.cta-sec h2 .g{background:linear-gradient(120deg,var(--p3),var(--p2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-sec p{color:var(--text-soft);margin-bottom:30px;font-weight:300}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:54px 0 40px;position:relative;z-index:2;
+  text-align:center;color:var(--text-mute);font-size:.84rem}
+footer .logo{justify-content:center;margin-bottom:14px;font-size:1.1rem}
+footer a{color:var(--p4);font-weight:600}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .reveal.v{opacity:1;transform:none}
-@keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-@media(max-width:860px){.feat,.svc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ---------- keyframes ---------- */
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,40px)}}
+@keyframes drift3{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
+@keyframes floaty{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-14px)}}
+@keyframes scroll-x{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ---------- responsive ---------- */
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;gap:50px;padding-top:140px}
+  .hero-card{margin-top:0;transform:rotate(1.5deg);max-width:380px}
+  .feat,.feat.rev{grid-template-columns:1fr;gap:30px}
+  .feat.rev .feat-vis{order:0}
+  .mock-grid{grid-template-columns:repeat(2,1fr)}
+  .mk,.mk.wide,.mk.tall{grid-column:span 1}
+  .mk.wide{grid-column:span 2}
+  .skills,.proc{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .mock-grid{grid-template-columns:1fr}
+  .mk.wide,.mk.tall{grid-column:span 1}
+  .stats{grid-template-columns:1fr}
+  .section{padding:80px 0}
+  .quote{padding:36px 24px}
+  .hero-card{display:none}
+}
 </style>
 </head>
 <body>
+
+<!-- gradient mesh background -->
+<div class="mesh"><span class="m1"></span><span class="m2"></span><span class="m3"></span><span class="m4"></span><span class="m5"></span></div>
+<div class="grain"></div>
+
+<!-- playful cursor follower -->
+<div class="cur-ring" id="curRing"></div>
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-label" id="curLabel">ببین!</div>
+
 <a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
-<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">☀</button>
-<nav><div class="nav-inner"><div class="logo"><span class="d"></span>طراح UI</div><div class="nav-links"><a href="#">خانه</a><a href="#">خدمات</a><a href="#">تماس</a></div></div></nav>
+<button class="theme-btn" id="themeBtn" title="تغییر تم">☀</button>
 
-<section class="hero"><div class="glow"></div><div class="container hero-in">
-<div class="kick reveal"><span class="d"></span> پورتفولیو</div>
-<h1 class="reveal">طراح UI<br><em>تجربه‌ای متفاوت</em></h1>
-<p class="reveal">نمونه طراحی اختصاصی توسط PH Design — مینیمال، سریع و با انیمیشن‌های شیک. این نسخه آزمایشی است؛ برای شخصی‌سازی کامل سفارش دهید.</p>
-<div class="cta reveal"><a href="../contact.html" class="btn btn-p">سفارش شخصی‌سازی →</a><a href="../index.html" class="btn btn-g">صفحه اصلی</a></div>
-</div></section>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="d"></span><b>نوید</b><span>رنگین</span></a>
+    <div class="nav-links">
+      <a href="#work">نمونه‌کار</a>
+      <a href="#mockups">موکاپ‌ها</a>
+      <a href="#skills">مهارت‌ها</a>
+      <a href="#process">فرآیند</a>
+      <a href="#contact">تماس</a>
+    </div>
+  </div>
+</nav>
 
-<section class="section"><div class="container">
-<div class="section-head reveal"><div class="sk">ویژگی‌ها</div><h2 class="st">چه چیزی این نمونه را متمایز می‌کند</h2></div>
-<div class="svc-grid">
-<div class="svc reveal"><span class="n">01</span><span class="i">✦</span><h3>پروژه‌ها</h3><p>محصولات طراحی شده</p></div>
-<div class="svc reveal"><span class="n">02</span><span class="i">✦</span><h3>فرآیند</h3><p>از ایده تا تسک‌های نهایی</p></div>
-<div class="svc reveal"><span class="n">03</span><span class="i">✦</span><h3>مهارت</h3><p>سیستم‌های طراحی حرفه‌ای</p></div>
+<!-- HERO : asymmetric two-column -->
+<header class="hero container">
+  <div class="hero-copy">
+    <div class="kick reveal"><span class="d"></span> طراح رابط کاربری · تجربه‌های رنگین</div>
+    <h1 class="reveal">رابط‌هایی که<br><span class="g">حس می‌کنند</span>،<br><em>نه فقط دیده می‌شوند</em></h1>
+    <p class="lead reveal">من نوید هستم؛ طراح UI/UX که با مش‌بندی گرادیانت، تایپوگرافی بولد و حرکت‌های بازیگوش، برندها را به تجربه‌های دیجیتال به‌یادماندنی تبدیل می‌کنم.</p>
+    <div class="cta reveal">
+      <a href="#work" class="btn btn-p" data-label="بزن بریم">مشاهده نمونه‌کار →</a>
+      <a href="#contact" class="btn btn-g" data-label="سلام!">همکاری با من</a>
+    </div>
+  </div>
+
+  <aside class="hero-card reveal d1">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="mock">
+      <span class="tag">پروژه زنده</span>
+    </div>
+    <div class="row"><b></b><b></b></div>
+    <div class="row"><b></b><b></b><b></b></div>
+  </aside>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>طراحی UI</span><span>پروتوتایپ</span><span>سیستم طراحی</span><span>موشن</span><span>برندینگ</span><span>اپلیکیشن</span>
+    <span>طراحی UI</span><span>پروتوتایپ</span><span>سیستم طراحی</span><span>موشن</span><span>برندینگ</span><span>اپلیکیشن</span>
+  </div>
 </div>
-</div></section>
 
-<section class="section" style="background:var(--bg-soft)"><div class="container">
-<div class="feat reveal"><div><h2 class="st" style="margin-bottom:16px">نگاهی به طراحی</h2><p style="color:var(--text-soft);font-weight:300;line-height:1.9">این بخش نمایش‌دهنده چیدمان صفحات، تایپوگرافی و سلسله‌مراتب بصری است. در نسخه نهایی با محتوای واقعی شما پر می‌شود.</p></div><div class="visual">❀</div></div>
-</div></section>
+<!-- FEATURED PROJECT : asymmetric -->
+<section class="section container" id="work">
+  <div class="section-head reveal">
+    <div class="sk"><span class="d"></span> پروژه ویژه</div>
+    <h2 class="st">چیدمان نامتقارن، تعادل در بی‌نظمی</h2>
+  </div>
 
-<section class="cta-sec"><div class="container">
-<h2 class="reveal">این مدل برای برند تو؟</h2>
-<p class="reveal">سفارش بده تا دقیقاً با رنگ، محتوا و فونت برندت شخصی‌سازی شود.</p>
-<a href="../contact.html" class="btn btn-p reveal">سفارش اختصاصی 🚀</a>
-</div></section>
+  <div class="feat reveal">
+    <div class="feat-vis">
+      <div class="circle"></div>
+      <div class="glass">
+        <span class="pill">اپلیکیشن سلامت</span>
+        <div class="mini"><b></b><b></b><b></b></div>
+      </div>
+    </div>
+    <div class="feat-copy">
+      <h3>هارمونی — داشبورد سلامت</h3>
+      <div class="meta"><span>UI/UX</span><span>پروتوتایپ</span><span>موشن</span></div>
+      <p>داشبوردی آرام با گرادیانت ارغوانی که داده‌های پیچیده سلامت را به کارت‌های لمسی و انیمیشن‌های نرم تبدیل می‌کند. تمرکز روی خوانایی و حس آرامش کاربر.</p>
+      <a href="#mockups" class="lnk" data-label="ادامه">مشاهده جزئیات →</a>
+    </div>
+  </div>
 
-<footer>© ۱۴۰۴ طراح UI — طراحی شده توسط PH Design</footer>
+  <div class="feat rev reveal">
+    <div class="feat-vis">
+      <div class="circle"></div>
+      <div class="glass">
+        <span class="pill">فروشگاه مد</span>
+        <div class="mini"><b></b><b></b></div>
+      </div>
+    </div>
+    <div class="feat-copy">
+      <h3>پلت — تجربه خرید صورتی</h3>
+      <div class="meta"><span>طراحی رابط</span><span>سیستم طراحی</span><span>تعامل</span></div>
+      <p>یک سیستم طراحی کامل برای برند مد با پالت صورتی/ارغوانی، کاتالوگ چرخ‌فلکی و چک‌اوت بی‌دردسر. نرخ تبدیل ۴۲٪ رشد کرد.</p>
+      <a href="#mockups" class="lnk" data-label="ادامه">مشاهده جزئیات →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT MOCKUPS : asymmetric grid -->
+<section class="section container" id="mockups" style="background:var(--bg-soft);border-radius:28px">
+  <div class="section-head right reveal">
+    <div class="sk"><span class="d"></span> موکاپ‌های پروژه</div>
+    <h2 class="st">نگاهی به رابط‌های ساخته‌شده</h2>
+  </div>
+
+  <div class="mock-grid">
+    <article class="mk wide reveal" data-label="اپلیکیشن">
+      <div class="top m-a"><span class="ic">◐</span><span class="chip">موبایل · ۱۴۰۴</span></div>
+      <div class="bot"><h4>سیستم احوال‌پرسی روزانه</h4><p>رابط چت‌محور با حباب‌های گرادیانت.</p><div class="yr">UX / UI</div></div>
+    </article>
+    <article class="mk reveal d1" data-label="داشبورد">
+      <div class="top m-b"><span class="ic">▢</span><span class="chip">وب · ۱۴۰۳</span></div>
+      <div class="bot"><h4>تحلیل بازار</h4><p>نمودارهای تعاملی صورتی.</p><div class="yr">Dashboard</div></div>
+    </article>
+    <article class="mk reveal d2" data-label="فروشگاه">
+      <div class="top m-c"><span class="ic">❖</span><span class="chip">تجارت · ۱۴۰۳</span></div>
+      <div class="bot"><h4>ویترین مد</h4><p>چیدمان شبکه‌ای نامتقارن.</p><div class="yr">E-Commerce</div></div>
+    </article>
+    <article class="mk tall reveal" data-label="برندینگ">
+      <div class="top m-d"><span class="ic">✦</span><span class="chip">هویت · ۱۴۰۲</span></div>
+      <div class="bot"><h4>راهنمای بصری رنگین</h4><p>از لوگو تا کامپوننت‌های کامل با تایپوگرافی بولد و رنگ‌های ارغوانی.</p><div class="yr">Branding</div></div>
+    </article>
+    <article class="mk reveal d1" data-label="موشن">
+      <div class="top m-e"><span class="ic">◈</span><span class="chip">انیمیشن · ۱۴۰۴</span></div>
+      <div class="bot"><h4>ترنزیشن‌های نرم</h4><p>حرکت هدفمند بین صفحات.</p><div class="yr">Motion</div></div>
+    </article>
+    <article class="mk reveal d2" data-label="وب‌سایت">
+      <div class="top m-f"><span class="ic">◇</span><span class="chip">وب‌سایت · ۱۴۰۴</span></div>
+      <div class="bot"><h4>پورتفولیو عکاس</h4><p>گالری تمام‌صفحه مش‌دار.</p><div class="yr">Portfolio</div></div>
+    </article>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section container" id="skills">
+  <div class="section-head reveal">
+    <div class="sk"><span class="d"></span> مهارت‌ها</div>
+    <h2 class="st">ابزارهای من برای خلق زیبایی</h2>
+  </div>
+  <div class="skills">
+    <div class="skill reveal"><span class="si">🎨</span><h4>طراحی رابط (UI)</h4><p>چیدمان، تایپوگرافی و سلسله‌مراتب بصری در فیگما با دقت پیکسلی.</p><div class="meter"><i data-w="95%"></i></div><div class="pct">۹۵٪</div></div>
+    <div class="skill reveal d1"><span class="si">🧭</span><h4>تجربه کاربر (UX)</h4><p>تحقیق، فلو و تستِ کاربردپذیری برای محصولاتی که جواب می‌دهند.</p><div class="meter"><i data-w="90%"></i></div><div class="pct">۹۰٪</div></div>
+    <div class="skill reveal d2"><span class="si">📐</span><h4>سیستم طراحی</h4><p>توکن، کامپوننت و مستندسازی برای تیم‌های محصول مقیاس‌پذیر.</p><div class="meter"><i data-w="88%"></i></div><div class="pct">۸۸٪</div></div>
+    <div class="skill reveal d3"><span class="si">✨</span><h4>موشن و تعامل</h4><p>انیمیشن‌های هدفمند با پروتوپای و پریمیر برای روایت برند.</p><div class="meter"><i data-w="82%"></i></div><div class="pct">۸۲٪</div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section container">
+  <div class="stats reveal">
+    <div class="stat"><div class="n">۱۲۰<em>+</em></div><div class="l">پروژه طراحی</div></div>
+    <div class="stat"><div class="n">۸<em>سال</em></div><div class="l">تجربه حرفه‌ای</div></div>
+    <div class="stat"><div class="n">۴۷<em>+</em></div><div class="l">برند همکار</div></div>
+    <div class="stat"><div class="n">۹۶<em>%</em></div><div class="l">رضایت مشتری</div></div>
+  </div>
+</section>
+
+<!-- PROCESS : asymmetric -->
+<section class="section container" id="process" style="background:var(--bg-soft);border-radius:28px">
+  <div class="section-head right reveal">
+    <div class="sk"><span class="d"></span> فرآیند کار</div>
+    <h2 class="st">از ایده تا رابط دلربا</h2>
+  </div>
+  <div class="proc">
+    <div class="step reveal"><div class="no">01</div><h4>کشف و شنود</h4><p>درک برند، مخاطب و هدف — جلسه‌های کشف برای ترسیم چشم‌انداز مشترک.</p></div>
+    <div class="step reveal d1"><div class="no">02</div><h4>سیم‌کشی و فلو</h4><p>ساختار اطلاعات و جریان کاربر با وایرفریم‌های سریع و تست اولیه.</p></div>
+    <div class="step reveal d2"><div class="no">03</div><h4>گرافیک و حرکت</h4><p>رنگ، تایپ و انیمیشن — جایی که مش ارغوانی جان می‌گیرد.</p></div>
+    <div class="step reveal"><div class="no">04</div><h4>تحویل و دست‌کمک</h4><p>دست‌کمک توسعه‌دهنده، سیستم طراحی و پشتیبانی پس از لانچ.</p></div>
+    <div class="step reveal d1"><div class="no">05</div><h4>تست و بهینه‌سازی</h4><p>بازخورد واقعی کاربر و چرخه بهبود مستمر رابط.</p></div>
+    <div class="step reveal d2"><div class="no">06</div><h4>موشن نهایی</h4><p>صیقل انیمیشن‌ها و ترنزیشن‌ها برای حس لوکس نهایی.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section container">
+  <div class="quote reveal">
+    <div class="stars">★★★★★</div>
+    <p>«نوید رابطی ساخت که مشتری‌های ما را شوکه کرد. گرادیانت‌های ارغوانی‌اش برند ما را از دل شلوغی بیرون کشید — فروش آنلاین ۳ برابر شد.»</p>
+    <div class="who">— سارا احمدی، مدیر برند پلت</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec container" id="contact">
+  <h2 class="reveal">پروژه بعدی‌ات را <span class="g">رنگین</span> کنیم؟</h2>
+  <p class="reveal">مشاوره رایگان. ایده‌ت را بگو، من نقشه راه طراحی‌اش را می‌کشم.</p>
+  <a href="../contact.html" class="btn btn-p reveal" data-label="بزن!">شروع همکاری 🚀</a>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><span class="d"></span><b>نوید</b><span>رنگین</span></div>
+    <p>طراح رابط کاربری · مش‌بندی گرادیانت ارغوانی/صورتی · ساخته‌شده با ◐ در PH Design</p>
+    <p style="margin-top:10px">© ۱۴۰۴ نوید رنگین — <a href="../index.html">بازگشت به استودیو</a></p>
+  </div>
+</footer>
+
 <script>
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+/* ---------- theme toggle ---------- */
+const root = document.documentElement;
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  themeBtn.textContent = next === 'dark' ? '☀' : '☾';
+});
+
+/* ---------- playful cursor follow ---------- */
+const dot = document.getElementById('curDot');
+const ring = document.getElementById('curRing');
+const label = document.getElementById('curLabel');
+let mx = innerWidth/2, my = innerHeight/2;
+let rx = mx, ry = my;
+
+addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  label.style.transform = `translate(${mx}px,${my-34}px) translate(-50%,-50%)`;
+});
+
+function loop(){
+  rx += (mx - rx) * 0.16;
+  ry += (my - ry) * 0.16;
+  ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+  requestAnimationFrame(loop);
+}
+loop();
+
+/* hover state + label for interactive bits */
+const hoverEls = document.querySelectorAll('a,button,.mk,.skill,.feat-vis,[data-label]');
+hoverEls.forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    document.body.classList.add('cur-hover');
+    const t = el.getAttribute('data-label');
+    if (t){ label.textContent = t; document.body.classList.add('cur-label-show'); }
+  });
+  el.addEventListener('mouseleave', () => {
+    document.body.classList.remove('cur-hover','cur-label-show');
+  });
+});
+
+/* hide cursor follower when leaving window */
+addEventListener('mouseleave', () => { dot.style.opacity = ring.style.opacity = 0; });
+addEventListener('mouseenter', () => { dot.style.opacity = ring.style.opacity = 1; });
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('v'); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- animate skill meters on view ---------- */
+const skIo = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){
+    e.target.querySelectorAll('.meter i').forEach(i => { i.style.width = i.dataset.w; });
+    skIo.unobserve(e.target);
+  }
+}), { threshold: .3 });
+document.querySelectorAll('.skill').forEach(s => skIo.observe(s));
+
+/* ---------- nav shrink on scroll ---------- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => {
+  nav.style.padding = scrollY > 40 ? '12px 0' : '22px 0';
+});
+
+/* ---------- gentle parallax on mesh toward cursor ---------- */
+const mesh = document.querySelector('.mesh');
+addEventListener('mousemove', e => {
+  const dx = (e.clientX/innerWidth - .5) * 26;
+  const dy = (e.clientY/innerHeight - .5) * 26;
+  mesh.style.transform = `translate(${dx}px,${dy}px)`;
+});
 </script>
-</body></html>
+</body>
+</html>
