@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کافه کانفتیری | Cafè Confetti</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown: #6b3a2a;
+  --brown-light: #8b5e3c;
+  --brown-dark: #3e2013;
+  --cream: #f5efe6;
+  --gold: #c9a96e;
+  --bg: #1c1208;
+  --bg2: #231709;
+  --card: #2a1a0e;
+  --text: #f5efe6;
+  --text2: #a08b6e;
+  --border: rgba(201,169,110,0.15);
+}
+[data-theme="light"] {
+  --bg: #faf6ef;
+  --bg2: #f0e8d8;
+  --card: #ffffff;
+  --text: #2a1a0e;
+  --text2: #7a6650;
+  --border: rgba(60,35,20,0.12);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Parallax bg */
+.parallax-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.parallax-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(107,58,42,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(201,169,110,0.05) 0%, transparent 50%);
+}
+
+/* Nav */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(28,18,8,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="light"] .nav { background: rgba(250,246,239,0.95); }
+.nav.scrolled { padding: 0.7rem 3rem; }
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 900;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.nav-logo .bean { font-size: 1.6rem; }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+  font-weight: 500;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-right { display: flex; gap: 0.8rem; align-items: center; }
+.theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(201,169,110,0.1);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.mobile-btn { display: none; background: none; border: none; cursor: pointer; }
+.mobile-btn span { display: block; width: 22px; height: 2px; background: var(--text); margin: 4px 0; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-content { max-width: 700px; padding: 2rem; }
+.hero-emoji {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: steam 2s ease-in-out infinite;
+}
+@keyframes steam {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.hero h1 strong { font-weight: 900; color: var(--gold); }
+.hero-sub {
+  font-size: 0.85rem;
+  color: var(--text2);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-line {
+  width: 40px; height: 1px;
+  background: var(--gold);
+  margin: 0 auto 1.5rem;
+}
+.hero p {
+  color: var(--text2);
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+.hero-btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.4s;
+}
+.hero-btn:hover { background: var(--gold); color: var(--bg); }
+
+/* Menu */
+.menu {
+  padding: 6rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+.menu-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.menu-header h2 { font-size: 2.2rem; font-weight: 300; }
+.menu-header h2 strong { font-weight: 900; color: var(--gold); }
+.menu-header .line { width: 30px; height: 1px; background: var(--gold); margin: 1rem auto; }
+.menu-cats {
+  display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;
+}
+.menu-cat {
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.menu-cat.active, .menu-cat:hover {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.menu-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  transition: all 0.3s;
+}
+.menu-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+.menu-card-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+.menu-card-info { flex: 1; }
+.menu-card-name { font-weight: 700; margin-bottom: 0.3rem; }
+.menu-card-desc { font-size: 0.8rem; color: var(--text2); }
+.menu-card-price {
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* Atmosphere */
+.atmosphere {
+  padding: 6rem 3rem;
+  background: var(--bg2);
+  position: relative;
+  z-index: 1;
+}
+.atmo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.atmo-card {
+  aspect-ratio: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.atmo-card:hover { transform: scale(1.03); border-color: var(--gold); }
+.atmo-card span:first-child { font-size: 3rem; }
+.atmo-card span:last-child { font-weight: 700; }
+
+/* About */
+.about-section {
+  padding: 6rem 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.about-section h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+.about-section h2 strong { font-weight: 900; color: var(--gold); }
+.about-section p {
+  color: var(--text2);
+  line-height: 2.2;
+  margin-bottom: 1rem;
+}
+
+/* Hours */
+.hours {
+  padding: 4rem 3rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.hours h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+.hours-list {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.hours-item {
+  display: flex; justify-content: space-between; gap: 3rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.hours-item span:last-child { color: var(--gold); font-weight: 700; }
+
+/* Footer */
+.footer {
+  padding: 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+.footer a { color: var(--gold); text-decoration: none; }
+
+.fade-in {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .nav { padding: 0.8rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-links.active {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg); padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-btn { display: block; }
+  .hero h1 { font-size: 2.2rem; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .atmo-grid { grid-template-columns: 1fr 1fr; }
+  .menu, .atmosphere, .about-section { padding: 4rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="parallax-bg"></div>
+
+<nav class="nav" id="navbar">
+  <div class="nav-logo"><span class="bean">☕</span> کانفتیری</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">خانه</a></li>
+    <li><a href="#menu">منو</a></li>
+    <li><a href="#about">درباره ما</a></li>
+    <li><a href="../index.html">PH Design</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="mobile-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-emoji">☕</div>
+    <div class="hero-sub">Cafè Confetti</div>
+    <h1>قهوه‌ای <strong>اصیل</strong> برای لحظه‌های خاص</h1>
+    <div class="hero-line"></div>
+    <p>از دانه تا فنجان، هر لحظه‌تان را با بهترین قهوه‌های تک‌خاستگاه جهان پر از عطر و طعم کنید. محیطی دنج و دلنشین برای آرامش شما.</p>
+    <a href="#menu" class="hero-btn">مشاهده منو</a>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="menu-header fade-in">
+    <h2>منوی <strong>کافه</strong></h2>
+    <div class="line"></div>
+  </div>
+  <div class="menu-cats fade-in">
+    <button class="menu-cat active">همه</button>
+    <button class="menu-cat">قهوه</button>
+    <button class="menu-cat">نسکافه</button>
+    <button class="menu-cat">شیرینی</button>
+    <button class="menu-cat">نوشیدنی سرد</button>
+  </div>
+  <div class="menu-grid fade-in">
+    <div class="menu-card">
+      <div class="menu-card-icon">☕</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">اسپرسو سینگل</div>
+        <div class="menu-card-desc">قهوه تک‌خاستگاه اتیوپی</div>
+      </div>
+      <div class="menu-card-price">۸۵,۰۰۰</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-icon">☕</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">کاپوچینو کلاسیک</div>
+        <div class="menu-card-desc">با فوم شیر تازه</div>
+      </div>
+      <div class="menu-card-price">۱۲۰,۰۰۰</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-icon">🍵</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">لاته وانیلی</div>
+        <div class="menu-card-desc">وانیل طبیعی ماداگاسکار</div>
+      </div>
+      <div class="menu-card-price">۱۳۵,۰۰۰</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-icon">🧊</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">آیس لاته</div>
+        <div class="menu-card-desc">قهوه سرد با شیر بادام</div>
+      </div>
+      <div class="menu-card-price">۱۵۰,۰۰۰</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-icon">🍰</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">تیرامیسو</div>
+        <div class="menu-card-desc">دست‌ساز با ماسکارپونه ایتالیایی</div>
+      </div>
+      <div class="menu-card-price">۱۸۰,۰۰۰</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-icon">🥐</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">کروسان کره‌ای</div>
+        <div class="menu-card-desc">تازه پخت صبحگاهی</div>
+      </div>
+      <div class="menu-card-price">۷۵,۰۰۰</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-icon">🍫</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">موکا شکلاتی</div>
+        <div class="menu-card-desc">شکلات بلژیکی ۷۰٪</div>
+      </div>
+      <div class="menu-card-price">۱۶۰,۰۰۰</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-icon">🫖</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">چای ماسالا</div>
+        <div class="menu-card-desc">ادویه‌ای هندی با شیر نارگیل</div>
+      </div>
+      <div class="menu-card-price">۱۱۰,۰۰۰</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-icon">🧁</div>
+      <div class="menu-card-info">
+        <div class="menu-card-name">مافین بلوبری</div>
+        <div class="menu-card-desc">تازه پخت با بلوبری تازه</div>
+      </div>
+      <div class="menu-card-price">۹۰,۰۰۰</div>
+    </div>
+  </div>
+</section>
+
+<section class="atmosphere fade-in">
+  <div class="menu-header">
+    <h2>فضای <strong>کافه</strong></h2>
+    <div class="line"></div>
+  </div>
+  <div class="atmo-grid">
+    <div class="atmo-card"><span>🎵</span><span>موسیقی زنده</span></div>
+    <div class="atmo-card"><span>📚</span><span>کتابخانه</span></div>
+    <div class="atmo-card"><span>🌿</span><span>باغچه سبز</span></div>
+    <div class="atmo-card"><span>📶</span><span>وای‌فای رایگان</span></div>
+    <div class="atmo-card"><span>🐕</span><span>پت فرندلی</span></div>
+    <div class="atmo-card"><span>🅿️</span><span>پارکینگ</span></div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <h2 class="fade-in">درباره <strong>کانفتیری</strong></h2>
+  <p class="fade-in">کافه کانفتیری از سال ۱۳۹۶ با عشق به قهوه و خلق لحظات خاطره‌انگیز تأسیس شد. ما باور داریم هر فنجان قهوه داستانی دارد و هر لحظه در کافه ما باید خاص باشد.</p>
+  <p class="fade-in">ما از بهترین دانه‌های قهوه جهان استفاده می‌کنیم و باریستاهای مجرب ما با مهارت و عشق، بهترین نوشیدنی‌ها را برای شما آماده می‌کنند.</p>
+</section>
+
+<section class="hours fade-in">
+  <h3>ساعات کاری</h3>
+  <div class="hours-list">
+    <div class="hours-item"><span>شنبه تا چهارشنبه</span><span>۷ صبح - ۱۱ شب</span></div>
+    <div class="hours-item"><span>پنجشنبه</span><span>۷ صبح - ۱۲ شب</span></div>
+    <div class="hours-item"><span>جمعه</span><span>۸ صبح - ۱۲ شب</span></div>
+  </div>
+</section>
+
+<footer class="footer">
+  © ۱۴۰۵ کافه کانفتیری | <a href="../index.html">بازگشت به PH Design</a>
+</footer>
+
+<script>
+function toggleTheme() {
+  const h = document.documentElement;
+  h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('active');
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  // Simple parallax
+  const scroll = window.scrollY;
+  document.querySelector('.parallax-bg').style.transform = `translateY(${scroll * 0.3}px)`;
+});
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+});
+document.querySelectorAll('.menu-cat').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.menu-cat').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

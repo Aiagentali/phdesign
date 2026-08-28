@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه کفش اسپرت | Sneaker Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #dc2626;
+  --red-light: #ef4444;
+  --red-dark: #991b1b;
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gray: #333;
+  --bg: #0a0a0a;
+  --bg2: #111;
+  --card: #1a1a1a;
+  --text: #ffffff;
+  --text2: #999;
+  --border: #2a2a2a;
+}
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg2: #f5f5f5;
+  --card: #fafafa;
+  --text: #0a0a0a;
+  --text2: #666;
+  --border: #e0e0e0;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Nav */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="light"] .nav { background: rgba(255,255,255,0.95); }
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: -1px;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--red); }
+.nav-right { display: flex; gap: 1rem; align-items: center; }
+.cart-btn {
+  position: relative;
+  background: var(--red);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.cart-btn:hover { background: var(--red-light); }
+.cart-count {
+  position: absolute;
+  top: -6px; left: -6px;
+  width: 18px; height: 18px;
+  background: white;
+  color: var(--red);
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.mobile-btn { display: none; background: none; border: none; cursor: pointer; }
+.mobile-btn span { display: block; width: 22px; height: 2px; background: var(--text); margin: 4px 0; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg) 0%, #1a0000 50%, var(--bg) 100%);
+}
+.hero::after {
+  content: '👟';
+  position: absolute;
+  left: 10%; top: 50%;
+  transform: translateY(-50%);
+  font-size: 15rem;
+  opacity: 0.05;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(-50%) rotate(-5deg); }
+  50% { transform: translateY(-55%) rotate(5deg); }
+}
+.hero-content { max-width: 600px; position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--red);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+  padding-right: 1.5rem;
+  animation: slideIn 0.6s ease;
+}
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  animation: slideIn 0.6s ease 0.1s both;
+}
+.hero h1 span { color: var(--red); }
+.hero p {
+  color: var(--text2);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 2;
+  animation: slideIn 0.6s ease 0.2s both;
+}
+.hero-buttons {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: slideIn 0.6s ease 0.3s both;
+}
+.btn {
+  padding: 1rem 2.5rem;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-red {
+  background: var(--red);
+  color: white;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+  padding-right: 2.5rem;
+}
+.btn-red:hover { background: var(--red-light); }
+.btn-dark {
+  background: var(--text);
+  color: var(--bg);
+}
+.btn-dark:hover { background: var(--text2); }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Filter Tags */
+.products-section {
+  padding: 6rem 3rem;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.section-title h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+.section-title h2 span { color: var(--red); }
+.filter-tags {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+}
+.filter-tag {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.filter-tag.active, .filter-tag:hover {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s;
+  cursor: pointer;
+  perspective: 800px;
+}
+.product-card:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  box-shadow: 0 20px 40px rgba(220,38,38,0.15);
+}
+.product-img {
+  height: 250px;
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.product-card:hover .product-img {
+  background: #1a0000;
+}
+.product-badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--red);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.product-info {
+  padding: 1.5rem;
+}
+.product-brand {
+  font-size: 0.75rem;
+  color: var(--red);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+}
+.product-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.product-price-row {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.product-price {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+.product-price-old {
+  font-size: 0.85rem;
+  color: var(--text2);
+  text-decoration: line-through;
+}
+.product-add {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--red);
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex; align-items: center; justify-content: center;
+}
+.product-add:hover { background: var(--red-light); transform: scale(1.1); }
+
+/* Featured Banner */
+.featured-banner {
+  margin: 4rem 3rem;
+  padding: 4rem;
+  background: linear-gradient(135deg, var(--red-dark), var(--red));
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+.featured-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -10%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.featured-content h2 { font-size: 2rem; font-weight: 900; margin-bottom: 1rem; }
+.featured-content p { opacity: 0.8; margin-bottom: 1.5rem; line-height: 2; }
+.featured-content .btn { background: white; color: var(--red); }
+.featured-emoji { font-size: 8rem; transform: rotate(-15deg); }
+
+/* Brands */
+.brands {
+  padding: 4rem 3rem;
+  text-align: center;
+}
+.brands h3 {
+  font-size: 1rem;
+  color: var(--text2);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+.brands-logos {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.brand-item {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text2);
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+.brand-item:hover { opacity: 1; }
+
+/* Footer */
+.footer {
+  padding: 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 0.85rem;
+}
+.footer a { color: var(--red); text-decoration: none; }
+
+.fade-in {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .nav { padding: 0.8rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-links.active {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg); padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-btn { display: block; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero::after { font-size: 8rem; }
+  .product-grid { grid-template-columns: 1fr 1fr; }
+  .featured-banner { margin: 2rem 1rem; padding: 2rem; }
+  .featured-emoji { font-size: 5rem; }
+  .products-section, .brands { padding: 4rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="navbar">
+  <div class="nav-logo">KICKS.</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">خانه</a></li>
+    <li><a href="#products">محصولات</a></li>
+    <li><a href="../index.html">PH Design</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn">🛒 سبد خرید <span class="cart-count">۲</span></button>
+    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="mobile-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag">جدیدترین کلکشن ۲۰۲۶</div>
+    <h1>کفش <span>اسپرت</span> رو با ما تجربه کن</h1>
+    <p>مجموعه‌ای بی‌نظیر از جدیدترین کفش‌های اسپرت با بهترین کیفیت و طراحی خاص. برای هر سلیقه‌ای یک انتخاب عالی داریم.</p>
+    <div class="hero-buttons">
+      <a href="#products" class="btn btn-red">مشاهده محصولات</a>
+      <a href="#" class="btn btn-dark">کلکشن مردانه</a>
+    </div>
+  </div>
+</section>
+
+<section class="products-section" id="products">
+  <div class="section-title fade-in">
+    <h2>جدیدترین <span>محصولات</span></h2>
+    <div class="filter-tags">
+      <button class="filter-tag active">همه</button>
+      <button class="filter-tag">مردانه</button>
+      <button class="filter-tag">زنانه</button>
+      <button class="filter-tag">دویدن</button>
+      <button class="filter-tag">بسکتبال</button>
+      <button class="filter-tag">فشن</button>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="product-card fade-in">
+      <div class="product-img">
+        <div class="product-badge">جدید</div>
+        👟
+      </div>
+      <div class="product-info">
+        <div class="product-brand">نایک</div>
+        <div class="product-name">ایر مکس ۲۰۲۶</div>
+        <div class="product-price-row">
+          <div class="product-price">۸,۵۰۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">👟</div>
+      <div class="product-info">
+        <div class="product-brand">آدیداس</div>
+        <div class="product-name">اولترا بوست ۲۳</div>
+        <div class="product-price-row">
+          <div class="product-price">۷,۲۰۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">
+        <div class="product-badge">۳۰٪ تخفیف</div>
+        👟
+      </div>
+      <div class="product-info">
+        <div class="product-brand">پوما</div>
+        <div class="product-name">آیرون سیتی</div>
+        <div class="product-price-row">
+          <div><span class="product-price">۴,۲۰۰,۰۰۰ ت</span> <span class="product-price-old">۶,۰۰۰,۰۰۰ ت</span></div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">👞</div>
+      <div class="product-info">
+        <div class="product-brand">نایک</div>
+        <div class="product-name">جوردن ۱ رترو</div>
+        <div class="product-price-row">
+          <div class="product-price">۱۲,۰۰۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">
+        <div class="product-badge">پرفروش</div>
+        👟
+      </div>
+      <div class="product-info">
+        <div class="product-brand">نیوبالانس</div>
+        <div class="product-name">۵۷۴ کلاسیک</div>
+        <div class="product-price-row">
+          <div class="product-price">۵,۸۰۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">👟</div>
+      <div class="product-info">
+        <div class="product-brand">آدیداس</div>
+        <div class="product-name">سوپر استار</div>
+        <div class="product-price-row">
+          <div class="product-price">۶,۵۰۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="featured-banner fade-in">
+  <div class="featured-content">
+    <h2>فروش ویژه تابستانه 🔥</h2>
+    <p>تا ۵۰٪ تخفیف روی مدل‌های منتخب تابستانی. فرصت محدود!</p>
+    <a href="#" class="btn">مشاهده تخفیف‌ها</a>
+  </div>
+  <div class="featured-emoji">👟</div>
+</div>
+
+<section class="brands fade-in">
+  <h3>برندهای ما</h3>
+  <div class="brands-logos">
+    <div class="brand-item">NIKE</div>
+    <div class="brand-item">ADIDAS</div>
+    <div class="brand-item">PUMA</div>
+    <div class="brand-item">NEW BALANCE</div>
+    <div class="brand-item">CONVERSE</div>
+    <div class="brand-item">JORDAN</div>
+  </div>
+</section>
+
+<footer class="footer">
+  © ۱۴۰۵ فروشگاه KICKS | <a href="../index.html">بازگشت به PH Design</a>
+</footer>
+
+<script>
+function toggleTheme() {
+  const h = document.documentElement;
+  h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('active');
+}
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+});
+document.querySelectorAll('.filter-tag').forEach(tag => {
+  tag.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+    tag.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پورتفولیو طراح UI | UI Designer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #ec4899;
+  --purple: #8b5cf6;
+  --indigo: #6366f1;
+  --bg: #0c0118;
+  --bg2: #120124;
+  --card: #1a0a30;
+  --card2: #220e40;
+  --text: #ffffff;
+  --text2: #a090c0;
+  --border: rgba(139,92,246,0.15);
+  --gradient: linear-gradient(135deg, #8b5cf6, #ec4899);
+}
+[data-theme="light"] {
+  --bg: #faf5ff;
+  --bg2: #f0e8ff;
+  --card: #ffffff;
+  --card2: #f5f0ff;
+  --text: #1a0a30;
+  --text2: #6b5a8a;
+  --border: rgba(139,92,246,0.12);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Gradient bg blobs */
+.blob-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+.blob-bg::before {
+  content: '';
+  position: absolute;
+  top: 10%; left: -10%;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
+  animation: blobFloat 8s ease-in-out infinite;
+}
+.blob-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 10%; right: -5%;
+  width: 350px; height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(236,72,153,0.08) 0%, transparent 70%);
+  animation: blobFloat 10s ease-in-out infinite reverse;
+}
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.1); }
+}
+
+/* Nav */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(12,1,24,0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="light"] .nav { background: rgba(250,245,255,0.9); }
+.nav.scrolled { padding: 0.7rem 3rem; }
+.nav-logo {
+  font-size: 1.3rem;
+  font-weight: 900;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; gap: 0.8rem; align-items: center; }
+.theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.mobile-btn { display: none; background: none; border: none; cursor: pointer; }
+.mobile-btn span { display: block; width: 22px; height: 2px; background: var(--text); margin: 4px 0; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-content { max-width: 600px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(139,92,246,0.1);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  color: var(--purple);
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+.hero h1 .gradient {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  color: var(--text2);
+  font-size: 1.05rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  padding: 0.9rem 2rem;
+  border-radius: 14px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-gradient {
+  background: var(--gradient);
+  color: white;
+  box-shadow: 0 4px 20px rgba(139,92,246,0.3);
+}
+.btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139,92,246,0.4); }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover { border-color: var(--purple); }
+.hero-avatar {
+  position: absolute;
+  left: 5%; top: 50%;
+  transform: translateY(-50%);
+  width: 350px; height: 350px;
+  border-radius: 30px;
+  background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8rem;
+  opacity: 0.15;
+  animation: avatarFloat 5s ease-in-out infinite;
+}
+@keyframes avatarFloat {
+  0%, 100% { transform: translateY(-50%) rotate(0deg); }
+  50% { transform: translateY(-55%) rotate(3deg); }
+}
+
+/* Projects */
+.projects-section {
+  padding: 6rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-header h2 { font-size: 2rem; font-weight: 900; }
+.section-header h2 span {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-line {
+  width: 50px; height: 3px;
+  background: var(--gradient);
+  border-radius: 2px;
+  margin: 1rem auto;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(139,92,246,0.1);
+}
+.project-mockup {
+  height: 200px;
+  background: var(--card2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.project-mockup::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.project-card:hover .project-mockup::before { opacity: 0.1; }
+.project-info {
+  padding: 1.5rem;
+}
+.project-type {
+  font-size: 0.75rem;
+  color: var(--pink);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+.project-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.project-desc { color: var(--text2); font-size: 0.85rem; line-height: 1.8; }
+.project-tags {
+  display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;
+}
+.project-tag {
+  padding: 0.2rem 0.6rem;
+  background: rgba(139,92,246,0.1);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: var(--purple);
+}
+
+/* Skills */
+.skills {
+  padding: 6rem 3rem;
+  background: var(--bg2);
+  position: relative;
+  z-index: 1;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.skill-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+.skill-card:hover { transform: translateY(-4px); border-color: var(--purple); }
+.skill-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+.skill-name { font-weight: 700; margin-bottom: 0.5rem; }
+.skill-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+}
+.skill-fill {
+  height: 100%;
+  background: var(--gradient);
+  border-radius: 2px;
+}
+.skill-percent { font-size: 0.75rem; color: var(--text2); }
+
+/* Contact */
+.contact-section {
+  padding: 6rem 3rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.contact-section h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+.contact-links {
+  display: flex; justify-content: center; gap: 1rem;
+  margin-top: 2rem; flex-wrap: wrap;
+}
+.contact-link {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+.contact-link:hover { border-color: var(--purple); color: var(--purple); }
+
+/* Footer */
+.footer {
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+.footer a { color: var(--pink); text-decoration: none; }
+
+.fade-in {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .nav { padding: 0.8rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-links.active {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg); padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-btn { display: block; }
+  .hero h1 { font-size: 2rem; }
+  .hero-avatar { display: none; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .projects-section, .skills, .contact-section { padding: 4rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="blob-bg"></div>
+
+<nav class="nav" id="navbar">
+  <div class="nav-logo">Sanaz.UI</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">خانه</a></li>
+    <li><a href="#projects">پروژه‌ها</a></li>
+    <li><a href="#skills">مهارت‌ها</a></li>
+    <li><a href="#contact">تماس</a></li>
+    <li><a href="../index.html">PH Design</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="mobile-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">✨ طراح رابط کاربری</div>
+    <h1>طراحی <span class="gradient">تجربه کاربری</span> که تأثیرگذار باشد</h1>
+    <p>من ساناز هستم، طراح UI/UX با بیش از ۷ سال تجربه در طراحی اپلیکیشن‌ها و وبسایت‌های مدرن. باور دارم طراحی خوب، ساده و کاربردی است.</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn btn-gradient">مشاهده نمونه‌کار</a>
+      <a href="#contact" class="btn btn-ghost">ارتباط با من</a>
+    </div>
+  </div>
+  <div class="hero-avatar">🎨</div>
+</section>
+
+<section class="projects-section" id="projects">
+  <div class="section-header fade-in">
+    <h2>پروژه‌های <span>.selected</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div class="project-mockup">📱</div>
+      <div class="project-info">
+        <div class="project-type">اپلیکیشن موبایل</div>
+        <div class="project-name">اپلیکیشن بانکداری دیجیتال</div>
+        <div class="project-desc">طراحی کامل UI/UX اپلیکیشن بانکی با تمرکز بر سادگی و امنیت</div>
+        <div class="project-tags">
+          <span class="project-tag">Figma</span>
+          <span class="project-tag">iOS</span>
+          <span class="project-tag">Material</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-mockup">🖥️</div>
+      <div class="project-info">
+        <div class="project-type">وبسایت</div>
+        <div class="project-name">پلتفرم فریلنسری</div>
+        <div class="project-desc">طراحی داشبورد و صفحات وبسایت اتصال فریلنسر به کارفرما</div>
+        <div class="project-tags">
+          <span class="project-tag">Web</span>
+          <span class="project-tag">Dashboard</span>
+          <span class="project-tag">Responsive</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-mockup">⌚</div>
+      <div class="project-info">
+        <div class="project-type">اپلیکیشن سلامت</div>
+        <div class="project-name">متابعة سلامت و تناسب اندام</div>
+        <div class="project-desc">طراحی اپلیکیشن سلامت با ردیابی ورزش، تغذیه و خواب</div>
+        <div class="project-tags">
+          <span class="project-tag">Health</span>
+          <span class="project-tag">Wearable</span>
+          <span class="project-tag">Charts</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-mockup">🛒</div>
+      <div class="project-info">
+        <div class="project-type">فروشگاه آنلاین</div>
+        <div class="project-name">پلتفرم فروش مد</div>
+        <div class="project-desc">طراحی تجربه خرید آنلاین پوشاک با فیلتر هوشمند و پیشنهاد شخصی</div>
+        <div class="project-tags">
+          <span class="project-tag">E-commerce</span>
+          <span class="project-tag">AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="section-header fade-in">
+    <h2>مهارت‌های <span>من</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Figma</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      <div class="skill-percent">۹۵٪</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🖌️</div>
+      <div class="skill-name">Adobe XD</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      <div class="skill-percent">۸۸٪</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">💻</div>
+      <div class="skill-name">HTML/CSS</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      <div class="skill-percent">۸۵٪</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">📱</div>
+      <div class="skill-name">طراحی موبایل</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+      <div class="skill-percent">۹۲٪</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🧪</div>
+      <div class="skill-name">تست کاربری</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      <div class="skill-percent">۸۰٪</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">✨</div>
+      <div class="skill-name">موشن دیزاین</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      <div class="skill-percent">۷۵٪</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <h2 class="fade-in">بیایید <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">همکاری</span> کنیم</h2>
+  <p class="fade-in" style="color:var(--text2);">آماده طراحی پروژه بعدی شما هستم</p>
+  <div class="contact-links fade-in">
+    <a class="contact-link" href="#">💼 لینکدین</a>
+    <a class="contact-link" href="#">📸 اینستاگرام</a>
+    <a class="contact-link" href="#">✉️ ایمیل</a>
+    <a class="contact-link" href="#">📂 بیهنس</a>
+  </div>
+</section>
+
+<footer class="footer">
+  © ۱۴۰۵ ساناز طراح UI | <a href="../index.html">بازگشت به PH Design</a>
+</footer>
+
+<script>
+function toggleTheme() {
+  const h = document.documentElement;
+  h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('active');
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+});
+</script>
+</body>
+</html>

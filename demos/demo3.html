@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رستوران لاکچری | PH Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1a1208;--bg2:#221a0e;--text:#f5e6c8;--text2:#b09060;--accent:#c9943e;--card:rgba(255,255,255,0.04);--border:rgba(201,148,62,0.15)}
+[data-theme="light"]{--bg:#fdf8f0;--bg2:#f5ede0;--text:#2a1a08;--text2:#8a7050;--accent:#a07820;--card:#fff;--border:rgba(0,0,0,0.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;transition:all .4s}
+a{text-decoration:none;color:inherit}
+.back{position:fixed;top:16px;left:16px;z-index:100;padding:8px 16px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;font-size:.8rem;color:var(--accent);backdrop-filter:blur(10px)}
+.theme-btn{position:fixed;top:16px;right:16px;z-index:100;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:18px 0;background:rgba(26,18,8,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{font-size:1.5rem;font-weight:900;color:var(--accent);letter-spacing:2px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:.85rem;color:var(--text2);transition:color .3s}
+.nav-links a:hover{color:var(--accent)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#1a1208 0%,#2a1e10 50%,#1a1208 100%);position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(201,148,62,0.08),transparent 70%)}
+.hero-badge{display:inline-block;padding:8px 24px;border:1px solid var(--accent);border-radius:50px;font-size:.8rem;color:var(--accent);letter-spacing:2px;margin-bottom:20px}
+.hero-title{font-size:clamp(2rem,5vw,4rem);font-weight:900;line-height:1.3;margin-bottom:16px}
+.hero-title em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--text2);max-width:500px;margin:0 auto 36px;line-height:1.9}
+.hero-btns{display:flex;gap:16px;justify-content:center}
+.btn{padding:14px 32px;border-radius:12px;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .3s}
+.btn-gold{background:var(--accent);color:#1a1208}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,148,62,0.3)}
+.btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.btn-outline:hover{background:var(--accent);color:#1a1208}
+.section{padding:100px 0}
+.section-header{text-align:center;margin-bottom:60px}
+.section-label{font-size:.75rem;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;font-weight:600}
+.section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:12px}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.menu-item{display:flex;align-items:flex-start;gap:16px;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:16px;transition:all .3s}
+.menu-item:hover{transform:translateX(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.menu-icon{width:50px;height:50px;background:rgba(201,148,62,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.menu-info h3{font-size:.95rem;font-weight:600;margin-bottom:4px}
+.menu-info p{font-size:.8rem;color:var(--text2);line-height:1.7}
+.menu-price{font-size:1.1rem;font-weight:800;color:var(--accent);white-space:nowrap;margin-right:auto}
+.reservation{background:var(--bg2);padding:80px 0}
+.reservation-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.res-form{display:flex;flex-direction:column;gap:16px}
+.res-form input,.res-form select{padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;font-family:inherit;font-size:.9rem;color:var(--text);direction:rtl}
+.res-form input:focus,.res-form select:focus{outline:none;border-color:var(--accent)}
+.res-info h3{font-size:1.3rem;font-weight:700;margin-bottom:12px}
+.res-info p{color:var(--text2);line-height:1.9;margin-bottom:16px}
+.res-detail{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.res-detail span:first-child{font-size:1.2rem}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text2);font-size:.8rem}
+.reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.16,1,.3,1)}.reveal.v{opacity:1;transform:translateY(0)}
+@media(max-width:768px){.reservation-grid{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← بازگشت به PH Design</a>
+<button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">🌙</button>
+<nav><div class="nav-inner"><div class="logo">لاکچری</div><div class="nav-links"><a href="#menu">منو</a><a href="#reserve">رزرو</a><a href="#about">درباره</a></div></div></nav>
+
+<section class="hero">
+<div style="position:relative;z-index:1"><div class="hero-badge">✦ رستوران شماره ۱ تهران</div>
+<h1 class="hero-title">تجربه <em>لاکچری</em> غذا خوردن</h1>
+<p class="hero-sub">بهترین سرآشپزها، مرغوب‌ترین مواد اولیه و فضایی بی‌نظیر برای شبی خاطره‌انگیز</p>
+<div class="hero-btns"><a href="#menu" class="btn btn-gold">مشاهده منو</a><a href="#reserve" class="btn btn-outline">رزرو میز</a></div></div>
+</section>
+
+<section class="section" id="menu"><div class="container">
+<div class="section-header"><div class="section-label">منوی ما</div><h2 class="section-title">غذاهای سرآشپز</h2></div>
+<div class="menu-grid">
+<div class="menu-item reveal"><div class="menu-icon">🥩</div><div class="menu-info"><h3>استیک ریبای</h3><p>استیک گوسفندی با سس قارچ و سیب‌زمینی کبابی</p></div><div class="menu-price">۴۵۰,۰۰۰</div></div>
+<div class="menu-item reveal"><div class="menu-icon">🍝</div><div class="menu-info"><h3>پاستا سس قارچ</h3><p>پاستای تازه با سس خامه‌ای قارچ و ریحان تازه</p></div><div class="menu-price">۲۸۰,۰۰۰</div></div>
+<div class="menu-item reveal"><div class="menu-icon">🥗</div><div class="menu-info"><h3>سالاد سزار</h3><p>سالاد تازه با سس سزار خانگی و نان تست</p></div><div class="menu-price">۱۸۰,۰۰۰</div></div>
+<div class="menu-item reveal"><div class="menu-icon">🍕</div><div class="menu-info"><h3>پیتزا مارگاریتا</h3><p>پیتزای ایتالیایی با پنیر موزارلا و ریحان</p></div><div class="menu-price">۲۲۰,۰۰۰</div></div>
+<div class="menu-item reveal"><div class="menu-icon">🍰</div><div class="menu-info"><h3>دسر شکلاتی</h3><p>کیک شکلاتی داغ با بستنی وانیلی</p></div><div class="menu-price">۱۵۰,۰۰۰</div></div>
+<div class="menu-item reveal"><div class="menu-icon">🍷</div><div class="menu-info"><h3>نوشیدنی ویژه</h3><p>کوکتل مخصوص سرآشپز با میوه‌های تازه فصل</p></div><div class="menu-price">۱۲۰,۰۰۰</div></div>
+</div></div></section>
+
+<section class="reservation" id="reserve"><div class="container">
+<div class="reservation-grid">
+<div class="res-info reveal"><h3>میز خودتون رو رزرو کنید</h3><p>برای تجربه‌ای خاص و خاطره‌انگیز، میز خودتون رو از الان رزرو کنید. تیم ما آماده پذیرایی از شماست.</p>
+<div class="res-detail"><span>📍</span><span>تهران، خیابان ولیعصر، شماره ۱۲۰</span></div>
+<div class="res-detail"><span>📞</span><span>۰۲۱-۸۸۸۸-۱۲۳۴</span></div>
+<div class="res-detail"><span>⏰</span><span>هر روز ۱۲ ظهر تا ۱۲ شب</span></div></div>
+<div class="reveal"><form class="res-form"><input type="text" placeholder="نام و نام خانوادگی"><input type="tel" placeholder="شماره تماس"><input type="date"><select><option>تعداد نفرات</option><option>۲ نفر</option><option>۳ نفر</option><option>۴ نفر</option><option>۵+ نفر</option></select><button type="button" class="btn btn-gold" style="width:100%">رزرو میز ✓</button></form></div>
+</div></div></section>
+
+<footer><div class="container">© ۱۴۰۴ رستوران لاکچری — طراحی شده توسط <a href="../index.html" style="color:var(--accent)">PH Design</a></div></footer>
+<script>
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body></html>

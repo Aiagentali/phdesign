@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شرکت فناوری آلفا | Alpha Tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== Theme Variables ===== */
+:root {
+  --primary: #7c3aed;
+  --primary-light: #a78bfa;
+  --primary-dark: #5b21b6;
+  --accent: #06b6d4;
+  --accent2: #f59e0b;
+  --bg: #0a0a1a;
+  --bg2: #12122a;
+  --bg3: #1a1a3a;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-hover: rgba(255, 255, 255, 0.08);
+  --text: #ffffff;
+  --text2: #a0a0c0;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="light"] {
+  --bg: #f8f8ff;
+  --bg2: #eeeef8;
+  --bg3: #e4e4f0;
+  --card: rgba(255, 255, 255, 0.8);
+  --card-hover: rgba(255, 255, 255, 1);
+  --text: #1a1a2e;
+  --text2: #666688;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 8px 32px rgba(124, 58, 237, 0.08);
+}
+
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.8;
+  transition: background 0.5s, color 0.5s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== Floating Particles ===== */
+.particles-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: floatParticle linear infinite;
+}
+
+.particle:nth-child(1) {
+  left: 5%;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-light);
+  animation-duration: 18s;
+  animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+  left: 15%;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  animation-duration: 22s;
+  animation-delay: 2s;
+}
+
+.particle:nth-child(3) {
+  left: 30%;
+  width: 8px;
+  height: 8px;
+  background: var(--primary-light);
+  animation-duration: 15s;
+  animation-delay: 4s;
+  opacity: 0.1;
+}
+
+.particle:nth-child(4) {
+  left: 45%;
+  width: 5px;
+  height: 5px;
+  background: var(--accent2);
+  animation-duration: 20s;
+  animation-delay: 1s;
+}
+
+.particle:nth-child(5) {
+  left: 60%;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  animation-duration: 17s;
+  animation-delay: 3s;
+}
+
+.particle:nth-child(6) {
+  left: 75%;
+  width: 4px;
+  height: 4px;
+  background: var(--primary-light);
+  animation-duration: 25s;
+  animation-delay: 5s;
+}
+
+.particle:nth-child(7) {
+  left: 85%;
+  width: 9px;
+  height: 9px;
+  background: var(--accent2);
+  animation-duration: 14s;
+  animation-delay: 0.5s;
+  opacity: 0.08;
+}
+
+.particle:nth-child(8) {
+  left: 92%;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  animation-duration: 21s;
+  animation-delay: 6s;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ===== Navigation ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 10, 26, 0.7);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.4s;
+}
+
+.navbar.scrolled {
+  padding: 0.8rem 2rem;
+  background: rgba(10, 10, 26, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(248, 248, 255, 0.8);
+}
+
+[data-theme="light"] .navbar.scrolled {
+  background: rgba(248, 248, 255, 0.95);
+}
+
+.nav-brand {
+  font-size: 1.4rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-menu a {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-light), var(--accent));
+  transition: width 0.3s;
+}
+
+.nav-menu a:hover {
+  color: var(--primary-light);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.theme-toggle::after {
+  content: '☀️';
+  font-size: 12px;
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+[data-theme="light"] .theme-toggle::after {
+  content: '🌙';
+  right: 21px;
+}
+
+.back-link {
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--primary-light);
+  transition: all 0.3s;
+}
+
+.back-link:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobile-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  background: radial-gradient(ellipse at center, var(--bg2) 0%, var(--bg) 70%);
+}
+
+[data-theme="light"] .hero {
+  background: radial-gradient(ellipse at center, #e8e0ff 0%, var(--bg) 70%);
+}
+
+.hero-content {
+  max-width: 800px;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.8s ease;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.hero-title .highlight {
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  color: var(--text2);
+  margin-bottom: 2.5rem;
+  line-height: 2;
+  animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease 0.6s both;
+}
+
+.btn {
+  padding: 0.9rem 2.2rem;
+  border-radius: 12px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-light);
+  color: var(--primary-light);
+}
+
+.btn-outline:hover {
+  background: var(--primary-light);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  margin-top: 4rem;
+  animation: fadeInUp 0.8s ease 0.8s both;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text2);
+  margin-top: 0.3rem;
+}
+
+/* ===== Section Base ===== */
+.section {
+  padding: 7rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
+.section-divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-light), var(--accent));
+  border-radius: 2px;
+  margin: 1rem auto;
+}
+
+.section-subtitle {
+  color: var(--text2);
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+
+/* ===== Services Section ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-light), var(--accent));
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+  background: var(--card-hover);
+}
+
+.service-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.3s;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.service-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.service-card p {
+  color: var(--text2);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* ===== About Section ===== */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-image {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-image-icon {
+  font-size: 6rem;
+  opacity: 0.3;
+}
+
+.about-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.about-text h3 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  color: var(--text2);
+  margin-bottom: 1.5rem;
+  line-height: 2;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.about-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem;
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: transform 0.3s;
+}
+
+.about-feature:hover {
+  transform: translateX(5px);
+}
+
+.about-feature-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.about-feature span:last-child {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ===== Contact Section ===== */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.3s;
+}
+
+.contact-item:hover {
+  transform: translateX(8px);
+  border-color: var(--primary-light);
+}
+
+.contact-item-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.contact-item-label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.contact-item-value {
+  color: var(--text2);
+  font-size: 0.85rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-input,
+.form-textarea {
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-submit {
+  align-self: flex-start;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 0.9rem;
+}
+
+.site-footer a {
+  color: var(--primary-light);
+  transition: color 0.3s;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 26, 0.98);
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+
+  .about-features {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .back-link {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Floating Particles -->
+<div class="particles-container">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">⚡ آلفا تک</div>
+  <ul class="nav-menu" id="navMenu">
+    <li><a href="#hero">خانه</a></li>
+    <li><a href="#services">خدمات</a></li>
+    <li><a href="#about">درباره ما</a></li>
+    <li><a href="#contact">تماس</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="../index.html" class="back-link">بازگشت به PH Design</a>
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()"></div>
+    <button class="mobile-toggle" id="mobileToggle" onclick="toggleMobile()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🚀 پیشرو در فناوری اطلاعات</div>
+    <h1 class="hero-title">
+      آینده دیجیتال را با
+      <span class="highlight">آلفا تک</span>
+      بسازید
+    </h1>
+    <p class="hero-description">
+      ما تیمی از متخصصان خلاق و با تجربه هستیم که با بهره‌گیری از آخرین
+      فناوری‌ها و روش‌های نوین، راهکارهای دیجیتال متنوعی برای رشد کسب‌وکار شما
+      ارائه می‌دهیم.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">شروع همکاری</a>
+      <a href="#services" class="btn btn-outline">خدمات ما</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">۱۵۰+</div>
+        <div class="stat-label">پروژه موفق</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">۵۰+</div>
+        <div class="stat-label">متخصص فنی</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">۸</div>
+        <div class="stat-label">سال تجربه</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="section" id="services">
+  <div class="section-header fade-in">
+    <h2 class="section-title">خدمات ما</h2>
+    <div class="section-divider"></div>
+    <p class="section-subtitle">
+      مجموعه‌ای کامل از خدمات فناوری اطلاعات برای رشد و توسعه کسب‌وکار شما
+    </p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-icon">💻</div>
+      <h3>توسعه وب</h3>
+      <p>
+        طراحی و توسعه وبسایت‌های مدرن، واکنش‌گرا و بهینه‌شده برای موتورهای
+        جستجو با استفاده از جدیدترین تکنولوژی‌های فرانت‌اند و بک‌اند
+      </p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">📱</div>
+      <h3>اپلیکیشن موبایل</h3>
+      <p>
+        ساخت اپلیکیشن‌های بومی و کراس‌پلتفرم iOS و Android با رابط کاربری
+        زیبا، عملکرد بالا و تجربه کاربری بی‌نظیر
+      </p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">☁️</div>
+      <h3>اکوسیستم ابری</h3>
+      <p>
+        مهاجرت به سرویس‌های ابری AWS، Azure و Google Cloud و مدیریت
+        زیرساخت‌های مقیاس‌پذیر و امن برای کسب‌وکارهای بزرگ
+      </p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🤖</div>
+      <h3>هوش مصنوعی</h3>
+      <p>
+        پیاده‌سازی راهکارهای هوش مصنوعی و یادگیری ماشین برای خودکارسازی
+        فرآیندها، تحلیل پیشرفته داده‌ها و بهینه‌سازی تصمیم‌گیری
+      </p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🔒</div>
+      <h3>امنیت سایبری</h3>
+      <p>
+        محافظت جامع از داده‌ها و سیستم‌های شما در برابر تهدیدات سایبری با
+        راهکارهای پیشرفته امنیتی و ممیزی امنیتی
+      </p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">📊</div>
+      <h3>تحلیل داده</h3>
+      <p>
+        استخراج بینش‌های ارزشمند و عملیاتی از داده‌های کسب‌وکار شما برای
+        تصمیم‌گیری‌های بهتر و راهبردی‌تر در محیط رقابتی
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="section" id="about">
+  <div class="section-header fade-in">
+    <h2 class="section-title">درباره ما</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="about-content">
+    <div class="about-image fade-in">
+      <div class="about-image-icon">🏢</div>
+    </div>
+    <div class="about-text fade-in">
+      <h3>تحول دیجیتال از سال ۱۳۹۸</h3>
+      <p>
+        شرکت فناوری آلفا با هدف ارتقای سطح فناوری اطلاعات در ایران و ارائه
+        راهکارهای نوآورانه دیجیتال تأسیس شده است. ما با تیمی متشکل از بهترین
+        متخصصان حوزه فناوری، تجربه‌ای متفاوت از همکاری را برای شما فراهم
+        می‌کنیم.
+      </p>
+      <p>
+        از ایده‌پردازی تا اجرای نهایی، ما در کنار شما هستیم تا کسب‌وکار
+        دیجیتال موفق و پایداری داشته باشید. کیفیت، خلاقیت و تعهد ارزش‌های
+        اصلی ماست.
+      </p>
+      <div class="about-features">
+        <div class="about-feature">
+          <span class="about-feature-icon">✅</span>
+          <span>تیم متخصص و مجرب</span>
+        </div>
+        <div class="about-feature">
+          <span class="about-feature-icon">⚡</span>
+          <span>تحویل سریع و به‌موقع</span>
+        </div>
+        <div class="about-feature">
+          <span class="about-feature-icon">🎯</span>
+          <span>کیفیت بالا و تضمینی</span>
+        </div>
+        <div class="about-feature">
+          <span class="about-feature-icon">💰</span>
+          <span>قیمت‌های رقابتی</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section" id="contact">
+  <div class="section-header fade-in">
+    <h2 class="section-title">تماس با ما</h2>
+    <div class="section-divider"></div>
+    <p class="section-subtitle">
+      آماده همکاری با شما هستیم. همین الان تماس بگیرید یا فرم زیر را پر کنید.
+    </p>
+  </div>
+  <div class="contact-content">
+    <div class="contact-info-list fade-in">
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div>
+          <div class="contact-item-label">آدرس دفتر مرکزی</div>
+          <div class="contact-item-value">
+            تهران، خیابان ولیعصر، نبش کوچه گل، طبقه پنجم
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div>
+          <div class="contact-item-label">تلفن تماس</div>
+          <div class="contact-item-value">۰۲۱-۱۲۳۴۵۶۷۸</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div>
+          <div class="contact-item-label">ایمیل</div>
+          <div class="contact-item-value">info@alphatech.ir</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <div>
+          <div class="contact-item-label">ساعات کاری</div>
+          <div class="contact-item-value">شنبه تا پنجشنبه، ۹ صبح تا ۶ عصر</div>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form fade-in" onsubmit="return false;">
+      <input class="form-input" type="text" placeholder="نام کامل شما">
+      <input class="form-input" type="email" placeholder="ایمیل شما">
+      <input class="form-input" type="text" placeholder="موضوع پیام">
+      <textarea class="form-textarea" placeholder="پیام خود را اینجا بنویسید..."></textarea>
+      <button class="btn btn-primary form-submit" type="submit">ارسال پیام</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <p>
+    © ۱۴۰۵ شرکت فناوری آلفا |
+    <a href="../index.html">بازگشت به PH Design</a>
+  </p>
+</footer>
+
+<script>
+/* Theme Toggle */
+function toggleTheme() {
+  var html = document.documentElement;
+  var currentTheme = html.getAttribute('data-theme');
+  var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+}
+
+/* Mobile Menu */
+function toggleMobile() {
+  var menu = document.getElementById('navMenu');
+  menu.classList.toggle('active');
+}
+
+/* Navbar Scroll Effect */
+window.addEventListener('scroll', function () {
+  var navbar = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+/* Scroll Reveal Animation */
+var fadeObserver = new IntersectionObserver(
+  function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
+
+document.querySelectorAll('.fade-in').forEach(function (el) {
+  fadeObserver.observe(el);
+});
+
+/* Close mobile menu on link click */
+document.querySelectorAll('.nav-menu a').forEach(function (link) {
+  link.addEventListener('click', function () {
+    document.getElementById('navMenu').classList.remove('active');
+  });
+});
+</script>
+</body>
+</html>

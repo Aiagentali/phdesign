@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه ارگانیک | Organic Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #16a34a;
+  --green-light: #22c55e;
+  --green-dark: #15803d;
+  --earth: #92400e;
+  --bg: #0f1a0a;
+  --bg2: #142010;
+  --card: #1a2a14;
+  --text: #f0f7ed;
+  --text2: #8ab07a;
+  --border: rgba(34,197,94,0.15);
+}
+[data-theme="light"] {
+  --bg: #f5faf2;
+  --bg2: #e8f5e0;
+  --card: #ffffff;
+  --text: #0f1a0a;
+  --text2: #5a7a4a;
+  --border: rgba(22,163,74,0.12);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Leaf pattern bg */
+.leaf-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+.leaf-bg::before {
+  content: '';
+  position: absolute;
+  top: 20%; right: 10%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%);
+}
+
+/* Nav */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(15,26,10,0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="light"] .nav { background: rgba(245,250,242,0.95); }
+.nav.scrolled { padding: 0.7rem 3rem; }
+.nav-logo {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 1.3rem; font-weight: 900;
+  color: var(--green-light);
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--green-light); }
+.nav-right { display: flex; gap: 0.8rem; align-items: center; }
+.theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.mobile-btn { display: none; background: none; border: none; cursor: pointer; }
+.mobile-btn span { display: block; width: 22px; height: 2px; background: var(--text); margin: 4px 0; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-content { max-width: 600px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  color: var(--green-light);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+.hero h1 span { color: var(--green-light); }
+.hero p {
+  color: var(--text2);
+  font-size: 1.05rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  padding: 0.9rem 2rem;
+  border-radius: 14px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-green {
+  background: var(--green);
+  color: white;
+  box-shadow: 0 4px 15px rgba(22,163,74,0.3);
+}
+.btn-green:hover { background: var(--green-light); transform: translateY(-2px); }
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text);
+}
+.btn-outline:hover { border-color: var(--green-light); color: var(--green-light); }
+.hero-visual {
+  position: absolute;
+  left: 5%; top: 50%;
+  transform: translateY(-50%);
+  font-size: 12rem;
+  opacity: 0.08;
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(-50%); }
+  50% { transform: translateY(-55%); }
+}
+
+/* Eco badges */
+.eco-badges {
+  display: flex; gap: 2rem; justify-content: center;
+  padding: 3rem 3rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.eco-badge {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 1rem 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+.eco-badge:hover { transform: translateY(-3px); }
+.eco-badge-icon { font-size: 1.8rem; }
+.eco-badge-text strong { display: block; font-size: 0.9rem; }
+.eco-badge-text span { font-size: 0.75rem; color: var(--text2); }
+
+/* Products */
+.products {
+  padding: 6rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-header h2 { font-size: 2rem; font-weight: 900; }
+.section-header h2 span { color: var(--green-light); }
+.section-line {
+  width: 50px; height: 3px;
+  background: var(--green);
+  margin: 1rem auto;
+}
+.section-header p { color: var(--text2); }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.product-card:hover { transform: translateY(-6px); }
+.product-img {
+  height: 200px;
+  background: var(--bg2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  position: relative;
+}
+.eco-tag {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  padding: 0.25rem 0.7rem;
+  background: var(--green);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 20px;
+  display: flex; align-items: center; gap: 0.3rem;
+}
+.organic-badge {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  padding: 0.25rem 0.7rem;
+  background: rgba(234,179,8,0.9);
+  color: #422006;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 20px;
+}
+.product-info { padding: 1.2rem; }
+.product-category {
+  font-size: 0.75rem;
+  color: var(--green-light);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.product-name { font-weight: 700; margin-bottom: 0.5rem; }
+.product-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.product-price { font-weight: 700; color: var(--green-light); font-size: 1.05rem; }
+.product-add {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--green);
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex; align-items: center; justify-content: center;
+}
+.product-add:hover { background: var(--green-light); }
+
+/* Testimonials */
+.testimonials {
+  padding: 6rem 3rem;
+  background: var(--bg2);
+  position: relative;
+  z-index: 1;
+}
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.testimonial-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s;
+}
+.testimonial-card:hover { transform: translateY(-4px); }
+.testimonial-stars {
+  color: #fbbf24;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.testimonial-text {
+  color: var(--text2);
+  font-size: 0.95rem;
+  line-height: 2;
+  margin-bottom: 1.5rem;
+}
+.testimonial-author {
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.testimonial-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.testimonial-name { font-weight: 700; font-size: 0.9rem; }
+.testimonial-role { font-size: 0.75rem; color: var(--text2); }
+
+/* About */
+.about-section {
+  padding: 6rem 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.about-section h2 { font-size: 2rem; font-weight: 900; margin-bottom: 1rem; }
+.about-section h2 span { color: var(--green-light); }
+.about-section p { color: var(--text2); line-height: 2.2; margin-bottom: 1rem; }
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.value-card {
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.value-card span:first-child { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.value-card strong { display: block; margin-bottom: 0.3rem; }
+.value-card p { font-size: 0.8rem; color: var(--text2); }
+
+/* Footer */
+.footer {
+  padding: 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+.footer a { color: var(--green-light); text-decoration: none; }
+
+.fade-in {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .nav { padding: 0.8rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-links.active {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg); padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-btn { display: block; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-visual { display: none; }
+  .about-values { grid-template-columns: 1fr; }
+  .eco-badges { padding: 2rem 1.5rem; }
+  .products, .testimonials, .about-section { padding: 4rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="leaf-bg"></div>
+
+<nav class="nav" id="navbar">
+  <div class="nav-logo">🌿 ارگانیک مارکت</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">خانه</a></li>
+    <li><a href="#products">محصولات</a></li>
+    <li><a href="#testimonials">نظرات</a></li>
+    <li><a href="#about">درباره ما</a></li>
+    <li><a href="../index.html">PH Design</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
+    <button class="mobile-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">🌱 ۱۰۰٪ ارگانیک و طبیعی</div>
+    <h1>طبیعت <span>خالص</span> رو مستقیم به خونت برسون</h1>
+    <p>محصولات کاملاً ارگانیک و طبیعی از مزارع ایران و جهان. بدون مواد شیمیایی، بدون نگهدارنده، فقط طعم اصلی طبیعت.</p>
+    <div class="hero-buttons">
+      <a href="#products" class="btn btn-green">مشاهده محصولات</a>
+      <a href="#about" class="btn btn-outline">داستان ما</a>
+    </div>
+  </div>
+  <div class="hero-visual">🌿</div>
+</section>
+
+<div class="eco-badges fade-in">
+  <div class="eco-badge">
+    <div class="eco-badge-icon">🌱</div>
+    <div class="eco-badge-text"><strong>۱۰۰٪ ارگانیک</strong><span>بدون مواد شیمیایی</span></div>
+  </div>
+  <div class="eco-badge">
+    <div class="eco-badge-icon">🚚</div>
+    <div class="eco-badge-text"><strong>ارسال رایگان</strong><span>بالای ۵۰۰ هزار تومان</span></div>
+  </div>
+  <div class="eco-badge">
+    <div class="eco-badge-icon">♻️</div>
+    <div class="eco-badge-text"><strong>بسته‌بندی سبز</strong><span>۱۰۰٪ قابل بازیافت</span></div>
+  </div>
+  <div class="eco-badge">
+    <div class="eco-badge-icon">✅</div>
+    <div class="eco-badge-text"><strong>تضمین کیفیت</strong><span>بازگشت در ۷ روز</span></div>
+  </div>
+</div>
+
+<section class="products" id="products">
+  <div class="section-header fade-in">
+    <h2>محصولات <span>ارگانیک</span></h2>
+    <div class="section-line"></div>
+    <p>بهترین محصولات طبیعی و ارگانیک</p>
+  </div>
+  <div class="product-grid">
+    <div class="product-card fade-in">
+      <div class="product-img">
+        🍎
+        <span class="eco-tag">🌱 ارگانیک</span>
+        <span class="organic-badge">🏆 پرفروش</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">میوه تازه</div>
+        <div class="product-name">سیب قرمز ارگانیک اصفهان</div>
+        <div class="product-bottom">
+          <div class="product-price">۸۵,۰۰۰ ت / کیلو</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">
+        🫒
+        <span class="eco-tag">🌱 ارگانیک</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">روغن طبیعی</div>
+        <div class="product-name">روغن زیتون بکر ا extra</div>
+        <div class="product-bottom">
+          <div class="product-price">۳۲۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">
+        🍯
+        <span class="eco-tag">🌱 ارگانیک</span>
+        <span class="organic-badge">جدید</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">عسل طبیعی</div>
+        <div class="product-name">عسل کوهی اصل چهارمحال</div>
+        <div class="product-bottom">
+          <div class="product-price">۴۵۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">
+        🥜
+        <span class="eco-tag">🌱 ارگانیک</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">خشکبار</div>
+        <div class="product-name">مخلوط آجیل ارگانیک</div>
+        <div class="product-bottom">
+          <div class="product-price">۲۸۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">
+        🥬
+        <span class="eco-tag">🌱 ارگانیک</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">سبزیجات</div>
+        <div class="product-name">سبزیجات تازه گلخانه‌ای</div>
+        <div class="product-bottom">
+          <div class="product-price">۴۵,۰۰۰ ت / بسته</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <div class="product-img">
+        🧀
+        <span class="eco-tag">🌱 ارگانیک</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">لبنیات</div>
+        <div class="product-name">پنیر ارگانیک سنتی</div>
+        <div class="product-bottom">
+          <div class="product-price">۱۸۰,۰۰۰ ت</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="section-header fade-in">
+    <h2>نظرات <span>مشتریان</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <div class="testimonial-text">کیفیت محصولات عالی بود. عسل طبیعی واقعاً فرقش با عسل‌های بازار رو حس می‌کنی. حتماً دوباره سفارش می‌دم.</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👩</div>
+        <div>
+          <div class="testimonial-name">مریم احمدی</div>
+          <div class="testimonial-role">مشتری دائمی</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <div class="testimonial-text">ارسال سریع و بسته‌بندی عالی. روغن زیتون فوق‌العاده‌ای بود. ممنونم از تیم ارگانیک مارکت.</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👨</div>
+        <div>
+          <div class="testimonial-name">علی رضایی</div>
+          <div class="testimonial-role">مشتری جدید</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <div class="testimonial-text">بالاخره یه فروشگاه ارگانیک پیدا کردم که واقعاً محصولاتش ارگانیکه. سیب‌ها طعم واقعی داشتن!</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👩</div>
+        <div>
+          <div class="testimonial-name">زهرا کریمی</div>
+          <div class="testimonial-role">مشتری دائمی</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <h2 class="fade-in">درباره <span>ارگانیک مارکت</span></h2>
+  <p class="fade-in">ما باور داریم غذای سالم حق همه انسان‌هاست. از سال ۱۳۹۹ با هدف ارائه محصولات ارگانیک و طبیعی به خانواده‌های ایرانی شروع به کار کردیم.</p>
+  <div class="about-values fade-in">
+    <div class="value-card">
+      <span>🌍</span>
+      <strong>پایداری</strong>
+      <p>حفظ محیط زیست و تولید پایدار</p>
+    </div>
+    <div class="value-card">
+      <span>🤝</span>
+      <strong>اعتماد</strong>
+      <p>شفافیت کامل در منشأ محصولات</p>
+    </div>
+    <div class="value-card">
+      <span>💚</span>
+      <strong>سلامتی</strong>
+      <p>تقویت سلامت جامعه با غذای سالم</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © ۱۴۰۵ ارگانیک مارکت | <a href="../index.html">بازگشت به PH Design</a>
+</footer>
+
+<script>
+function toggleTheme() {
+  const h = document.documentElement;
+  h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('active');
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+});
+</script>
+</body>
+</html>
