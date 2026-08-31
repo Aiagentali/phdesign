@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بیمه پوشش | نمونه‌کار PH Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pri:#1a5c3f;--pri-2:#247352;--acc:#d9a441;--bg:#f6f9f7;--card:#fff;--txt:#15251d;--soft:#4f6157;--mut:#85938b;--line:#e2eae5}
+[data-theme=dark]{--bg:#0c1512;--card:#12201a;--txt:#e6efe9;--soft:#9db3a7;--mut:#64766c;--line:#20302a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--txt);direction:rtl;transition:background .4s,color .4s}
+a{text-decoration:none;color:inherit}button{font-family:inherit;cursor:pointer}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.topbar{background:var(--pri);color:#d5e8dd;font-size:.78rem;padding:7px 0}
+.topbar .container{display:flex;justify-content:space-between;gap:16px}
+.topbar b{color:#fff}
+nav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.12rem;color:var(--pri)}
+[data-theme=dark] .logo{color:#cfe8d9}
+.logo .mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--pri),var(--pri-2));color:#fff;display:flex;align-items:center;justify-content:center}
+.nav-links{display:flex;gap:26px;font-size:.9rem;color:var(--soft);font-weight:500}
+.nav-links a:hover{color:var(--pri)}
+.tbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:1rem}
+.back-pill{position:fixed;bottom:18px;left:18px;z-index:120;padding:10px 18px;border-radius:40px;font-size:.8rem;font-weight:600;background:var(--pri);color:#fff;box-shadow:0 8px 24px rgba(26,92,63,.35)}
+.hero{padding:76px 0 66px;background:linear-gradient(180deg,color-mix(in srgb,var(--pri) 7%,var(--bg)),var(--bg));text-align:center}
+.kick{display:inline-block;background:color-mix(in srgb,var(--pri) 10%,transparent);color:var(--pri);font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:8px;margin-bottom:16px}
+[data-theme=dark] .kick{color:#9ed0b4}
+h1{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;line-height:1.35;margin-bottom:14px}
+h1 em{font-style:normal;color:var(--pri)}
+[data-theme=dark] h1 em{color:#9ed0b4}
+.lead{color:var(--soft);font-size:.98rem;line-height:2;max-width:600px;margin:0 auto 26px;font-weight:300}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:13px 26px;border-radius:10px;font-size:.92rem;font-weight:700;border:none;transition:.3s;display:inline-block}
+.btn-p{background:var(--pri);color:#fff}
+.btn-p:hover{background:var(--pri-2);transform:translateY(-2px);box-shadow:0 10px 26px rgba(26,92,63,.3)}
+.btn-o{background:transparent;border:1.5px solid var(--line);color:var(--txt)}
+.btn-o:hover{border-color:var(--pri);color:var(--pri)}
+section{padding:70px 0}
+.sec-head{text-align:center;max-width:560px;margin:0 auto 44px}
+.sec-head .k{color:var(--acc);font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:10px}
+.sec-head p{color:var(--soft);font-size:.92rem;font-weight:300;line-height:1.9}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 22px;transition:.35s}
+.prod:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(21,50,38,.1);border-color:color-mix(in srgb,var(--pri) 35%,var(--line))}
+.prod .ic{width:48px;height:48px;border-radius:12px;background:color-mix(in srgb,var(--pri) 10%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:16px}
+.prod h3{font-size:1rem;margin-bottom:8px}
+.prod p{font-size:.82rem;color:var(--soft);line-height:1.9;font-weight:300}
+.prod .from{margin-top:14px;font-size:.75rem;color:var(--mut)}
+.prod .from b{color:var(--pri);font-size:.95rem}
+[data-theme=dark] .prod .from b{color:#9ed0b4}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:st}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 22px;position:relative}
+.step::before{counter-increment:st;content:counter(st);position:absolute;top:-14px;right:22px;width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:.95rem;margin:6px 0 8px}
+.step p{font-size:.8rem;color:var(--soft);line-height:1.85;font-weight:300}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px}
+.calc h3{font-size:1.2rem;margin-bottom:10px}
+.calc p{color:var(--soft);font-size:.88rem;line-height:1.9;font-weight:300;margin-bottom:20px}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-size:.82rem;color:var(--soft);margin-bottom:7px;font-weight:500}
+.fld select,.fld input{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--txt);font-family:inherit;font-size:.9rem}
+.fld select:focus,.fld input:focus{outline:none;border-color:var(--pri)}
+.est{background:color-mix(in srgb,var(--pri) 7%,var(--bg));border-radius:14px;padding:24px;text-align:center}
+.est .big{font-size:2rem;font-weight:800;color:var(--pri);margin:8px 0}
+[data-theme=dark] .est .big{color:#9ed0b4}
+.est small{color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:center}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 16px}
+.stat .n{font-size:1.7rem;font-weight:800;color:var(--pri)}
+[data-theme=dark] .stat .n{color:#9ed0b4}
+.stat .l{font-size:.8rem;color:var(--soft);margin-top:6px}
+.agencies{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.agency{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;font-size:.86rem}
+.agency b{color:var(--txt)}
+.agency span{color:var(--mut);font-size:.76rem}
+.cta-band{background:linear-gradient(120deg,var(--pri),var(--pri-2));border-radius:20px;padding:52px 40px;text-align:center;color:#fff}
+.cta-band h2{font-size:clamp(1.3rem,2.6vw,1.9rem);margin-bottom:12px}
+.cta-band p{color:#d5e8dd;font-size:.92rem;margin-bottom:24px;font-weight:300}
+.cta-band .btn{background:#fff;color:var(--pri)}
+footer{background:var(--pri);color:#c2dccd;padding:52px 0 0;margin-top:20px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:36px}
+.f-grid h4{color:#fff;font-size:.95rem;margin-bottom:14px}
+.f-grid a{display:block;font-size:.82rem;padding:4px 0}
+.f-grid a:hover{color:#fff}
+.f-grid p{font-size:.82rem;line-height:1.9;font-weight:300}
+.f-bottom{border-top:1px solid rgba(255,255,255,.15);padding:16px 0;font-size:.75rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.v{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+@media(max-width:980px){.prod-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.calc{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:640px){.prod-grid,.steps,.stats,.agencies{grid-template-columns:1fr}.topbar .container{justify-content:center}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <span>☎ <b>۰۲۱-۸۸۷۷۶۶۵۵</b> — مرکز پرداخت خسارت شبانه‌روزی</span>
+    <span><b>۲۴ ساعته، ۷ روز هفته</b> در خدمت شما</span>
+  </div>
+</div>
+
+<nav>
+  <div class="container nav-in">
+    <a href="#" class="logo"><span class="mark">پ</span> بیمه پوشش</a>
+    <div class="nav-links">
+      <a href="#prod">بیمه‌نامه‌ها</a><a href="#steps">خسارت</a><a href="#calc">محاسبه حق بیمه</a><a href="#ag">نمایندگی‌ها</a><a href="#contact">تماس</a>
+    </div>
+    <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="reveal">
+      <span class="kick">آرامش، تحت پوشش</span>
+      <h1>زندگی پر از غافلگیری است؛<br><em>ما آن سخت‌ها را می‌پوشانیم</em></h1>
+      <p class="lead">بیمه پوشش با بیش از ۲۵ سال تجربه، طیف کامل بیمه‌های زندگی، درمان، خودرو و آتش‌سوزی را با پرداخت سریع خسارت ارائه می‌کند.</p>
+      <div class="cta-row">
+        <a href="#calc" class="btn btn-p">محاسبه آنی حق بیمه</a>
+        <a href="#prod" class="btn btn-o">مشاهده بیمه‌نامه‌ها</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="prod">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="k">محصولات</div>
+      <h2>بیمه‌نامه‌های ما</h2>
+      <p>برای هر مرحله از زندگی، یک پوشش مطمئن.</p>
+    </div>
+    <div class="prod-grid">
+      <div class="prod reveal"><span class="ic">🛡️</span><h3>بیمه زندگی</h3><p>سرمایه‌گذاری همراه با پوشش فوت، نقص عضو و بیماری‌های خاص.</p><div class="from">از <b>۱۸۰,۰۰۰</b> تومان/ماه</div></div>
+      <div class="prod reveal d1"><span class="ic">🚗</span><h3>بیمه خودرو</h3><p>شخص ثالث و بدنه با پوشش‌های تکمیلی و تخفیف عدم خسارت.</p><div class="from">از <b>۲,۴۰۰,۰۰۰</b> تومان/سال</div></div>
+      <div class="prod reveal d2"><span class="ic">🔥</span><h3>آتش‌سوزی</h3><p>پوشش منزل، مغازه و صنایع در برابر آتش، سرقت و بلایای طبیعی.</p><div class="from">از <b>۹۵۰,۰۰۰</b> تومان/سال</div></div>
+      <div class="prod reveal d3"><span class="ic">⚕️</span><h3>بیمه درمان</h3><p>پوشش هزینه‌های درمان، بستری و دندان‌پزشکی برای افراد و گروه‌ها.</p><div class="from">از <b>۳۲۰,۰۰۰</b> تومان/ماه</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="steps" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="k">فرآیند شفاف</div>
+      <h2>دریافت خسارت در ۴ قدم</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>اعلام خسارت</h3><p>از طریق اپلیکیشن، تلفن یا شعبه — ۲۴ ساعته ثبت می‌شود.</p></div>
+      <div class="step reveal d1"><h3>ارزیابی</h3><p>کارشناس ما حداکثر تا ۴۸ ساعت بعد پرونده را بررسی می‌کند.</p></div>
+      <div class="step reveal d2"><h3>تأیید پرونده</h3><p>مبلغ خسارت شفاف اعلام و با شما هماهنگ می‌شود.</p></div>
+      <div class="step reveal d3"><h3>پرداخت</h3><p>واریز به حساب شما در کمتر از ۷۲ ساعت کاری.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="calc">
+  <div class="container">
+    <div class="calc reveal">
+      <div>
+        <h3>تخمین‌گر حق بیمه</h3>
+        <p>در چند ثانیه بدانید بیمه‌نامه موردنظر چقدر هزینه دارد. قیمت نهایی پس از بررسی کارشناس اعلام می‌شود.</p>
+        <div class="fld"><label>نوع بیمه‌نامه</label>
+          <select id="cType" onchange="est()">
+            <option value="life">بیمه زندگی</option>
+            <option value="car">بیمه خودرو (بدنه)</option>
+            <option value="fire">آتش‌سوزی منزل</option>
+            <option value="health">بیمه درمان</option>
+          </select>
+        </div>
+        <div class="fld"><label>مدت پوشش</label>
+          <select id="cDur" onchange="est()">
+            <option value="1">۱ ساله</option>
+            <option value="3">۳ ساله (۵٪ تخفیف)</option>
+            <option value="5">۵ ساله (۱۰٪ تخفیف)</option>
+          </select>
+        </div>
+        <div class="fld"><label>سرمایه / ارزش ملک (میلیون تومان)</label>
+          <input type="number" id="cVal" value="50" min="1" oninput="est()">
+        </div>
+      </div>
+      <div class="est">
+        <small>حق بیمه تقریبی سالانه</small>
+        <div class="big" id="estOut">۱۸,۰۰۰,۰۰۰ تومان</div>
+        <small>قابل پرداخت در ۱۲ قسط — بدون کارمزد</small><br><br>
+        <a href="#contact" class="btn btn-p">صدور آنلاین بیمه‌نامه</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="container">
+    <div class="stats reveal">
+      <div class="stat"><div class="n">۱.۸M</div><div class="l">بیمه‌نامه فعال</div></div>
+      <div class="stat"><div class="n">۹۶٪</div><div class="l">تمدید سالانه</div></div>
+      <div class="stat"><div class="n">۷۲h</div><div class="l">میانگین پرداخت خسارت</div></div>
+      <div class="stat"><div class="n">۴۵۰+</div><div class="l">نمایندگی فعال</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ag" style="padding-top:0;background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="k">شبکه فروش</div>
+      <h2>نمایندگی‌های منتخب</h2>
+    </div>
+    <div class="agencies">
+      <div class="agency reveal"><div><b>نمایندگی مرکزی تهران</b><br><span>خیابان ولیعصر، پلاک ۲۲۴۰ — ۰۲۱-۸۸۹۹۰۰۱۱</span></div><span>🟢 فعال</span></div>
+      <div class="agency reveal d1"><div><b>شعبه اصفهان</b><br><span>خیابان چهارباغ بالا، پلاک ۱۱۲ — ۰۳۱-۳۶۶۲۰۰۴۴</span></div><span>🟢 فعال</span></div>
+      <div class="agency reveal d2"><div><b>شعبه مشهد</b><br><span>بلوار وکیل‌آباد، پلاک ۵۶ — ۰۵۱-۳۸۴۴۰۰۲۲</span></div><span>🟢 فعال</span></div>
+      <div class="agency reveal"><div><b>شعبه شیراز</b><br><span>خیابان زند، پلاک ۷۸ — ۰۷۱-۳۲۳۳۰۰۵۵</span></div><span>🟢 فعال</span></div>
+      <div class="agency reveal d1"><div><b>شعبه تبریز</b><br><span>خیابان امام، پلاک ۳۴ — ۰۴۱-۳۳۴۴۰۰۸۸</span></div><span>🟢 فعال</span></div>
+      <div class="agency reveal d2"><div><b>شعبه کیش</b><br><span>میدان داریوش، برج تجاری A — ۰۷۶-۴۴۴۲۰۰۹۹</span></div><span>🟢 فعال</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>یک فرم، صد خیال راحت</h2>
+      <p>شماره‌تان را بگذارید؛ کارشناس ما در کمتر از ۳۰ دقیقه تماس می‌گیرد.</p>
+      <a href="#" class="btn">درخواست تماس</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div><h4>بیمه پوشش</h4><p>بیمه‌گری که کنار شماست — از لحظه خرید بیمه‌نامه تا پرداخت خسارت. تحت نظارت بیمه مرکزی جمهوری اسلامی ایران.</p></div>
+      <div><h4>بیمه‌نامه‌ها</h4><a href="#">زندگی</a><a href="#">خودرو</a><a href="#">آتش‌سوزی</a><a href="#">درمان</a></div>
+      <div><h4>خدمات</h4><a href="#">اعلام خسارت آنلاین</a><a href="#">استعلام بیمه‌نامه</a><a href="#">تمدید</a><a href="#">حریم خصوصی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۸۸۷۷۶۶۵۵</a><a href="#">✉ care@pooshesh.ir</a><a href="#">⌖ تهران، خیابان نلسون ماندلا</a></div>
+    </div>
+    <div class="f-bottom"><span>© ۱۴۰۴ بیمه پوشش — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+  </div>
+</footer>
+
+<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement;
+  const n=h.getAttribute('data-theme')==='light'?'dark':'light';
+  h.setAttribute('data-theme',n);localStorage.setItem('d14-theme',n);
+}
+(function(){const t=localStorage.getItem('d14-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+function est(){
+  const t=document.getElementById('cType').value;
+  const d=+document.getElementById('cDur').value;
+  const v=+document.getElementById('cVal').value||50;
+  const base={life:36,car:12,fire:6,health:48}[t]||36; // per M per year (thousand toman *1000)
+  let annual=v*base*1000; // toman
+  if(d===3)annual*=.95;if(d===5)annual*=.9;
+  const out=Math.round(annual).toLocaleString('fa-IR');
+  document.getElementById('estOut').textContent=out+' تومان';
+}
+est();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

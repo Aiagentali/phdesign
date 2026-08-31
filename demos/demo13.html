@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بانک اعتماد | نمونه‌کار PH Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pri:#1e3a5f;--pri-2:#2a4d7a;--acc:#c9a227;--bg:#f7f8fa;--card:#ffffff;--txt:#1a2333;--soft:#5a6478;--mut:#8b93a5;--line:#e4e7ee;--ok:#1a7f4e;--err:#c0392b}
+[data-theme=dark]{--bg:#0d1420;--card:#131c2c;--txt:#e8ecf3;--soft:#a8b2c4;--mut:#6e788c;--line:#232e42}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--txt);direction:rtl;transition:background .4s,color .4s}
+a{text-decoration:none;color:inherit}ul{list-style:none}button{font-family:inherit;cursor:pointer}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+/* topbar */
+.topbar{background:var(--pri);color:#cfe0f2;font-size:.78rem;padding:7px 0}
+.topbar .container{display:flex;justify-content:space-between;gap:16px}
+.topbar span b{color:#fff}
+/* nav */
+nav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.12rem;color:var(--pri)}
+[data-theme=dark] .logo{color:#cfe0f2}
+.logo .mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--pri),var(--pri-2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.nav-links{display:flex;gap:26px;font-size:.9rem;color:var(--soft);font-weight:500}
+.nav-links a:hover{color:var(--pri)}
+.nav-tools{display:flex;gap:10px;align-items:center}
+.tbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:1rem}
+.back-pill{position:fixed;bottom:18px;left:18px;z-index:120;padding:10px 18px;border-radius:40px;font-size:.8rem;font-weight:600;background:var(--pri);color:#fff;box-shadow:0 8px 24px rgba(30,58,95,.35)}
+/* hero */
+.hero{padding:72px 0 64px;background:linear-gradient(180deg,color-mix(in srgb,var(--pri) 6%,var(--bg)),var(--bg))}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.kick{display:inline-block;background:color-mix(in srgb,var(--pri) 10%,transparent);color:var(--pri);font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:8px;margin-bottom:16px}
+[data-theme=dark] .kick{color:#9fc0e8}
+h1{font-size:clamp(1.7rem,4vw,2.7rem);font-weight:800;line-height:1.35;margin-bottom:14px}
+h1 em{font-style:normal;color:var(--pri)}
+[data-theme=dark] h1 em{color:#9fc0e8}
+.lead{color:var(--soft);font-size:.98rem;line-height:2;margin-bottom:24px;font-weight:300}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:13px 26px;border-radius:10px;font-size:.92rem;font-weight:700;border:none;transition:.3s}
+.btn-p{background:var(--pri);color:#fff}
+.btn-p:hover{background:var(--pri-2);transform:translateY(-2px);box-shadow:0 10px 26px rgba(30,58,95,.3)}
+.btn-o{background:transparent;border:1.5px solid var(--line);color:var(--txt)}
+.btn-o:hover{border-color:var(--pri);color:var(--pri)}
+/* rates card */
+.rates-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 16px 40px rgba(20,35,60,.08)}
+.rates-card h3{font-size:.95rem;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.rates-card h3 small{color:var(--mut);font-weight:400;font-size:.7rem}
+.rate-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--line);font-size:.88rem}
+.rate-row:last-child{border:none}
+.rate-row .n{color:var(--soft)}
+.rate-row .v{font-weight:700;color:var(--pri)}
+[data-theme=dark] .rate-row .v{color:#9fc0e8}
+.up{color:var(--ok);font-size:.72rem}.down{color:var(--err);font-size:.72rem}
+/* badges strip */
+.badges{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0}
+.badges .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.badge{display:flex;align-items:center;gap:9px;font-size:.82rem;color:var(--soft);font-weight:500}
+.badge i{font-style:normal;font-size:1.2rem}
+/* sections */
+section{padding:72px 0}
+.sec-head{text-align:center;max-width:560px;margin:0 auto 44px}
+.sec-head .k{color:var(--acc);font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:10px}
+.sec-head p{color:var(--soft);font-size:.92rem;font-weight:300;line-height:1.9}
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:.35s}
+.svc:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(20,35,60,.1);border-color:color-mix(in srgb,var(--pri) 35%,var(--line))}
+.svc .ic{width:46px;height:46px;border-radius:12px;background:color-mix(in srgb,var(--pri) 10%,transparent);color:var(--pri);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:16px}
+[data-theme=dark] .svc .ic{color:#9fc0e8}
+.svc h3{font-size:1rem;margin-bottom:8px}
+.svc p{font-size:.82rem;color:var(--soft);line-height:1.9;font-weight:300}
+.svc a{display:inline-block;margin-top:12px;color:var(--pri);font-size:.8rem;font-weight:700}
+[data-theme=dark] .svc a{color:#9fc0e8}
+/* table */
+.tbl-wrap{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+thead{background:color-mix(in srgb,var(--pri) 6%,var(--card))}
+th{padding:14px 18px;text-align:right;color:var(--mut);font-weight:600;font-size:.8rem}
+td{padding:14px 18px;border-top:1px solid var(--line);color:var(--soft)}
+td.v{font-weight:700;color:var(--txt)}
+/* news */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.news{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.3s}
+.news:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(20,35,60,.09)}
+.news .img{height:130px;background:linear-gradient(135deg,var(--pri),var(--pri-2));display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#fff}
+.news .body{padding:18px}
+.news .date{font-size:.72rem;color:var(--mut);margin-bottom:8px}
+.news h3{font-size:.92rem;line-height:1.7;margin-bottom:8px}
+.news p{font-size:.8rem;color:var(--soft);font-weight:300;line-height:1.8}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:center}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 16px}
+.stat .n{font-size:1.7rem;font-weight:800;color:var(--pri)}
+[data-theme=dark] .stat .n{color:#9fc0e8}
+.stat .l{font-size:.8rem;color:var(--soft);margin-top:6px}
+/* cta */
+.cta-band{background:linear-gradient(120deg,var(--pri),var(--pri-2));border-radius:20px;padding:52px 40px;text-align:center;color:#fff}
+.cta-band h2{font-size:clamp(1.3rem,2.6vw,1.9rem);margin-bottom:12px}
+.cta-band p{color:#cfe0f2;font-size:.92rem;margin-bottom:24px;font-weight:300}
+.cta-band .btn{background:#fff;color:var(--pri)}
+/* footer */
+footer{background:var(--pri);color:#b9cde4;padding:52px 0 0;margin-top:20px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:36px}
+.f-grid h4{color:#fff;font-size:.95rem;margin-bottom:14px}
+.f-grid a{display:block;font-size:.82rem;padding:4px 0;color:#b9cde4}
+.f-grid a:hover{color:#fff}
+.f-grid p{font-size:.82rem;line-height:1.9;font-weight:300}
+.f-bottom{border-top:1px solid rgba(255,255,255,.14);padding:16px 0;font-size:.75rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.v{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.svc-grid{grid-template-columns:repeat(2,1fr)}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:640px){.svc-grid,.news-grid,.stats{grid-template-columns:1fr}.topbar .container{justify-content:center}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <span>☎ <b>۰۲۱-۹۱۰۰۹۱۰۰</b> — پاسخگویی ۲۴ ساعته</span>
+    <span>شنبه تا چهارشنبه <b>۸ تا ۱۶</b> | پنجشنبه <b>۸ تا ۱۲</b></span>
+  </div>
+</div>
+
+<nav>
+  <div class="container nav-in">
+    <a href="#" class="logo"><span class="mark">اع</span> بانک اعتماد</a>
+    <div class="nav-links">
+      <a href="#svc">خدمات</a><a href="#rates">نرخ‌ها</a><a href="#news">اخبار</a><a href="#about">درباره ما</a><a href="#contact">تماس</a>
+    </div>
+    <div class="nav-tools">
+      <button class="tbtn" onclick="toggleTheme()" title="تغییر تم">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <span class="kick">بانکداری مطمئن و مدرن</span>
+      <h1>آینده مالی شما، با <em>بانک اعتماد</em></h1>
+      <p class="lead">بیش از دو دهه همراهی برندها، خانوارها و کسب‌وکارهای ایرانی. خدمات بانکی الکترونیک با امنیت سطح بالا، سود شفاف و پشتیبانی بی‌وقفه.</p>
+      <div class="cta-row">
+        <a href="#svc" class="btn btn-p">افتتاح حساب آنلاین</a>
+        <a href="#rates" class="btn btn-o">مشاهده نرخ‌ها</a>
+      </div>
+    </div>
+    <aside class="rates-card reveal d1">
+      <h3>نرخ لحظه‌ای <small>به‌روزرسانی: امروز ۱۲:۳۰</small></h3>
+      <div class="rate-row"><span class="n">💰 سود سپرده ۱ ساله</span><span class="v">۲۳٪ <span class="up">▲</span></span></div>
+      <div class="rate-row"><span class="n">💵 دلار آمریکا</span><span class="v">۶۱,۵۰۰ <span class="down">▼</span></span></div>
+      <div class="rate-row"><span class="n">💶 یورو</span><span class="v">۶۶,۲۰۰ <span class="up">▲</span></span></div>
+      <div class="rate-row"><span class="n">🪙 سکه تمام</span><span class="v">۴۸,۵۰۰,۰۰۰ <span class="up">▲</span></span></div>
+      <div class="rate-row"><span class="n">🥇 طلای ۱۸ عیار</span><span class="v">۴,۲۰۰,۰۰۰ <span class="down">▼</span></span></div>
+    </aside>
+  </div>
+</header>
+
+<div class="badges reveal">
+  <div class="container">
+    <span class="badge"><i>🛡️</i> عضو صندوق ضمانت سپرده‌ها</span>
+    <span class="badge"><i>🏆</i> بانک برتر سال ۱۴۰۳</span>
+    <span class="badge"><i>🔐</i> امنیت ISO 27001</span>
+    <span class="badge"><i>📞</i> پشتیبانی ۲۴ ساعته</span>
+  </div>
+</div>
+
+<section id="svc">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="k">خدمات بانکی</div>
+      <h2>هر آنچه از یک بانک مدرن انتظار دارید</h2>
+      <p>از حساب روزمره تا تسهیلات کلان کسب‌وکار — همه در یک پلتفرم یکپارچه.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal"><span class="ic">🏦</span><h3>حساب و سپرده</h3><p>حساب جاری، کوتاه‌مدت و بلندمدت با بالاترین سود ممکن و افتتاح کاملاً غیرحضوری.</p><a href="#">جزئیات ←</a></div>
+      <div class="svc reveal d1"><span class="ic">💳</span><h3>تسهیلات</h3><p>وام قرض‌الحسنه، خرید کالا و طرح‌های حمایتی کسب‌وکار با فرآیند سریع.</p><a href="#">جزئیات ←</a></div>
+      <div class="svc reveal d2"><span class="ic">🏧</span><h3>کارت و مبادلات</h3><p>کارت‌های بانکی متنوع، انتقال وجه لحظه‌ای و حواله‌های بین‌بانکی.</p><a href="#">جزئیات ←</a></div>
+      <div class="svc reveal d3"><span class="ic">🌐</span><h3>بانکداری دیجیتال</h3><p>اپلیکیشن موبایل و اینترنت‌بانک با تجربه‌ای ساده و امن برای همه سن‌ها.</p><a href="#">جزئیات ←</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="rates" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="k">جدول کامل</div>
+      <h2>نرخ‌های ارز، طلا و سپرده</h2>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead><tr><th>عنوان</th><th>نرخ (ریال)</th><th>تغییر روزانه</th><th>به‌روزرسانی</th></tr></thead>
+        <tbody>
+          <tr><td>دلار آمریکا</td><td class="v">۶۱,۵۰۰</td><td class="down">▼ ۰٫۴٪</td><td>۱۲:۳۰</td></tr>
+          <tr><td>یورو</td><td class="v">۶۶,۲۰۰</td><td class="up">▲ ۰٫۲٪</td><td>۱۲:۳۰</td></tr>
+          <tr><td>درهم امارات</td><td class="v">۱۶,۸۰۰</td><td class="up">▲ ۰٫۱٪</td><td>۱۲:۳۰</td></tr>
+          <tr><td>سکه تمام بهار</td><td class="v">۴۸,۵۰۰,۰۰۰</td><td class="up">▲ ۰٫۸٪</td><td>۱۲:۳۰</td></tr>
+          <tr><td>طلای ۱۸ عیار (گرم)</td><td class="v">۴,۲۰۰,۰۰۰</td><td class="down">▼ ۰٫۳٪</td><td>۱۲:۳۰</td></tr>
+          <tr><td>سپرده یک‌ساله</td><td class="v">۲۳٪ سود</td><td class="up">ثابت</td><td>هفتگی</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="k">اخبار و اطلاعیه</div>
+      <h2>تازه‌ترین رویدادهای بانک</h2>
+    </div>
+    <div class="news-grid">
+      <article class="news reveal"><div class="img">📱</div><div class="body"><div class="date">۱۲ شهریور ۱۴۰۴</div><h3>نسخه جدید اپلیکیشن بانک اعتماد منتشر شد</h3><p>با طراحی جدید، ورود بی‌رمز و انتقال وجه صوتی — هم‌اکنون در استورها.</p></div></article>
+      <article class="news reveal d1"><div class="img">🏠</div><div class="body"><div class="date">۸ شهریور ۱۴۰۴</div><h3>طرح تسهیلات مسیر خانه با نرخ ۱۸٪ آغاز شد</h3><p>ویژه متقاضیان مسکن اول؛ سقف وام و شرایط در صفحه تسهیلات.</p></div></article>
+      <article class="news reveal d2"><div class="img">🤝</div><div class="body"><div class="date">۲ شهریور ۱۴۰۴</div><h3>همکاری راهبردی با اتاق بازرگانی برای پرداخت‌های بین‌الملل</h3><p>گسترش خدمات مبادلات ارزی برای صادرکنندگان و واردکنندگان.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="padding-top:0">
+  <div class="container">
+    <div class="stats reveal">
+      <div class="stat"><div class="n">۴.۲M</div><div class="l">مشتری فعال</div></div>
+      <div class="stat"><div class="n">۳۱۰</div><div class="l">شعبه در سراسر کشور</div></div>
+      <div class="stat"><div class="n">۲۲</div><div class="l">سال سابقه</div></div>
+      <div class="stat"><div class="n">۹۸٪</div><div class="l">رضایت مشتریان</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>همین امروز حساب خود را افتتاح کنید</h2>
+      <p>کاملاً آنلاین، بدون مراجعه به شعبه — در کمتر از ۱۰ دقیقه.</p>
+      <a href="#" class="btn">شروع افتتاح حساب</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div><h4>بانک اعتماد</h4><p>بانکی با نگاه آینده‌نگر؛ متعهد به شفافیت، امنیت و رضایت شما. بانک اعتماد عضو نظام بانکی جمهوری اسلامی ایران و صندوق ضمانت سپرده‌هاست.</p></div>
+      <div><h4>خدمات</h4><a href="#">حساب و سپرده</a><a href="#">تسهیلات</a><a href="#">کارت‌ها</a><a href="#">ارز و طلا</a></div>
+      <div><h4>لینک‌ها</h4><a href="#">درباره ما</a><a href="#">اخبار</a><a href="#">ساعات کاری</a><a href="#">حریم خصوصی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۹۱۰۰۹۱۰۰</a><a href="#">✉ info@etemad-bank.ir</a><a href="#">⌖ تهران، خیابان ولیعصر</a></div>
+    </div>
+    <div class="f-bottom"><span>© ۱۴۰۴ بانک اعتماد — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+  </div>
+</footer>
+
+<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement;
+  const n=h.getAttribute('data-theme')==='light'?'dark':'light';
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d13-theme',n);
+}
+(function(){const t=localStorage.getItem('d13-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
