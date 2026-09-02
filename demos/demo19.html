@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حمل‌ونقل راه پیوند | نمونه‌کار PH Design</title>
+<title>آرک طرح | نمونه‌کار PH Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#1b2f4b;--pri-2:#26436b;--acc:#e8842c;--bg:#f7f8fa;--card:#fff;--txt:#1a2433;--soft:#57647a;--mut:#8b95a7;--line:#e4e8ef;--green:#1a9e63}
@@ -24,7 +24,7 @@ nav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--card) 90
 .tbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:1rem}
 .back-pill{position:fixed;bottom:18px;left:18px;z-index:120;padding:10px 18px;border-radius:40px;font-size:.8rem;font-weight:600;background:var(--acc);color:#fff;box-shadow:0 8px 24px rgba(232,132,44,.4)}
 .hero{padding:78px 0 70px;background:linear-gradient(150deg,#22385a 0%,var(--pri) 50%,#16263e 100%);color:#fff;position:relative;overflow:hidden}
-.hero::before{content:'▻';position:absolute;bottom:-80px;left:-20px;font-size:26rem;opacity:.05}
+.hero::before{content:'🏗';position:absolute;bottom:-80px;left:-20px;font-size:26rem;opacity:.05}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
 .kick{display:inline-block;background:rgba(232,132,44,.18);border:1px solid rgba(232,132,44,.35);color:#ffc38a;font-size:.75rem;font-weight:600;padding:6px 15px;border-radius:30px;margin-bottom:18px}
 .hero h1{font-size:clamp(1.65rem,3.8vw,2.5rem);font-weight:800;line-height:1.4;margin-bottom:14px}
@@ -35,17 +35,15 @@ nav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--card) 90
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(232,132,44,.4)}
 .btn-o{background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff}
 .btn-o:hover{border-color:var(--acc);color:var(--acc)}
-.track{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 18px 44px rgba(10,22,40,.25)}
-.track h3{color:var(--txt);font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.track-in{display:flex;gap:10px}
-.track-in input{flex:1;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--txt);font-family:inherit;font-size:.9rem}
-.track-in input:focus{outline:none;border-color:var(--acc)}
-.track-res{display:none;margin-top:16px;border-top:1px dashed var(--line);padding-top:16px}
-.track-res .row{display:flex;justify-content:space-between;font-size:.82rem;padding:7px 0;color:var(--soft)}
-.track-res .row b{color:var(--txt)}
-.steps-mini{display:flex;gap:6px;margin-top:14px;align-items:center}
-.step-dot{flex:1;height:6px;border-radius:6px;background:var(--line);position:relative}
-.step-dot.on{background:var(--green)}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 18px 44px rgba(10,22,40,.25)}
+.hero-card h3{color:var(--txt);font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.projs{display:grid;gap:10px}
+.proj-mini{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:.82rem;color:var(--soft)}
+.proj-mini:last-child{border:none}
+.proj-mini b{color:var(--txt)}
+.proj-mini span{margin-right:auto;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:10px}
+.proj-mini .done{background:#e7f5ee;color:var(--green)}
+.proj-mini .run{background:#fdf3e0;color:#b45309}
 section{padding:70px 0}
 .sec-head{text-align:center;max-width:560px;margin:0 auto 44px}
 .sec-head .k{color:var(--acc);font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px}
@@ -57,12 +55,16 @@ section{padding:70px 0}
 .svc .ic{width:48px;height:48px;border-radius:12px;background:color-mix(in srgb,var(--acc) 12%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:15px}
 .svc h3{font-size:.95rem;margin-bottom:8px}
 .svc p{font-size:.8rem;color:var(--soft);font-weight:300;line-height:1.85}
-.how{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:st;position:relative}
-.how-step{padding:26px 18px;text-align:center;position:relative}
-.how-step::before{counter-increment:st;content:counter(st);width:44px;height:44px;margin:0 auto 14px;border-radius:50%;background:var(--pri);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
-.how-step:not(:last-child)::after{content:'';position:absolute;top:47px;left:-50%;width:100%;height:2px;background:repeating-linear-gradient(90deg,var(--acc) 0 8px,transparent 8px 16px)}
-.how-step h3{font-size:.9rem;margin-bottom:7px}
-.how-step p{font-size:.76rem;color:var(--soft);font-weight:300;line-height:1.8}
+.portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pf-card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.3s}
+.pf-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(15,30,55,.09)}
+.pf-card .ph{height:160px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;color:#fff}
+.pf1 .ph{background:linear-gradient(135deg,#1b2f4b,#26436b)}
+.pf2 .ph{background:linear-gradient(135deg,#e8842c,#f5a623)}
+.pf3 .ph{background:linear-gradient(135deg,#26436b,#1a9e63)}
+.pf-card .body{padding:18px}
+.pf-card h3{font-size:.92rem;margin-bottom:8px}
+.pf-card p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.8}
 .cov{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
 .cov .c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 14px}
 .cov .n{font-size:1.7rem;font-weight:800;color:var(--acc)}
@@ -83,24 +85,24 @@ footer{background:#16263e;color:#a9bad2;padding:52px 0 0;margin-top:10px}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.svc-grid{grid-template-columns:1fr 1fr}.how{grid-template-columns:1fr 1fr}.how-step:not(:last-child)::after{display:none}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-@media(max-width:640px){.svc-grid,.how,.cov{grid-template-columns:1fr}.topbar .container{justify-content:center}}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.svc-grid{grid-template-columns:1fr 1fr}.portfolio{grid-template-columns:1fr}.cov{grid-template-columns:1fr 1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:640px){.svc-grid,.portfolio,.cov{grid-template-columns:1fr}.topbar .container{justify-content:center}}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="container">
-    <span>🚚 <b>راه پیوند</b> — شبکه حمل‌ونقل سراسری و بین‌المللی</span>
-    <span>☎ ۰۲۱-۹۶۹۶۹۶۹ | رهگیری ۲۴ ساعته</span>
+    <span>🏛️ <b>آرک طرح</b> — استودیو معماری و طراحی داخلی</span>
+    <span>☎ ۰۲۱-۹۶۹۶۹۶۹ | مشاوره رایگان</span>
   </div>
 </div>
 
 <nav>
   <div class="container nav-in">
-    <a href="#" class="logo"><span class="mark">▻</span> راه پیوند</a>
+    <a href="#" class="logo"><span class="mark">🏛</span> آرک طرح</a>
     <div class="nav-links">
-      <a href="#svc">خدمات</a><a href="#how">فرآیند</a><a href="#cov">پوشش</a><a href="#clients">مشتریان</a><a href="#contact">تماس</a>
+      <a href="#svc">خدمات</a><a href="#portfolio">نمونه‌کار</a><a href="#cov">آمار</a><a href="#clients">مشتریان</a><a href="#contact">تماس</a>
     </div>
     <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
   </div>
@@ -109,32 +111,19 @@ footer{background:#16263e;color:#a9bad2;padding:52px 0 0;margin-top:10px}
 <header class="hero">
   <div class="container hero-grid">
     <div class="reveal">
-      <span class="kick">بار شما، تعهد ما</span>
-      <h1>از انبار شما تا <em>درب مشتری</em><br>با اطمینان کامل</h1>
-      <p class="lead">راه پیوند با ناوگان ۱,۲۰۰ دستگاهی، ۱۸ انبار هوشمند و پوشش تمام استان‌ها، بسته‌های شما را سریع و سالم می‌رساند.</p>
-      <a href="#svc" class="btn btn-p">خدمات ما</a>
-      <a href="#contact" class="btn btn-o">استعلام نرخ حمل</a>
+      <span class="kick">طراحی معماری خلاقانه</span>
+      <h1>فضاهایی که <em>الهام‌بخش</em> زندگی هستند</h1>
+      <p class="lead">آرک طرح با تیمی از معماران خلاق، طراحی داخلی، نما و نقشه‌های اجرایی با کیفیت بالا و جزئیات دقیق ارائه می‌دهد.</p>
+      <a href="#svc" class="btn btn-p">پروژه‌های ما</a>
+      <a href="#contact" class="btn btn-o">مشاوره رایگان</a>
     </div>
-    <aside class="track reveal d1">
-      <h3>📦 رهگیری مرسوله</h3>
-      <div class="track-in">
-        <input type="text" id="trkIn" placeholder="کد رهگیری (مثلاً RP-۸۸۴۵۲)" onkeydown="if(event.key==='Enter')track()">
-        <button class="btn btn-p" onclick="track()">جستجو</button>
-      </div>
-      <div class="track-res" id="trkRes">
-        <div class="row"><span>وضعیت</span><b style="color:var(--green)">در مسیر تحویل 🚛</b></div>
-        <div class="row"><span>مبدأ</span><b>تهران</b></div>
-        <div class="row"><span>مقصد</span><b>اصفهان</b></div>
-        <div class="row"><span>تحویل پیش‌بینی‌شده</span><b>فردا ۱۰ تا ۱۴</b></div>
-        <div class="steps-mini">
-          <span style="font-size:.68rem;color:var(--mut)">ثبت</span>
-          <div class="step-dot on"></div>
-          <span style="font-size:.68rem;color:var(--mut)">بارگیری</span>
-          <div class="step-dot on"></div>
-          <span style="font-size:.68rem;color:var(--mut)">در مسیر</span>
-          <div class="step-dot"></div>
-          <span style="font-size:.68rem;color:var(--mut)">تحویل</span>
-        </div>
+    <aside class="hero-card reveal d1">
+      <h3>📋 پروژه‌های فعال</h3>
+      <div class="projs">
+        <div class="proj-mini"><b>ویلای مدرن شهران</b><span class="run">در حال طراحی</span></div>
+        <div class="proj-mini"><b>مجتمع تجاری نگین</b><span class="done">تکمیل</span></div>
+        <div class="proj-mini"><b>آپارتمان مسکونی گلستان</b><span class="run">اجرا</span></div>
+        <div class="proj-mini"><b>دفتر شرکت آرتا</b><span class="done">تکمیل</span></div>
       </div>
     </aside>
   </div>
@@ -144,28 +133,27 @@ footer{background:#16263e;color:#a9bad2;padding:52px 0 0;margin-top:10px}
   <div class="container">
     <div class="sec-head reveal">
       <div class="k">خدمات</div>
-      <h2>هر باری، یک راه‌حل اختصاصی</h2>
+      <h2>از ایده تا ساخت</h2>
     </div>
     <div class="svc-grid">
-      <div class="svc reveal"><span class="ic">🚛</span><h3>حمل جاده‌ای</h3><p>کامیون، تریلی و خاور مسقف با رهگیری GPS لحظه‌ای در کل کشور.</p></div>
-      <div class="svc reveal d1"><span class="ic">✈️</span><h3>حمل هوایی</h3><p>بارهای فوری و ارزشمند با همکاری ایرلاین‌های داخلی و خارجی.</p></div>
-      <div class="svc reveal d2"><span class="ic">🚢</span><h3>حمل دریایی</h3><p>کانتینر FCL/LCL از بندرعباس به مقاصد خلیج فارس، اروپا و آسیا.</p></div>
-      <div class="svc reveal d3"><span class="ic">🏭</span><h3>انبارداری و توزیع</h3><p>۱۸ انبار مجهز، مدیریت موجودی آنلاین و توزیع سراسری B2B.</p></div>
+      <div class="svc reveal"><span class="ic">📐</span><h3>طراحی معماری</h3><p>طراحی پلان، نما و مقاطع ساختمان با نرم‌افزارهای پیشرفته.</p></div>
+      <div class="svc reveal d1"><span class="ic">🏠</span><h3>طراحی داخلی</h3><p>دکوراسیون داخلی مسکونی و تجاری با ترکیب رنگ و نور.</p></div>
+      <div class="svc reveal d2"><span class="ic">🏗️</span><h3>نظارت بر اجرا</h3><p>نظارت فنی بر اجرای پروژه‌ها مطابق نقشه‌های تأییدشده.</p></div>
+      <div class="svc reveal d3"><span class="ic">📊</span><h3>مدیریت پروژه</h3><p>برنامه‌ریزی زمانی و هزینه‌ای پروژه‌های ساختمانی.</p></div>
     </div>
   </div>
 </section>
 
-<section id="how" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+<section id="portfolio" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">فرآیند</div>
-      <h2>ارسال بار در ۴ قدم</h2>
+      <div class="k">نمونه‌کار</div>
+      <h2>پروژه‌های شاخص ما</h2>
     </div>
-    <div class="how">
-      <div class="how-step reveal"><h3>ثبت سفارش</h3><p>آنلاین یا تلفنی — مشخصات بار و مسیر را اعلام کنید.</p></div>
-      <div class="how-step reveal d1"><h3>برداشت بار</h3><p>خودرو در کمتر از ۲۴ ساعت در محل شما حاضر می‌شود.</p></div>
-      <div class="how-step reveal d2"><h3>حمل و رهگیری</h3><p>پیگیری لحظه‌ای با GPS و اطلاع‌رسانی پیامکی.</p></div>
-      <div class="how-step reveal d3"><h3>تحویل سالم</h3><p>تحویل درب مخاطب با رسید دیجیتال امضاشده.</p></div>
+    <div class="portfolio">
+      <div class="pf-card pf1 reveal"><div class="ph">🏢</div><div class="body"><h3>برج اداری آرمان</h3><p>طراحی معماری و نمای ۱۸ طبقه در تهران با ۲۴,۰۰۰ متر مربع زیربنا.</p></div></div>
+      <div class="pf-card pf2 reveal d1"><div class="ph">🏬</div><div class="body"><h3>مجتمع تجاری نگین</h3><p>طراحی داخلی و اجرای ۵ طبقه تجاری با اسکلت بتنی.</p></div></div>
+      <div class="pf-card pf3 reveal d2"><div class="ph">🏡</div><div class="body"><h3>ویلای مدرن شهران</h3><p>طراحی ویلای مدرن ۴۰۰ متری با حیاط مینیمال و استخر.</p></div></div>
     </div>
   </div>
 </section>
@@ -173,10 +161,10 @@ footer{background:#16263e;color:#a9bad2;padding:52px 0 0;margin-top:10px}
 <section id="cov">
   <div class="container">
     <div class="cov reveal">
-      <div class="c"><div class="n">۳۱</div><div class="l">استان تحت پوشش</div></div>
-      <div class="c"><div class="n">۴۵۰+</div><div class="l">شهر مقصد</div></div>
-      <div class="c"><div class="n">۱,۲۰۰</div><div class="l">خودرو در ناوگان</div></div>
-      <div class="c"><div class="n">۹۹.۲٪</div><div class="l">تحویل بدون خسارت</div></div>
+      <div class="c"><div class="n">۸۰+</div><div class="l">پروژه تحویل‌شده</div></div>
+      <div class="c"><div class="n">۳۵۰K m²</div><div class="l">زیربنای طراحی‌شده</div></div>
+      <div class="c"><div class="n">۱۲</div><div class="l">سال سابقه</div></div>
+      <div class="c"><div class="n">۲۰+</div><div class="l">معمار و طراح</div></div>
     </div>
   </div>
 </section>
@@ -184,11 +172,11 @@ footer{background:#16263e;color:#a9bad2;padding:52px 0 0;margin-top:10px}
 <section id="clients" style="padding-top:0">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">اعتماد برندها</div>
-      <h2>مشتریان سازمانی ما</h2>
+      <div class="k">اعتماد</div>
+      <h2>کارفرمایان ما</h2>
     </div>
     <div class="clients reveal">
-      <span>دیجی‌کالا</span><span>اسنپ‌مارکت</span><span>بانک آینده</span><span>فولاد مبارکه</span><span>پاکشو</span><span>زر ماکارونی</span><span>گلرنگ</span>
+      <span>شهرداری تهران</span><span>شرکت عمران</span><span>گروه ساختمانی</span><span>شرکت مسکن</span><span>سرمایه‌گذاران</span>
     </div>
   </div>
 </section>
@@ -196,9 +184,9 @@ footer{background:#16263e;color:#a9bad2;padding:52px 0 0;margin-top:10px}
 <section id="contact" style="padding-top:0">
   <div class="container">
     <div class="cta-band reveal">
-      <h2>بارتان را همین امروز راهی کنید</h2>
-      <p>کارشناسان حمل ما ظرف ۱ ساعت کاری، بهترین مسیر و نرخ را پیشنهاد می‌دهند.</p>
-      <a href="#" class="btn btn-p">استعلام رایگان نرخ</a>
+      <h2>پروژه‌ای در ذهن دارید؟</h2>
+      <p>تیم معماری ما در کمتر از ۳ روز، طرح اولیه و برآورد هزینه را ارائه می‌دهد.</p>
+      <a href="#" class="btn btn-p">مشاوره رایگان معماری</a>
     </div>
   </div>
 </section>
@@ -206,29 +194,25 @@ footer{background:#16263e;color:#a9bad2;padding:52px 0 0;margin-top:10px}
 <footer>
   <div class="container">
     <div class="f-grid">
-      <div><h4>راه پیوند</h4><p>شرکت حمل‌ونقل بین‌المللی راه پیوند — عضو انجمن شرکت‌های حمل‌ونقل جاده‌ای ایران با مجوز اتحادیه بین‌المللی حمل‌ونقل جاده‌ای (IRU).</p></div>
-      <div><h4>خدمات</h4><a href="#">حمل جاده‌ای</a><a href="#">حمل هوایی</a><a href="#">حمل دریایی</a><a href="#">انبارداری</a></div>
-      <div><h4>پیگیری</h4><a href="#">رهگیری مرسوله</a><a href="#">اعلام خسارت</a><a href="#">سوالات متداول</a><a href="#">شکایات</a></div>
-      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۹۶۹۶۹۶۹</a><a href="#">✉ info@rahpeyvand.ir</a><a href="#">⌖ تهران، جاده مخصوص کرج</a></div>
+      <div><h4>آرک طرح</h4><p>استودیو معماری و طراحی داخلی آرک طرح — تبدیل ایده‌های شما به فضاهای زیبا و کارآمد.</p></div>
+      <div><h4>خدمات</h4><a href="#">معماری</a><a href="#">داخلی</a><a href="#">نظارت</a><a href="#">مدیریت پروژه</a></div>
+      <div><h4>شرکت</h4><a href="#">درباره ما</a><a href="#">نمونه‌کار</a><a href="#">تیم ما</a><a href="#">فرصت شغلی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۹۶۹۶۹۶۹</a><a href="#">✉ info@archtarh.ir</a><a href="#">⌖ تهران، جاده مخصوص کرج</a></div>
     </div>
-    <div class="f-bottom"><span>© ۱۴۰۴ حمل‌ونقل راه پیوند — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+    <div class="f-bottom"><span>© ۱۴۰۴ آرک طرح — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Web</span></div>
   </div>
 </footer>
 
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
-  h.setAttribute('data-theme',n);localStorage.setItem('d19-theme',n);
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d19-theme',n);
 }
 (function(){const t=localStorage.getItem('d19-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
-function track(){
-  const v=document.getElementById('trkIn').value.trim();
-  if(!v){alert('کد رهگیری را وارد کنید');return}
-  document.getElementById('trkRes').style.display='block';
-}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>

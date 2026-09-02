@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شهرداری مهربان | نمونه‌کار PH Design</title>
+<title>استایل مارکت | نمونه‌کار PH Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#1e3a5f;--pri-2:#2a4d7a;--acc:#c9a227;--bg:#f5f7fa;--card:#fff;--txt:#1a2333;--soft:#55617a;--mut:#8a93a6;--line:#e3e8f0;--green:#1a7f4e;--red:#c0392b}
@@ -11,9 +11,9 @@
 body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--txt);direction:rtl;transition:background .4s,color .4s}
 a{text-decoration:none;color:inherit}button{font-family:inherit;cursor:pointer}
 .container{max-width:1140px;margin:0 auto;padding:0 24px}
-.gov-strip{background:var(--pri);color:#cfe0f2;font-size:.75rem;padding:6px 0;border-bottom:3px solid var(--acc)}
-.gov-strip .container{display:flex;justify-content:space-between;gap:14px}
-.gov-strip b{color:#fff}
+.topbar{background:var(--pri);color:#cfe0f2;font-size:.75rem;padding:6px 0;border-bottom:3px solid var(--acc)}
+.topbar .container{display:flex;justify-content:space-between;gap:14px}
+.topbar b{color:#fff}
 nav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--card) 90%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.1rem;color:var(--pri)}
@@ -25,7 +25,7 @@ nav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--card) 90
 .tbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:1rem}
 .back-pill{position:fixed;bottom:18px;left:18px;z-index:120;padding:10px 18px;border-radius:40px;font-size:.8rem;font-weight:600;background:var(--pri);color:#fff;box-shadow:0 8px 24px rgba(30,58,95,.35)}
 .hero{padding:64px 0;background:linear-gradient(160deg,var(--pri) 0%,#16294a 100%);color:#fff;position:relative;overflow:hidden}
-.hero::after{content:'⌂';position:absolute;left:-40px;bottom:-70px;font-size:22rem;opacity:.05}
+.hero::after{content:'👗';position:absolute;left:-40px;bottom:-70px;font-size:22rem;opacity:.05}
 .kick{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:30px;margin-bottom:16px}
 .hero h1{font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:800;line-height:1.4;margin-bottom:12px;max-width:640px}
 .hero .lead{color:#c3d5ea;font-size:.95rem;line-height:2;max-width:600px;margin-bottom:24px;font-weight:300}
@@ -40,45 +40,45 @@ section{padding:66px 0}
 .sec-head .k{color:var(--acc);font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px}
 .sec-head h2{font-size:clamp(1.35rem,3vw,1.9rem);font-weight:800;margin-bottom:10px}
 .sec-head p{color:var(--soft);font-size:.9rem;font-weight:300;line-height:1.9}
-.eserv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.eserv{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 20px;text-align:center;transition:.35s}
-.eserv:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(20,35,60,.1);border-color:var(--pri)}
-.eserv .ic{width:52px;height:52px;margin:0 auto 14px;border-radius:14px;background:color-mix(in srgb,var(--pri) 9%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
-.eserv h3{font-size:.92rem;margin-bottom:7px}
-.eserv p{font-size:.76rem;color:var(--soft);font-weight:300;line-height:1.8}
-.eserv .go{display:inline-block;margin-top:12px;font-size:.75rem;font-weight:700;color:var(--pri);border:1.5px solid var(--line);border-radius:8px;padding:6px 14px;transition:.3s}
-.eserv .go:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
-[data-theme=dark] .eserv .go{color:#9fc0e8}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 20px;text-align:center;transition:.35s}
+.prod:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(20,35,60,.1);border-color:var(--pri)}
+.prod .ic{width:52px;height:52px;margin:0 auto 14px;border-radius:14px;background:color-mix(in srgb,var(--pri) 9%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.prod h3{font-size:.92rem;margin-bottom:7px}
+.prod p{font-size:.76rem;color:var(--soft);font-weight:300;line-height:1.8}
+.prod .go{display:inline-block;margin-top:12px;font-size:.75rem;font-weight:700;color:var(--pri);border:1.5px solid var(--line);border-radius:8px;padding:6px 14px;transition:.3s}
+.prod .go:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
+[data-theme=dark] .prod .go{color:#9fc0e8}
 .two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start}
-.news-list{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.news-item{display:flex;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line);transition:.3s}
-.news-item:last-child{border:none}
-.news-item:hover{background:color-mix(in srgb,var(--pri) 4%,var(--card))}
-.news-item .dt{min-width:52px;text-align:center;background:color-mix(in srgb,var(--pri) 8%,transparent);border-radius:10px;padding:8px 4px;height:fit-content}
-.news-item .dt b{display:block;font-size:1.05rem;color:var(--pri)}
-[data-theme=dark] .news-item .dt b{color:#9fc0e8}
-.news-item .dt small{font-size:.62rem;color:var(--mut)}
-.news-item h3{font-size:.9rem;margin-bottom:5px}
-.news-item p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.8}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.feat-item{display:flex;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line);transition:.3s}
+.feat-item:last-child{border:none}
+.feat-item:hover{background:color-mix(in srgb,var(--pri) 4%,var(--card))}
+.feat-item .img{min-width:52px;text-align:center;background:color-mix(in srgb,var(--pri) 8%,transparent);border-radius:10px;padding:8px 4px;height:fit-content}
+.feat-item .img b{display:block;font-size:1.05rem;color:var(--pri)}
+[data-theme=dark] .feat-item .img b{color:#9fc0e8}
+.feat-item .img small{font-size:.62rem;color:var(--mut)}
+.feat-item h3{font-size:.9rem;margin-bottom:5px}
+.feat-item p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.8}
 .tag{display:inline-block;font-size:.66rem;font-weight:700;padding:2px 9px;border-radius:20px;margin-top:7px}
-.tag.im{background:#fdecea;color:var(--red)}
-.tag.ev{background:#e8f5ee;color:var(--green)}
- .mayor-card{background:linear-gradient(135deg,var(--pri),#16294a);color:#fff;border-radius:16px;padding:28px}
-.mayor-card .quote{font-size:.92rem;line-height:2.1;font-weight:300;color:#dbe7f4}
-.mayor-card .who{display:flex;align-items:center;gap:12px;margin-top:20px}
-.mayor-card .av{width:52px;height:52px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
-.mayor-card .who b{display:block;font-size:.9rem}
-.mayor-card .who small{color:#a9c0da;font-size:.72rem}
-.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.proj{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.3s}
-.proj:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(20,35,60,.09)}
-.proj .ph{height:110px;background:linear-gradient(135deg,var(--pri-2),var(--pri));display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff}
-.proj .body{padding:16px}
-.proj h3{font-size:.9rem;margin-bottom:8px}
-.proj .meta{display:flex;justify-content:space-between;font-size:.72rem;color:var(--mut);margin-bottom:10px}
-.bar{height:7px;background:var(--line);border-radius:20px;overflow:hidden}
-.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--green));border-radius:20px}
-.proj .pct{font-size:.72rem;color:var(--soft);margin-top:6px;display:flex;justify-content:space-between}
+.tag.hot{background:#fdecea;color:var(--red)}
+.tag.new{background:#e8f5ee;color:var(--green)}
+.promo-card{background:linear-gradient(135deg,var(--pri),#16294a);color:#fff;border-radius:16px;padding:28px}
+.promo-card .quote{font-size:.92rem;line-height:2.1;font-weight:300;color:#dbe7f4}
+.promo-card .who{display:flex;align-items:center;gap:12px;margin-top:20px}
+.promo-card .av{width:52px;height:52px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.promo-card .who b{display:block;font-size:.9rem}
+.promo-card .who small{color:#a9c0da;font-size:.72rem}
+.cat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cat-card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.3s}
+.cat-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(20,35,60,.09)}
+.cat-card .ph{height:110px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff}
+.c1 .ph{background:linear-gradient(135deg,var(--pri-2),var(--pri))}
+.c2 .ph{background:linear-gradient(135deg,var(--acc),var(--pri))}
+.c3 .ph{background:linear-gradient(135deg,var(--pri),var(--green))}
+.cat-card .body{padding:16px}
+.cat-card h3{font-size:.9rem;margin-bottom:8px}
+.cat-card .meta{display:flex;justify-content:space-between;font-size:.72rem;color:var(--mut)}
 .hours{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;font-size:.86rem}
 .hours h3{font-size:1rem;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .hours .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
@@ -95,24 +95,24 @@ footer{background:var(--pri);color:#b9cde4;padding:52px 0 0;margin-top:10px}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-@media(max-width:980px){.quick{grid-template-columns:repeat(2,1fr)}.eserv-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.projects{grid-template-columns:1fr 1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-@media(max-width:640px){.quick,.eserv-grid,.projects{grid-template-columns:1fr}.gov-strip .container{justify-content:center}}
+@media(max-width:980px){.quick{grid-template-columns:repeat(2,1fr)}.prod-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.cat{grid-template-columns:1fr 1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:640px){.quick,.prod-grid,.cat{grid-template-columns:1fr}.topbar .container{justify-content:center}}
 </style>
 </head>
 <body>
 
-<div class="gov-strip">
+<div class="topbar">
   <div class="container">
-    <span>🏛️ <b>پرتال رسمی شهرداری مهربان</b> — پایگاه اطلاع‌رسانی الکترونیکی</span>
-    <span>📞 ۱۳۷ | سامانه صدای شهروند</span>
+    <span>🛍️ <b>فروش ویژه پاییزه — ۳۰٪ تخفیف</b> روی کلکسیون جدید</span>
+    <span>📦 ارسال رایگان بالای ۵۰۰ هزار تومان</span>
   </div>
 </div>
 
 <nav>
   <div class="container nav-in">
-    <a href="#" class="logo"><span class="mark">⌂</span><span>شهرداری مهربان<small>مدیریت شهری هوشمند و مردمی</small></span></a>
+    <a href="#" class="logo"><span class="mark">👗</span><span>استایل مارکت<small>فروشگاه آنلاین لباس</small></span></a>
     <div class="nav-links">
-      <a href="#eserv">خدمات الکترونیک</a><a href="#news">اخبار</a><a href="#proj">پروژه‌ها</a><a href="#contact">تماس</a>
+      <a href="#prod">محصولات</a><a href="#feat">ویژه</a><a href="#cat">دسته‌بندی</a><a href="#contact">تماس</a>
     </div>
     <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
   </div>
@@ -121,60 +121,60 @@ footer{background:var(--pri);color:#b9cde4;padding:52px 0 0;margin-top:10px}
 <header class="hero">
   <div class="container">
     <div class="reveal">
-      <span class="kick">به پرتال شهرداری مهربان خوش آمدید</span>
-      <h1>شهری برای زندگی،<br>خدماتی بدون مراجعه</h1>
-      <p class="lead">بیش از ۹۰٪ خدمات شهروندی به‌صورت الکترونیکی انجام می‌شود. پرداخت عوارض، استعلام‌ها، درخواست‌ها و پیگیری شکایات — همه آنلاین، همه شفاف.</p>
+      <span class="kick">کلکسیون پاییزه ۱۴۰۴</span>
+      <h1>استایل خودت را<br><em>پیدا کن</em></h1>
+      <p class="lead">استایل مارکت با مجموعه‌ای از بهترین برندهای ایرانی و بین‌المللی، لباس‌های مردانه و زنانه با کیفیت بالا و قیمت مناسب ارائه می‌دهد.</p>
       <div class="quick">
-        <a href="#eserv" class="q-card"><span class="ic">💳</span><span><b>پرداخت عوارض</b><small>آنی و امن</small></span></a>
-        <a href="#eserv" class="q-card"><span class="ic">🔍</span><span><b>استعلام‌ها</b><small>پروانه، جریمه، دارایی</small></span></a>
-        <a href="#eserv" class="q-card"><span class="ic">📄</span><span><b>درخواست‌ها</b><small>۲۴ ساعته</small></span></a>
-        <a href="#eserv" class="q-card"><span class="ic">📢</span><span><b>به شهردار بگو</b><small>پیشنهاد و انتقاد</small></span></a>
+        <a href="#prod" class="q-card"><span class="ic">👔</span><span><b>مردانه</b><small>پیراهن، کت و شلوار</small></span></a>
+        <a href="#prod" class="q-card"><span class="ic">👗</span><span><b>زنانه</b><small>مانتو، پیراهن</small></span></a>
+        <a href="#prod" class="q-card"><span class="ic">👟</span><span><b>کفش</b><small>اسپرت و مجلسی</small></span></a>
+        <a href="#prod" class="q-card"><span class="ic">👜</span><span><b>اکسسوری</b><small>کیف و زیورآلات</small></span></a>
       </div>
     </div>
   </div>
 </header>
 
-<section id="eserv">
+<section id="prod">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">خدمات الکترونیک</div>
-      <h2>سامانه‌های شهروندی</h2>
-      <p>بدون کاغذ، بدون صف، بدون مراجعه حضوری.</p>
+      <div class="k">محصولات</div>
+      <h2>پرفروش‌ترین‌های این فصل</h2>
+      <p>انتخاب‌های مشتریان ما در فصل پاییز.</p>
     </div>
-    <div class="eserv-grid">
-      <div class="eserv reveal"><span class="ic">💳</span><h3>پرداخت عوارض نوسازی</h3><p>پرداخت آنلاین با نمایش صورت‌حساب و دریافت رسید رسمی.</p><a href="#" class="go">ورود به سامانه</a></div>
-      <div class="eserv reveal d1"><span class="ic">🏗️</span><h3>استعلام پروانه ساخت</h3><p>پیگیری وضعیت پروانه و مشاهده مراحل تأیید.</p><a href="#" class="go">ورود به سامانه</a></div>
-      <div class="eserv reveal d2"><span class="ic">🚗</span><h3>جریمه و خلافی</h3><p>مشاهده تخلفات خودرو و پرداخت آنی جریمه‌ها.</p><a href="#" class="go">ورود به سامانه</a></div>
-      <div class="eserv reveal d3"><span class="ic">🌳</span><h3>فضای سبز و درخواست خدمات</h3><p>ثبت درخواست هرس، جمع‌آوری زباله و سرویس‌های شهری.</p><a href="#" class="go">ورود به سامانه</a></div>
+    <div class="prod-grid">
+      <div class="prod reveal"><span class="ic">🧥</span><h3>پالتو زنانه</h3><p>پالتو پشمی با طراحی مینیمال و رنگ‌های پاییزه.</p><div class="go" style="color:var(--pri)">۱,۸۹۰,۰۰۰ تومان</div></div>
+      <div class="prod reveal d1"><span class="ic">👔</span><h3>پیراهن مردانه</h3><p>پیراهن کلاسیک با پارچه ایتالیایی و دوخت ظریف.</p><div class="go" style="color:var(--pri)">۶۸۰,۰۰۰ تومان</div></div>
+      <div class="prod reveal d2"><span class="ic">👟</span><h3>کفش اسپرت مردانه</h3><p>کفش چرم طبیعی با زیره مقاوم و طراحی مدرن.</p><div class="go" style="color:var(--pri)">۱,۲۵۰,۰۰۰ تومان</div></div>
+      <div class="prod reveal d3"><span class="ic">👜</span><h3>کیف دستی زنانه</h3><p>کیف چرم دست‌دوز با بند قابل تنظیم و فضای داخلی جادار.</p><div class="go" style="color:var(--pri)">۹۲۰,۰۰۰ تومان</div></div>
     </div>
   </div>
 </section>
 
-<section id="news" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+<section id="feat" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
   <div class="container two-col">
-    <div class="news-list reveal">
-      <div class="news-item"><div class="dt"><b>۲۴</b><small>شهریور</small></div><div><h3>افتتاح فاز دوم پارک جنگلی شمال</h3><p>با حضور اعضای شورای شهر، فاز دوم با ۱۲ هکتار فضای سبز جدید به بهره‌برداری رسید.<span class="tag ev">رویداد</span></p></div></div>
-      <div class="news-item"><div class="dt"><b>۲۰</b><small>شهریور</small></div><div><h3>اطلاعیه برنامه قطعی برق برای اصلاح شبکه روشنایی</h3><p>مناطق ۳ و ۵ فردا از ۸ تا ۱۲ صبح؛ مسیرهای اصلی با ژنراتور پشتیبانی می‌شوند.<span class="tag im">مهم</span></p></div></div>
-      <div class="news-item"><div class="dt"><b>۱۵</b><small>شهریور</small></div><div><h3>آغاز ثبت‌نام دوره‌های آموزش شهروندی پاییزه</h3><p>دوره‌های مهارت شهری برای نوجوانان و بزرگسالان — ثبت‌نام تا ۳۰ شهریور.<span class="tag ev">رویداد</span></p></div></div>
-      <div class="news-item"><div class="dt"><b>۱۰</b><small>شهریور</small></div><div><h3>گزارش عملکرد نیمه‌اول منتشر شد</h3><p>جزئیات بودجه، درآمد و پروژه‌های نیمه اول سال در بخش شفافیت قابل مشاهده است.</p></div></div>
+    <div class="feat reveal">
+      <div class="feat-item"><div class="img"><b>۲۵</b><small>شهریور</small></div><div><h3>فروش ویژه پاییزه آغاز شد</h3><p>تا ۳۰٪ تخفیف روی مجموعه کامل پاییزه — ارسال رایگان برای خریدهای بالای ۵۰۰ هزار تومان.<span class="tag hot">ویژه</span></p></div></div>
+      <div class="feat-item"><div class="img"><b>۲۰</b><small>شهریور</small></div><div><h3>ورود کلکسیون جدید زمستانه</h3><p>اولین نگاه به کلکسیون زمستان با رنگ‌ها و طرح‌های ترند امسال.<span class="tag new">جدید</span></p></div></div>
+      <div class="feat-item"><div class="img"><b>۱۵</b><small>شهریور</small></div><div><h3>تخفیف ویژه اعضای باشگاه</h3><p>۱۵٪ تخفیف اضافی برای اعضای باشگاه مشتریان وفادار.</p></div></div>
+      <div class="feat-item"><div class="img"><b>۱۰</b><small>شهریور</small></div><div><h3>آموزش ست کردن لباس</h3><p>مقاله جدید: ۱۰ ترکیب رنگ برتر فصل پاییز در وبلاگ ما.</p></div></div>
     </div>
-    <div class="mayor-card reveal d1">
-      <div class="quote">«مدیریت شهری وقتی موفق است که شهروند در خانه‌اش خدمت بگیرد، نه در صف. تیم ما هر روز بر سر این عهد کار می‌کند.»</div>
-      <div class="who"><span class="av">👤</span><span><b>مهندس رضا مهرابی</b><small>شهردار مهربان</small></span></div>
+    <div class="promo-card reveal d1">
+      <div class="quote">«استایل مارکت فقط یک فروشگاه نیست؛ یک تجربه خرید متفاوت است. از انتخاب تا تحویل، همه چیز با دقت انجام می‌شود.»</div>
+      <div class="who"><span class="av">👤</span><span><b>سارا احمدی</b><small>مدیر خلاقیت برند</small></span></div>
     </div>
   </div>
 </section>
 
-<section id="proj">
+<section id="cat">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">عمران شهری</div>
-      <h2>پروژه‌های در حال اجرا</h2>
+      <div class="k">دسته‌بندی‌ها</div>
+      <h2>بر اساس سلیقه شما</h2>
     </div>
-    <div class="projects">
-      <div class="proj reveal"><div class="ph">🛣️</div><div class="body"><h3>پل عابر پیاده میدان مرکزی</h3><div class="meta"><span>بودجه: ۴۸ میلیارد</span><span>پایان: آذر ۱۴۰۴</span></div><div class="bar"><i style="width:72%"></i></div><div class="pct"><span>پیشرفت</span><span>۷۲٪</span></div></div></div>
-      <div class="proj reveal d1"><div class="ph">🌉</div><div class="body"><h3>دوباندی کردن بزرگراه غربی</h3><div class="meta"><span>بودجه: ۲۱۰ میلیارد</span><span>پایان: بهار ۱۴۰۵</span></div><div class="bar"><i style="width:38%"></i></div><div class="pct"><span>پیشرفت</span><span>۳۸٪</span></div></div></div>
-      <div class="proj reveal d2"><div class="ph">🏞️</div><div class="body"><h3>بوستان خانواده در منطقه ۴</h3><div class="meta"><span>بودجه: ۳۲ میلیارد</span><span>پایان: آبان ۱۴۰۴</span></div><div class="bar"><i style="width:85%"></i></div><div class="pct"><span>پیشرفت</span><span>۸۵٪</span></div></div></div>
+    <div class="cat">
+      <div class="cat-card c1 reveal"><div class="ph">👔</div><div class="body"><h3>لباس مردانه</h3><div class="meta"><span>۱۲۰+ محصول</span><span>شروع از ۲۸۰ هزار تومان</span></div></div></div>
+      <div class="cat-card c2 reveal d1"><div class="ph">👗</div><div class="body"><h3>لباس زنانه</h3><div class="meta"><span>۱۸۰+ محصول</span><span>شروع از ۱۵۰ هزار تومان</span></div></div></div>
+      <div class="cat-card c3 reveal d2"><div class="ph">👟</div><div class="body"><h3>کفش و اکسسوری</h3><div class="meta"><span>۹۰+ محصول</span><span>شروع از ۳۵۰ هزار تومان</span></div></div></div>
     </div>
   </div>
 </section>
@@ -182,17 +182,17 @@ footer{background:var(--pri);color:#b9cde4;padding:52px 0 0;margin-top:10px}
 <section id="contact" style="padding-top:0">
   <div class="container two-col">
     <div class="hours reveal">
-      <h3>🕘 ساعات کاری و مراجعه</h3>
-      <div class="row"><span>شنبه تا چهارشنبه</span><span>۷:۳۰ تا ۱۵:۰۰</span></div>
-      <div class="row"><span>پنجشنبه</span><span>۷:۳۰ تا ۱۲:۰۰</span></div>
-      <div class="row"><span>سامانه‌های الکترونیک</span><span>۲۴ ساعته</span></div>
-      <div class="row"><span>تلفن گویا</span><span>۱۳۷</span></div>
-      <div class="row"><span>نشانی</span><span>میدان شهرداری، ساختمان مرکزی</span></div>
+      <h3>🕐 ساعات پشتیبانی</h3>
+      <div class="row"><span>شنبه تا پنجشنبه</span><span>۹ صبح تا ۱۰ شب</span></div>
+      <div class="row"><span>پشتیبانی آنلاین</span><span>۲۴ ساعته</span></div>
+      <div class="row"><span>ارسال سفارشات</span><span>۱ تا ۳ روز کاری</span></div>
+      <div class="row"><span>مرجوعی</span><span>تا ۷ روز پس از تحویل</span></div>
+      <div class="row"><span>تلفن</span><span>۰۲۱-۱۲۳۴۵۶۷۸</span></div>
     </div>
-    <div class="mayor-card reveal d1" style="display:flex;flex-direction:column;justify-content:center">
-      <h3 style="margin-bottom:10px;font-size:1.2rem">💬 به شهردار بگو</h3>
-      <p style="font-size:.86rem;color:#dbe7f4;font-weight:300;line-height:2">پیشنهاد، انتقاد یا گزارش مشکل شهری دارید؟ پیام شما مستقیم به تیم بررسی می‌رسد و پاسخ حداکثر تا ۷۲ ساعت اعلام می‌شود.</p>
-      <a href="#" class="btn" style="background:#fff;color:var(--pri);margin-top:18px;align-self:flex-start">ثبت پیام شهروندی</a>
+    <div class="promo-card reveal d1" style="display:flex;flex-direction:column;justify-content:center">
+      <h3 style="margin-bottom:10px;font-size:1.2rem">🎁 عضویت در باشگاه</h3>
+      <p style="font-size:.86rem;color:#dbe7f4;font-weight:300;line-height:2">با عضویت رایگان، از تخفیف‌های ویژه، اطلاع‌رسانی محصولات جدید و هدایای تولد بهره‌مند شوید.</p>
+      <a href="#" class="btn" style="background:#fff;color:var(--pri);margin-top:18px;align-self:flex-start">عضویت رایگان</a>
     </div>
   </div>
 </section>
@@ -200,22 +200,23 @@ footer{background:var(--pri);color:#b9cde4;padding:52px 0 0;margin-top:10px}
 <footer>
   <div class="container">
     <div class="f-grid">
-      <div><h4>شهرداری مهربان</h4><p>سازمان شهرداری و شورای اسلامی شهر مهربان — تلاش برای شهری زیست‌پذیر، شفاف و پاسخگو. این پرتال مطابق ضوابط انتشار الکترونیکی اطلاعات ادارات است.</p></div>
-      <div><h4>خدمات پرحجم</h4><a href="#">پرداخت عوارض</a><a href="#">استعلام پروانه</a><a href="#">خلافی خودرو</a><a href="#">درخواست خدمات شهری</a></div>
-      <div><h4>شفافیت</h4><a href="#">بودجه سالانه</a><a href="#">گزارش عملکرد</a><a href="#">مجامع عمومی</a><a href="#">مناقصات</a></div>
-      <div><h4>ارتباط</h4><a href="#">☎ ۱۳۷</a><a href="#">✉ info@mehreban.ir</a><a href="#">⌖ میدان شهرداری</a></div>
+      <div><h4>استایل مارکت</h4><p>فروشگاه آنلاین لباس با مجموعه‌ای از بهترین برندها — ارسال به سراسر کشور با ضمانت اصالت و کیفیت.</p></div>
+      <div><h4>محصولات</h4><a href="#">مردانه</a><a href="#">زنانه</a><a href="#">کفش</a><a href="#">اکسسوری</a></div>
+      <div><h4>خدمات</h4><a href="#">راهنمای سایز</a><a href="#">مرجوعی و بازگشت</a><a href="#">پیگیری سفارش</a><a href="#">حریم خصوصی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۱۲۳۴۵۶۷۸</a><a href="#">✉ info@stylemarket.ir</a><a href="#">⌖ تهران، خیابان ولیعصر</a></div>
     </div>
-    <div class="f-bottom"><span>© ۱۴۰۴ شهرداری مهربان — کلیه حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+    <div class="f-bottom"><span>© ۱۴۰۴ استایل مارکت — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Web</span></div>
   </div>
 </footer>
 
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
-  h.setAttribute('data-theme',n);localStorage.setItem('d15-theme',n);
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d15-theme',n);
 }
 (function(){const t=localStorage.getItem('d15-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});

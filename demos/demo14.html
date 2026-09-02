@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بیمه پوشش | نمونه‌کار PH Design</title>
+<title>کروماتیک استودیو | نمونه‌کار PH Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#1a5c3f;--pri-2:#247352;--acc:#d9a441;--bg:#f6f9f7;--card:#fff;--txt:#15251d;--soft:#4f6157;--mut:#85938b;--line:#e2eae5}
@@ -41,40 +41,38 @@ section{padding:70px 0}
 .sec-head .k{color:var(--acc);font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px}
 .sec-head h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:10px}
 .sec-head p{color:var(--soft);font-size:.92rem;font-weight:300;line-height:1.9}
-.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.prod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 22px;transition:.35s}
-.prod:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(21,50,38,.1);border-color:color-mix(in srgb,var(--pri) 35%,var(--line))}
-.prod .ic{width:48px;height:48px;border-radius:12px;background:color-mix(in srgb,var(--pri) 10%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:16px}
-.prod h3{font-size:1rem;margin-bottom:8px}
-.prod p{font-size:.82rem;color:var(--soft);line-height:1.9;font-weight:300}
-.prod .from{margin-top:14px;font-size:.75rem;color:var(--mut)}
-.prod .from b{color:var(--pri);font-size:.95rem}
-[data-theme=dark] .prod .from b{color:#9ed0b4}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:st}
+.port-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.port{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 22px;transition:.35s}
+.port:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(21,50,38,.1);border-color:color-mix(in srgb,var(--pri) 35%,var(--line))}
+.port .ic{width:48px;height:48px;border-radius:12px;background:color-mix(in srgb,var(--pri) 10%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:16px}
+.port h3{font-size:1rem;margin-bottom:8px}
+.port p{font-size:.82rem;color:var(--soft);line-height:1.9;font-weight:300}
+.port .from{margin-top:14px;font-size:.75rem;color:var(--mut)}
+.port .from b{color:var(--pri);font-size:.95rem}
+[data-theme=dark] .port .from b{color:#9ed0b4}
+.portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pf-card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.3s}
+.pf-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(21,50,38,.09)}
+.pf-card .img{height:140px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#fff}
+.pf-card .body{padding:18px}
+.pf-card h3{font-size:.9rem;margin-bottom:6px}
+.pf-card p{font-size:.76rem;color:var(--soft);font-weight:300;line-height:1.8}
+.pf1 .img{background:linear-gradient(135deg,#1a5c3f,#247352)}
+.pf2 .img{background:linear-gradient(135deg,#247352,#d9a441)}
+.pf3 .img{background:linear-gradient(135deg,#d9a441,#1a5c3f)}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:st}
 .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 22px;position:relative}
 .step::before{counter-increment:st;content:counter(st);position:absolute;top:-14px;right:22px;width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center}
 .step h3{font-size:.95rem;margin:6px 0 8px}
 .step p{font-size:.8rem;color:var(--soft);line-height:1.85;font-weight:300}
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px}
-.calc h3{font-size:1.2rem;margin-bottom:10px}
-.calc p{color:var(--soft);font-size:.88rem;line-height:1.9;font-weight:300;margin-bottom:20px}
-.fld{margin-bottom:16px}
-.fld label{display:block;font-size:.82rem;color:var(--soft);margin-bottom:7px;font-weight:500}
-.fld select,.fld input{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--txt);font-family:inherit;font-size:.9rem}
-.fld select:focus,.fld input:focus{outline:none;border-color:var(--pri)}
-.est{background:color-mix(in srgb,var(--pri) 7%,var(--bg));border-radius:14px;padding:24px;text-align:center}
-.est .big{font-size:2rem;font-weight:800;color:var(--pri);margin:8px 0}
-[data-theme=dark] .est .big{color:#9ed0b4}
-.est small{color:var(--mut)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:center}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 16px}
 .stat .n{font-size:1.7rem;font-weight:800;color:var(--pri)}
 [data-theme=dark] .stat .n{color:#9ed0b4}
 .stat .l{font-size:.8rem;color:var(--soft);margin-top:6px}
-.agencies{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.agency{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;font-size:.86rem}
-.agency b{color:var(--txt)}
-.agency span{color:var(--mut);font-size:.76rem}
+.clients{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+.clients span{font-size:1rem;font-weight:800;color:var(--mut);opacity:.75;transition:.3s}
+.clients span:hover{color:var(--pri);opacity:1}
 .cta-band{background:linear-gradient(120deg,var(--pri),var(--pri-2));border-radius:20px;padding:52px 40px;text-align:center;color:#fff}
 .cta-band h2{font-size:clamp(1.3rem,2.6vw,1.9rem);margin-bottom:12px}
 .cta-band p{color:#d5e8dd;font-size:.92rem;margin-bottom:24px;font-weight:300}
@@ -89,24 +87,24 @@ footer{background:var(--pri);color:#c2dccd;padding:52px 0 0;margin-top:20px}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-@media(max-width:980px){.prod-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.calc{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-@media(max-width:640px){.prod-grid,.steps,.stats,.agencies{grid-template-columns:1fr}.topbar .container{justify-content:center}}
+@media(max-width:980px){.port-grid{grid-template-columns:repeat(2,1fr)}.portfolio{grid-template-columns:1fr}.process{grid-template-columns:repeat(2,1fr)}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:640px){.port-grid,.portfolio,.process,.stats,.clients{grid-template-columns:1fr}.topbar .container{justify-content:center}}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="container">
-    <span>☎ <b>۰۲۱-۸۸۷۷۶۶۵۵</b> — مرکز پرداخت خسارت شبانه‌روزی</span>
-    <span><b>۲۴ ساعته، ۷ روز هفته</b> در خدمت شما</span>
+    <span>🎨 <b>استودیو طراحی گرافیک</b> — خلاقیت بی‌پایان</span>
+    <span><b>مشاوره رایگان اولیه</b> — ۲۴ ساعته در خدمت شما</span>
   </div>
 </div>
 
 <nav>
   <div class="container nav-in">
-    <a href="#" class="logo"><span class="mark">پ</span> بیمه پوشش</a>
+    <a href="#" class="logo"><span class="mark">🎨</span> کروماتیک استودیو</a>
     <div class="nav-links">
-      <a href="#prod">بیمه‌نامه‌ها</a><a href="#steps">خسارت</a><a href="#calc">محاسبه حق بیمه</a><a href="#ag">نمایندگی‌ها</a><a href="#contact">تماس</a>
+      <a href="#svc">خدمات</a><a href="#portfolio">نمونه‌کار</a><a href="#process">فرآیند</a><a href="#clients">مشتریان</a><a href="#contact">تماس</a>
     </div>
     <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
   </div>
@@ -115,79 +113,70 @@ footer{background:var(--pri);color:#c2dccd;padding:52px 0 0;margin-top:20px}
 <header class="hero">
   <div class="container">
     <div class="reveal">
-      <span class="kick">آرامش، تحت پوشش</span>
-      <h1>زندگی پر از غافلگیری است؛<br><em>ما آن سخت‌ها را می‌پوشانیم</em></h1>
-      <p class="lead">بیمه پوشش با بیش از ۲۵ سال تجربه، طیف کامل بیمه‌های زندگی، درمان، خودرو و آتش‌سوزی را با پرداخت سریع خسارت ارائه می‌کند.</p>
+      <span class="kick">طراحی گرافیک حرفه‌ای</span>
+      <h1>برند شما، با <em>طراحی ما</em> می‌درخشد</h1>
+      <p class="lead">کروماتیک استودیو با تیمی از طراحان خلاق، هویت بصری، لوگو، بسته‌بندی و طراحی وب‌سایت را با کیفیت بین‌المللی ارائه می‌دهد.</p>
       <div class="cta-row">
-        <a href="#calc" class="btn btn-p">محاسبه آنی حق بیمه</a>
-        <a href="#prod" class="btn btn-o">مشاهده بیمه‌نامه‌ها</a>
+        <a href="#contact" class="btn btn-p">شروع پروژه</a>
+        <a href="#portfolio" class="btn btn-o">مشاهده نمونه‌کار</a>
       </div>
     </div>
   </div>
 </header>
 
-<section id="prod">
+<section id="svc">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">محصولات</div>
-      <h2>بیمه‌نامه‌های ما</h2>
-      <p>برای هر مرحله از زندگی، یک پوشش مطمئن.</p>
+      <div class="k">خدمات</div>
+      <h2>طراحی برای هر نیاز شما</h2>
+      <p>از لوگو تا بسته‌بندی، از وب‌سایت تا موشن گرافیک.</p>
     </div>
-    <div class="prod-grid">
-      <div class="prod reveal"><span class="ic">🛡️</span><h3>بیمه زندگی</h3><p>سرمایه‌گذاری همراه با پوشش فوت، نقص عضو و بیماری‌های خاص.</p><div class="from">از <b>۱۸۰,۰۰۰</b> تومان/ماه</div></div>
-      <div class="prod reveal d1"><span class="ic">🚗</span><h3>بیمه خودرو</h3><p>شخص ثالث و بدنه با پوشش‌های تکمیلی و تخفیف عدم خسارت.</p><div class="from">از <b>۲,۴۰۰,۰۰۰</b> تومان/سال</div></div>
-      <div class="prod reveal d2"><span class="ic">🔥</span><h3>آتش‌سوزی</h3><p>پوشش منزل، مغازه و صنایع در برابر آتش، سرقت و بلایای طبیعی.</p><div class="from">از <b>۹۵۰,۰۰۰</b> تومان/سال</div></div>
-      <div class="prod reveal d3"><span class="ic">⚕️</span><h3>بیمه درمان</h3><p>پوشش هزینه‌های درمان، بستری و دندان‌پزشکی برای افراد و گروه‌ها.</p><div class="from">از <b>۳۲۰,۰۰۰</b> تومان/ماه</div></div>
+    <div class="port-grid">
+      <div class="port reveal"><span class="ic">🎨</span><h3>هویت بصری و برندینگ</h3><p>طراحی لوگو، راهنمای برند و هویت بصری یکپارچه برای همه بسترها.</p><div class="from">از <b>۵ میلیون</b> تومان</div></div>
+      <div class="port reveal d1"><span class="ic">📦</span><h3>بسته‌بندی محصول</h3><p>طراحی جعبه، لیبل و بسته‌بندی خلاقانه که فروش را افزایش می‌دهد.</p><div class="from">از <b>۳ میلیون</b> تومان</div></div>
+      <div class="port reveal d2"><span class="ic">💻</span><h3>طراحی وب‌سایت</h3><p>وب‌سایت‌های مدرن، ریسپانسیو و بهینه‌شده با تجربه کاربری عالی.</p><div class="from">از <b>۱۵ میلیون</b> تومان</div></div>
+      <div class="port reveal d3"><span class="ic">🎬</span><h3>موشن گرافیک و ویدیو</h3><p>انیمیشن‌های تبلیغاتی، موشن‌گرافیک و ویدیوهای معرفی برند.</p><div class="from">از <b>۸ میلیون</b> تومان</div></div>
     </div>
   </div>
 </section>
 
-<section id="steps" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+<section id="portfolio" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">فرآیند شفاف</div>
-      <h2>دریافت خسارت در ۴ قدم</h2>
+      <div class="k">نمونه‌کار</div>
+      <h2>پروژه‌های اخیر ما</h2>
     </div>
-    <div class="steps">
-      <div class="step reveal"><h3>اعلام خسارت</h3><p>از طریق اپلیکیشن، تلفن یا شعبه — ۲۴ ساعته ثبت می‌شود.</p></div>
-      <div class="step reveal d1"><h3>ارزیابی</h3><p>کارشناس ما حداکثر تا ۴۸ ساعت بعد پرونده را بررسی می‌کند.</p></div>
-      <div class="step reveal d2"><h3>تأیید پرونده</h3><p>مبلغ خسارت شفاف اعلام و با شما هماهنگ می‌شود.</p></div>
-      <div class="step reveal d3"><h3>پرداخت</h3><p>واریز به حساب شما در کمتر از ۷۲ ساعت کاری.</p></div>
+    <div class="portfolio">
+      <div class="pf-card pf1 reveal"><div class="img">🏷️</div><div class="body"><h3>بسته‌بندی چای ارگانیک گلستان</h3><p>طراحی هویت بصری و بسته‌بندی مجموعه چای‌های ارگانیک با تم طبیعت.</p></div></div>
+      <div class="pf-card pf2 reveal d1"><div class="img">🌐</div><div class="body"><h3>وب‌سایت استارتاپ فین‌تک</h3><p>طراحی و توسعه وب‌سایت معرفی و پنل کاربری با تمرکز بر تجربه کاربری.</p></div></div>
+      <div class="pf-card pf3 reveal d2"><div class="img">🎬</div><div class="body"><h3>موشن گرافیک راه‌اندازی برند</h3><p>ویدیوی معرفی ۶۰ ثانیه‌ای برای کمپین آنلاین شرکت پارس‌نوین.</p></div></div>
     </div>
   </div>
 </section>
 
-<section id="calc">
+<section id="process">
   <div class="container">
-    <div class="calc reveal">
-      <div>
-        <h3>تخمین‌گر حق بیمه</h3>
-        <p>در چند ثانیه بدانید بیمه‌نامه موردنظر چقدر هزینه دارد. قیمت نهایی پس از بررسی کارشناس اعلام می‌شود.</p>
-        <div class="fld"><label>نوع بیمه‌نامه</label>
-          <select id="cType" onchange="est()">
-            <option value="life">بیمه زندگی</option>
-            <option value="car">بیمه خودرو (بدنه)</option>
-            <option value="fire">آتش‌سوزی منزل</option>
-            <option value="health">بیمه درمان</option>
-          </select>
-        </div>
-        <div class="fld"><label>مدت پوشش</label>
-          <select id="cDur" onchange="est()">
-            <option value="1">۱ ساله</option>
-            <option value="3">۳ ساله (۵٪ تخفیف)</option>
-            <option value="5">۵ ساله (۱۰٪ تخفیف)</option>
-          </select>
-        </div>
-        <div class="fld"><label>سرمایه / ارزش ملک (میلیون تومان)</label>
-          <input type="number" id="cVal" value="50" min="1" oninput="est()">
-        </div>
-      </div>
-      <div class="est">
-        <small>حق بیمه تقریبی سالانه</small>
-        <div class="big" id="estOut">۱۸,۰۰۰,۰۰۰ تومان</div>
-        <small>قابل پرداخت در ۱۲ قسط — بدون کارمزد</small><br><br>
-        <a href="#contact" class="btn btn-p">صدور آنلاین بیمه‌نامه</a>
-      </div>
+    <div class="sec-head reveal">
+      <div class="k">فرآیند</div>
+      <h2>از ایده تا اجرا در ۴ مرحله</h2>
+    </div>
+    <div class="process">
+      <div class="step reveal"><h3>مشاوره و بریف</h3><p>درک نیازها، مخاطبان و اهداف پروژه با جلسه مشاوره رایگان.</p></div>
+      <div class="step reveal d1"><h3>ایده‌پردازی</h3><p>ارائه ۳ ایده اولیه و انتخاب مسیر مناسب با نظر مشتری.</p></div>
+      <div class="step reveal d2"><h3>طراحی نهایی</h3><p>اجرا با جزئیات کامل و ارائه فایل‌های آماده چاپ و دیجیتال.</p></div>
+      <div class="step reveal d3"><h3>تحویل و پشتیبانی</h3><p>فایل‌های نهایی، آموزش استفاده و پشتیبانی ۳ ماهه رایگان.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="clients" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="k">اعتماد برندها</div>
+      <h2>مشتریان ما</h2>
+    </div>
+    <div class="clients reveal">
+      <span>گلستان</span><span>دیجی‌کالا</span><span>پاکشو</span><span>زر ماکارونی</span><span>گلرنگ</span><span>هدا گلاس</span>
     </div>
   </div>
 </section>
@@ -195,27 +184,10 @@ footer{background:var(--pri);color:#c2dccd;padding:52px 0 0;margin-top:20px}
 <section style="padding-top:0">
   <div class="container">
     <div class="stats reveal">
-      <div class="stat"><div class="n">۱.۸M</div><div class="l">بیمه‌نامه فعال</div></div>
-      <div class="stat"><div class="n">۹۶٪</div><div class="l">تمدید سالانه</div></div>
-      <div class="stat"><div class="n">۷۲h</div><div class="l">میانگین پرداخت خسارت</div></div>
-      <div class="stat"><div class="n">۴۵۰+</div><div class="l">نمایندگی فعال</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="ag" style="padding-top:0;background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="k">شبکه فروش</div>
-      <h2>نمایندگی‌های منتخب</h2>
-    </div>
-    <div class="agencies">
-      <div class="agency reveal"><div><b>نمایندگی مرکزی تهران</b><br><span>خیابان ولیعصر، پلاک ۲۲۴۰ — ۰۲۱-۸۸۹۹۰۰۱۱</span></div><span>🟢 فعال</span></div>
-      <div class="agency reveal d1"><div><b>شعبه اصفهان</b><br><span>خیابان چهارباغ بالا، پلاک ۱۱۲ — ۰۳۱-۳۶۶۲۰۰۴۴</span></div><span>🟢 فعال</span></div>
-      <div class="agency reveal d2"><div><b>شعبه مشهد</b><br><span>بلوار وکیل‌آباد، پلاک ۵۶ — ۰۵۱-۳۸۴۴۰۰۲۲</span></div><span>🟢 فعال</span></div>
-      <div class="agency reveal"><div><b>شعبه شیراز</b><br><span>خیابان زند، پلاک ۷۸ — ۰۷۱-۳۲۳۳۰۰۵۵</span></div><span>🟢 فعال</span></div>
-      <div class="agency reveal d1"><div><b>شعبه تبریز</b><br><span>خیابان امام، پلاک ۳۴ — ۰۴۱-۳۳۴۴۰۰۸۸</span></div><span>🟢 فعال</span></div>
-      <div class="agency reveal d2"><div><b>شعبه کیش</b><br><span>میدان داریوش، برج تجاری A — ۰۷۶-۴۴۴۲۰۰۹۹</span></div><span>🟢 فعال</span></div>
+      <div class="stat"><div class="n">۵۰۰+</div><div class="l">پروژه تحویل‌شده</div></div>
+      <div class="stat"><div class="n">۱۲۰+</div><div class="l">مشتری فعال</div></div>
+      <div class="stat"><div class="n">۱۵</div><div class="l">عضو تیم خلاق</div></div>
+      <div class="stat"><div class="n">۹۸٪</div><div class="l">رضایت مشتریان</div></div>
     </div>
   </div>
 </section>
@@ -223,9 +195,9 @@ footer{background:var(--pri);color:#c2dccd;padding:52px 0 0;margin-top:20px}
 <section id="contact" style="padding-top:0">
   <div class="container">
     <div class="cta-band reveal">
-      <h2>یک فرم، صد خیال راحت</h2>
-      <p>شماره‌تان را بگذارید؛ کارشناس ما در کمتر از ۳۰ دقیقه تماس می‌گیرد.</p>
-      <a href="#" class="btn">درخواست تماس</a>
+      <h2>پروژه بعدی شما، کار بعدی ماست</h2>
+      <p>از مشاوره رایگان تا تحویل نهایی — با ما همراه باشید.</p>
+      <a href="#" class="btn">درخواست مشاوره رایگان</a>
     </div>
   </div>
 </section>
@@ -233,35 +205,25 @@ footer{background:var(--pri);color:#c2dccd;padding:52px 0 0;margin-top:20px}
 <footer>
   <div class="container">
     <div class="f-grid">
-      <div><h4>بیمه پوشش</h4><p>بیمه‌گری که کنار شماست — از لحظه خرید بیمه‌نامه تا پرداخت خسارت. تحت نظارت بیمه مرکزی جمهوری اسلامی ایران.</p></div>
-      <div><h4>بیمه‌نامه‌ها</h4><a href="#">زندگی</a><a href="#">خودرو</a><a href="#">آتش‌سوزی</a><a href="#">درمان</a></div>
-      <div><h4>خدمات</h4><a href="#">اعلام خسارت آنلاین</a><a href="#">استعلام بیمه‌نامه</a><a href="#">تمدید</a><a href="#">حریم خصوصی</a></div>
-      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۸۸۷۷۶۶۵۵</a><a href="#">✉ care@pooshesh.ir</a><a href="#">⌖ تهران، خیابان نلسون ماندلا</a></div>
+      <div><h4>کروماتیک استودیو</h4><p>استودیو طراحی گرافیک حرفه‌ای؛ تبدیل ایده‌های شما به طراحی‌های خلاقانه و تأثیرگذار.</p></div>
+      <div><h4>خدمات</h4><a href="#">هویت بصری</a><a href="#">بسته‌بندی</a><a href="#">وب‌سایت</a><a href="#">موشن گرافیک</a></div>
+      <div><h4>لینک‌ها</h4><a href="#">نمونه‌کار</a><a href="#">درباره ما</a><a href="#">بلاگ</a><a href="#">فرصت شغلی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۸۸۷۷۶۶۵۵</a><a href="#">✉ info@chromaticstudio.ir</a><a href="#">⌖ تهران، خیابان ولیعصر</a></div>
     </div>
-    <div class="f-bottom"><span>© ۱۴۰۴ بیمه پوشش — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+    <div class="f-bottom"><span>© ۱۴۰۴ کروماتیک استودیو — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Web</span></div>
   </div>
 </footer>
 
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
-  h.setAttribute('data-theme',n);localStorage.setItem('d14-theme',n);
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d14-theme',n);
 }
 (function(){const t=localStorage.getItem('d14-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
-function est(){
-  const t=document.getElementById('cType').value;
-  const d=+document.getElementById('cDur').value;
-  const v=+document.getElementById('cVal').value||50;
-  const base={life:36,car:12,fire:6,health:48}[t]||36; // per M per year (thousand toman *1000)
-  let annual=v*base*1000; // toman
-  if(d===3)annual*=.95;if(d===5)annual*=.9;
-  const out=Math.round(annual).toLocaleString('fa-IR');
-  document.getElementById('estOut').textContent=out+' تومان';
-}
-est();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>

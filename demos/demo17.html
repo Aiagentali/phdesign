@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دانشگاه آینده‌سازان | نمونه‌کار PH Design</title>
+<title>آپتیم مشاوره | نمونه‌کار PH Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#5c1f3d;--pri-2:#7a2f52;--acc:#c9a227;--bg:#faf8f6;--card:#fff;--txt:#241a20;--soft:#5f5259;--mut:#94868e;--line:#ece4e8}
@@ -41,23 +41,23 @@ section{padding:70px 0}
 .sec-head .k{color:var(--acc);font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px}
 .sec-head h2{font-size:clamp(1.35rem,3vw,1.95rem);font-weight:800;margin-bottom:10px}
 .sec-head p{color:var(--soft);font-size:.9rem;font-weight:300;line-height:1.9}
-.fac-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.fac{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 14px;text-align:center;transition:.35s}
-.fac:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(60,20,40,.12);border-color:var(--pri)}
-.fac .ic{width:52px;height:52px;margin:0 auto 14px;border-radius:50%;background:color-mix(in srgb,var(--pri) 9%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.35rem}
-.fac h3{font-size:.88rem}
-.fac p{font-size:.7rem;color:var(--mut);margin-top:6px}
-.adm{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:st}
+.svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 14px;text-align:center;transition:.35s}
+.svc:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(60,20,40,.12);border-color:var(--pri)}
+.svc .ic{width:52px;height:52px;margin:0 auto 14px;border-radius:50%;background:color-mix(in srgb,var(--pri) 9%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.35rem}
+.svc h3{font-size:.88rem}
+.svc p{font-size:.7rem;color:var(--mut);margin-top:6px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:st}
 .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 20px;position:relative}
 .step::before{counter-increment:st;content:counter(st);position:absolute;top:-13px;right:20px;width:28px;height:28px;border-radius:50%;background:var(--acc);color:#3d1328;font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center}
 .step h3{font-size:.9rem;margin:4px 0 8px}
 .step p{font-size:.78rem;color:var(--soft);line-height:1.85;font-weight:300}
-.news-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
-.feat-news{background:linear-gradient(135deg,var(--pri),var(--pri-2));border-radius:16px;padding:32px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;min-height:280px}
-.feat-news .dt{color:var(--acc);font-size:.72rem;margin-bottom:10px}
-.feat-news h3{font-size:1.25rem;line-height:1.6;margin-bottom:10px}
-.feat-news p{color:#e3c9d6;font-size:.84rem;line-height:1.9;font-weight:300}
-.side-news{display:flex;flex-direction:column;gap:14px}
+.case-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+.feat-case{background:linear-gradient(135deg,var(--pri),var(--pri-2));border-radius:16px;padding:32px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;min-height:280px}
+.feat-case .dt{color:var(--acc);font-size:.72rem;margin-bottom:10px}
+.feat-case h3{font-size:1.25rem;line-height:1.6;margin-bottom:10px}
+.feat-case p{color:#e3c9d6;font-size:.84rem;line-height:1.9;font-weight:300}
+.side-case{display:flex;flex-direction:column;gap:14px}
 .mini{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;transition:.3s}
 .mini:hover{transform:translateX(-4px);border-color:var(--pri)}
 .mini .dt{font-size:.68rem;color:var(--mut);margin-bottom:5px}
@@ -67,11 +67,11 @@ section{padding:70px 0}
 .stat .n{font-size:1.8rem;font-weight:900;color:var(--pri)}
 [data-theme=dark] .stat .n{color:var(--acc)}
 .stat .l{font-size:.78rem;color:var(--soft);margin-top:5px}
-.cal-strip{background:var(--pri);border-radius:16px;padding:26px 28px;color:#fff;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center}
-.cal-strip h3{font-size:1rem;color:var(--acc)}
-.cal-strip ul{display:flex;gap:22px;font-size:.78rem;flex-wrap:wrap}
-.cal-strip li{display:flex;align-items:center;gap:7px;color:#ecd5e0}
-.cal-strip li b{color:#fff}
+.ind-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ind{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 10px;text-align:center;transition:.3s}
+.ind:hover{border-color:var(--acc);transform:translateY(-3px)}
+.ind .ic{font-size:1.5rem}
+.ind span{display:block;font-size:.72rem;color:var(--soft);margin-top:8px}
 .cta-band{background:var(--card);border:2px dashed var(--line);border-radius:20px;padding:50px 40px;text-align:center}
 .cta-band h2{font-size:clamp(1.3rem,2.6vw,1.8rem);margin-bottom:12px}
 .cta-band p{color:var(--soft);font-size:.92rem;margin-bottom:24px;font-weight:300}
@@ -85,24 +85,24 @@ footer{background:#2b0e1d;color:#c9a8ba;padding:52px 0 0;margin-top:10px}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-@media(max-width:980px){.fac-grid{grid-template-columns:repeat(3,1fr)}.adm{grid-template-columns:1fr 1fr}.news-grid{grid-template-columns:1fr}.cal-strip{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-@media(max-width:640px){.fac-grid,.adm,.stats{grid-template-columns:1fr}.topbar .container{justify-content:center}}
+@media(max-width:980px){.svc-grid{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr 1fr}.case-grid{grid-template-columns:1fr}.ind-row{grid-template-columns:1fr 1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:640px){.svc-grid,.steps,.stats,.ind-row{grid-template-columns:1fr}.topbar .container{justify-content:center}}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="container">
-    <span>🎓 <b>سامانه جامع آموزشی</b> | انتخاب واحد نیم‌سال دوم تا ۳۰ شهریور</span>
+    <span>💼 <b>مشاوره رایگان اولیه</b> | جلسه معرفی ۳۰ دقیقه‌ای بدون تعهد</span>
     <span>☎ ۰۲۱-۹۸۷۶۵۴۳۲</span>
   </div>
 </div>
 
 <nav>
   <div class="container nav-in">
-    <a href="#" class="logo"><span class="mark">◉</span><span>دانشگاه آینده‌سازان<small>علم، فناوری، آینده</small></span></a>
+    <a href="#" class="logo"><span class="mark">◉</span><span>آپتیم مشاوره<small>مشاوره کسب‌وکار حرفه‌ای</small></span></a>
     <div class="nav-links">
-      <a href="#fac">دانشکده‌ها</a><a href="#adm">پذیرش</a><a href="#news">اخبار</a><a href="#cal">تقویم</a><a href="#contact">تماس</a>
+      <a href="#svc">خدمات</a><a href="#steps">فرآیند</a><a href="#case">مطالعات</a><a href="#ind">صنایع</a><a href="#contact">تماس</a>
     </div>
     <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
   </div>
@@ -110,62 +110,62 @@ footer{background:#2b0e1d;color:#c9a8ba;padding:52px 0 0;margin-top:10px}
 
 <header class="hero">
   <div class="container reveal">
-    <span class="kick">پذیرش نیم‌سال دوم ۱۴۰۴–۱۴۰۵ آغاز شد</span>
-    <h1>جایی که <em>آینده‌سازان</em><br>پرورش می‌یابند</h1>
-    <p class="lead">دانشگاه آینده‌سازان با ۵ دانشکده، ۴۰ رشته کارشناسی و ارشد و شبکه‌ای از آزمایشگاه‌های پژوهشی، مسیر حرفه‌ای شما را می‌سازد.</p>
-    <a href="#adm" class="btn btn-g">ثبت‌نام پذیرش</a>
-    <a href="#fac" class="btn btn-o">دانشکده‌ها</a>
+    <span class="kick">مشاوره استراتژیک کسب‌وکار</span>
+    <h1>رشد کسب‌وکار شما، <em>ماموریت ماست</em></h1>
+    <p class="lead">آپتیم مشاوره با تیمی از متخصصان باتجربه، استراتژی‌های عملیاتی و راه‌حل‌های قابل اجرا برای رشد پایدار ارائه می‌دهد.</p>
+    <a href="#steps" class="btn btn-g">مشاوره رایگان</a>
+    <a href="#svc" class="btn btn-o">خدمات ما</a>
   </div>
 </header>
 
-<section id="fac">
+<section id="svc">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">آموزش</div>
-      <h2>دانشکده‌ها و رشته‌ها</h2>
-      <p>از مهندسی تا هنر — در هر حوزه، استادانی که صنعت را می‌شناسند.</p>
+      <div class="k">خدمات</div>
+      <h2>چه کمکی می‌توانیم بکنیم؟</h2>
+      <p>از استراتژی تا اجرا، در کنار شما هستیم.</p>
     </div>
-    <div class="fac-grid">
-      <div class="fac reveal"><span class="ic">⚙️</span><h3>فنی و مهندسی</h3><p>۱۲ رشته</p></div>
-      <div class="fac reveal d1"><span class="ic">📈</span><h3>مدیریت و اقتصاد</h3><p>۸ رشته</p></div>
-      <div class="fac reveal d2"><span class="ic">🔬</span><h3>علوم پایه</h3><p>۹ رشته</p></div>
-      <div class="fac reveal d3"><span class="ic">📚</span><h3>ادبیات و زبان</h3><p>۶ رشته</p></div>
-      <div class="fac reveal"><span class="ic">🎨</span><h3>هنر و معماری</h3><p>۵ رشته</p></div>
+    <div class="svc-grid">
+      <div class="svc reveal"><span class="ic">📈</span><h3>استراتژی رشد</h3><p>تهیه نقشه راه رشد و توسعه بازار</p></div>
+      <div class="svc reveal d1"><span class="ic">🔄</span><h3>بازسازی سازمانی</h3><p>بهینه‌سازی ساختار و فرآیندها</p></div>
+      <div class="svc reveal d2"><span class="ic">💰</span><h3>مشاوره مالی</h3><p>برنامه‌ریزی مالی و جذب سرمایه</p></div>
+      <div class="svc reveal d3"><span class="ic">🎯</span><h3>مدیریت عملکرد</h3><p>طراحی KPI و سیستم‌های اندازه‌گیری</p></div>
+      <div class="svc reveal"><span class="ic">🌍</span><h3>ورود به بازار</h3><p>استراتژی صادرات و حضور بین‌المللی</p></div>
     </div>
   </div>
 </section>
 
-<section id="adm" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+<section id="steps" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">پذیرش ۱۴۰۴</div>
-      <h2>مسیر شما تا کلاس درس</h2>
+      <div class="k">فرآیند</div>
+      <h2>از تحلیل تا اجرا</h2>
     </div>
-    <div class="adm">
-      <div class="step reveal"><h3>ثبت‌نام آنلاین</h3><p>فرم پذیرش را در سامانه جامع پر کنید و مدارک را بارگذاری کنید.</p></div>
-      <div class="step reveal d1"><h3>بررسی و مصاحبه</h3><p>کمیته پذیرش مدارک را بررسی و برای مصاحبه (در صورت نیاز) دعوت می‌کند.</p></div>
-      <div class="step reveal d2"><h3>اعلام نتیجه</h3><p>نتیجه پذیرش با پیامک و ایمیل حداکثر تا ۱۰ روز کاری اعلام می‌شود.</p></div>
-      <div class="step reveal d3"><h3>ثبت‌نام نهایی</h3><p>پس از پرداخت شهریه، کارت دانشجویی و دسترسی‌های شما فعال می‌شود.</p></div>
+    <div class="steps">
+      <div class="step reveal"><h3>تحلیل وضع موجود</h3><p>بررسی دقیق وضعیت فعلی سازمان و شناسایی نقاط قوت و ضعف.</p></div>
+      <div class="step reveal d1"><h3>تدوین استراتژی</h3><p>طراحی نقشه راه و اهداف کوتاه‌مدت و بلندمدت با مشتری.</p></div>
+      <div class="step reveal d2"><h3>آموزش تیم</h3><p>آموزش مهارت‌های لازم و ایجاد ظرفیت داخلی برای ادامه مسیر.</p></div>
+      <div class="step reveal d3"><h3>پشتیبانی مداوم</h3><p>نظارت بر اجرا و اصلاح مسیر در صورت نیاز تا رسیدن به هدف.</p></div>
     </div>
   </div>
 </section>
 
-<section id="news">
+<section id="case">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">اخبار دانشگاه</div>
-      <h2>رویدادها و دستاوردها</h2>
+      <div class="k">مطالعات موفق</div>
+      <h2>پروژه‌های شاخص ما</h2>
     </div>
-    <div class="news-grid">
-      <article class="feat-news reveal">
-        <div class="dt">۲۲ شهریور ۱۴۰۴</div>
-        <h3>رتبه دوم کشور در مسابقات رباتیک دانشجویی</h3>
-        <p>تیم رباتیک دانشکده فنی با ربات «آرش ۳» در میان ۶۴ تیم، رتبه دوم کشوری را کسب کرد و به مسابقات بین‌المللی آسیا راه یافت.</p>
+    <div class="case-grid">
+      <article class="feat-case reveal">
+        <div class="dt">صنعت دارویی</div>
+        <h3>بازسازی ساختار فروش شرکت دارویی سلامت</h3>
+        <p>بازطراحی تیم فروش، فرآیند CRM و سیستم پاداش‌دهی منجر به افزایش ۳۵٪ فروش در ۶ ماه شد.</p>
       </article>
-      <div class="side-news">
-        <article class="mini reveal d1"><div class="dt">۱۸ شهریور</div><h4>همایش کارآفرینی با حضور ۳۰ استارتاپ برتر</h4></article>
-        <article class="mini reveal d2"><div class="dt">۱۰ شهریور</div><h4>آزمایشگاه نانوتکنولوژی جدید افتتاح شد</h4></article>
-        <article class="mini reveal d3"><div class="dt">۳ شهریور</div><h4>طرح خوابگاه تحصیلی ویژه دانشجویان ممتاز</h4></article>
+      <div class="side-case">
+        <article class="mini reveal d1"><div class="dt">خرده‌فروشی</div><h4>بهینه‌سازی زنجیره تأمین گروه تجاری نوین</h4></article>
+        <article class="mini reveal d2"><div class="dt">تولیدی</div><h4>طراحی استراتژی صادرات صنایع غذایی</h4></article>
+        <article class="mini reveal d3"><div class="dt">فناوری</div><h4>جذب سرمایه و برنامه رشد استارتاپ</h4></article>
       </div>
     </div>
   </div>
@@ -174,25 +174,25 @@ footer{background:#2b0e1d;color:#c9a8ba;padding:52px 0 0;margin-top:10px}
 <section style="padding-top:0">
   <div class="container">
     <div class="stats reveal">
-      <div class="stat"><div class="n">۸,۵۰۰</div><div class="l">دانشجوی فعال</div></div>
-      <div class="stat"><div class="n">۳۲۰</div><div class="l">استاد و عضو هیئت علمی</div></div>
-      <div class="stat"><div class="n">۴۰</div><div class="l">رشته تحصیلی</div></div>
-      <div class="stat"><div class="n">۹۴٪</div><div class="l">اشتغال فارغ‌التحصیلان</div></div>
+      <div class="stat"><div class="n">۲۵۰+</div><div class="l">پروژه مشاوره</div></div>
+      <div class="stat"><div class="n">۸۵٪</div><div class="l">رشد میانگین مشتریان</div></div>
+      <div class="stat"><div class="n">۳۰+</div><div class="l">مشاور متخصص</div></div>
+      <div class="stat"><div class="n">۱۵</div><div class="l">سال سابقه</div></div>
     </div>
   </div>
 </section>
 
-<section id="cal" style="padding-top:0">
+<section id="ind" style="padding-top:0">
   <div class="container">
-    <div class="cal-strip reveal">
-      <h3>📅 تقویم پاییز</h3>
-      <ul>
-        <li><b>۱ مهر:</b> شروع کلاس‌ها</li>
-        <li><b>۱۵ آبان:</b> میان‌ترم</li>
-        <li><b>۱۰ دی:</b> پایان‌ترم</li>
-        <li><b>۲۰ دی:</b> جشن فارغ‌التحصیلی</li>
-      </ul>
-      <a href="#" class="btn btn-g" style="font-size:.8rem">تقویم کامل</a>
+    <div class="sec-head reveal">
+      <div class="k">صنایع</div>
+      <h2>در چه صنایعی فعالیم؟</h2>
+    </div>
+    <div class="ind-row reveal">
+      <div class="ind"><span class="ic">🏭</span><span>تولیدی</span></div>
+      <div class="ind d1"><span class="ic">💊</span><span>دارویی</span></div>
+      <div class="ind d2"><span class="ic">🛒</span><span>خرده‌فروشی</span></div>
+      <div class="ind d3"><span class="ic">💻</span><span>فناوری</span></div>
     </div>
   </div>
 </section>
@@ -200,9 +200,9 @@ footer{background:#2b0e1d;color:#c9a8ba;padding:52px 0 0;margin-top:10px}
 <section id="contact" style="padding-top:0">
   <div class="container">
     <div class="cta-band reveal">
-      <h2>مسیر آینده‌ات را از اینجا شروع کن</h2>
-      <p>مشاوران پذیرش ما همه‌روزه پاسخگوی سوالات تحصیلی شما هستند.</p>
-      <a href="#" class="btn btn-g">مشاوره رایگان پذیرش</a>
+      <h2>آیا آماده رشد هستید؟</h2>
+      <p>جلسه مشاوره رایگان ۳۰ دقیقه‌ای — بدون تعهد، فقط گفتگو.</p>
+      <a href="#" class="btn btn-g">درخواست مشاوره رایگان</a>
     </div>
   </div>
 </section>
@@ -210,22 +210,23 @@ footer{background:#2b0e1d;color:#c9a8ba;padding:52px 0 0;margin-top:10px}
 <footer>
   <div class="container">
     <div class="f-grid">
-      <div><h4>دانشگاه آینده‌سازان</h4><p>مؤسسه آموزش عالی غیرانتفاعی با مجوز رسمی وزارت علوم، تحقیقات و فناوری — متعهد به آموزش کیفیت‌محور و پژوهش کاربردی.</p></div>
-      <div><h4>دانشکده‌ها</h4><a href="#">فنی و مهندسی</a><a href="#">مدیریت و اقتصاد</a><a href="#">علوم پایه</a><a href="#">هنر و معماری</a></div>
-      <div><h4>خدمات</h4><a href="#">سامانه آموزشی</a><a href="#">کتابخانه دیجیتال</a><a href="#">خوابگاه</a><a href="#">کارآفرینی</a></div>
-      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۹۸۷۶۵۴۳۲</a><a href="#">✉ info@ayandeh-sazan.ac.ir</a><a href="#">⌖ تهران، بزرگراه ارتش</a></div>
+      <div><h4>آپتیم مشاوره</h4><p>شرکت مشاوره کسب‌وکار آپتیم — تبدیل چالش‌ها به فرصت‌ها با تیمی از متخصصان باتجربه.</p></div>
+      <div><h4>خدمات</h4><a href="#">استراتژی</a><a href="#">بازسازی</a><a href="#">مالی</a><a href="#">بازاریابی</a></div>
+      <div><h4>شرکت</h4><a href="#">درباره ما</a><a href="#">مطالعات موردی</a><a href="#">تیم مشاوران</a><a href="#">فرصت شغلی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۹۸۷۶۵۴۳۲</a><a href="#">✉ info@optmconsulting.ir</a><a href="#">⌖ تهران، بزرگراه ارتش</a></div>
     </div>
-    <div class="f-bottom"><span>© ۱۴۰۴ دانشگاه آینده‌سازان — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+    <div class="f-bottom"><span>© ۱۴۰۴ آپتیم مشاوره — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Web</span></div>
   </div>
 </footer>
 
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
-  h.setAttribute('data-theme',n);localStorage.setItem('d17-theme',n);
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d17-theme',n);
 }
 (function(){const t=localStorage.getItem('d17-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});

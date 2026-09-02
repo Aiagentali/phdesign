@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>راهکارهای سازمانی آراد | نمونه‌کار PH Design</title>
+<title>دیجی‌پی | نمونه‌کار PH Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#3730a3;--pri-2:#4f46e5;--acc:#818cf8;--bg:#f7f7fb;--card:#fff;--txt:#1c1a33;--soft:#585478;--mut:#8c88a8;--line:#e6e4f2;--green:#16a34a}
@@ -37,24 +37,22 @@ h1 em{font-style:normal;color:var(--pri-2)}
 [data-theme=dark] h1 em{color:var(--acc)}
 .lead{color:var(--soft);font-size:.95rem;line-height:2;margin-bottom:26px;font-weight:300;max-width:500px}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap}
-/* dashboard mockup */
-.dash{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(28,26,60,.14)}
-.dash-top{background:color-mix(in srgb,var(--pri) 6%,var(--card));padding:12px 18px;display:flex;gap:6px;align-items:center;border-bottom:1px solid var(--line)}
-.dash-top i{width:10px;height:10px;border-radius:50%;background:var(--line)}
-.dash-top i:first-child{background:#f87171}.dash-top i:nth-child(2){background:#fbbf24}.dash-top i:nth-child(3){background:#34d399}
-.dash-top span{margin-right:auto;font-size:.72rem;color:var(--mut)}
-.dash-body{padding:20px}
-.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.dk{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px}
-.dk .t{font-size:.62rem;color:var(--mut)}
-.dk .v{font-size:1.05rem;font-weight:800;color:var(--pri-2);margin-top:3px}
-[data-theme=dark] .dk .v{color:var(--acc)}
-.dk .d{font-size:.6rem;color:var(--green)}
-.dash-chart{display:flex;gap:8px;align-items:flex-end;height:110px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px}
-.bar{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--pri-2),var(--acc));opacity:.85}
-.dash-rows{margin-top:14px}
-.drow{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line);font-size:.78rem;color:var(--soft)}
-.drow:last-child{border:none}
+/* app mockup */
+.app{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(28,26,60,.14)}
+.app-top{background:color-mix(in srgb,var(--pri) 6%,var(--card));padding:12px 18px;display:flex;gap:6px;align-items:center;border-bottom:1px solid var(--line)}
+.app-top i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.app-top i:first-child{background:#f87171}.app-top i:nth-child(2){background:#fbbf24}.app-top i:nth-child(3){background:#34d399}
+.app-top span{margin-right:auto;font-size:.72rem;color:var(--mut)}
+.app-body{padding:20px}
+.app-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.ak{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px}
+.ak .t{font-size:.62rem;color:var(--mut)}
+.ak .v{font-size:1.05rem;font-weight:800;color:var(--pri-2);margin-top:3px}
+[data-theme=dark] .ak .v{color:var(--acc)}
+.ak .d{font-size:.6rem;color:var(--green)}
+.app-rows{margin-top:14px}
+.arow{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line);font-size:.78rem;color:var(--soft)}
+.arow:last-child{border:none}
 .pill{font-size:.62rem;font-weight:700;padding:2px 9px;border-radius:20px}
 .pill.g{background:#e7f5ee;color:var(--green)}
 .pill.y{background:#fdf3e0;color:#b45309}
@@ -110,23 +108,23 @@ footer{background:#131028;color:#b5b0d9;padding:52px 0 0;margin-top:20px}
 .reveal.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 @media(max-width:980px){.hero-grid{grid-template-columns:1fr}.sol-grid{grid-template-columns:1fr 1fr}.ind-row{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr 1fr}.case-grid{grid-template-columns:1fr}.demo-sec{grid-template-columns:1fr;padding:28px}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-@media(max-width:640px){.sol-grid,.ind-row,.steps{grid-template-columns:1fr}.dash-kpis{grid-template-columns:1fr 1fr}.topbar .container{justify-content:center}}
+@media(max-width:640px){.sol-grid,.ind-row,.steps{grid-template-columns:1fr}.app-kpis{grid-template-columns:1fr 1fr}.topbar .container{justify-content:center}}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="container">
-    <span>⚙️ <b>آراد سیستم</b> — راهکارهای نرم‌افزاری برای سازمان‌های بزرگ</span>
-    <span>☎ ۰۲۱-۹۱۰۰۲۰۳۰ | پشتیبانی سازمانی ۲۴/۷</span>
+    <span>💳 <b>دیجی‌پی</b> — کیف پول دیجیتال و پرداخت آنلاین</span>
+    <span>☎ ۰۲۱-۹۱۰۰۲۰۳۰ | پشتیبانی ۲۴/۷</span>
   </div>
 </div>
 
 <nav>
   <div class="container nav-in">
-    <a href="#" class="logo"><span class="mark">◧</span> آراد سیستم</a>
+    <a href="#" class="logo"><span class="mark">💳</span> دیجی‌پی</a>
     <div class="nav-links">
-      <a href="#sol">راهکارها</a><a href="#proc">پیاده‌سازی</a><a href="#case">مشتریان</a><a href="#demo">درخواست دمو</a>
+      <a href="#sol">امکانات</a><a href="#steps">نحوه استفاده</a><a href="#case">مشتریان</a><a href="#demo">دانلود اپ</a>
     </div>
     <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
   </div>
@@ -135,31 +133,26 @@ footer{background:#131028;color:#b5b0d9;padding:52px 0 0;margin-top:20px}
 <header class="hero">
   <div class="container hero-grid">
     <div class="reveal">
-      <span class="kick">پلتفرم یکپارچه سازمانی</span>
-      <h1>کل سازمان شما،<br><em>روی یک پلتفرم</em></h1>
-      <p class="lead">آراد سیستم، ERP و CRM یکپارچه با هوش مصنوعی برای سازمان‌های متوسط و بزرگ — امن، مقیاس‌پذیر و کاملاً بومی.</p>
+      <span class="kick">کیف پول دیجیتال هوشمند</span>
+      <h1>پرداخت کنید،<br><em>بدون کیف پول فیزیکی</em></h1>
+      <p class="lead">دیجی‌پی، کیف پول دیجیتال امن و سریع — انتقال وجه، پرداخت قبوض، خرید شارژ و مدیریت مالی همه در یک اپلیکیشن.</p>
       <div class="cta-row">
-        <a href="#demo" class="btn btn-p">درخواست دموی اختصاصی</a>
-        <a href="#sol" class="btn btn-o">مشاهده راهکارها</a>
+        <a href="#demo" class="btn btn-p">دانلود رایگان</a>
+        <a href="#sol" class="btn btn-o">امکانات</a>
       </div>
     </div>
-    <div class="dash reveal d1">
-      <div class="dash-top"><i></i><i></i><i></i><span>پنل سازمانی — آراد ERP v6.2</span></div>
-      <div class="dash-body">
-        <div class="dash-kpis">
-          <div class="dk"><div class="t">فروش ماه</div><div class="v">۴.۸ میلیارد</div><div class="d">▲ ۱۲٪</div></div>
-          <div class="dk"><div class="t">سرنخ‌های فعال</div><div class="v">۱,۲۴۰</div><div class="d">▲ ۸٪</div></div>
-          <div class="dk"><div class="t">موجودی انبار</div><div class="v">۹۸٪</div><div class="d">دقیق</div></div>
+    <div class="app reveal d1">
+      <div class="app-top"><i></i><i></i><i></i><span>دیجی‌پی — نسخه ۵.۰</span></div>
+      <div class="app-body">
+        <div class="app-kpis">
+          <div class="ak"><div class="t">موجودی کیف پول</div><div class="v">۱۲,۵۰۰,۰۰۰</div><div class="d">تومان</div></div>
+          <div class="ak"><div class="t">تراکنش‌های ماه</div><div class="v">۲۸</div><div class="d">۱۲٪ رشد</div></div>
+          <div class="ak"><div class="t">پس‌انداز</div><div class="v">۳,۲۰۰,۰۰۰</div><div class="d">هدف ۸۰٪</div></div>
         </div>
-        <div class="dash-chart">
-          <div class="bar" style="height:40%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:35%"></div>
-          <div class="bar" style="height:70%"></div><div class="bar" style="height:60%"></div><div class="bar" style="height:85%"></div>
-          <div class="bar" style="height:75%"></div><div class="bar" style="height:95%"></div>
-        </div>
-        <div class="dash-rows">
-          <div class="drow"><span>سفارش #۴۸۲۱ — شرکت پارس‌نوین</span><span class="pill g">تأیید شده</span></div>
-          <div class="drow"><span>فاکتور #۹۱۲ — بازرگانی ایده</span><span class="pill y">در انتظار پرداخت</span></div>
-          <div class="drow"><span>حواله انبار ۳ — خروج کالا</span><span class="pill g">تحویل شده</span></div>
+        <div class="app-rows">
+          <div class="arow"><span>انتقال به سارا محمدی</span><span class="pill g">انجام شد</span></div>
+          <div class="arow"><span>پرداخت قبض برق</span><span class="pill y">در انتظار تأیید</span></div>
+          <div class="arow"><span>خرید شارژ ۵۰ هزار</span><span class="pill g">موفق</span></div>
         </div>
       </div>
     </div>
@@ -169,14 +162,14 @@ footer{background:#131028;color:#b5b0d9;padding:52px 0 0;margin-top:20px}
 <section id="sol">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">راهکارها</div>
-      <h2>یک سیستم، همه نیازهای سازمان</h2>
+      <div class="k">امکانات</div>
+      <h2>همه چیز در یک اپلیکیشن</h2>
     </div>
     <div class="sol-grid">
-      <div class="sol reveal"><span class="ic">🏢</span><h3>ERP سازمانی</h3><p>مالی، خرید، فروش، انبار و تولید — یکپارچه و بلادرنگ.</p></div>
-      <div class="sol reveal d1"><span class="ic">🤝</span><h3>CRM هوشمند</h3><p>مدیریت مشتریان، سرنخ‌ها و کمپین‌ها با پیش‌بینی مبتنی بر AI.</p></div>
-      <div class="sol reveal d2"><span class="ic">🛡️</span><h3>امنیت و کامپلاینس</h3><p>کنترل دسترسی نقش‌محور، رمزنگاری و لاگ کامل مطابق استانداردها.</p></div>
-      <div class="sol reveal d3"><span class="ic">☁️</span><h3>ابر سازمانی</h3><p>استقرار ابری یا On-Premise با بکاپ خودکار و دسترسی موبایل.</p></div>
+      <div class="sol reveal"><span class="ic">💸</span><h3>انتقال وجه</h3><p>انتقال سریع و امن به تمام کارت‌های شتابی.</p></div>
+      <div class="sol reveal d1"><span class="ic">📱</span><h3>پرداخت قبوض</h3><p>پرداخت آنلاین قبض آب، برق، گاز و تلفن.</p></div>
+      <div class="sol reveal d2"><span class="ic">🎁</span><h3>خرید شارژ</h3><p>شارژ سیم‌کارت اپراتورهای مختلف.</p></div>
+      <div class="sol reveal d3"><span class="ic">📊</span><h3>گزارش مالی</h3><p>ردیابی درآمد و هزینه‌ها با نمودار هوشمند.</p></div>
     </div>
   </div>
 </section>
@@ -184,27 +177,27 @@ footer{background:#131028;color:#b5b0d9;padding:52px 0 0;margin-top:20px}
 <section style="background:color-mix(in srgb,var(--pri) 4%,var(--bg));padding:52px 0">
   <div class="container">
     <div class="ind-row reveal">
-      <div class="ind"><span class="ic">🏭</span><span>تولیدی</span></div>
-      <div class="ind d1"><span class="ic">🛒</span><span>خرده‌فروشی</span></div>
-      <div class="ind d2"><span class="ic">💊</span><span>دارویی</span></div>
-      <div class="ind d3"><span class="ic">🏦</span><span>مالی</span></div>
-      <div class="ind"><span class="ic">🏗️</span><span>پیمانکاری</span></div>
-      <div class="ind d1"><span class="ic">🚚</span><span>لجستیک</span></div>
+      <div class="ind"><span class="ic">🛒</span><span>خرید آنلاین</span></div>
+      <div class="ind d1"><span class="ic">🍽️</span><span>رستوران</span></div>
+      <div class="ind d2"><span class="ic">🚕</span><span>تاکسی اینترنتی</span></div>
+      <div class="ind d3"><span class="ic">🎬</span><span>سینما و تفریح</span></div>
+      <div class="ind"><span class="ic">🏥</span><span>درمانگاه</span></div>
+      <div class="ind d1"><span class="ic">⛽</span><span>جایگاه سوخت</span></div>
     </div>
   </div>
 </section>
 
-<section id="proc">
+<section id="steps">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">روش کار</div>
-      <h2>پیاده‌سازی بدون توقف کسب‌وکار</h2>
+      <div class="k">نحوه استفاده</div>
+      <h2>در ۳ مرحله شروع کنید</h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><h3>تحلیل فرآیندها</h3><p>مشاوران ما فرآیندهای فعلی سازمان شما را مستند و بهینه می‌کنند.</p></div>
-      <div class="step reveal d1"><h3>استقرار و شخصی‌سازی</h3><p>پیکربندی سیستم متناسب با ساختار و زبان کسب‌وکار شما.</p></div>
-      <div class="step reveal d2"><h3>آموزش و مهاجرت</h3><p>آموزش تیم‌ها و انتقال امن داده‌ها از سیستم‌های قدیمی.</p></div>
-      <div class="step reveal d3"><h3>پشتیبانی SLA</h3><p>پشتیبانی سازمانی با زمان پاسخ تضمین‌شده و به‌روزرسانی منظم.</p></div>
+      <div class="step reveal"><h3>دانلود و نصب</h3><p>اپلیکیشن را از استور دانلود و نصب کنید.</p></div>
+      <div class="step reveal d1"><h3>ثبت‌نام</h3><p>با شماره موبایل و کد ملی ثبت‌نام کنید.</p></div>
+      <div class="step reveal d2"><h3>شارژ کیف پول</h3><p>از کارت بانکی یا درگاه آنلاین شارژ کنید.</p></div>
+      <div class="step reveal d3"><h3>شروع پرداخت</h3><p>همین حالا پرداخت‌های خود را انجام دهید.</p></div>
     </div>
   </div>
 </section>
@@ -212,13 +205,13 @@ footer{background:#131028;color:#b5b0d9;padding:52px 0 0;margin-top:20px}
 <section id="case" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">مطالعه موردی</div>
-      <h2>نتایج واقعی مشتریان</h2>
+      <div class="k">مشتریان</div>
+      <h2>دیجی‌پی توسط چه کسانی استفاده می‌شود</h2>
     </div>
     <div class="case-grid">
-      <div class="case reveal"><div class="co">صنایع غذایی گلرنگ پخش</div><h3>یکپارچه‌سازی ۵ انبار و ۱۲ شعبه فروش</h3><div class="res"><div><b>۳۸٪</b><small>کاهش خطای انبار</small></div><div><b>۵h</b><small>صرفه‌جویی روزانه گزارش‌ها</small></div></div></div>
-      <div class="case reveal d1"><div class="co">هلدینگ دارویی سلامت</div><h3>پیاده‌سازی CRM برای ۲۰۰ کارشناس فروش</h3><div class="res"><div><b>۲۷٪</b><small>افزایش نرخ تبدیل</small></div><div><b>۹۴٪</b><small>رضایت کاربران داخلی</small></div></div></div>
-      <div class="case reveal d2"><div class="co">گروه صنعتی مادیرا</div><h3>اتوماسیون چرخه خرید و تأمین</h3><div class="res"><div><b>۲۱٪</b><small>کاهش هزینه تأمین</small></div><div><b>۲x</b><small>سرعت تأیید سفارش</small></div></div></div>
+      <div class="case reveal"><div class="co">فروشگاه‌های زنجیره‌ای</div><h3>پرداخت موبایلی در فروشگاه‌ها</h3><div class="res"><div><b>۲M+</b><small>کاربر فعال</small></div><div><b>۵۰K+</b><small>فروشگاه متصل</small></div></div></div>
+      <div class="case reveal d1"><div class="co">رستوران‌ها و کافه‌ها</div><h3>پرداخت بدون تماس</h3><div class="res"><div><b>۱۵K+</b><small>رستوران</small></div><div><b>۳۰٪</b><small>افزایش سرعت سرویس</small></div></div></div>
+      <div class="case reveal d2"><div class="co">اپلیکیشن‌های حمل‌ونقل</div><h3>پرداخت یکپارچه کرایه</h3><div class="res"><div><b>۱۰M+</b><small>تراکنش ماهانه</small></div><div><b>۹۹.۹٪</b><small>آپتایم</small></div></div></div>
     </div>
   </div>
 </section>
@@ -226,10 +219,10 @@ footer{background:#131028;color:#b5b0d9;padding:52px 0 0;margin-top:20px}
 <section style="padding-top:44px">
   <div class="container">
     <div class="sla reveal">
-      <span class="s"><i>⏱</i> پاسخ اولیه: حداکثر ۳۰ دقیقه</span>
-      <span class="s"><i>🛠</i> رفع خطای بحرانی: ۴ ساعت</span>
-      <span class="s"><i>📈</i> آپتایم تضمینی: ۹۹.۹٪</span>
-      <span class="s"><i>🔐</i> امنیت ISO 27001</span>
+      <span class="s"><i>🔒</i> رمزنگاری ۲۵۶ بیتی</span>
+      <span class="s"><i>⏱</i> انتقال ۳ ثانیه‌ای</span>
+      <span class="s"><i>📈</i> آپتایم ۹۹.۹٪</span>
+      <span class="s"><i>🛡</i> مجوز بانک مرکزی</span>
     </div>
   </div>
 </section>
@@ -238,20 +231,19 @@ footer{background:#131028;color:#b5b0d9;padding:52px 0 0;margin-top:20px}
   <div class="container">
     <div class="demo-sec reveal">
       <div>
-        <h2>دموی اختصاصی بگیرید</h2>
-        <p>در یک جلسه ۴۵ دقیقه‌ای، سیستم را روی داده‌های نمونه صنعت خودتان ببینید — بدون تعهد خرید.</p>
+        <h2>اپلیکیشن را دانلود کنید</h2>
+        <p>رایگان نصب کنید، شارژ کنید و اولین پرداخت خود را انجام دهید — ۵,۰۰۰ تومان اعتبار هدیه.</p>
         <div class="sla" style="justify-content:flex-start;margin-top:18px">
           <span class="s"><i>✓</i> رایگان</span>
-          <span class="s"><i>✓</i> حضوری یا آنلاین</span>
+          <span class="s"><i>✓</i> iOS و Android</span>
         </div>
       </div>
       <form onsubmit="demoReq(event)">
-        <div class="fld"><label>نام و نام خانوادگی</label><input type="text" id="dName" required placeholder="مثلاً مهندس رضایی"></div>
-        <div class="fld"><label>سازمان</label><input type="text" id="dCo" required placeholder="نام شرکت یا سازمان"></div>
-        <div class="fld"><label>ایمیل سازمانی</label><input type="email" id="dMail" required placeholder="you@company.ir"></div>
-        <div class="fld"><label>راهکار موردعلاقه</label><select><option>ERP سازمانی</option><option>CRM هوشمند</option><option>امنیت و کامپلاینس</option><option>ابر سازمانی</option></select></div>
-        <button class="btn btn-p" style="width:100%">ثبت درخواست دمو</button>
-        <div class="ok-msg" id="dOk">✓ درخواست شما ثبت شد؛ تا ۲۴ ساعت آینده تماس می‌گیریم.</div>
+        <div class="fld"><label>نام و نام خانوادگی</label><input type="text" id="dName" required placeholder="مثلاً علی رضایی"></div>
+        <div class="fld"><label>شماره موبایل</label><input type="tel" id="dPhone" required placeholder="۰۹۱۲-۰۰۰-۰۰۰۰"></div>
+        <div class="fld"><label>ایمیل (اختیاری)</label><input type="email" id="dMail" placeholder="you@email.com"></div>
+        <button class="btn btn-p" style="width:100%">دریافت لینک دانلود</button>
+        <div class="ok-msg" id="dOk">✓ لینک دانلود به شماره شما ارسال شد.</div>
       </form>
     </div>
   </div>
@@ -260,22 +252,23 @@ footer{background:#131028;color:#b5b0d9;padding:52px 0 0;margin-top:20px}
 <footer>
   <div class="container">
     <div class="f-grid">
-      <div><h4>آراد سیستم</h4><p>شرکت توسعه نرم‌افزارهای سازمانی آراد — بیش از ۱۵ سال تجربه در پیاده‌سازی سیستم‌های اطلاعاتی برای ۴۰۰+ سازمان ایرانی.</p></div>
-      <div><h4>راهکارها</h4><a href="#">ERP</a><a href="#">CRM</a><a href="#">امنیت</a><a href="#">ابر سازمانی</a></div>
-      <div><h4>شرکت</h4><a href="#">درباره ما</a><a href="#">مطالعات موردی</a><a href="#">وبلاگ فنی</a><a href="#">فرصت شغلی</a></div>
-      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۹۱۰۰۲۰۳۰</a><a href="#">✉ sales@aradsys.ir</a><a href="#">⌖ تهران، میرداماد</a></div>
+      <div><h4>دیجی‌پی</h4><p>کیف پول دیجیتال هوشمند — پرداخت سریع، امن و آسان. دارای مجوز رسمی بانک مرکزی جمهوری اسلامی ایران.</p></div>
+      <div><h4>امکانات</h4><a href="#">انتقال وجه</a><a href="#">پرداخت قبوض</a><a href="#">خرید شارژ</a><a href="#">گزارش مالی</a></div>
+      <div><h4>شرکت</h4><a href="#">درباره ما</a><a href="#">امنیت</a><a href="#">وبلاگ</a><a href="#">فرصت شغلی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۹۱۰۰۲۰۳۰</a><a href="#">✉ support@digipay.ir</a><a href="#">⌖ تهران، میرداماد</a></div>
     </div>
-    <div class="f-bottom"><span>© ۱۴۰۴ آراد سیستم — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+    <div class="f-bottom"><span>© ۱۴۰۴ دیجی‌پی — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Web</span></div>
   </div>
 </footer>
 
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
-  h.setAttribute('data-theme',n);localStorage.setItem('d21-theme',n);
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d21-theme',n);
 }
 (function(){const t=localStorage.getItem('d21-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 function demoReq(e){

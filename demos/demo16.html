@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بیمارستان مهر | نمونه‌کار PH Design</title>
+<title>دِل وِرده | نمونه‌کار PH Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#155e6b;--pri-2:#1d7a8a;--acc:#e0a458;--bg:#f5f9fa;--card:#fff;--txt:#152528;--soft:#4f656b;--mut:#84989e;--line:#e0ebee;--red:#c0392b}
@@ -37,9 +37,9 @@ h1 em{font-style:normal;color:var(--pri)}
 .btn-p:hover{background:var(--pri-2);transform:translateY(-2px);box-shadow:0 10px 26px rgba(21,94,107,.3)}
 .btn-o{background:transparent;border:1.5px solid var(--line);color:var(--txt)}
 .btn-o:hover{border-color:var(--pri);color:var(--pri)}
-.appt-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 16px 40px rgba(16,60,68,.08)}
-.appt-card h3{font-size:1rem;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
-.appt-card h3 small{color:var(--acc);font-size:.7rem;font-weight:700}
+.res-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 16px 40px rgba(16,60,68,.08)}
+.res-card h3{font-size:1rem;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.res-card h3 small{color:var(--acc);font-size:.7rem;font-weight:700}
 .fld{margin-bottom:13px}
 .fld label{display:block;font-size:.78rem;color:var(--soft);margin-bottom:6px;font-weight:500}
 .fld input,.fld select{width:100%;padding:11px 13px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--txt);font-family:inherit;font-size:.88rem}
@@ -50,39 +50,40 @@ section{padding:66px 0}
 .sec-head .k{color:var(--acc);font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px}
 .sec-head h2{font-size:clamp(1.35rem,3vw,1.95rem);font-weight:800;margin-bottom:10px}
 .sec-head p{color:var(--soft);font-size:.9rem;font-weight:300;line-height:1.9}
-.dept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.dept{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 22px;transition:.35s;display:flex;gap:16px;align-items:flex-start}
-.dept:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(16,60,68,.1);border-color:var(--pri)}
-.dept .ic{width:46px;height:46px;flex-shrink:0;border-radius:12px;background:color-mix(in srgb,var(--pri) 9%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.25rem}
-.dept h3{font-size:.95rem;margin-bottom:6px}
-.dept p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.8}
-.docs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.doc{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:center;transition:.3s}
-.doc:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(16,60,68,.09)}
-.doc .av{height:120px;background:linear-gradient(135deg,var(--pri-2),var(--pri));display:flex;align-items:center;justify-content:center;font-size:2.6rem;color:#fff}
-.doc .body{padding:16px}
-.doc h3{font-size:.9rem;margin-bottom:4px}
-.doc .sp{font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:8px}
-.doc .meta{font-size:.7rem;color:var(--mut)}
-.doc .book{margin-top:12px;font-size:.75rem;font-weight:700;color:var(--pri);border:1.5px solid var(--line);border-radius:8px;padding:7px 16px;display:inline-block;transition:.3s}
-.doc .book:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
-[data-theme=dark] .doc .book{color:#9fd4de}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.menu{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 22px;transition:.35s;display:flex;gap:16px;align-items:flex-start}
+.menu:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(16,60,68,.1);border-color:var(--pri)}
+.menu .ic{width:46px;height:46px;flex-shrink:0;border-radius:12px;background:color-mix(in srgb,var(--pri) 9%,transparent);display:flex;align-items:center;justify-content:center;font-size:1.25rem}
+.menu h3{font-size:.95rem;margin-bottom:6px}
+.menu p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.8}
+.chefs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.chef{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:center;transition:.3s}
+.chef:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(16,60,68,.09)}
+.chef .av{height:120px;background:linear-gradient(135deg,var(--pri-2),var(--pri));display:flex;align-items:center;justify-content:center;font-size:2.6rem;color:#fff}
+.chef .body{padding:16px}
+.chef h3{font-size:.9rem;margin-bottom:4px}
+.chef .sp{font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:8px}
+.chef .meta{font-size:.7rem;color:var(--mut)}
+.chef .book{margin-top:12px;font-size:.75rem;font-weight:700;color:var(--pri);border:1.5px solid var(--line);border-radius:8px;padding:7px 16px;display:inline-block;transition:.3s}
+.chef .book:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
+[data-theme=dark] .chef .book{color:#9fd4de}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 14px}
 .stat .n{font-size:1.6rem;font-weight:800;color:var(--pri)}
 [data-theme=dark] .stat .n{color:#9fd4de}
 .stat .l{font-size:.78rem;color:var(--soft);margin-top:5px}
-.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
-.tip .dt{font-size:.7rem;color:var(--mut);margin-bottom:8px}
-.tip h3{font-size:.92rem;line-height:1.7;margin-bottom:8px}
-.tip p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.85}
-.visit{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;font-size:.88rem}
-.visit h3{margin-bottom:16px;font-size:1rem}
-.visit .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
-.visit .row:last-child{border:none}
-.visit .row span:last-child{font-weight:700;color:var(--pri)}
-[data-theme=dark] .visit .row span:last-child{color:#9fd4de}
+.events{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:.3s}
+.ev:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(16,60,68,.09)}
+.ev .dt{font-size:.7rem;color:var(--mut);margin-bottom:8px}
+.ev h3{font-size:.92rem;line-height:1.7;margin-bottom:8px}
+.ev p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.85}
+.hours{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;font-size:.88rem}
+.hours h3{margin-bottom:16px;font-size:1rem}
+.hours .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
+.hours .row:last-child{border:none}
+.hours .row span:last-child{font-weight:700;color:var(--pri)}
+[data-theme=dark] .hours .row span:last-child{color:#9fd4de}
 .cta-band{background:linear-gradient(120deg,var(--pri),var(--pri-2));border-radius:20px;padding:50px 40px;text-align:center;color:#fff}
 .cta-band h2{font-size:clamp(1.3rem,2.6vw,1.8rem);margin-bottom:12px}
 .cta-band p{color:#cfe9ee;font-size:.92rem;margin-bottom:22px;font-weight:300}
@@ -97,24 +98,24 @@ footer{background:var(--pri);color:#c2dde3;padding:52px 0 0;margin-top:10px}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.dept-grid{grid-template-columns:1fr 1fr}.docs{grid-template-columns:1fr 1fr}.tips{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-@media(max-width:640px){.dept-grid,.docs,.stats{grid-template-columns:1fr}.topbar .container{justify-content:center}}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr 1fr}.chefs{grid-template-columns:1fr 1fr}.events{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:640px){.menu-grid,.chefs,.stats{grid-template-columns:1fr}.topbar .container{justify-content:center}}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="container">
-    <span>🚑 اورژانس <span class="em">۲۴ ساعته</span> — ☎ <b>۱۱۵</b> داخلی ۹</span>
-    <span>پذیرش و ویزیت: <b>همه‌روزه ۸ تا ۲۲</b></span>
+    <span>🍽️ رزرو میز: <span class="em">۰۲۱-۲۲۳۳۴۴۵۵</span> — همه‌روزه از ساعت ۱۲</span>
+    <span>پذیرش VIP: <b>با هماهنگی قبلی</b></span>
   </div>
 </div>
 
 <nav>
   <div class="container nav-in">
-    <a href="#" class="logo"><span class="mark">✚</span> بیمارستان مهر</a>
+    <a href="#" class="logo"><span class="mark">🍽</span> دِل وِرده</a>
     <div class="nav-links">
-      <a href="#dept">تخصص‌ها</a><a href="#docs">پزشکان</a><a href="#tips">سلامت</a><a href="#visit">بازدید</a><a href="#contact">تماس</a>
+      <a href="#menu">منو</a><a href="#chefs">سرآشپزها</a><a href="#events">رویدادها</a><a href="#visit">بازدید</a><a href="#contact">تماس</a>
     </div>
     <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
   </div>
@@ -123,56 +124,56 @@ footer{background:var(--pri);color:#c2dde3;padding:52px 0 0;margin-top:10px}
 <header class="hero">
   <div class="container hero-grid">
     <div class="reveal">
-      <span class="kick">مرکز درمانی درجه یک</span>
-      <h1>سلامت شما،<br><em>امانت ماست</em></h1>
-      <p class="lead">بیمارستان مهر با ۳۰۰ تخت فعال، ۴۰ متخصص و تجهیزات تشخیصی پیشرفته، خدمات درمانی جامع با استانداردهای بین‌المللی ارائه می‌کند.</p>
-      <a href="#dept" class="btn btn-p">مشاهده تخصص‌ها</a>
-      <a href="#docs" class="btn btn-o">نوبت پزشکان</a>
+      <span class="kick">تجربه غذاهای لاکچری</span>
+      <h1>طعمی که در خاطره<br><em>می‌ماند</em></h1>
+      <p class="lead">رستوران دِل وِرده با فضای شیک، منوی متنوع و تیم سرآشپزهای حرفه‌ای، تجربه‌ای متفاوت از غذاخوردن را برایتان رقم می‌زند.</p>
+      <a href="#menu" class="btn btn-p">مشاهده منو</a>
+      <a href="#chefs" class="btn btn-o">رزرو میز</a>
     </div>
-    <aside class="appt-card reveal d1">
-      <h3>📅 رزرو نوبت <small>تأیید فوری</small></h3>
+    <aside class="res-card reveal d1">
+      <h3>📅 رزرو میز <small>تأیید آنی</small></h3>
       <form onsubmit="book(event)">
-        <div class="fld"><label>نام و نام خانوادگی</label><input type="text" id="bName" required placeholder="مثلاً سارا محمدی"></div>
+        <div class="fld"><label>نام و نام خانوادگی</label><input type="text" id="bName" required placeholder="مثلاً علی رضایی"></div>
         <div class="fld"><label>شماره تماس</label><input type="tel" id="bPhone" required placeholder="۰۹۱۲-۰۰۰-۰۰۰۰"></div>
-        <div class="fld"><label>تخصص</label>
-          <select id="bDept"><option>قلب و عروق</option><option>داخلی</option><option>جراحی عمومی</option><option>زنان و زایمان</option><option>اطفال</option><option>ارتوپدی</option></select>
+        <div class="fld"><label>تعداد نفرات</label>
+          <select id="bGuests"><option>۲ نفر</option><option>۴ نفر</option><option>۶ نفر</option><option>VIP (تا ۱۲ نفر)</option></select>
         </div>
-        <div class="fld"><label>تاریخ</label><input type="date" id="bDate" required></div>
-        <button class="btn btn-p" style="width:100%">ثبت نوبت</button>
-        <div class="ok-msg" id="bOk" style="margin-top:12px">✓ نوبت شما ثبت شد؛ پیامک تأیید ارسال می‌شود.</div>
+        <div class="fld"><label>تاریخ و ساعت</label><input type="datetime-local" id="bDate" required></div>
+        <button class="btn btn-p" style="width:100%">ثبت رزرو</button>
+        <div class="ok-msg" id="bOk" style="margin-top:12px">✓ رزرو شما ثبت شد؛ پیامک تأیید ارسال می‌شود.</div>
       </form>
     </aside>
   </div>
 </header>
 
-<section id="dept">
+<section id="menu">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">بخش‌های تخصصی</div>
-      <h2>مراقبت جامع در همه زمینه‌ها</h2>
+      <div class="k">منوی رستوران</div>
+      <h2>غذاهای سرآشپز</h2>
     </div>
-    <div class="dept-grid">
-      <div class="dept reveal"><span class="ic">🫀</span><div><h3>قلب و عروق</h3><p>آنژیوگرافی، ECC و کلینیک نارسایی قلب با تیم مجرب.</p></div></div>
-      <div class="dept reveal d1"><span class="ic">🔪</span><div><h3>جراحی عمومی</h3><p>جراحی‌های لاپاراسکوپی و سرپایی با بستری کوتاه.</p></div></div>
-      <div class="dept reveal d2"><span class="ic">🤰</span><div><h3>زنان و زایمان</h3><p>زایمان طبیعی و سزارین، سونوگرافی و کلینیک زنان.</p></div></div>
-      <div class="dept reveal"><span class="ic">👶</span><div><h3>اطفال و نوزادان</h3><p>NICU مجهز، واکسیناسیون و پیگیری رشد کودک.</p></div></div>
-      <div class="dept reveal d1"><span class="ic">🦴</span><div><h3>ارتوپدی</h3><p>جراحی مفاصل، شکستگی و فیزیوتراپی تخصصی.</p></div></div>
-      <div class="dept reveal d2"><span class="ic">🧪</span><div><h3>آزمایشگاه و رادیولوژی</h3><p>آزمایش‌های تخصصی، MRI و CT با جواب‌دهی سریع.</p></div></div>
+    <div class="menu-grid">
+      <div class="menu reveal"><span class="ic">🥩</span><div><h3>استیک ریبای</h3><p>استیک گوسفندی با سس قارچ و سیب‌زمینی سرخ‌شده — ۳۵۰ گرم.</p></div></div>
+      <div class="menu reveal d1"><span class="ic">🐟</span><div><h3>ماهی سالمون</h3><p>سالمون گریل‌شده با سبزیجات مدیترانه‌ای و سس لیمویی.</p></div></div>
+      <div class="menu reveal d2"><span class="ic">🍝</span><div><h3>پاستا کربونارا</h3><p>پاستای تازه با بیکن ایتالیایی، پنیر پارمسان و سس خامه‌ای.</p></div></div>
+      <div class="menu reveal"><span class="ic">🥗</span><div><h3>سالاد سزار</h3><p>کاهو رومانو با سس سزار اصیل، پنیر پارمسان و کROUTons تازه.</p></div></div>
+      <div class="menu reveal d1"><span class="ic">🍰</span><div><h3>دسر شکلات</h3><p>موسه شکلات تلخ با توت‌فرنگی تازه و بستنی وانیلی.</p></div></div>
+      <div class="menu reveal d2"><span class="ic">🍷</span><div><h3>شراب و نوشیدنی</h3><p>مجموعه‌ای از بهترین شراب‌های وارداتی و نوشیدنی‌های تازه.</p></div></div>
     </div>
   </div>
 </section>
 
-<section id="docs" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+<section id="chefs" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">کادر درمان</div>
-      <h2>پزشکان منتخب</h2>
+      <div class="k">تیم سرآشپز</div>
+      <h2>هنرمندان آشپزخانه</h2>
     </div>
-    <div class="docs">
-      <div class="doc reveal"><div class="av">👨‍⚕️</div><div class="body"><h3>دکتر امیر کاظمی</h3><div class="sp">قلب و عروق</div><div class="meta">۱۸ سال سابقه · فوق تخصص</div><a href="#" class="book">دریافت نوبت</a></div></div>
-      <div class="doc reveal d1"><div class="av">👩‍⚕️</div><div class="body"><h3>دکتر لیلا نوری</h3><div class="sp">زنان و زایمان</div><div class="meta">۱۲ سال سابقه · متخصص</div><a href="#" class="book">دریافت نوبت</a></div></div>
-      <div class="doc reveal d2"><div class="av">👨‍⚕️</div><div class="body"><h3>دکتر حسین راد</h3><div class="sp">ارتوپدی</div><div class="meta">۱۵ سال سابقه · فوق تخصص</div><a href="#" class="book">دریافت نوبت</a></div></div>
-      <div class="doc reveal d3"><div class="av">👩‍⚕️</div><div class="body"><h3>دکتر مینا صادقی</h3><div class="sp">اطفال</div><div class="meta">۱۰ سال سابقه · متخصص</div><a href="#" class="book">دریافت نوبت</a></div></div>
+    <div class="chefs">
+      <div class="chef reveal"><div class="av">👨‍🍳</div><div class="body"><h3>آشپز احمد محمدی</h3><div class="sp">آشپز ارشد</div><div class="meta">۱۸ سال سابقه · فرانسه و ایتالیا</div><a href="#" class="book">رزرو میز</a></div></div>
+      <div class="chef reveal d1"><div class="av">👩‍🍳</div><div class="body"><h3>آشپز مریم کریمی</h3><div class="sp">دسر و شیرینی</div><div class="meta">۱۲ سال سابقه · فرانسه</div><a href="#" class="book">رزرو میز</a></div></div>
+      <div class="chef reveal d2"><div class="av">👨‍🍳</div><div class="body"><h3>آشپز حسین راد</h3><div class="sp">گریل و استیک</div><div class="meta">۱۵ سال سابقه · آمریکای لاتین</div><a href="#" class="book">رزرو میز</a></div></div>
+      <div class="chef reveal d3"><div class="av">👩‍🍳</div><div class="body"><h3>آشپز نیلوفر صادقی</h3><div class="sp">ایتالیایی و مدیترانه‌ای</div><div class="meta">۱۰ سال سابقه · ایتالیا</div><a href="#" class="book">رزرو میز</a></div></div>
     </div>
   </div>
 </section>
@@ -180,43 +181,53 @@ footer{background:var(--pri);color:#c2dde3;padding:52px 0 0;margin-top:10px}
 <section style="padding-top:40px">
   <div class="container">
     <div class="stats reveal">
-      <div class="stat"><div class="n">۳۰۰</div><div class="l">تخت فعال</div></div>
-      <div class="stat"><div class="n">۴۰+</div><div class="l">پزشک متخصص</div></div>
-      <div class="stat"><div class="n">۱۲۰K</div><div class="l">ویزیت سالانه</div></div>
-      <div class="stat"><div class="n">۹۸٪</div><div class="l">رضایت بیماران</div></div>
+      <div class="stat"><div class="n">۱۲ سال</div><div class="l">سابقه رستوران</div></div>
+      <div class="stat"><div class="n">۴</div><div class="l">سرآشپز بین‌المللی</div></div>
+      <div class="stat"><div class="n">۲۰۰+</div><div class="l">مشتری روزانه</div></div>
+      <div class="stat"><div class="n">۴.۸/۵</div><div class="l">امتیاز در گوگل</div></div>
     </div>
   </div>
 </section>
 
-<section id="tips" style="padding-top:0;background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+<section id="events" style="padding-top:0;background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="k">رویدادها</div>
+      <h2>شب‌های ویژه دِل وِرده</h2>
+    </div>
+    <div class="events">
+      <article class="ev reveal"><div class="dt">۱۸ شهریور</div><h3>شب موسیقی زنده جاز</h3><p>اصTRS جاز بین‌المللی با نوشیدنی‌های ویژه و منوی اختصاصی.</p></article>
+      <article class="ev reveal d1"><div class="dt">۲۵ شهریور</div><h3>کارگاه آشپزی ایتالیایی</h3><p>آموزش تهیه پاستای تازه و سس‌های اصیل توسط سرآشپز ایتالیایی.</p></article>
+      <article class="ev reveal d2"><div class="dt">۱ مهر</div><h3>شام ویژه شب یلدا</h3><p>منوی اختصاصی شب یلدا با انار و آجیل و شراب‌های خاص.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
   <div class="container two-col" style="display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start">
     <div>
       <div class="sec-head reveal" style="text-align:right;margin:0 0 24px">
-        <div class="k">سلامت</div>
-        <h2 style="font-size:1.3rem">مقالات و توصیه‌های پزشکی</h2>
+        <div class="k">رزرو میز</div>
+        <h2 style="font-size:1.3rem">ساعات کاری رستوران</h2>
       </div>
-      <div class="tips">
-        <article class="tip reveal"><div class="dt">۱۸ شهریور</div><h3>فشار خون بالا؛ دشمن خاموش</h3><p>چطور با تغذیه و ورزش، فشار خون را بدون دارو کنترل کنیم؟</p></article>
-        <article class="tip reveal d1"><div class="dt">۱۲ شهریور</div><h3>سلامت قلب در گرمای تابستان</h3><p>نکات مهم برای بیماران قلبی در روزهای گرم سال.</p></article>
-        <article class="tip reveal d2"><div class="dt">۵ شهریور</div><h3>تغذیه کودک مدرسه‌ای</h3><p>میان‌وعده سالم برای تمرکز بهتر در کلاس درس.</p></article>
+      <div class="hours reveal">
+        <h3>🕘 ساعات سرو</h3>
+        <div class="row"><span>ناهار</span><span>۱۲ تا ۱۵</span></div>
+        <div class="row"><span>شام</span><span>۱۸ تا ۲۳</span></div>
+        <div class="row"><span>VIP</span><span>با هماهنگی</span></div>
+        <div class="row"><span>پارکینگ</span><span>رایگان</span></div>
+        <div class="row"><span>تلفن رزرو</span><span>۰۲۱-۲۲۳۳۴۴۵۵</span></div>
       </div>
     </div>
-    <aside id="visit" class="visit reveal d1">
-      <h3>🕘 ساعات ویزیت بیماران</h3>
-      <div class="row"><span>عصرگاهی</span><span>۱۶ تا ۱۷</span></div>
-      <div class="row"><span>عصر</span><span>۱۸ تا ۱۹</span></div>
-      <div class="row"><span>ICU (با هماهنگی)</span><span>روزانه ۱۷ تا ۱۸</span></div>
-      <div class="row"><span>اورژانس</span><span>۲۴ ساعته</span></div>
-    </aside>
   </div>
 </section>
 
 <section id="contact" style="padding-top:0">
   <div class="container">
     <div class="cta-band reveal">
-      <h2>مورد اورژانسی دارید؟</h2>
-      <p>تیم اورژانس ما ۲۴ ساعته آماده پاسخگویی است — تماس: ۱۱۵ داخلی ۹</p>
-      <a href="#" class="btn">اطلاعات تماس و مسیر</a>
+      <h2>میز خود را همین الان رزرو کنید</h2>
+      <p>تجربه‌ای متفاوت از غذاخوردن — با فضای شیک و غذاهای بی‌نظیر.</p>
+      <a href="#" class="btn">رزرو میز</a>
     </div>
   </div>
 </section>
@@ -224,22 +235,23 @@ footer{background:var(--pri);color:#c2dde3;padding:52px 0 0;margin-top:10px}
 <footer>
   <div class="container">
     <div class="f-grid">
-      <div><h4>بیمارستان مهر</h4><p>مرکز درمانی-آموزشی با مجوز رسمی وزارت بهداشت. متعهد به کیفیت ایمن، محرمانگی اطلاعات بیماران و درمان انسانی.</p></div>
-      <div><h4>بخش‌ها</h4><a href="#">قلب و عروق</a><a href="#">جراحی</a><a href="#">زنان</a><a href="#">اطفال</a></div>
-      <div><h4>خدمات</h4><a href="#">رزرو نوبت</a><a href="#">جواب آزمایش</a><a href="#">پرونده الکترونیک</a><a href="#">حریم بیمار</a></div>
-      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۲۲۳۳۴۴۵۵</a><a href="#">🚑 ۱۱۵ داخلی ۹</a><a href="#">⌖ تهران، بزرگراه چمران</a></div>
+      <div><h4>دِل وِرده</h4><p>رستوران لاکچری دِل وِرده — تجربه‌ای متفاوت از غذاخوردن با فضای شیک، سرآشپزهای بین‌المللی و منوی متنوع.</p></div>
+      <div><h4>منو</h4><a href="#">استیک و گریل</a><a href="#">دریایی</a><a href="#">ایتالیایی</a><a href="#">دسر و نوشیدنی</a></div>
+      <div><h4>خدمات</h4><a href="#">رزرو میز</a><a href="#">سرو VIP</a><a href="#">سالن مراسم</a><a href="#">حریم خصوصی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۲۲۳۳۴۴۵۵</a><a href="#">✉ info@delverdeh.ir</a><a href="#">⌖ تهران، خیابان ولیعصر</a></div>
     </div>
-    <div class="f-bottom"><span>© ۱۴۰۴ بیمارستان مهر — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+    <div class="f-bottom"><span>© ۱۴۰۴ دِل وِرده — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Web</span></div>
   </div>
 </footer>
 
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
-  h.setAttribute('data-theme',n);localStorage.setItem('d16-theme',n);
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d16-theme',n);
 }
 (function(){const t=localStorage.getItem('d16-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 function book(e){

@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>هلدینگ پتروشیمی پارس | نمونه‌کار PH Design</title>
+<title>آسمان سفر | نمونه‌کار PH Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#2c4257;--pri-2:#3a566f;--acc:#3fa9c9;--bg:#f6f8f9;--card:#fff;--txt:#1b2733;--soft:#54667a;--mut:#8a99a8;--line:#e2e9ee;--green:#2e9e6b}
@@ -25,7 +25,7 @@ nav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--card) 90
 .tbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:1rem}
 .back-pill{position:fixed;bottom:18px;left:18px;z-index:120;padding:10px 18px;border-radius:40px;font-size:.8rem;font-weight:600;background:var(--pri);color:#fff;box-shadow:0 8px 24px rgba(44,66,87,.4)}
 .hero{padding:80px 0;background:linear-gradient(140deg,#22374a 0%,var(--pri) 45%,#1a2a3a 100%);color:#fff;position:relative;overflow:hidden}
-.hero::before{content:'⬢';position:absolute;top:-50px;left:-30px;font-size:24rem;opacity:.05}
+.hero::before{content:'✈';position:absolute;top:-50px;left:-30px;font-size:24rem;opacity:.05}
 .hero .kick{display:inline-block;background:rgba(63,169,201,.15);border:1px solid rgba(63,169,201,.3);color:#9fd9ec;font-size:.75rem;font-weight:600;padding:6px 15px;border-radius:30px;margin-bottom:18px}
 .hero h1{font-size:clamp(1.65rem,3.8vw,2.6rem);font-weight:800;line-height:1.4;margin-bottom:14px;max-width:640px}
 .hero h1 em{font-style:normal;color:var(--acc)}
@@ -51,28 +51,22 @@ section{padding:70px 0}
 .unit h3{font-size:1.05rem;margin-bottom:8px}
 .unit p{font-size:.84rem;color:var(--soft);font-weight:300;line-height:1.95;margin-bottom:12px}
 .unit .more{font-size:.78rem;font-weight:700;color:var(--acc)}
-.sus{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.sus-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;text-align:center;transition:.3s}
-.sus-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(27,45,63,.1)}
-.sus-card .ic{font-size:2.2rem;margin-bottom:14px}
-.sus-card h3{font-size:.95rem;margin-bottom:8px}
-.sus-card p{font-size:.8rem;color:var(--soft);font-weight:300;line-height:1.9}
-.sus-card .big{font-size:1.6rem;font-weight:800;color:var(--green);margin-top:10px}
-.ir{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.ir-table{width:100%;border-collapse:collapse;font-size:.86rem}
-.ir-table th{background:color-mix(in srgb,var(--pri) 7%,var(--card));padding:13px 18px;text-align:right;color:var(--mut);font-size:.78rem;font-weight:600}
-.ir-table td{padding:13px 18px;border-top:1px solid var(--line);color:var(--soft)}
-.ir-table td.v{font-weight:700;color:var(--txt)}
-.ir-table .up{color:var(--green);font-size:.74rem}
+.dest{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dest-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;text-align:center;transition:.3s}
+.dest-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(27,45,63,.1)}
+.dest-card .ic{font-size:2.2rem;margin-bottom:14px}
+.dest-card h3{font-size:.95rem;margin-bottom:8px}
+.dest-card p{font-size:.8rem;color:var(--soft);font-weight:300;line-height:1.9}
+.dest-card .big{font-size:1.6rem;font-weight:800;color:var(--green);margin-top:10px}
 .news-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .news{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:.3s}
 .news:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(27,45,63,.09)}
 .news .dt{font-size:.7rem;color:var(--mut);margin-bottom:8px}
 .news h3{font-size:.9rem;line-height:1.7;margin-bottom:8px}
 .news p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.8}
-.career{background:linear-gradient(120deg,var(--pri),var(--pri-2));border-radius:20px;padding:50px 40px;text-align:center;color:#fff}
-.career h2{font-size:clamp(1.3rem,2.6vw,1.8rem);margin-bottom:12px}
-.career p{color:#c3d4e2;font-size:.92rem;margin-bottom:22px;font-weight:300}
+.cta-band{background:linear-gradient(120deg,var(--pri),var(--pri-2));border-radius:20px;padding:50px 40px;text-align:center;color:#fff}
+.cta-band h2{font-size:clamp(1.3rem,2.6vw,1.8rem);margin-bottom:12px}
+.cta-band p{color:#c3d4e2;font-size:.92rem;margin-bottom:22px;font-weight:300}
 footer{background:#1a2a3a;color:#a9bfd0;padding:52px 0 0;margin-top:10px}
 .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:36px}
 .f-grid h4{color:#fff;font-size:.95rem;margin-bottom:14px}
@@ -83,7 +77,7 @@ footer{background:#1a2a3a;color:#a9bfd0;padding:52px 0 0;margin-top:10px}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-@media(max-width:980px){.units,.sus{grid-template-columns:1fr}.news-row{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:980px){.units,.dest{grid-template-columns:1fr}.news-row{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
 @media(max-width:640px){.kpis{grid-template-columns:1fr 1fr}.topbar .container{justify-content:center}}
 </style>
 </head>
@@ -91,16 +85,16 @@ footer{background:#1a2a3a;color:#a9bfd0;padding:52px 0 0;margin-top:10px}
 
 <div class="topbar">
   <div class="container">
-    <span>🏭 <b>هلدینگ پتروشیمی پارس</b> — عضو بورس کالای ایران</span>
-    <span>☎ ۰۲۱-۷۷۸۸۹۹۰۰ | روابط سرمایه‌گذاران</span>
+    <span>✈️ <b>آسمان سفر</b> — آژانس مسافرتی معتبر</span>
+    <span>☎ ۰۲۱-۷۷۸۸۹۹۰۰ | رزرو ۲۴ ساعته</span>
   </div>
 </div>
 
 <nav>
   <div class="container nav-in">
-    <a href="#" class="logo"><span class="mark">⬢</span><span>پتروشیمی پارس<small>گروه صنعتی انرژی و پلیمر</small></span></a>
+    <a href="#" class="logo"><span class="mark">✈</span><span>آسمان سفر<small>آژانس مسافرتی و گردشگری</small></span></a>
     <div class="nav-links">
-      <a href="#units">واحدهای تجاری</a><a href="#sus">پایداری</a><a href="#ir">سرمایه‌گذاران</a><a href="#news">اخبار</a><a href="#contact">تماس</a>
+      <a href="#svc">خدمات</a><a href="#dest">مقاصد</a><a href="#news">اخبار</a><a href="#contact">تماس</a>
     </div>
     <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
   </div>
@@ -108,66 +102,45 @@ footer{background:#1a2a3a;color:#a9bfd0;padding:52px 0 0;margin-top:10px}
 
 <header class="hero">
   <div class="container reveal">
-    <span class="kick">بزرگ‌ترین تولیدکننده پلیمر کشور</span>
-    <h1>از نفت خام تا <em>محصولات پلیمری</em><br>با کیفیت جهانی</h1>
-    <p class="lead">هلدینگ پتروشیمی پارس با ۴ مجتمع تولیدی، ظرفیت ۳ میلیون تنی سالانه و صادرات به ۲۰ کشور، در صدر صنعت پتروشیمی منطقه قرار دارد.</p>
-    <a href="#units" class="btn btn-p">واحدهای تجاری</a>
-    <a href="#ir" class="btn btn-o">گزارش سالانه ۱۴۰۳</a>
+    <span class="kick">مسافرت با آرامش خاطر</span>
+    <h1>دنیا را با <em>آسمان سفر</em> ببینید</h1>
+    <p class="lead">آسمان سفر با بیش از ۱۵ سال تجربه، تورهای داخلی و خارجی، رزرو هتل و بلیط هواپیما با بهترین قیمت و خدمات VIP ارائه می‌دهد.</p>
+    <a href="#svc" class="btn btn-p">مشاهده تورها</a>
+    <a href="#contact" class="btn btn-o">مشاوره رایگان</a>
     <div class="kpis">
-      <div class="kpi"><div class="n">۳.۲M تن</div><div class="l">تولید سالانه</div></div>
-      <div class="kpi"><div class="n">۲۰+</div><div class="l">کشور مقصد صادرات</div></div>
-      <div class="kpi"><div class="n">۱۲,۰۰۰</div><div class="l">نیروی انسانی</div></div>
-      <div class="kpi"><div class="n">۹۸٪</div><div class="l">ضریب ایمنی HSE</div></div>
+      <div class="kpi"><div class="n">۵۰K+</div><div class="l">مسافر راضی</div></div>
+      <div class="kpi"><div class="n">۱۲۰+</div><div class="l">تور فعال</div></div>
+      <div class="kpi"><div class="n">۴۵+</div><div class="l">کشور مقصد</div></div>
+      <div class="kpi"><div class="n">۹۸٪</div><div class="l">رضایت مشتریان</div></div>
     </div>
   </div>
 </header>
 
-<section id="units">
+<section id="svc">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">حوزه‌های کسب‌وکار</div>
-      <h2>واحدهای تجاری هلدینگ</h2>
+      <div class="k">خدمات</div>
+      <h2>مسافرت آسان و لذت‌بخش</h2>
     </div>
     <div class="units">
-      <div class="unit reveal"><span class="ic">🛢️</span><div><h3>پالایش و فرآورده‌های سوختی</h3><p>پالایش گاز و میعانات گازی با ظرفیت ۱۵۰ هزار بشکه در روز؛ تولید بنزین یورو ۵، گازوئیل و سوخت هواپیما مطابق استانداردهای جهانی.</p><a href="#" class="more">بیشتر بدانید ←</a></div></div>
-      <div class="unit reveal d1"><span class="ic">🧴</span><div><h3>پتروشیمی و پلیمرها</h3><p>تولید اولفین‌ها، پلی‌اتیلن، PVC و پلی‌پروپیلن برای صنایع بسته‌بندی، ساختمان و خودرو — با برند PPco در بازارهای بین‌المللی.</p><a href="#" class="more">بیشتر بدانید ←</a></div></div>
-      <div class="unit reveal d2"><span class="ic">⚡</span><div><h3>انرژی و نیروگاه‌ها</h3><p>نیروگاه سیکل ترکیبی ۹۵۰ مگاواتی و پروژه‌های خورشیدی ۲۰۰ مگاواتی؛ تأمین برق مجتمع‌ها و فروش مازاد به شبکه سراسری.</p><a href="#" class="more">بیشتر بدانید ←</a></div></div>
-      <div class="unit reveal d3"><span class="ic">🔬</span><div><h3>تحقیق و توسعه</h3><p>مرکز R&D با ۱۲۰ پژوهشگر؛ ثبت ۴۸ پتنت، کاتالیست‌های اختصاصی و فرمولاسیون‌های سبز برای کاهش ردپای کربن.</p><a href="#" class="more">بیشتر بدانید ←</a></div></div>
+      <div class="unit reveal"><span class="ic">🌍</span><div><h3>تور خارجی</h3><p>تورهای اروپا، آسیا و آمریکا با پروازهای مستقیم، هتل‌های ۵ ستاره و راهنمای فارسی‌زبان.</p><a href="#" class="more">مشاهده تورها ←</a></div></div>
+      <div class="unit reveal d1"><span class="ic">🏨</span><div><h3>رزرو هتل</h3><p>رزرو هتل در سراسر جهان با تضمین بهترین قیمت و خدمات ویژه ما.</p><a href="#" class="more">رزرو هتل ←</a></div></div>
+      <div class="unit reveal d2"><span class="ic">🎫</span><div><h3>بلیط هواپیما</h3><p>بلیط پروازهای داخلی و خارجی با قیمت رقابتی و تخفیف‌های ویژه.</p><a href="#" class="more">خرید بلیط ←</a></div></div>
+      <div class="unit reveal d3"><span class="ic">🚗</span><div><h3>ترانسفر فرودگاهی</h3><p>حمل‌ونقل فرودگاهی با خودروهای لوکس در مقاصد مختلف.</p><a href="#" class="more">رزرو ترانسفر ←</a></div></div>
     </div>
   </div>
 </section>
 
-<section id="sus" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+<section id="dest" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">مسئولیت اجتماعی</div>
-      <h2>پایداری، تعهد ما در برابر نسل آینده</h2>
+      <div class="k">محبوب‌ترین مقاصد</div>
+      <h2>جاهایی که مسافران ما عاشقشان شدند</h2>
     </div>
-    <div class="sus">
-      <div class="sus-card reveal"><span class="ic">🌱</span><h3>کاهش انتشار کربن</h3><p>هدف‌گذاری کاهش ۳۰٪ انتشار تا سال ۱۴۱۰ با گیربون کربن و بهینه‌سازی فرآیند.</p><div class="big">−۱۸٪</div><small style="color:var(--mut);font-size:.72rem">دستاورد تاکنون</small></div>
-      <div class="sus-card reveal d1"><span class="ic">💧</span><h3>مدیریت آب</h3><p>بازچرخانی آب صنعتی و تصفیه‌خانه‌های پیشرفته در هر ۴ مجتمع.</p><div class="big">۹۲٪</div><small style="color:var(--mut);font-size:.72rem">بازچرخانی آب</small></div>
-      <div class="sus-card reveal d2"><span class="ic">🤝</span><h3>پیشرفت محلی</h3><p>سرمایه‌گذاری در آموزش، سلامت و اشتغال جوامع میزبان مجتمع‌ها.</p><div class="big">۴۲</div><small style="color:var(--mut);font-size:.72rem">پروژه CSR فعال</small></div>
-    </div>
-  </div>
-</section>
-
-<section id="ir">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="k">روابط سرمایه‌گذاران</div>
-      <h2>شاخص‌های مالی ۱۴۰۳</h2>
-    </div>
-    <div class="ir reveal">
-      <table class="ir-table">
-        <thead><tr><th>شاخص</th><th>مقدار</th><th>رشد سالانه</th><th>توضیح</th></tr></thead>
-        <tbody>
-          <tr><td>درآمد عملیاتی</td><td class="v">۱۸۴ هزار میلیارد ریال</td><td class="up">▲ ۱۲٪</td><td>افزایش ظرفیت تولید</td></tr>
-          <tr><td>سود خالص</td><td class="v">۴۱ هزار میلیارد ریال</td><td class="up">▲ ۹٪</td><td>بهبود حاشیه سود</td></tr>
-          <tr><td>EPS</td><td class="v">۴,۲۰۰ ریال</td><td class="up">▲ ۹٪</td><td>سود هر سهم</td></tr>
-          <tr><td>سود تقسیمی</td><td class="v">۵۵٪ سود خالص</td><td class="up">ثابت</td><td>پرداخت دی و خرداد</td></tr>
-          <tr><td>بدهی / حقوق صاحبان</td><td class="v">۰٫۴۲</td><td class="up">▼ بهبود</td><td>کاهش اهرم مالی</td></tr>
-        </tbody>
-      </table>
+    <div class="dest">
+      <div class="dest-card reveal"><span class="ic">🇹🇷</span><h3>ترکیه — استانبول</h3><p>تور ۷ شب با پرواز مستقیم و هتل ۵ ستاره.</p><div class="big">از ۲۵ میلیون</div></div>
+      <div class="dest-card reveal d1"><span class="ic">🇦🇪</span><h3>امارات — دبی</h3><p>تور ۵ شب با اقامت لوکس و گشت شهری.</p><div class="big">از ۳۵ میلیون</div></div>
+      <div class="dest-card reveal d2"><span class="ic">🇹🇭</span><h3>تایلند — بانکوک</h3><p>تور ۱۰ شب با بازدید از جزایر و معابد.</p><div class="big">از ۴۵ میلیون</div></div>
     </div>
   </div>
 </section>
@@ -175,23 +148,23 @@ footer{background:#1a2a3a;color:#a9bfd0;padding:52px 0 0;margin-top:10px}
 <section id="news" style="padding-top:0">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">اتاق خبر</div>
-      <h2>آخرین اخبار هلدینگ</h2>
+      <div class="k">اخبار و پیشنهادات</div>
+      <h2>آخرین اخبار آسمان سفر</h2>
     </div>
     <div class="news-row">
-      <article class="news reveal"><div class="dt">۲۳ شهریور ۱۴۰۴</div><h3>افتتاح واحد سوم پلی‌اتیلن سنگین</h3><p>با افتتاح این واحد، ظرفیت تولید HDPE گروه سالانه ۳۰۰ هزار تن افزایش یافت.</p></article>
-      <article class="news reveal d1"><div class="dt">۱۵ شهریور ۱۴۰۴</div><h3>امضای قرارداد صادراتی ۴۰۰ میلیون دلاری</h3><p>تأمین پلیمرهای مهندسی بازار چین و هند برای ۲ سال آینده.</p></article>
-      <article class="news reveal d2"><div class="dt">۶ شهریور ۱۴۰۴</div><h3>برنده تندیس ملی HSE در صنعت</h3><p>دومین سال متوالی، ایمنی هلدینگ در سطح ملی تقدیر شد.</p></article>
+      <article class="news reveal"><div class="dt">۲۳ شهریور ۱۴۰۴</div><h3>آغاز تورهای پاییزه اروپا</h3><p>تورهای ویژه ایتالیا، فرانسه و اسپانیا با قیمت‌های ویژه پیش‌فروش.</p></article>
+      <article class="news reveal d1"><div class="dt">۱۵ شهریور ۱۴۰۴</div><h3>همکاری با هتل‌های زنجیره‌ای بین‌المللی</h3><p>تخفیف ویژه رزرو هتل برای اعضای باشگاه مشتریان.</p></article>
+      <article class="news reveal d2"><div class="dt">۶ شهریور ۱۴۰۴</div><h3>کسب جایزه بهترین آژانس سال</h3><p>انتخاب آسمان سفر در جایزه گردشگری منطقه‌ای.</p></article>
     </div>
   </div>
 </section>
 
 <section id="contact" style="padding-top:0">
   <div class="container">
-    <div class="career reveal">
-      <h2>به تیم ۱۲,۰۰۰ نفری ما بپیوندید</h2>
-      <p>فرصت‌های شغلی در مهندسی، بهره‌برداری، HSE و پژوهش — استخدام سالانه شهریور و اسفند.</p>
-      <a href="#" class="btn btn-p">فرصت‌های شغلی</a>
+    <div class="cta-band reveal">
+      <h2>سفر رویاهایتان را برنامه‌ریزی کنید</h2>
+      <p>مشاوران ما بهترین مقصد و بهترین قیمت را برایتان پیدا می‌کنند.</p>
+      <a href="#" class="btn btn-p">مشاوره رایگان مسافرت</a>
     </div>
   </div>
 </section>
@@ -199,22 +172,23 @@ footer{background:#1a2a3a;color:#a9bfd0;padding:52px 0 0;margin-top:10px}
 <footer>
   <div class="container">
     <div class="f-grid">
-      <div><h4>پتروشیمی پارس</h4><p>گروه صنعتی پیشرو در انرژی و پلیمر — متعهد به ایمنی، کیفیت جهانی و توسعه پایدار. سهام گروه در بورس اوراق بهادار تهران معامله می‌شود.</p></div>
-      <div><h4>واحدها</h4><a href="#">پالایش</a><a href="#">پتروشیمی</a><a href="#">نیروگاه</a><a href="#">R&D</a></div>
-      <div><h4>سرمایه‌گذاران</h4><a href="#">گزارش سالانه</a><a href="#">تفاهمنامه‌ها</a><a href="#">تقویم رویداد</a><a href="#">اطلاعیه‌ها</a></div>
-      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۷۷۸۸۹۹۰۰</a><a href="#">✉ ir@parspc.ir</a><a href="#">⌖ تهران، میدان ونک، برج پارس</a></div>
+      <div><h4>آسمان سفر</h4><p>آژانس مسافرتی و گردشگری آسمان سفر — با مجوز رسمی سازمان میراث فرهنگی و گردشگری.</p></div>
+      <div><h4>خدمات</h4><a href="#">تور خارجی</a><a href="#">تور داخلی</a><a href="#">رزرو هتل</a><a href="#">بلیط هواپیما</a></div>
+      <div><h4>شرکت</h4><a href="#">درباره ما</a><a href="#">تیم ما</a><a href="#">گزارش سفرها</a><a href="#">حریم خصوصی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۷۷۸۸۹۹۰۰</a><a href="#">✉ info@asmasafar.ir</a><a href="#">⌖ تهران، میدان ونک</a></div>
     </div>
-    <div class="f-bottom"><span>© ۱۴۰۴ هلدینگ پتروشیمی پارس — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+    <div class="f-bottom"><span>© ۱۴۰۴ آسمان سفر — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Web</span></div>
   </div>
 </footer>
 
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
-  h.setAttribute('data-theme',n);localStorage.setItem('d18-theme',n);
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d18-theme',n);
 }
 (function(){const t=localStorage.getItem('d18-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});

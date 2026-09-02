@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عمران سازان | نمونه‌کار PH Design</title>
+<title>داناکارس | نمونه‌کار PH Web</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#26262b;--pri-2:#3a3a42;--acc:#9a7b4f;--bg:#f7f6f4;--card:#fff;--txt:#1e1e24;--soft:#585862;--mut:#8f8f9a;--line:#e7e5e1;--green:#2e8b57}
@@ -39,38 +39,36 @@ section{padding:70px 0}
 .sec-head .k{color:var(--acc);font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px}
 .sec-head h2{font-size:clamp(1.35rem,3vw,1.95rem);font-weight:800;margin-bottom:10px}
 .sec-head p{color:var(--soft);font-size:.9rem;font-weight:300;line-height:1.9}
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.svc{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--acc);border-radius:12px;padding:26px 20px;transition:.35s}
-.svc:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(30,30,36,.12)}
-.svc .n{font-size:.7rem;color:var(--mut);font-weight:700;margin-bottom:10px}
-.svc h3{font-size:.98rem;margin-bottom:8px}
-.svc p{font-size:.8rem;color:var(--soft);font-weight:300;line-height:1.85}
-.proj{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.p-card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.35s}
-.p-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(30,30,36,.12)}
-.p-card .ph{height:140px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;color:#fff}
-.p1 .ph{background:linear-gradient(135deg,#3a3a42,#26262b)}
-.p2 .ph{background:linear-gradient(135deg,#6b5232,#9a7b4f)}
-.p3 .ph{background:linear-gradient(135deg,#2e4a3d,#2e8b57)}
-.p-card .body{padding:20px}
-.p-card h3{font-size:.95rem;margin-bottom:8px}
-.p-card p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.8;margin-bottom:12px}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cat-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 20px;transition:.35s}
+.cat-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(30,30,36,.12)}
+.cat-card .n{font-size:.7rem;color:var(--mut);font-weight:700;margin-bottom:10px}
+.cat-card h3{font-size:.98rem;margin-bottom:8px}
+.cat-card p{font-size:.8rem;color:var(--soft);font-weight:300;line-height:1.85}
+.courses{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.course{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.35s}
+.course:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(30,30,36,.12)}
+.course .ph{height:140px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;color:#fff}
+.c1 .ph{background:linear-gradient(135deg,#3a3a42,#26262b)}
+.c2 .ph{background:linear-gradient(135deg,#6b5232,#9a7b4f)}
+.c3 .ph{background:linear-gradient(135deg,#2e4a3d,#2e8b57)}
+.course .body{padding:20px}
+.course h3{font-size:.95rem;margin-bottom:8px}
+.course p{font-size:.78rem;color:var(--soft);font-weight:300;line-height:1.8;margin-bottom:12px}
 .status{display:inline-block;font-size:.68rem;font-weight:700;padding:3px 11px;border-radius:20px}
-.status.done{background:#e7f3ec;color:var(--green)}
-.status.run{background:#faf0e2;color:var(--acc)}
-.certs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.cert{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center;transition:.3s}
-.cert:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(30,30,36,.1)}
-.cert .ic{font-size:2rem;margin-bottom:10px}
-.cert h3{font-size:.85rem}
-.cert p{font-size:.7rem;color:var(--mut);margin-top:5px}
-.cnt{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
-.cnt .c{background:var(--pri);color:#fff;border-radius:14px;padding:28px 14px}
-.cnt .n{font-size:1.7rem;font-weight:800;color:var(--acc)}
-.cnt .l{font-size:.78rem;color:#c9c9d2;margin-top:5px}
-.clients{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
-.clients span{font-size:1rem;font-weight:800;color:var(--mut);opacity:.75;transition:.3s}
-.clients span:hover{color:var(--pri);opacity:1}
+.status.pop{background:#e7f3ec;color:var(--green)}
+.status.new{background:#faf0e2;color:var(--acc)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 14px}
+.stat .n{font-size:1.8rem;font-weight:900;color:var(--pri)}
+[data-theme=dark] .stat .n{color:var(--acc)}
+.stat .l{font-size:.78rem;color:var(--soft);margin-top:5px}
+.teachers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.teacher{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center;transition:.3s}
+.teacher:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(30,30,36,.1)}
+.teacher .av{font-size:2rem;margin-bottom:10px}
+.teacher h3{font-size:.85rem}
+.teacher p{font-size:.7rem;color:var(--mut);margin-top:5px}
 .cta-band{background:var(--pri);border-radius:20px;padding:50px 40px;text-align:center;color:#fff;position:relative;overflow:hidden}
 .cta-band::before{content:'▦';position:absolute;top:-40px;left:-20px;font-size:16rem;opacity:.05}
 .cta-band h2{font-size:clamp(1.3rem,2.6vw,1.8rem);margin-bottom:12px;position:relative}
@@ -85,24 +83,24 @@ footer{background:#1a1a20;color:#a5a5b2;padding:52px 0 0;margin-top:10px}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-@media(max-width:980px){.svc-grid{grid-template-columns:1fr 1fr}.proj{grid-template-columns:1fr}.certs{grid-template-columns:1fr 1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-@media(max-width:640px){.svc-grid,.certs,.cnt{grid-template-columns:1fr}.topbar .container{justify-content:center}}
+@media(max-width:980px){.cat-grid{grid-template-columns:1fr 1fr}.courses{grid-template-columns:1fr}.teachers{grid-template-columns:1fr 1fr}.f-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:640px){.cat-grid,.courses,.teachers,.stats{grid-template-columns:1fr}.topbar .container{justify-content:center}}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="container">
-    <span>🏗️ <b>عمران سازان</b> — شرکت مهندسی و ساختمانی، رتبه ۱ پایه ۵ راه و ترابری</span>
+    <span>📚 <b>پلتفرم آموزش آنلاین</b> | ثبت‌نام دوره‌های پاییزه تا ۳۰ شهریور</span>
     <span>☎ ۰۲۱-۸۸۶۶۵۵۴۴</span>
   </div>
 </div>
 
 <nav>
   <div class="container nav-in">
-    <a href="#" class="logo"><span class="mark">▦</span><span>عمران سازان<small>مهندسی · اجرا · مدیریت پروژه</small></span></a>
+    <a href="#" class="logo"><span class="mark">📚</span><span>داناکارس<small>آموزش آنلاین حرفه‌ای</small></span></a>
     <div class="nav-links">
-      <a href="#svc">خدمات</a><a href="#proj">پروژه‌ها</a><a href="#cert">گواهینامه‌ها</a><a href="#clients">مشتریان</a><a href="#contact">تماس</a>
+      <a href="#cat">دسته‌بندی</a><a href="#courses">دوره‌ها</a><a href="#teachers">مدرسین</a><a href="#contact">تماس</a>
     </div>
     <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
   </div>
@@ -110,77 +108,65 @@ footer{background:#1a1a20;color:#a5a5b2;padding:52px 0 0;margin-top:10px}
 
 <header class="hero">
   <div class="container reveal">
-    <span class="kick">۳۰ سال ساختن با اطمینان</span>
-    <h1>ساختمان‌هایی که <em>تصمیم‌های ما</em> در آن‌ها زندگی می‌کند</h1>
-    <p class="lead">عمران سازان با بیش از ۱۲۰ پروژه تحویل‌شده در حوزه‌های مسکونی، تجاری، صنعتی و زیرساختی، از طراحی تا تحویل کلید کنار شماست.</p>
-    <a href="#proj" class="btn btn-p">پروژه‌های ما</a>
-    <a href="#contact" class="btn btn-o">درخواست استعلام</a>
+    <span class="kick">ثبت‌نام دوره‌های جدید باز شد</span>
+    <h1>یادگیری <em>آزاد</em> است؛<br>هر زمان، هر کجا</h1>
+    <p class="lead">داناکارس با صدها دوره آموزشی از برنامه‌نویسی تا طراحی، مسیر یادگیری شما را هموار می‌کند. از مبتدی تا حرفه‌ای، برای همه.</p>
+    <a href="#courses" class="btn btn-p">مشاهده دوره‌ها</a>
+    <a href="#cat" class="btn btn-o">دسته‌بندی‌ها</a>
   </div>
 </header>
 
-<section id="svc">
+<section id="cat">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">خدمات مهندسی</div>
-      <h2>از نقشه تا تحویل کلید</h2>
+      <div class="k">دسته‌بندی‌ها</div>
+      <h2>حوزه‌های آموزشی</h2>
     </div>
-    <div class="svc-grid">
-      <div class="svc reveal"><div class="n">۰۱</div><h3>طراحی و محاسبات</h3><p>طراحی سازه، معماری و تأسیسات با نرم‌افزارهای روز و ملاحظات زلزله.</p></div>
-      <div class="svc reveal d1"><div class="n">۰۲</div><h3>اجرا و نظارت</h3><p>اجرای پروژه با تیم فنی مستقر و کنترل کیفیت مرحله‌ای مستند.</p></div>
-      <div class="svc reveal d2"><div class="n">۰۳</div><h3>مدیریت پروژه</h3><p>کنترل زمان، هزینه و کیفیت با نرم‌افزارهای PM و گزارش‌دهی شفاف.</p></div>
-      <div class="svc reveal d3"><div class="n">۰۴</div><h3>بازسازی و مقاوم‌سازی</h3><p>مقاوم‌سازی سازه‌های موجود طبق مبحث نهم و استانداردهای روز.</p></div>
+    <div class="cat-grid">
+      <div class="cat-card reveal"><div class="n">۰۱</div><h3>برنامه‌نویسی</h3><p>پایتون، جاوااسکریپت، React و هوش مصنوعی.</p></div>
+      <div class="cat-card reveal d1"><div class="n">۰۲</div><h3>طراحی و گرافیک</h3><p>UI/UX، فتوشاپ، ایلوستریتور و موشن.</p></div>
+      <div class="cat-card reveal d2"><div class="n">۰۳</div><h3>بازاریابی دیجیتال</h3><p>سئو، تبلیغات، تولید محتوا و مدیریت شبکه‌ها.</p></div>
+      <div class="cat-card reveal d3"><div class="n">۰۴</div><h3>مدیریت و کسب‌وکار</h3><p>مدیریت پروژه، مالی و منابع انسانی.</p></div>
     </div>
   </div>
 </section>
 
-<section id="proj" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
+<section id="courses" style="background:color-mix(in srgb,var(--pri) 4%,var(--bg))">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">کارنامه</div>
-      <h2>پروژه‌های شاخص</h2>
+      <div class="k">محبوب‌ترین دوره‌ها</div>
+      <h2>دوره‌های پیشنهادی ما</h2>
     </div>
-    <div class="proj">
-      <div class="p-card p1 reveal"><div class="ph">🏢</div><div class="body"><h3>برج اداری آرمان — ۱۸ طبقه</h3><p>ساخت کامل سازه فولادی و نما کامپوزیت؛ ۲۴,۰۰۰ متر مربع زیربنا در تهران.</p><span class="status done">✓ تکمیل‌شده ۱۴۰۲</span></div></div>
-      <div class="p-card p2 reveal d1"><div class="ph">🏬</div><div class="body"><h3>مجتمع تجاری نگین شهر</h3><p>۲ طبقه پارکینگ + ۳ طبقه تجاری با اسکلت بتنی؛ فاز دوم در حال اجرا.</p><span class="status run">◐ در حال اجرا — ۷۵٪</span></div></div>
-      <div class="p-card p3 reveal d2"><div class="ph">🌉</div><div class="body"><h3>پل تقاطعی کاوه</h3><p>پل بتنی پیش‌تنیده به طول ۲۴۰ متر با روش کانسول؛ تحویل به شهرداری.</p><span class="status done">✓ تکمیل‌شده ۱۴۰۳</span></div></div>
+    <div class="courses">
+      <div class="course c1 reveal"><div class="ph">💻</div><div class="body"><h3>آموزش کامل React.js</h3><p>از مفاهیم پایه تا پروژه واقعی — ۴۰ ساعت ویدیوی آموزشی.</p><span class="status pop">محبوب</span></div></div>
+      <div class="course c2 reveal d1"><div class="ph">🎨</div><div class="body"><h3>طراحی UI/UX با Figma</h3><p>طراحی رابط کاربری حرفه‌ای با اصول UX و پروتوتایپینگ.</p><span class="status new">جدید</span></div></div>
+      <div class="course c3 reveal d2"><div class="ph">📈</div><div class="body"><h3>بازاریابی دیجیتال جامع</h3><p>سئو، تبلیغات گوگل، مدیریت شبکه‌های اجتماعی و تحلیل داده.</p><span class="status pop">محبوب</span></div></div>
     </div>
   </div>
 </section>
 
 <section style="padding-top:40px">
   <div class="container">
-    <div class="cnt reveal">
-      <div class="c"><div class="n">۱۲۰+</div><div class="l">پروژه تحویل‌شده</div></div>
-      <div class="c"><div class="n">۸۵۰K m²</div><div class="l">زیربنای اجراشده</div></div>
-      <div class="c"><div class="n">۶۰۰+</div><div class="l">نیروی فنی و اجرایی</div></div>
-      <div class="c"><div class="n">۳۰</div><div class="l">سال سابقه</div></div>
+    <div class="stats reveal">
+      <div class="stat"><div class="n">۵۰,۰۰۰+</div><div class="l">دانشجوی فعال</div></div>
+      <div class="stat"><div class="n">۲۰۰+</div><div class="l">دوره آموزشی</div></div>
+      <div class="stat"><div class="n">۵۰+</div><div class="l">مدرس حرفه‌ای</div></div>
+      <div class="stat"><div class="n">۹۵٪</div><div class="l">رضایت دانشجویان</div></div>
     </div>
   </div>
 </section>
 
-<section id="cert">
+<section id="teachers" style="padding-top:0">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="k">اعتبارنامه‌ها</div>
-      <h2>گواهینامه‌ها و رتبه‌ها</h2>
+      <div class="k">مدرسین</div>
+      <h2>اساتید مطرح کشور</h2>
     </div>
-    <div class="certs">
-      <div class="cert reveal"><span class="ic">🏅</span><h3>رتبه ۱ راه و ترابری</h3><p>پایه ۵ سازمانی</p></div>
-      <div class="cert reveal d1"><span class="ic">🛡️</span><h3>ISO 45001</h3><p>مدیریت ایمنی و بهداشت شغلی</p></div>
-      <div class="cert reveal d2"><span class="ic">♻️</span><h3>ISO 14001</h3><p>مدیریت زیست‌محیطی</p></div>
-      <div class="cert reveal d3"><span class="ic">📋</span><h3>ISO 9001</h3><p>مدیریت کیفیت</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="clients" style="padding-top:0">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="k">اعتماد</div>
-      <h2>کارفرمایان ما</h2>
-    </div>
-    <div class="clients reveal">
-      <span>شهرداری تهران</span><span>وزارت راه</span><span>بانک مسکن</span><span>آریا‌ملل</span><span>راه‌آهن جمهوری</span><span>فولاد مبارکه</span>
+    <div class="teachers">
+      <div class="teacher reveal"><div class="av">👨‍🏫</div><h3>دکتر امیر حسینی</h3><p>برنامه‌نویسی و AI</p></div>
+      <div class="teacher reveal d1"><div class="av">👩‍🏫</div><h3>مریم احمدی</h3><p>طراحی UI/UX</p></div>
+      <div class="teacher reveal d2"><div class="av">👨‍🏫</div><h3>رضا کریمی</h3><p>بازاریابی دیجیتال</p></div>
+      <div class="teacher reveal d3"><div class="av">👩‍🏫</div><h3>نیلوفر صادقی</h3><p>مدیریت پروژه</p></div>
     </div>
   </div>
 </section>
@@ -188,9 +174,9 @@ footer{background:#1a1a20;color:#a5a5b2;padding:52px 0 0;margin-top:10px}
 <section id="contact" style="padding-top:0">
   <div class="container">
     <div class="cta-band reveal">
-      <h2>پروژه‌ای در ذهن دارید؟</h2>
-      <p>تیم فنی ما ظرف ۳ روز کاری، برآورد اولیه و زمان‌بندی پروژه شما را ارائه می‌کند.</p>
-      <a href="#" class="btn btn-p">درخواست استعلام پروژه</a>
+      <h2>مسیر یادگیری خود را شروع کنید</h2>
+      <p>اولین دوره را رایگان تجربه کنید — بدون نیاز به ثبت‌نام.</p>
+      <a href="#" class="btn btn-p">شروع رایگان</a>
     </div>
   </div>
 </section>
@@ -198,22 +184,23 @@ footer{background:#1a1a20;color:#a5a5b2;padding:52px 0 0;margin-top:10px}
 <footer>
   <div class="container">
     <div class="f-grid">
-      <div><h4>عمران سازان</h4><p>شرکت مهندسی و ساختمانی عمران سازان (سهامی خاص) — ثبت‌شده با مسئولیت محدود؛ عضو سازمان نظام مهندسی ساختمان استان تهران.</p></div>
-      <div><h4>خدمات</h4><a href="#">طراحی</a><a href="#">اجرا</a><a href="#">مدیریت پروژه</a><a href="#">مقاوم‌سازی</a></div>
-      <div><h4>شرکت</h4><a href="#">درباره ما</a><a href="#">پروژه‌ها</a><a href="#">فرصت شغلی</a><a href="#">مناقصات</a></div>
-      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۸۸۶۶۵۵۴۴</a><a href="#">✉ info@omransazan.ir</a><a href="#">⌖ تهران، سعادت‌آباد</a></div>
+      <div><h4>داناکارس</h4><p>پلتفرم آموزش آنلاین با مجوز رسمی — ارائه دوره‌های حرفه‌ای با گواهی معتبر.</p></div>
+      <div><h4>دسته‌بندی‌ها</h4><a href="#">برنامه‌نویسی</a><a href="#">طراحی</a><a href="#">بازاریابی</a><a href="#">مدیریت</a></div>
+      <div><h4>خدمات</h4><a href="#">دوره‌ها</a><a href="#">گواهی معتبر</a><a href="#">مشاوره شغلی</a><a href="#">حریم خصوصی</a></div>
+      <div><h4>تماس</h4><a href="#">☎ ۰۲۱-۸۸۶۶۵۵۴۴</a><a href="#">✉ info@danakars.ir</a><a href="#">⌖ تهران، سعادت‌آباد</a></div>
     </div>
-    <div class="f-bottom"><span>© ۱۴۰۴ عمران سازان — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Design</span></div>
+    <div class="f-bottom"><span>© ۱۴۰۴ داناکارس — تمامی حقوق محفوظ است.</span><span>نمونه طراحی PH Web</span></div>
   </div>
 </footer>
 
-<a href="../index.html" class="back-pill">← بازگشت به PH Design</a>
+<a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
-  h.setAttribute('data-theme',n);localStorage.setItem('d20-theme',n);
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('d20-theme',n);
 }
 (function(){const t=localStorage.getItem('d20-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
