@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /demos/
 
-Sitemap: https://phweb.dpdns.org/sitemap.xml
+Sitemap: https://webph.dpdns.org/sitemap.xml
