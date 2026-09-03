@@ -349,3 +349,20 @@ ul { list-style: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .container { padding: 0 18px; }
 }
+
+/* ---- logo lockup (mark + wordmark) ---- */
+.logo-word {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  font-weight: 900; font-size: 1.35rem; letter-spacing: 0.5px;
+  line-height: 1;
+}
+.logo-word b {
+  background: linear-gradient(120deg, #E8B88A 0%, #C8956C 55%, #9A6B42 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: #C8956C;
+}
+.logo-word .lw-sub {
+  font-weight: 300; font-size: 1.05rem; letter-spacing: 3px;
+  color: var(--text-mute, #8b8b96);
+}
+[data-theme="light"] .logo-word .lw-sub { color: #6b6b75; }
