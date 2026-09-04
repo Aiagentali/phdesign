@@ -49,7 +49,7 @@ document.querySelectorAll('.skill-fill').forEach(b => sbs.observe(b));
   const authWrap = document.getElementById('navAuth');
   if(!authWrap) return;
   function guestUI(){
-    authWrap.innerHTML = '<a href="login.html" class="nav-auth-btn primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> ورود / ثبت‌نام</a>';
+    authWrap.innerHTML = '<button class="nav-auth-btn primary" id="openAuthBtn" style="cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> ورود / ثبت‌نام</button>';
   }
   function userUI(role){
     let panelHref='panel.html';
@@ -194,6 +194,7 @@ document.querySelectorAll('.skill-fill').forEach(b => sbs.observe(b));
     }catch(err){ showMsg('forgotMsg', err.message, false); } finally{ btn.disabled=false; btn.textContent='ارسال لینک بازیابی →'; }
   });
   window.PHAuth={open, close, setTab};
+  document.addEventListener('click', (e)=>{ if(e.target.closest('#openAuthBtn')){ e.preventDefault(); open('login'); }});
   // if URL has ?auth=login or register, auto open
   try{
     const u=new URL(location.href);

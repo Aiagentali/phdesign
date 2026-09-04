@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>پنل ادمین — PH Web</title>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=3">
 <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
@@ -18,7 +18,7 @@
   </aside>
   <main class="panel-main" id="main"></main>
 </div>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=3"></script>
 <script>
 const token=localStorage.getItem('token');
 if(!token){ location.href='login.html'; throw new Error('no token'); }
