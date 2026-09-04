@@ -506,3 +506,25 @@ img, svg, video { max-width: 100%; height: auto; }
   .cfg-types { grid-template-columns: 1fr 1fr; }
   .cfg-modal-actions .btn { width: 100%; text-align: center; }
 }
+
+/* ---- panels (customer/admin/superadmin) ---- */
+.panel-layout{display:grid;grid-template-columns:240px 1fr;gap:24px;max-width:1200px;margin:0 auto;padding:100px 16px 40px}
+.panel-side{background:var(--bg-elev,#101016);border:1px solid var(--line,#23232b);border-radius:14px;padding:16px;position:sticky;top:80px;height:fit-content}
+.panel-side h3{margin:0 0 12px;font-size:1rem}
+.panel-side a{display:block;padding:10px 12px;border-radius:8px;color:var(--text,#f2f2f5);text-decoration:none;font-size:.9rem}
+.panel-side a.active,.panel-side a:hover{background:color-mix(in srgb,#C8956C 12%,var(--bg-elev,#101016));color:#C8956C}
+.panel-main{background:var(--bg-elev,#101016);border:1px solid var(--line,#23232b);border-radius:14px;padding:20px}
+.panel-card{background:var(--bg,#0a0a0f);border:1px solid var(--line,#23232b);border-radius:12px;padding:16px;margin-bottom:14px}
+.panel-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.panel-table th,.panel-table td{padding:10px 8px;border-bottom:1px solid var(--line,#23232b);text-align:right}
+.panel-table th{color:var(--text-mute,#8b8b96);font-weight:600}
+.badge{padding:4px 8px;border-radius:20px;font-size:.75rem;font-weight:700}
+.badge-pending{background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44}
+.badge-verified{background:#10b98122;color:#10b981;border:1px solid #10b98144}
+.badge-rejected{background:#ef444422;color:#ef4444;border:1px solid #ef444444}
+.badge-reviewing{background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644}
+.auth-box{max-width:420px;margin:100px auto;padding:28px;background:var(--bg-elev,#101016);border:1px solid var(--line,#23232b);border-radius:16px}
+.auth-box h1{margin:0 0 16px;font-size:1.4rem}
+.auth-box input{width:100%;box-sizing:border-box;padding:12px 14px;margin-bottom:12px;background:var(--bg,#0a0a0f);border:1px solid var(--line,#23232b);border-radius:10px;color:var(--text,#f2f2f5);font-size:15px}
+.auth-box input:focus{outline:none;border-color:#C8956C}
+@media(max-width:800px){.panel-layout{grid-template-columns:1fr}.panel-side{position:static}}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پنل کاربری — PH Web</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="shop.html">فروشگاه</a><a href="panel.html" class="active">پنل من</a><a href="#" id="logout">خروج</a></div><div class="nav-actions"><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
+
+<div class="panel-layout">
+  <aside class="panel-side">
+    <h3 id="userName">...</h3>
+    <a href="#" data-tab="orders" class="active">📦 سفارشات من</a>
+    <a href="#" data-tab="payments">💳 پرداختها</a>
+    <a href="#" data-tab="tickets">💬 پشتیبانی</a>
+    <a href="#" data-tab="profile">👤 پروفایل</a>
+  </aside>
+  <main class="panel-main" id="main"></main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+const token=localStorage.getItem('token');
+if(!token) location.href='login.html';
+const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
+const fa=n=>n.toLocaleString('fa-IR');
+const statusMap={pending:'ثبت شد',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل داده شد',completed:'تکمیل شد',cancelled:'لغو شد'};
+
+async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{...headers, ...(opts.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
+
+let ordersCache=[];
+
+async function loadUser(){
+  try{ const j=await api('/api/auth/me'); document.getElementById('userName').textContent=j.user.name+' ('+j.user.email+')'; if(j.user.role!=='customer' && j.user.role==='admin'){} }catch{ localStorage.clear(); location.href='login.html'; }
+}
+async function showOrders(){
+  const main=document.getElementById('main');
+  main.innerHTML='<p>در حال بارگذاری...</p>';
+  try{
+    const j=await api('/api/orders');
+    ordersCache=j.orders||[];
+    if(!ordersCache.length) return main.innerHTML='<div class="panel-card"><p>هنوز سفارشی ثبت نکرده‌اید. <a href="shop.html">از فروشگاه</a> سفارش دهید.</p></div>';
+    main.innerHTML=ordersCache.map(o=>`
+      <div class="panel-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <b>${o.type_name} — ${fa(o.total_price)} تومان</b>
+          <span class="badge badge-${o.status}">${statusMap[o.status]||o.status}</span>
+        </div>
+        <small style="color:var(--text-mute)">#${o.id.slice(0,8)} · ${new Date(o.created_at*1000).toLocaleDateString('fa-IR')} · تحویل ${fa(o.days)} روز</small>
+        <div style="margin-top:8px;font-size:.85rem">${(o.addons||[]).map(a=>a.name).join('، ')||'بدون افزونه'}</div>
+        ${o.admin_note?`<div style="margin-top:8px;padding:8px;background:#C8956C11;border-radius:8px;font-size:.85rem">📝 ${o.admin_note}</div>`:''}
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-outline" onclick="openPay('${o.id}')">💳 پرداخت</button>
+          <button class="btn btn-outline" onclick="openTicket('${o.id}')">💬 پشتیبانی</button>
+        </div>
+        <div style="margin-top:10px">
+          ${(o.payments||[]).map(p=>`<span class="badge ${p.status==='verified'?'badge-verified':p.status==='rejected'?'badge-rejected':'badge-pending'}" style="margin-left:6px">${p.method==='crypto'?'کریپتو':'کارت'}: ${p.status==='verified'?'تایید شد':p.status==='rejected'?'رد شد':'در انتظار'}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+  }catch(e){ main.innerHTML='<p style="color:#ef4444">'+e.message+'</p>'; }
+}
+
+async function showPayments(){
+  const main=document.getElementById('main');
+  main.innerHTML=`<h3>پرداخت</h3>
+    <div class="panel-card">
+      <p>سفارش را انتخاب کنید:</p>
+      <select id="payOrder" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)">${ordersCache.map(o=>`<option value="${o.id}">${o.type_name} — ${fa(o.total_price)} تومان (#${o.id.slice(0,6)})</option>`).join('') || '<option>سفارشی نیست</option>'}</select>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+        <div style="border:1px solid #10b98144;background:#10b98111;padding:14px;border-radius:10px">
+          <b>₿ پرداخت کریپتو (تایید خودکار)</b><br><small id="cryptoAddr">در حال بارگذاری...</small><br>
+          <input id="txHash" placeholder="Tx Hash تراکنش" style="width:100%;margin-top:8px;padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+          <button class="btn btn-primary" style="margin-top:8px;width:100%" onclick="payCrypto()">ثبت پرداخت کریپتو</button>
+        </div>
+        <div style="border:1px solid #f59e0b44;background:#f59e0b11;padding:14px;border-radius:10px">
+          <b>💳 کارت به کارت (نیاز تایید ادمین)</b><br><small id="cardInfo">در حال بارگذاری...</small><br>
+          <input id="receiptUrl" placeholder="لینک فیش (یا آپلود کنید - فعلاً URL)" style="width:100%;margin-top:8px;padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+          <button class="btn btn-primary" style="margin-top:8px;width:100%" onclick="payCard()">ثبت فیش کارت</button>
+        </div>
+      </div>
+      <p id="payMsg" style="margin-top:10px;font-size:.85rem"></p>
+    </div>`;
+  // load payment_info
+  try{ const s=await api('/api/superadmin?action=settings'); const pi=s.payment_info||{}; document.getElementById('cryptoAddr').textContent='USDT TRC20: '+(pi.crypto_addresses?.USDT_TRC20||'—'); document.getElementById('cardInfo').textContent='شماره کارت: '+(pi.card_number||'—')+' به نام '+(pi.card_holder||''); }catch{ document.getElementById('cryptoAddr').textContent='—'; document.getElementById('cardInfo').textContent='—'; }
+}
+
+async function payCrypto(){
+  const order_id=document.getElementById('payOrder').value;
+  const tx_hash=document.getElementById('txHash').value.trim();
+  const msg=document.getElementById('payMsg');
+  if(!tx_hash) return msg.textContent='Tx Hash را وارد کنید';
+  try{ const j=await api('/api/payments',{method:'POST', body:JSON.stringify({order_id, method:'crypto', tx_hash})}); msg.style.color='#10b981'; msg.textContent='پرداخت کریپتو ثبت و تایید شد ✓'; await loadOrdersCache(); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+}
+async function payCard(){
+  const order_id=document.getElementById('payOrder').value;
+  const receipt_url=document.getElementById('receiptUrl').value.trim();
+  const msg=document.getElementById('payMsg');
+  if(!receipt_url) return msg.textContent='لینک فیش را وارد کنید';
+  try{ const j=await api('/api/payments',{method:'POST', body:JSON.stringify({order_id, method:'card', receipt_url})}); msg.style.color='#f59e0b'; msg.textContent='فیش ثبت شد — منتظر تایید ادمین'; await loadOrdersCache(); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+}
+async function loadOrdersCache(){ const j=await api('/api/orders'); ordersCache=j.orders||[]; }
+
+async function showTickets(){
+  const main=document.getElementById('main');
+  main.innerHTML='<p>در حال بارگذاری...</p>';
+  try{
+    const j=await api('/api/tickets');
+    const tickets=j.tickets||[];
+    main.innerHTML=`<h3>پشتیبانی</h3>
+      <div class="panel-card">
+        <input id="tSubject" placeholder="موضوع تیکت" style="width:100%;padding:10px;margin-bottom:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+        <textarea id="tBody" placeholder="پیام شما..." rows="3" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></textarea>
+        <button class="btn btn-primary" style="margin-top:8px" onclick="createTicket()">ارسال تیکت</button>
+        <p id="tMsg" style="font-size:.85rem;margin-top:8px"></p>
+      </div>
+      ${tickets.map(t=>`<div class="panel-card"><b>${t.subject}</b> <span class="badge badge-${t.status==='open'?'pending':t.status==='answered'?'reviewing':'verified'}">${t.status}</span><br><small>${new Date(t.created_at*1000).toLocaleDateString('fa-IR')}</small><div style="margin-top:8px">${(t.messages||[]).map(m=>`<div style="padding:8px;margin:4px 0;background:var(--bg);border-radius:8px"><b>${m.sender_name}:</b> ${m.body}</div>`).join('')}</div><div style="display:flex;gap:8px;margin-top:8px"><input id="reply-${t.id}" placeholder="پاسخ..." style="flex:1;padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"><button class="btn btn-outline" onclick="replyTicket('${t.id}')">ارسال</button></div></div>`).join('') || '<p>تیکتی نیست</p>'}`;
+  }catch(e){ main.innerHTML='<p style="color:#ef4444">'+e.message+'</p>'; }
+}
+async function createTicket(){
+  const subject=document.getElementById('tSubject').value.trim();
+  const message=document.getElementById('tBody').value.trim();
+  const msg=document.getElementById('tMsg');
+  if(!subject||!message) return msg.textContent='موضوع و پیام الزامی است';
+  try{ await api('/api/tickets',{method:'POST', body:JSON.stringify({subject, message})}); msg.style.color='#10b981'; msg.textContent='تیکت ثبت شد ✓'; showTickets(); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+}
+async function replyTicket(id){
+  const body=document.getElementById('reply-'+id).value.trim();
+  if(!body) return;
+  await api('/api/tickets',{method:'PUT', body:JSON.stringify({ticket_id:id, message:body})});
+  showTickets();
+}
+function showProfile(){
+  const u=JSON.parse(localStorage.getItem('user')||'{}');
+  document.getElementById('main').innerHTML=`<div class="panel-card"><h3>پروفایل</h3><p>نام: ${u.name||'—'}</p><p>ایمیل: ${u.email||'—'}</p><p>نقش: ${u.role||'—'}</p></div>`;
+}
+function openPay(id){ document.querySelector('[data-tab=\"payments\"]').click(); }
+function openTicket(id){ document.querySelector('[data-tab=\"tickets\"]').click(); }
+
+document.querySelectorAll('.panel-side a[data-tab]').forEach(a=>{
+  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-side a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
+    const tab=a.dataset.tab;
+    if(tab==='orders') showOrders();
+    else if(tab==='payments') showPayments();
+    else if(tab==='tickets') showTickets();
+    else if(tab==='profile') showProfile();
+  };
+});
+document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='login.html'; };
+
+loadUser(); showOrders();
+</script>
+</body>
+</html>

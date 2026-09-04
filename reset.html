@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تغییر رمز — PH Web</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+</head>
+<body>
+<div class="auth-box">
+<h1>رمز جدید</h1>
+<input id="password" type="password" placeholder="رمز جدید (حداقل ۶ کاراکتر)">
+<button class="btn btn-primary" id="btn" style="width:100%">تغییر رمز</button>
+<p id="msg" style="font-size:.85rem;margin-top:8px"></p>
+</div>
+<script>
+const token=new URLSearchParams(location.search).get('token')||'';
+document.getElementById('btn').onclick=async()=>{
+  const password=document.getElementById('password').value;
+  const msg=document.getElementById('msg');
+  if(!token) return msg.textContent='توکن نامعتبر';
+  if(!password||password.length<6) return msg.textContent='رمز حداقل ۶ کاراکتر';
+  const r=await fetch('/api/auth/reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token,password})});
+  const j=await r.json();
+  msg.style.color=r.ok?'#10b981':'#ef4444'; msg.textContent=j.message||j.error||'';
+  if(r.ok) setTimeout(()=> location.href='login.html', 1200);
+};
+</script>
+</body>
+</html>

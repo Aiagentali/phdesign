@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>سوپرادمین — PH Web</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="superadmin.html" class="active">سوپرادمین</a><a href="admin.html">ادمین</a><a href="#" id="logout">خروج</a></div><div class="nav-actions"><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
+<div class="panel-layout">
+  <aside class="panel-side">
+    <h3>سوپرادمین</h3>
+    <a href="#" data-tab="stats" class="active">📊 داشبورد مالی</a>
+    <a href="#" data-tab="admins">👥 ادمینها</a>
+    <a href="#" data-tab="pricing">💲 قیمتها</a>
+    <a href="#" data-tab="payments">⚙️ پرداخت</a>
+    <a href="#" data-tab="logs">📜 لاگها</a>
+  </aside>
+  <main class="panel-main" id="main"></main>
+</div>
+<script src="js/main.js"></script>
+<script>
+const token=localStorage.getItem('token');
+if(!token) location.href='login.html';
+const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
+async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{...headers, ...(opts.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
+async function check(){ const j=await api('/api/auth/me'); if(j.user.role!=='superadmin') location.href='admin.html'; }
+async function showStats(){
+  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const j=await api('/api/superadmin?action=stats');
+  const s=j.stats;
+  main.innerHTML=`<h3>داشبورد مالی</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">
+      <div class="panel-card" style="text-align:center"><b style="font-size:1.6rem">${s.totalOrders}</b><br><small>کل سفارشات</small></div>
+      <div class="panel-card" style="text-align:center"><b style="font-size:1.6rem">${s.totalUsers}</b><br><small>مشتریان</small></div>
+      <div class="panel-card" style="text-align:center"><b style="font-size:1.2rem">${s.verifiedSum.toLocaleString('fa-IR')} ت</b><br><small>درآمد تاییدشده</small></div>
+      <div class="panel-card" style="text-align:center"><b style="font-size:1.6rem">${s.pendingPays}</b><br><small>پرداخت در انتظار</small></div>
+    </div>
+    <div class="panel-card"><h4>سفارشات به تفکیک وضعیت</h4><table class="panel-table"><tr><th>وضعیت</th><th>تعداد</th></tr>${(s.byStatus||[]).map(r=>`<tr><td>${r.status}</td><td>${r.c}</td></tr>`).join('')}</table></div>`;
+}
+async function showAdmins(){
+  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const j=await api('/api/superadmin?action=admins');
+  main.innerHTML=`<h3>مدیریت ادمینها</h3>
+    <div class="panel-card">
+      <h4>افزودن ادمین جدید</h4>
+      <input id="aName" placeholder="نام" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+      <input id="aEmail" placeholder="ایمیل" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+      <input id="aPass" placeholder="رمز" type="password" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+      <button class="btn btn-primary" onclick="createAdmin()">افزودن</button>
+      <p id="aMsg" style="font-size:.85rem;margin-top:6px"></p>
+    </div>
+    <table class="panel-table"><tr><th>نام</th><th>ایمیل</th><th>نقش</th><th>عملیات</th></tr>${j.admins.map(a=>`<tr><td>${a.name}</td><td>${a.email}</td><td>${a.role}</td><td>${a.role==='admin'?`<button class="btn btn-outline" onclick="delAdmin('${a.id}')">حذف</button>`:''}</td></tr>`).join('')}</table>`;
+}
+async function createAdmin(){
+  const name=document.getElementById('aName').value.trim();
+  const email=document.getElementById('aEmail').value.trim();
+  const password=document.getElementById('aPass').value;
+  const msg=document.getElementById('aMsg');
+  try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'create_admin', name, email, password})}); msg.style.color='#10b981'; msg.textContent='ادمین ساخته شد ✓'; showAdmins(); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+}
+async function delAdmin(id){ if(!confirm('حذف ادمین؟')) return; await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'delete_admin', id})}); showAdmins(); }
+async function showPricing(){
+  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const j=await api('/api/superadmin?action=settings');
+  main.innerHTML=`<h3>تنظیم قیمتها (JSON)</h3><p style="font-size:.85rem;color:var(--text-mute)">قیمتها را ویرایش و ذخیره کنید — فروشگاه خودکار بروز میشود</p><textarea id="pricingJson" rows="18" style="width:100%;padding:12px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text);font-family:monospace;direction:ltr">${JSON.stringify(j.pricing, null, 2)}</textarea><button class="btn btn-primary" style="margin-top:8px" onclick="savePricing()">ذخیره قیمتها</button><p id="pMsg" style="font-size:.85rem;margin-top:6px"></p>`;
+}
+async function savePricing(){
+  const msg=document.getElementById('pMsg');
+  try{ const val=JSON.parse(document.getElementById('pricingJson').value); await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'pricing', value:val})}); msg.style.color='#10b981'; msg.textContent='ذخیره شد ✓'; }catch(e){ msg.style.color='#ef4444'; msg.textContent='JSON نامعتبر: '+e.message; }
+}
+async function showPayments(){
+  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const j=await api('/api/superadmin?action=settings');
+  const pi=j.payment_info||{};
+  main.innerHTML=`<h3>تنظیمات پرداخت</h3>
+    <div class="panel-card">
+      <label>شماره کارت</label><input id="cardNum" value="${pi.card_number||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+      <label>به نام</label><input id="cardHolder" value="${pi.card_holder||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+      <label>آدرس USDT TRC20</label><input id="usdt" value="${pi.crypto_addresses?.USDT_TRC20||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text);direction:ltr">
+      <label>آدرس BTC</label><input id="btc" value="${pi.crypto_addresses?.BTC||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text);direction:ltr">
+      <button class="btn btn-primary" onclick="savePay()">ذخیره</button><p id="payMsg" style="font-size:.85rem;margin-top:6px"></p>
+    </div>`;
+}
+async function savePay(){
+  const val={card_number: document.getElementById('cardNum').value, card_holder: document.getElementById('cardHolder').value, crypto_addresses:{USDT_TRC20: document.getElementById('usdt').value, BTC: document.getElementById('btc').value}};
+  const msg=document.getElementById('payMsg');
+  try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'payment_info', value:val})}); msg.style.color='#10b981'; msg.textContent='ذخیره شد ✓'; }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+}
+async function showLogs(){
+  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const j=await api('/api/superadmin?action=logs');
+  main.innerHTML=`<h3>لاگ فعالیتها (۱۰۰ اخیر)</h3><table class="panel-table"><tr><th>زمان</th><th>کاربر</th><th>اکشن</th><th>هدف</th></tr>${j.logs.map(l=>`<tr><td>${new Date(l.created_at*1000).toLocaleString('fa-IR')}</td><td>${l.actor_name||l.actor_id||'—'}</td><td>${l.action}</td><td>${l.target_type||''} ${l.target_id?l.target_id.slice(0,6):''}</td></tr>`).join('')}</table>`;
+}
+document.querySelectorAll('.panel-side a[data-tab]').forEach(a=>{
+  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-side a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
+    const t=a.dataset.tab;
+    if(t==='stats') showStats(); else if(t==='admins') showAdmins(); else if(t==='pricing') showPricing(); else if(t==='payments') showPayments(); else if(t==='logs') showLogs();
+  };
+});
+document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='login.html'; };
+check().then(showStats);
+</script>
+</body>
+</html>

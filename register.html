@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ثبت‌نام — PH Web</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="register.html" class="active">ثبت‌نام</a><a href="login.html">ورود</a></div><div class="nav-actions"><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
+<div class="auth-box">
+<h1>ساخت حساب</h1>
+<input id="name" placeholder="نام کامل">
+<input id="email" type="email" placeholder="ایمیل" autocomplete="email">
+<input id="phone" placeholder="شماره موبایل (اختیاری)" inputmode="numeric">
+<input id="password" type="password" placeholder="رمز عبور (حداقل ۶ کاراکتر)" autocomplete="new-password">
+<button class="btn btn-primary" id="btn" style="width:100%">ثبت‌نام</button>
+<p style="margin-top:12px;font-size:.85rem;text-align:center"><a href="login.html">قبلاً ثبت‌نام کرده‌اید؟ ورود</a></p>
+<p id="msg" style="font-size:.85rem;margin-top:8px"></p>
+</div>
+<script src="js/main.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+$('btn').onclick=async()=>{
+  const body={name:$('name').value, email:$('email').value, phone:$('phone').value, password:$('password').value};
+  $('msg').style.color='#ef4444'; $('msg').textContent='';
+  if(!body.name||!body.email||!body.password) return $('msg').textContent='نام، ایمیل و رمز الزامی است';
+  $('btn').textContent='...';
+  try{
+    const r=await fetch('/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const j=await r.json();
+    if(!r.ok) throw new Error(j.error||'خطا');
+    localStorage.setItem('token', j.token);
+    localStorage.setItem('user', JSON.stringify(j.user));
+    $('msg').style.color='#10b981'; $('msg').textContent='ثبت‌نام موفق — انتقال...';
+    setTimeout(()=> location.href='panel.html', 800);
+  }catch(e){ $('msg').textContent=e.message; }
+  $('btn').textContent='ثبت‌نام';
+};
+</script>
+</body>
+</html>

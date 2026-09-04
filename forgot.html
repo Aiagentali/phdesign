@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>فراموشی رمز — PH Web</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a></div></nav>
+<div class="auth-box">
+<h1>بازیابی رمز</h1>
+<p style="font-size:.85rem;color:var(--text-mute)">ایمیل خود را وارد کنید تا لینک بازیابی ارسال شود</p>
+<input id="email" type="email" placeholder="ایمیل">
+<button class="btn btn-primary" id="btn" style="width:100%">ارسال لینک</button>
+<p id="msg" style="font-size:.85rem;margin-top:8px"></p>
+<p style="margin-top:12px;text-align:center"><a href="login.html">بازگشت به ورود</a></p>
+</div>
+<script src="js/main.js"></script>
+<script>
+document.getElementById('btn').onclick=async()=>{
+  const email=document.getElementById('email').value.trim();
+  const msg=document.getElementById('msg');
+  msg.textContent=''; msg.style.color='#ef4444';
+  if(!email) return msg.textContent='ایمیل را وارد کنید';
+  try{
+    const r=await fetch('/api/auth/forgot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+    const j=await r.json();
+    msg.style.color='#10b981'; msg.textContent=j.message||'اگر ایمیل وجود داشته باشد، لینک ارسال شد';
+    if(j.resetUrl){ const a=document.createElement('div'); a.innerHTML=`<br><small>تست: <a href="${j.resetUrl}">${j.resetUrl}</a></small>`; msg.appendChild(a); }
+  }catch(e){ msg.textContent='خطا در ارسال'; }
+};
+</script>
+</body>
+</html>

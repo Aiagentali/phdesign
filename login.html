@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ورود — PH Web</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+</head>
+<body>
+<nav class="nav" id="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="index.html">خانه</a><a href="shop.html">فروشگاه</a><a href="login.html" class="active">ورود</a></div><div class="nav-actions"><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
+<div class="auth-box">
+<h1>ورود به حساب</h1>
+<input id="email" type="email" placeholder="ایمیل" autocomplete="email">
+<input id="password" type="password" placeholder="رمز عبور" autocomplete="current-password">
+<button class="btn btn-primary" id="btn" style="width:100%">ورود</button>
+<p style="margin-top:12px;font-size:.85rem;text-align:center"><a href="register.html">ثبت‌نام</a> · <a href="forgot.html">فراموشی رمز؟</a></p>
+<p id="msg" style="color:#ef4444;font-size:.85rem;margin-top:8px"></p>
+</div>
+<script src="js/main.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+$('btn').onclick=async()=>{
+  const email=$('email').value.trim(), password=$('password').value;
+  $('msg').textContent='';
+  if(!email||!password) return $('msg').textContent='ایمیل و رمز را وارد کنید';
+  $('btn').textContent='...';
+  try{
+    const r=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+    const j=await r.json();
+    if(!r.ok) throw new Error(j.error||'خطا');
+    localStorage.setItem('token', j.token);
+    localStorage.setItem('user', JSON.stringify(j.user));
+    if(j.user.role==='superadmin') location.href='superadmin.html';
+    else if(j.user.role==='admin') location.href='admin.html';
+    else location.href='panel.html';
+  }catch(e){ $('msg').textContent=e.message; }
+  $('btn').textContent='ورود';
+};
+</script>
+</body>
+</html>

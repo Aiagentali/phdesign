@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پنل ادمین — PH Web</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="admin.html" class="active">ادمین</a><a href="panel.html">پنل مشتری</a><a href="#" id="logout">خروج</a></div><div class="nav-actions"><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
+<div class="panel-layout">
+  <aside class="panel-side">
+    <h3>پنل ادمین</h3>
+    <a href="#" data-tab="orders" class="active">📦 سفارشات</a>
+    <a href="#" data-tab="payments">💳 پرداختها</a>
+    <a href="#" data-tab="tickets">💬 تیکتها</a>
+  </aside>
+  <main class="panel-main" id="main"></main>
+</div>
+<script src="js/main.js"></script>
+<script>
+const token=localStorage.getItem('token');
+if(!token) location.href='login.html';
+const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
+async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{...headers, ...(opts.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
+const statusMap={pending:'ثبت شد',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل شد',completed:'تکمیل شد',cancelled:'لغو'};
+async function checkRole(){ try{ const j=await api('/api/auth/me'); if(!['admin','superadmin'].includes(j.user.role)) location.href='panel.html'; }catch{ location.href='login.html'; } }
+async function showOrders(){
+  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const j=await api('/api/admin/orders');
+  main.innerHTML=`<h3>سفارشات (${j.orders.length})</h3><table class="panel-table"><tr><th>مشتری</th><th>نوع</th><th>مبلغ</th><th>وضعیت</th><th>عملیات</th></tr>${j.orders.map(o=>`<tr><td>${o.user_name}<br><small>${o.user_email}</small></td><td>${o.type_name}</td><td>${o.total_price.toLocaleString('fa-IR')}</td><td><select data-id="${o.id}" class="stSel" style="padding:6px;border-radius:6px;background:var(--bg);color:var(--text);border:1px solid var(--line)">${Object.entries(statusMap).map(([k,v])=>`<option value="${k}" ${o.status===k?'selected':''}>${v}</option>`).join('')}</select></td><td><button class="btn btn-primary" onclick="saveStatus('${o.id}')">ذخیره</button></td></tr>`).join('')}</table><p id="msg" style="font-size:.85rem;margin-top:8px"></p>`;
+  document.querySelectorAll('.stSel').forEach(s=> s.onchange=()=> s.dataset.changed='1');
+}
+async function saveStatus(id){
+  const sel=document.querySelector(`select[data-id="${id}"]`);
+  const status=sel.value;
+  const msg=document.getElementById('msg');
+  try{ await api('/api/admin/orders',{method:'PUT', body:JSON.stringify({id, status})}); msg.style.color='#10b981'; msg.textContent='وضعیت بروز شد ✓'; }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+}
+async function showPayments(){
+  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const j=await api('/api/admin/payments?status=pending');
+  const all=await api('/api/admin/payments');
+  main.innerHTML=`<h3>پرداختهای در انتظار (${j.payments.length})</h3>${j.payments.map(p=>`<div class="panel-card"><b>${p.user_name} — ${p.type_name}</b> — ${p.method==='crypto'?'کریپتو':'کارت'} — ${p.amount.toLocaleString('fa-IR')} تومان<br><small>Tx: ${p.tx_hash||'—'} | فیش: ${p.receipt_url?`<a href="${p.receipt_url}" target="_blank">مشاهده</a>`:'—'}</small><div style="margin-top:8px"><button class="btn btn-primary" onclick="verifyPay('${p.id}','verify')">✅ تایید</button> <button class="btn btn-outline" onclick="verifyPay('${p.id}','reject')">❌ رد</button></div></div>`).join('')||'<p>موردی نیست</p>'}<h3 style="margin-top:20px">همه پرداختها</h3><table class="panel-table"><tr><th>کاربر</th><th>روش</th><th>مبلغ</th><th>وضعیت</th></tr>${all.payments.map(p=>`<tr><td>${p.user_name}</td><td>${p.method}</td><td>${p.amount.toLocaleString('fa-IR')}</td><td>${p.status}</td></tr>`).join('')}</table>`;
+}
+async function verifyPay(id, action){
+  await api('/api/admin/payments',{method:'PUT', body:JSON.stringify({id, action})});
+  showPayments();
+}
+async function showTickets(){
+  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const j=await api('/api/tickets');
+  main.innerHTML=`<h3>تیکتها (${j.tickets.length})</h3>${j.tickets.map(t=>`<div class="panel-card"><b>${t.subject}</b> — ${t.user_name} <span class="badge badge-${t.status==='open'?'pending':'reviewing'}">${t.status}</span><div>${(t.messages||[]).map(m=>`<div style="padding:6px;margin:4px 0;background:var(--bg);border-radius:6px"><b>${m.sender_name} (${m.sender_role}):</b> ${m.body}</div>`).join('')}</div><div style="display:flex;gap:8px;margin-top:8px"><input id="rep-${t.id}" placeholder="پاسخ..." style="flex:1;padding:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)"><button class="btn btn-primary" onclick="reply('${t.id}')">ارسال</button></div></div>`).join('')||'<p>تیکتی نیست</p>'}`;
+}
+async function reply(id){
+  const body=document.getElementById('rep-'+id).value.trim();
+  if(!body) return;
+  await api('/api/tickets',{method:'PUT', body:JSON.stringify({ticket_id:id, message:body})});
+  showTickets();
+}
+document.querySelectorAll('.panel-side a[data-tab]').forEach(a=>{
+  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-side a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
+    const t=a.dataset.tab;
+    if(t==='orders') showOrders(); else if(t==='payments') showPayments(); else if(t==='tickets') showTickets();
+  };
+});
+document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='login.html'; };
+checkRole().then(showOrders);
+</script>
+</body>
+</html>
