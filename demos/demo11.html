@@ -7,7 +7,9 @@
 <title>سبزمارکت | فروشگاه ارگانیک — PH Web</title>
 <meta name="description" content="سبزمارکت — فروشگاه آنلاین محصولات ارگانیک و طبیعی. عسل کوهستان، روغن زیتون فرابکر، خرما، زعفران و ده‌ها محصول سالم با بسته‌بندی دوستدار محیط‌زیست.">
 <link rel="icon" type="image/png" href="../assets/favicon180.png?v=2"><text y='.9em' font-size='90'>🌿</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ============ TOKENS ============ */
 :root{
@@ -547,6 +549,7 @@ input,textarea,select{font-size:16px}
   </div>
 </footer>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 /* ---------- THEME TOGGLE ---------- */
 const root = document.documentElement;
@@ -554,13 +557,13 @@ const themeBtn = document.getElementById('themeToggle');
 function setTheme(t){
   root.setAttribute('data-theme', t);
   themeBtn.textContent = t === 'dark' ? '🌙' : '☀️';
-  try{ localStorage.setItem('sabz-theme', t); }catch(e){}
+  try{ safeSet('sabz-theme', t); }catch(e){}
 }
 themeBtn.addEventListener('click', () => {
   setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 });
 (function(){ try{
-  const saved = localStorage.getItem('sabz-theme');
+  const saved = safeGet('sabz-theme');
   if(saved) setTheme(saved);
 }catch(e){} })();
 

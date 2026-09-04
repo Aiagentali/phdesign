@@ -7,7 +7,9 @@
 <title>زَرّین — رستوران لاکچری | PH Web</title>
 <link rel="icon" type="image/png" href="../assets/favicon180.png?v=2">
 <meta name="description" content="زَرّین، رستوران لاکچری با طراحی آرت‌دکو طلایی بر روی سیاه. منوی سرآشپز، فضای مجلل و رزرو آنلاین میز.">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ============ ZARRIN · ART-DECO GOLD-ON-BLACK LUXURY RESTAURANT ============ */
 /* Fonts: Vazirmatn only. Display feel achieved via heavy weights, wide tracking,
@@ -573,12 +575,13 @@ input,textarea,select{font-size:16px}
   </div>
 </footer>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 /* ---- theme toggle with persistence ---- */
 (function(){
   var root=document.documentElement, btn=document.getElementById('themeBtn');
   try{
-    var saved=localStorage.getItem('zarrin-theme');
+    var saved=safeGet('zarrin-theme');
     if(saved){root.setAttribute('data-theme',saved);}
     else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches){root.setAttribute('data-theme','light');}
   }catch(e){}
@@ -587,7 +590,7 @@ input,textarea,select{font-size:16px}
   btn.addEventListener('click',function(){
     var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
     root.setAttribute('data-theme',next);
-    try{localStorage.setItem('zarrin-theme',next);}catch(e){}
+    try{safeSet('zarrin-theme',next);}catch(e){}
     sync();
   });
 })();

@@ -4,7 +4,9 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>داناکارس | نمونه‌کار PH Web</title>
 <link rel="icon" type="image/png" href="../assets/favicon180.png?v=2">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#26262b;--pri-2:#3a3a42;--acc:#9a7b4f;--bg:#f7f6f4;--card:#fff;--txt:#1e1e24;--soft:#585862;--mut:#8f8f9a;--line:#e7e5e1;--green:#2e8b57}
 [data-theme=dark]{--bg:#121216;--card:#1a1a20;--txt:#ececf0;--soft:#a5a5b2;--mut:#6e6e7c;--line:#282832}
@@ -112,7 +114,7 @@ input,textarea,select{font-size:16px}
     <div class="nav-links">
       <a href="#cat">دسته‌بندی</a><a href="#courses">دوره‌ها</a><a href="#teachers">مدرسین</a><a href="#contact">تماس</a>
     </div>
-    <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
+    <div class="nav-tools"><button class="tbtn" data-action="toggle-theme">◐</button></div>
   </div>
 </nav>
 
@@ -205,16 +207,20 @@ input,textarea,select{font-size:16px}
 
 <a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
   h.setAttribute('data-theme',n);
-  localStorage.setItem('d20-theme',n);
+  safeSet('d20-theme',n);
 }
-(function(){const t=localStorage.getItem('d20-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+(function(){const t=safeGet('d20-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+document.addEventListener('click',function(e){var t=e.target.closest('[data-action="toggle-theme"]');if(t){if(typeof toggleTheme==='function')toggleTheme();}});
 </script>
 </body>
 </html>

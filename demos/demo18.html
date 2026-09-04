@@ -4,7 +4,9 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>آسمان سفر | نمونه‌کار PH Web</title>
 <link rel="icon" type="image/png" href="../assets/favicon180.png?v=2">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#2c4257;--pri-2:#3a566f;--acc:#3fa9c9;--bg:#f6f8f9;--card:#fff;--txt:#1b2733;--soft:#54667a;--mut:#8a99a8;--line:#e2e9ee;--green:#2e9e6b}
 [data-theme=dark]{--bg:#0d151d;--card:#132030;--txt:#e7eef4;--soft:#a3b5c6;--mut:#67788a;--line:#22344a}
@@ -106,7 +108,7 @@ input,textarea,select{font-size:16px}
     <div class="nav-links">
       <a href="#svc">خدمات</a><a href="#dest">مقاصد</a><a href="#news">اخبار</a><a href="#contact">تماس</a>
     </div>
-    <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
+    <div class="nav-tools"><button class="tbtn" data-action="toggle-theme">◐</button></div>
   </div>
 </nav>
 
@@ -193,16 +195,20 @@ input,textarea,select{font-size:16px}
 
 <a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
   h.setAttribute('data-theme',n);
-  localStorage.setItem('d18-theme',n);
+  safeSet('d18-theme',n);
 }
-(function(){const t=localStorage.getItem('d18-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+(function(){const t=safeGet('d18-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+document.addEventListener('click',function(e){var t=e.target.closest('[data-action="toggle-theme"]');if(t){if(typeof toggleTheme==='function')toggleTheme();}});
 </script>
 </body>
 </html>

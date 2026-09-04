@@ -4,7 +4,9 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>دِل وِرده | نمونه‌کار PH Web</title>
 <link rel="icon" type="image/png" href="../assets/favicon180.png?v=2">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#155e6b;--pri-2:#1d7a8a;--acc:#e0a458;--bg:#f5f9fa;--card:#fff;--txt:#152528;--soft:#4f656b;--mut:#84989e;--line:#e0ebee;--red:#c0392b}
 [data-theme=dark]{--bg:#0b1518;--card:#102227;--txt:#e5eff1;--soft:#9db5ba;--mut:#63797e;--line:#1e343a}
@@ -127,7 +129,7 @@ input,textarea,select{font-size:16px}
     <div class="nav-links">
       <a href="#menu">منو</a><a href="#chefs">سرآشپزها</a><a href="#events">رویدادها</a><a href="#visit">بازدید</a><a href="#contact">تماس</a>
     </div>
-    <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
+    <div class="nav-tools"><button class="tbtn" data-action="toggle-theme">◐</button></div>
   </div>
 </nav>
 
@@ -256,14 +258,15 @@ input,textarea,select{font-size:16px}
 
 <a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
   h.setAttribute('data-theme',n);
-  localStorage.setItem('d16-theme',n);
+  safeSet('d16-theme',n);
 }
-(function(){const t=localStorage.getItem('d16-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+(function(){const t=safeGet('d16-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 function book(e){
   e.preventDefault();
   const n=document.getElementById('bName').value.trim();
@@ -273,6 +276,9 @@ function book(e){
 }
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+document.addEventListener('click',function(e){var t=e.target.closest('[data-action="toggle-theme"]');if(t){if(typeof toggleTheme==='function')toggleTheme();}});
 </script>
 </body>
 </html>

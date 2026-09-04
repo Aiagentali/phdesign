@@ -4,7 +4,9 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>اسپیس‌پلاس | نمونه‌کار PH Web</title>
 <link rel="icon" type="image/png" href="../assets/favicon180.png?v=2">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#23305c;--pri-2:#31407a;--acc:#b8912e;--bg:#f8f7f4;--card:#fff;--txt:#1d2030;--soft:#585c74;--mut:#8d90a5;--line:#e6e4dc;--green:#1a7f4e}
 [data-theme=dark]{--bg:#11131f;--card:#181b2b;--txt:#e9eaf2;--soft:#a9adc6;--mut:#71748c;--line:#272a40}
@@ -119,7 +121,7 @@ input,textarea,select{font-size:16px}
     <div class="nav-links">
       <a href="#svc">خدمات</a><a href="#plans">پلن‌ها</a><a href="#benefits">مزایا</a><a href="#join">عضویت</a>
     </div>
-    <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
+    <div class="nav-tools"><button class="tbtn" data-action="toggle-theme">◐</button></div>
   </div>
 </nav>
 
@@ -228,14 +230,15 @@ input,textarea,select{font-size:16px}
 
 <a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
   h.setAttribute('data-theme',n);
-  localStorage.setItem('d22-theme',n);
+  safeSet('d22-theme',n);
 }
-(function(){const t=localStorage.getItem('d22-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+(function(){const t=safeGet('d22-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 function joinReq(e){
   e.preventDefault();
   document.getElementById('jOk').style.display='block';
@@ -243,6 +246,9 @@ function joinReq(e){
 }
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+document.addEventListener('click',function(e){var t=e.target.closest('[data-action="toggle-theme"]');if(t){if(typeof toggleTheme==='function')toggleTheme();}});
 </script>
 </body>
 </html>

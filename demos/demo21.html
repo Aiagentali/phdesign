@@ -4,7 +4,9 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>دیجی‌پی | نمونه‌کار PH Web</title>
 <link rel="icon" type="image/png" href="../assets/favicon180.png?v=2">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pri:#3730a3;--pri-2:#4f46e5;--acc:#818cf8;--bg:#f7f7fb;--card:#fff;--txt:#1c1a33;--soft:#585478;--mut:#8c88a8;--line:#e6e4f2;--green:#16a34a}
 [data-theme=dark]{--bg:#0e0d1c;--card:#16142a;--txt:#e9e8f5;--soft:#a9a5c6;--mut:#6f6b8e;--line:#262348}
@@ -136,7 +138,7 @@ input,textarea,select{font-size:16px}
     <div class="nav-links">
       <a href="#sol">امکانات</a><a href="#steps">نحوه استفاده</a><a href="#case">مشتریان</a><a href="#demo">دانلود اپ</a>
     </div>
-    <div class="nav-tools"><button class="tbtn" onclick="toggleTheme()">◐</button></div>
+    <div class="nav-tools"><button class="tbtn" data-action="toggle-theme">◐</button></div>
   </div>
 </nav>
 
@@ -273,14 +275,15 @@ input,textarea,select{font-size:16px}
 
 <a href="../index.html" class="back-pill">← بازگشت به PH Web</a>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 function toggleTheme(){
   const h=document.documentElement;
   const n=h.getAttribute('data-theme')==='light'?'dark':'light';
   h.setAttribute('data-theme',n);
-  localStorage.setItem('d21-theme',n);
+  safeSet('d21-theme',n);
 }
-(function(){const t=localStorage.getItem('d21-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+(function(){const t=safeGet('d21-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
 function demoReq(e){
   e.preventDefault();
   document.getElementById('dOk').style.display='block';
@@ -288,6 +291,9 @@ function demoReq(e){
 }
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+document.addEventListener('click',function(e){var t=e.target.closest('[data-action="toggle-theme"]');if(t){if(typeof toggleTheme==='function')toggleTheme();}});
 </script>
 </body>
 </html>

@@ -616,15 +616,16 @@ input,textarea,select{font-size:16px}
   </div>
 </footer>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 /* تغییر تم با ذخیره‌سازی */
 (function(){
   var root=document.documentElement, btn=document.getElementById('themeBtn');
-  try{var s=localStorage.getItem('pulse-theme');if(s)root.setAttribute('data-theme',s);}catch(e){}
+  try{var s=safeGet('pulse-theme');if(s)root.setAttribute('data-theme',s);}catch(e){}
   btn.addEventListener('click',function(){
     var cur=root.getAttribute('data-theme')==='dark'?'light':'dark';
     root.setAttribute('data-theme',cur);
-    try{localStorage.setItem('pulse-theme',cur);}catch(e){}
+    try{safeSet('pulse-theme',cur);}catch(e){}
   });
 })();
 

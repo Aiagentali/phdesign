@@ -7,7 +7,9 @@
 <title>ژورنال نوی — فروشگاه مد لوکس | PH Web</title>
 <link rel="icon" type="image/png" href="../assets/favicon180.png?v=2">
 <meta name="description" content="نوی — مجله و فروشگاه مد لوکس به سبک ادیتوریال. کالکشنی از لباس، کیف و اکسسوار با تایپوگرافی بزرگ و مونوکروم و یک رنگ تأکیدی.">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    NOY — Luxe Editorial Fashion Store
@@ -644,12 +646,13 @@ input,textarea,select{font-size:16px}
 <!-- Toast -->
 <div class="toast" id="toast"><span class="d"></span><span id="toastMsg">افزوده شد</span></div>
 
+<script>function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}</script>
 <script>
 /* ---------- Theme ---------- */
 const root=document.documentElement, themeBtn=document.getElementById('themeBtn');
-(function(){const t=localStorage.getItem('noy-theme');if(t)root.setAttribute('data-theme',t);sync();})();
+(function(){const t=safeGet('noy-theme');if(t)root.setAttribute('data-theme',t);sync();})();
 function sync(){themeBtn.textContent=root.getAttribute('data-theme')==='dark'?'☀':'☾';}
-themeBtn.onclick=()=>{const n=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',n);localStorage.setItem('noy-theme',n);sync();};
+themeBtn.onclick=()=>{const n=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',n);safeSet('noy-theme',n);sync();};
 
 /* ---------- Products ---------- */
 const PRODUCTS=[
