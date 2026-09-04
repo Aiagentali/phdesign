@@ -1,5 +1,5 @@
-import { getUserFromRequest, json, corsHeaders, sanitize } from '../../lib/auth.js';
-import { q1, q, exec, nowSec, uuid } from '../../lib/db.js';
+import { getUserFromRequest, json, corsHeaders, sanitize } from '../lib/auth.js';
+import { q1, q, exec, nowSec, uuid } from '../lib/db.js';
 
 // POST /api/payments - create payment (crypto auto-verified, card pending)
 export async function onRequestPost({ request, env }) {
