@@ -1,5 +1,5 @@
-import { hashPassword, json, corsHeaders, sanitize } from '../lib/auth.js';
-import { q1, exec, nowSec } from '../lib/db.js';
+import { hashPassword, json, corsHeaders, sanitize } from '../../lib/auth.js';
+import { q1, exec, nowSec } from '../../lib/db.js';
 
 export async function onRequestPost({ request, env }) {
   if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders(request) });

@@ -1,5 +1,5 @@
-import { verifyPassword, createJWT, json, corsHeaders, sanitize } from '../lib/auth.js';
-import { q1 } from '../lib/db.js';
+import { verifyPassword, createJWT, json, corsHeaders, sanitize } from '../../lib/auth.js';
+import { q1 } from '../../lib/db.js';
 
 export async function onRequestPost({ request, env }) {
   if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders(request) });

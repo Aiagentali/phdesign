@@ -1,4 +1,4 @@
-import { getUserFromRequest, json, corsHeaders } from '../lib/auth.js';
+import { getUserFromRequest, json, corsHeaders } from '../../lib/auth.js';
 export async function onRequestGet({ request, env }) {
   const user = await getUserFromRequest(request, env);
   if (!user) return json({error:'وارد نشده‌اید'},401,corsHeaders(request));
