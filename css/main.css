@@ -351,38 +351,6 @@ ul { list-style: none; }
 }
 
 
-/* ---- PH Web logo lockup (mark + wordmark, one unit) ---- */
-.logo { gap: 0; }
-.logo-mark {
-  width: 38px; height: 38px; flex: 0 0 auto;
-  display: block; border-radius: 9px;
-  box-shadow: 0 2px 10px rgba(200,149,108,.25);
-  margin-inline-end: 11px;
-}
-.logo-word {
-  display: flex; align-items: center; gap: 0;
-  font-family: 'Vazirmatn', system-ui, sans-serif;
-  line-height: 1; white-space: nowrap;
-}
-.logo-word .lw-ph {
-  font-weight: 800; font-size: 1.3rem; letter-spacing: .02em;
-  background: linear-gradient(115deg, #EDC39A 0%, #C8956C 60%, #A97A4E 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: #C8956C;
-  padding-inline-end: 7px;
-}
-.logo-word .lw-sep {
-  width: 1px; height: 22px; align-self: center;
-  background: linear-gradient(180deg, transparent, #C8956C88, transparent);
-  margin-inline-end: 8px;
-}
-.logo-word .lw-web {
-  font-weight: 500; font-size: 1.08rem; letter-spacing: .24em;
-  color: var(--text-mute, #9a9aa5); text-transform: uppercase;
-  padding-inline-end: .24em; /* balance letter-spacing */
-}
-[data-theme="light"] .logo-word .lw-web { color: #66666f; }
-
 
 /* ---- mobile & tablet refinement (v2) ---- */
 html, body { overflow-x: hidden; }
@@ -419,3 +387,28 @@ img, svg, video { max-width: 100%; height: auto; }
   input, textarea, select { font-size: 16px; } /* prevent iOS zoom */
   .footer-grid { text-align: center; }
 }
+
+/* ---- webPH logo lockup (origami W + wordmark) ---- */
+.logo { gap: 0; }
+.logo-mark {
+  width: 38px; height: 38px; flex: 0 0 auto;
+  display: block; border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(200,149,108,.28);
+  margin-inline-end: 10px;
+}
+.logo-word {
+  display: inline-flex; align-items: baseline; gap: 0;
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+  line-height: 1; white-space: nowrap; direction: ltr;
+}
+.logo-word .lw-web {
+  font-weight: 400; font-size: 1.26rem; letter-spacing: .01em;
+  color: var(--text, #f2f2f5);
+}
+.logo-word .lw-ph {
+  font-weight: 800; font-size: 1.3rem; letter-spacing: .01em;
+  background: linear-gradient(115deg, #EDC39A 0%, #C8956C 55%, #A97A4E 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: #C8956C;
+}
+[data-theme="light"] .logo-word .lw-web { color: #17171b; }
