@@ -1,24 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 448">
   <defs>
-    <linearGradient id="wA" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#D9A06B"/>
-      <stop offset="1" stop-color="#B5733F"/>
+    <linearGradient id="met" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F5D7AE"/>
+      <stop offset=".28" stop-color="#D9A873"/>
+      <stop offset=".55" stop-color="#B98152"/>
+      <stop offset=".8" stop-color="#8E5A2E"/>
+      <stop offset="1" stop-color="#6B3F1C"/>
     </linearGradient>
-    <linearGradient id="wB" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#8A4E22"/>
-      <stop offset="1" stop-color="#6E3B16"/>
+    <linearGradient id="metL" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBE9CF"/>
+      <stop offset=".45" stop-color="#D9A873"/>
+      <stop offset="1" stop-color="#7A4A22"/>
     </linearGradient>
   </defs>
-  <!-- three-dot bar (browser window) -->
-  <rect x="28" y="6" width="44" height="15" rx="5" fill="url(#wA)"/>
-  <circle cx="39" cy="13.5" r="2.1" fill="#0B0B0F"/>
-  <circle cx="50" cy="13.5" r="2.1" fill="#0B0B0F"/>
-  <circle cx="61" cy="13.5" r="2.1" fill="#0B0B0F"/>
-  <!-- origami W: faceted zigzag, alternating light/dark folds -->
-  <polygon points="14,30 24,30 36,90 26,90" fill="url(#wA)"/>
-  <polygon points="24,30 34,30 44,56 36,90" fill="url(#wB)"/>
-  <polygon points="36,90 44,56 52,42 56,56 44,90" fill="url(#wA)" transform="translate(0,0)"/>
-  <polygon points="44,56 52,42 60,90 52,90" fill="url(#wB)"/>
-  <polygon points="52,42 62,30 72,30 60,90" fill="url(#wA)"/>
-  <polygon points="72,30 86,30 74,90 64,90" fill="url(#wB)"/>
+  <rect width="512" height="448" fill="#0C0A0C"/>
+  <!-- W: two deep V strokes with flat tops; right arm slightly taller per reference -->
+  <path fill="url(#metL)" d="M52 96 h84 l52 216 44-192 h32 l44 192 52-216 h84 l-96 304 h-76 l-42-178 -42 178 h-76 z"/>
+  <!-- subtle center gloss to sell 'metallic' -->
+  <path fill="#FFF3DE" opacity=".22" d="M136 96 h48 l52 216 -24 88 z"/>
+  <!-- 3-dot bar floating above the right V -->
+  <rect x="300" y="44" width="150" height="34" rx="9" fill="url(#met)"/>
+  <circle cx="330" cy="61" r="7" fill="#0C0A0C"/>
+  <circle cx="375" cy="61" r="7" fill="#0C0A0C"/>
+  <circle cx="420" cy="61" r="7" fill="#0C0A0C"/>
 </svg>
