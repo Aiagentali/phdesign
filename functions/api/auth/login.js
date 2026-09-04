@@ -15,7 +15,7 @@ export async function onRequestPost({ request, env }) {
     const token = await createJWT({uid:user.id, role:user.role, email:user.email}, env);
     return json({ok:true, token, user:{id:user.id,email:user.email,name:user.name,role:user.role}},200,{...corsHeaders(request),'Set-Cookie':`token=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=604800`});
   } catch(e){
-    return json({error:'خطای سرور: '+(e.message||String(e)), stack:String(e.stack||'').slice(0,800)},500,corsHeaders(request));
+    return json({error:'خطای سرور: '+(e.message||String(e))},500,corsHeaders(request));
   }
 }
 export async function onRequestOptions({ request }) { return new Response(null,{headers:corsHeaders(request)}); }
