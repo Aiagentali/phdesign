@@ -22,7 +22,7 @@
 <script src="js/main.js"></script>
 <script>
 const token=localStorage.getItem('token');
-if(!token) location.href='login.html';
+if(!token){ location.href='login.html'; throw new Error('no token'); }
 const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
 async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{...headers, ...(opts.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
 async function check(){ const j=await api('/api/auth/me'); if(j.user.role!=='superadmin') location.href='admin.html'; }

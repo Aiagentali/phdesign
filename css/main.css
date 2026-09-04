@@ -513,7 +513,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .panel-side h3{margin:0 0 12px;font-size:1rem}
 .panel-side a{display:block;padding:10px 12px;border-radius:8px;color:var(--text,#f2f2f5);text-decoration:none;font-size:.9rem}
 .panel-side a.active,.panel-side a:hover{background:color-mix(in srgb,#C8956C 12%,var(--bg-elev,#101016));color:#C8956C}
-.panel-main{background:var(--bg-elev,#101016);border:1px solid var(--line,#23232b);border-radius:14px;padding:20px}
+.panel-main{background:var(--bg-elev,#101016);border:1px solid var(--line,#23232b);border-radius:14px;padding:20px;min-height:300px}
 .panel-card{background:var(--bg,#0a0a0f);border:1px solid var(--line,#23232b);border-radius:12px;padding:16px;margin-bottom:14px}
 .panel-table{width:100%;border-collapse:collapse;font-size:.88rem}
 .panel-table th,.panel-table td{padding:10px 8px;border-bottom:1px solid var(--line,#23232b);text-align:right}

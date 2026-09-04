@@ -23,7 +23,7 @@
 <script src="js/main.js"></script>
 <script>
 const token=localStorage.getItem('token');
-if(!token) location.href='login.html';
+if(!token){ location.href='login.html'; throw new Error('no token'); }
 const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
 const fa=n=>n.toLocaleString('fa-IR');
 const statusMap={pending:'ثبت شد',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل داده شد',completed:'تکمیل شد',cancelled:'لغو شد'};
@@ -33,7 +33,7 @@ async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{.
 let ordersCache=[];
 
 async function loadUser(){
-  try{ const j=await api('/api/auth/me'); document.getElementById('userName').textContent=j.user.name+' ('+j.user.email+')'; if(j.user.role!=='customer' && j.user.role==='admin'){} }catch{ localStorage.clear(); location.href='login.html'; }
+  try{ const j=await api('/api/auth/me'); document.getElementById('userName').textContent=j.user.name+' ('+j.user.email+')'; }catch(e){ if(String(e.message).includes('وارد نشده')||String(e.message).includes('401')){ localStorage.clear(); location.href='login.html'; } else { document.getElementById('userName').textContent='خطا در بارگذاری'; } }
 }
 async function showOrders(){
   const main=document.getElementById('main');
@@ -64,6 +64,9 @@ async function showOrders(){
 }
 
 async function showPayments(){
+  if(!ordersCache.length){
+    try{ const j=await api('/api/orders'); ordersCache=j.orders||[]; }catch{}
+  }
   const main=document.getElementById('main');
   main.innerHTML=`<h3>پرداخت</h3>
     <div class="panel-card">
@@ -84,7 +87,7 @@ async function showPayments(){
       <p id="payMsg" style="margin-top:10px;font-size:.85rem"></p>
     </div>`;
   // load payment_info
-  try{ const s=await api('/api/superadmin?action=settings'); const pi=s.payment_info||{}; document.getElementById('cryptoAddr').textContent='USDT TRC20: '+(pi.crypto_addresses?.USDT_TRC20||'—'); document.getElementById('cardInfo').textContent='شماره کارت: '+(pi.card_number||'—')+' به نام '+(pi.card_holder||''); }catch{ document.getElementById('cryptoAddr').textContent='—'; document.getElementById('cardInfo').textContent='—'; }
+  try{ const s=await fetch('/api/settings').then(r=>r.json()); const pi=s.payment_info||{}; document.getElementById('cryptoAddr').textContent='USDT TRC20: '+(pi.crypto_addresses?.USDT_TRC20||'—'); document.getElementById('cardInfo').textContent='شماره کارت: '+(pi.card_number||'—')+' به نام '+(pi.card_holder||''); }catch{ document.getElementById('cryptoAddr').textContent='—'; document.getElementById('cardInfo').textContent='—'; }
 }
 
 async function payCrypto(){
@@ -150,7 +153,7 @@ document.querySelectorAll('.panel-side a[data-tab]').forEach(a=>{
 });
 document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='login.html'; };
 
-loadUser(); showOrders();
+loadUser().then(()=> showOrders()).catch(()=>{});
 </script>
 </body>
 </html>
