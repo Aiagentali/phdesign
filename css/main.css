@@ -391,8 +391,8 @@ img, svg, video { max-width: 100%; height: auto; }
 /* ---- webPH logo lockup (origami W + wordmark) ---- */
 .logo { gap: 0; }
 .logo-mark {
-  width: 40px; height: 36px; flex: 0 0 auto;
-  display: block; border-radius: 8px;
+  width: 41px; height: 36px; flex: 0 0 auto;
+  display: block; border-radius: 9px;
   object-fit: cover;
   box-shadow: 0 2px 12px rgba(200,149,108,.28);
   margin-inline-end: 10px;
