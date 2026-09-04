@@ -425,6 +425,44 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 
 
+
+/* ---- header auth (left side) ---- */
+.nav-auth{position:relative;display:flex;align-items:center}
+.nav-auth-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:9px 18px;border-radius:30px;
+  font-size:.88rem;font-weight:700;
+  border:1px solid var(--line-strong,rgba(255,255,255,.12));
+  background:var(--bg-elev,#16161d);color:var(--text,#f4f4f6);
+  transition:all .3s var(--ease);
+}
+.nav-auth-btn:hover{border-color:#C8956C;background:color-mix(in srgb,#C8956C 10%,var(--bg-elev));color:#C8956C;transform:translateY(-1px)}
+.nav-auth-btn.primary{
+  background:linear-gradient(120deg,#EDC39A,#C8956C);color:#0B0B0F;border-color:transparent;
+}
+.nav-auth-btn.primary:hover{box-shadow:0 8px 20px rgba(200,149,108,.35);transform:translateY(-2px)}
+.nav-avatar{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#EDC39A,#C8956C);color:#0B0B0F;
+  border:2px solid rgba(200,149,108,.3);cursor:pointer;
+  transition:all .3s var(--ease);
+}
+.nav-avatar:hover{transform:scale(1.06);box-shadow:0 6px 18px rgba(200,149,108,.4)}
+.nav-avatar svg{width:20px;height:20px}
+.nav-avatar-menu{
+  position:absolute;top:calc(100% + 10px);left:0;
+  background:var(--bg-elev,#101016);border:1px solid var(--line,#23232b);
+  border-radius:14px;padding:8px;min-width:180px;
+  box-shadow:0 16px 40px rgba(0,0,0,.4);display:none;z-index:1001;
+}
+.nav-avatar-menu.open{display:block}
+.nav-avatar-menu a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:.88rem;color:var(--text);transition:.2s}
+.nav-avatar-menu a:hover{background:color-mix(in srgb,#C8956C 10%,var(--bg-elev));color:#C8956C}
+.nav-avatar-menu .sep{height:1px;background:var(--line);margin:6px 0}
+.nav-auth .nav-avatar-menu{inset-inline-start:0;inset-inline-end:auto}
+@media(max-width:900px){.nav-auth-btn span.txt{ } .nav-avatar{width:38px;height:38px}}
+
 /* ---- shop configurator ---- */
 .cfg-layout { display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start; margin-top: 48px; }
 .cfg-step { margin-bottom: 44px; }

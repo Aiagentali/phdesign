@@ -42,6 +42,50 @@ const sbs = new IntersectionObserver(es => es.forEach(e => {
 }), { threshold: 0.4 });
 document.querySelectorAll('.skill-fill').forEach(b => sbs.observe(b));
 
+
+// ---- Header auth: login/register <-> avatar ----
+(function(){
+  const token = (()=>{ try{ return localStorage.getItem('token'); }catch(e){ return null; } })();
+  const authWrap = document.getElementById('navAuth');
+  if(!authWrap) return;
+  function guestUI(){
+    authWrap.innerHTML = '<a href="login.html" class="nav-auth-btn primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> ورود / ثبت‌نام</a>';
+  }
+  function userUI(role){
+    let panelHref='panel.html';
+    if(role==='admin') panelHref='admin.html';
+    if(role==='superadmin') panelHref='superadmin.html';
+    const name = (()=>{ try{ return JSON.parse(localStorage.getItem('user')||'{}').name||''; }catch(e){return '';} })();
+    authWrap.innerHTML = '<div style="position:relative"><a href="'+panelHref+'" class="nav-avatar" id="navAvatar" title="'+(name||'پنل من')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></a><div class="nav-avatar-menu" id="navAvatarMenu"><a href="'+panelHref+'">📦 پنل من</a><a href="#" id="navLogout2">🚪 خروج</a></div></div>';
+    const av=document.getElementById('navAvatar');
+    const menu=document.getElementById('navAvatarMenu');
+    if(av && menu){
+      let open=false;
+      av.addEventListener('click', (e)=>{
+        // on mobile, toggle menu instead of direct nav
+        if(window.innerWidth<900){
+          e.preventDefault(); open=!open; menu.classList.toggle('open', open);
+        }
+      });
+      document.addEventListener('click', (e)=>{
+        if(!authWrap.contains(e.target)){ menu.classList.remove('open'); open=false; }
+      });
+    }
+    const lo=document.getElementById('navLogout2');
+    if(lo) lo.addEventListener('click', (e)=>{ e.preventDefault(); try{ localStorage.removeItem('token'); localStorage.removeItem('user'); }catch(e){} location.href='login.html'; });
+  }
+  if(!token){ guestUI(); return; }
+  // verify token is still valid (silent)
+  let role=null;
+  try{ const u=JSON.parse(localStorage.getItem('user')||'null'); if(u && u.role) role=u.role; }catch(e){}
+  if(role){ userUI(role); }
+  // background verify
+  fetch('/api/auth/me', {headers:{Authorization:'Bearer '+token}}).then(r=>r.json()).then(j=>{
+    if(j && j.user){ try{ localStorage.setItem('user', JSON.stringify(j.user)); }catch(e){} userUI(j.user.role); }
+    else { localStorage.removeItem('token'); localStorage.removeItem('user'); guestUI(); }
+  }).catch(()=>{ if(role) userUI(role); else guestUI(); });
+})();
+
 // Form — honest submit: opens the visitor's email client with prefilled message (no fake success)
 const form = document.getElementById('contactForm');
 if (form) form.addEventListener('submit', e => {
