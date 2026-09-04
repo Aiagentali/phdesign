@@ -2,6 +2,7 @@ import { json, corsHeaders, sanitize } from '../../lib/auth.js';
 import { q1, exec, nowSec, uuid } from '../../lib/db.js';
 
 export async function onRequestPost({ request, env }) {
+  try {
   if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders(request) });
   let body; try { body = await request.json(); } catch { return json({error:'درخواست نامعتبر'},400,corsHeaders(request)); }
   const email = sanitize(body.email,100).toLowerCase();
@@ -28,6 +29,7 @@ export async function onRequestPost({ request, env }) {
   } catch {}
   // For dev: also return token if env.SHOW_RESET_TOKEN === '1'
   const dev = env.SHOW_RESET_TOKEN === '1' ? {resetUrl, token} : {};
+  } catch(e){ return json({error: 'خطای سرور: '+(e.message||e), stack: String(e.stack||'').slice(0,500)},500,corsHeaders(request)); }
   return json({ok:true, message:'لینک بازیابی ارسال شد', ...dev},200,corsHeaders(request));
 }
 export async function onRequestOptions({ request }) { return new Response(null,{headers:corsHeaders(request)}); }
