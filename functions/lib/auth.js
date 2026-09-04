@@ -1,8 +1,12 @@
 // Portable auth helpers - Web Crypto only (no deps)
+import { q1 as db_q1 } from './db.js';
 const JWT_SECRET_FALLBACK = "phweb-dev-secret-change-me";
 
 function b64urlEncode(bytes) {
-  let b64 = btoa(String.fromCharCode(...bytes));
+  // chunk to avoid spread limit
+  let binary = "";
+  for (let i=0; i<bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  let b64 = btoa(binary);
   return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 }
 function b64urlDecode(str) {
@@ -10,7 +14,7 @@ function b64urlDecode(str) {
   while (str.length % 4) str += '=';
   return Uint8Array.from(atob(str), c=>c.charCodeAt(0));
 }
-function getSecret(env){ return env.JWT_SECRET || JWT_SECRET_FALLBACK; }
+function getSecret(env){ return (env && env.JWT_SECRET) || JWT_SECRET_FALLBACK; }
 
 export async function hmacSign(data, secret){
   const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), {name:"HMAC", hash:"SHA-256"}, false, ["sign"]);
@@ -41,9 +45,8 @@ export async function verifyJWT(token, env){
 export async function hashPassword(password){
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const saltB64 = b64urlEncode(salt);
-  // PBKDF2
   const keyMat = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
-  const bits = await crypto.subtle.deriveBits({name:"PBKDF2", salt, iterations: 120000, hash:"SHA-256"}, keyMat, 256);
+  const bits = await crypto.subtle.deriveBits({name:"PBKDF2", salt, iterations: 80000, hash:"SHA-256"}, keyMat, 256);
   const hashB64 = b64urlEncode(new Uint8Array(bits));
   return `${saltB64}$${hashB64}`;
 }
@@ -52,7 +55,7 @@ export async function verifyPassword(password, stored){
   if(!saltB64||!hashB64) return false;
   const salt = b64urlDecode(saltB64);
   const keyMat = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
-  const bits = await crypto.subtle.deriveBits({name:"PBKDF2", salt, iterations:120000, hash:"SHA-256"}, keyMat, 256);
+  const bits = await crypto.subtle.deriveBits({name:"PBKDF2", salt, iterations:80000, hash:"SHA-256"}, keyMat, 256);
   const check = b64urlEncode(new Uint8Array(bits));
   return check === hashB64;
 }
@@ -68,12 +71,16 @@ export function corsHeaders(req){
   };
 }
 export async function getUserFromRequest(req, env){
-  const auth = req.headers.get('Authorization') || '';
-  const token = auth.startsWith('Bearer ') ? auth.slice(7) : (req.headers.get('Cookie')||'').match(/token=([^;]+)/)?.[1];
-  if(!token) return null;
-  const payload = await verifyJWT(token, env);
-  if(!payload) return null;
-  const { q1 } = await import('./db.js');
-  return q1(env.DB, 'SELECT id,email,name,role FROM users WHERE id=?', [payload.uid]);
+  try{
+    const auth = req.headers.get('Authorization') || '';
+    const cookie = req.headers.get('Cookie')||'';
+    const m = cookie.match(/token=([^;]+)/);
+    const token = auth.startsWith('Bearer ') ? auth.slice(7) : (m?m[1]:null);
+    if(!token) return null;
+    const payload = await verifyJWT(token, env);
+    if(!payload) return null;
+    if(!env || !env.DB) return null;
+    return await db_q1(env.DB, 'SELECT id,email,name,role FROM users WHERE id=?', [payload.uid]);
+  } catch(e){ return null; }
 }
 export function sanitize(s, max=500){ return String(s||'').replace(/[\u0000-\u001F<>]/g,'').slice(0,max).trim(); }
