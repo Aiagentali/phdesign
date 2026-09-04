@@ -72,7 +72,7 @@ document.querySelectorAll('.skill-fill').forEach(b => sbs.observe(b));
       });
     }
     const lo=document.getElementById('navLogout2');
-    if(lo) lo.addEventListener('click', (e)=>{ e.preventDefault(); try{ localStorage.removeItem('token'); localStorage.removeItem('user'); }catch(e){} location.href='login.html'; });
+    if(lo) lo.addEventListener('click', (e)=>{ e.preventDefault(); try{ localStorage.removeItem('token'); localStorage.removeItem('user'); }catch(e){} location.reload(); });
   }
   if(!token){ guestUI(); return; }
   // verify token is still valid (silent)
@@ -84,6 +84,126 @@ document.querySelectorAll('.skill-fill').forEach(b => sbs.observe(b));
     if(j && j.user){ try{ localStorage.setItem('user', JSON.stringify(j.user)); }catch(e){} userUI(j.user.role); }
     else { localStorage.removeItem('token'); localStorage.removeItem('user'); guestUI(); }
   }).catch(()=>{ if(role) userUI(role); else guestUI(); });
+})();
+
+
+// ---- Auth modal (popup) - Linear + PH bronze ----
+(function(){
+  // inject modal HTML once
+  if(document.getElementById('authOverlay')) return;
+  const html = `<div class="auth-overlay" id="authOverlay" aria-hidden="true">
+  <div class="auth-modal" role="dialog" aria-modal="true">
+    <button class="auth-close" id="authClose" aria-label="بستن">✕</button>
+    <div class="auth-modal-head">
+      <div class="auth-modal-logo"><img src="assets/logo.png?v=2" alt=""><span dir="ltr"><span style="font-weight:400;color:var(--text)">web</span><b>PH</b></span></div>
+      <h2 id="authTitle">خوش آمدید</h2>
+      <p id="authSub">برای ادامه وارد شوید یا ثبت‌نام کنید</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab on" data-tab="login">ورود</button>
+      <button class="auth-tab" data-tab="register">ثبت‌نام</button>
+    </div>
+    <form class="auth-form on" id="formLogin" autocomplete="on">
+      <div class="auth-field"><label>ایمیل</label><input type="email" id="loginEmail" placeholder="you@example.com" required dir="ltr"></div>
+      <div class="auth-field"><label>رمز عبور</label><input type="password" id="loginPass" placeholder="••••••••" required dir="ltr"></div>
+      <div class="auth-row"><label><input type="checkbox" id="rememberMe"> مرا به خاطر بسپار</label><a id="forgotLink">فراموشی رمز؟</a></div>
+      <button type="submit" class="auth-btn" id="btnLogin">ورود →</button>
+      <div class="auth-msg" id="loginMsg"></div>
+      <div class="auth-divider">یا</div>
+      <div class="auth-alt">حساب ندارید؟ <b id="goRegister">ثبت‌نام کنید</b></div>
+    </form>
+    <form class="auth-form" id="formRegister" autocomplete="on">
+      <div class="auth-field"><label>نام و نام خانوادگی</label><input type="text" id="regName" placeholder="علی حسینی" required></div>
+      <div class="auth-field"><label>ایمیل</label><input type="email" id="regEmail" placeholder="you@example.com" required dir="ltr"></div>
+      <div class="auth-field"><label>شماره موبایل (اختیاری)</label><input type="tel" id="regPhone" placeholder="0912..." dir="ltr"></div>
+      <div class="auth-field"><label>رمز عبور (حداقل ۶ کاراکتر)</label><input type="password" id="regPass" placeholder="••••••••" required dir="ltr"></div>
+      <button type="submit" class="auth-btn" id="btnRegister">ساخت حساب →</button>
+      <div class="auth-msg" id="regMsg"></div>
+      <div class="auth-divider">یا</div>
+      <div class="auth-alt">قبلاً ثبت‌نام کرده‌اید؟ <b id="goLogin">وارد شوید</b></div>
+    </form>
+    <form class="auth-form" id="formForgot" autocomplete="off">
+      <div class="auth-field"><label>ایمیل</label><input type="email" id="forgotEmail" placeholder="you@example.com" required dir="ltr"></div>
+      <button type="submit" class="auth-btn" id="btnForgot">ارسال لینک بازیابی →</button>
+      <div class="auth-msg" id="forgotMsg"></div>
+      <div class="auth-divider">یا</div>
+      <div class="auth-alt"><b id="backToLogin">بازگشت به ورود</b></div>
+    </form>
+  </div>
+</div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+  const overlay=document.getElementById('authOverlay');
+  const closeBtn=document.getElementById('authClose');
+  const tabs=document.querySelectorAll('.auth-tab');
+  const forms={login:document.getElementById('formLogin'), register:document.getElementById('formRegister'), forgot:document.getElementById('formForgot')};
+  const title=document.getElementById('authTitle'), sub=document.getElementById('authSub');
+  function setTab(t){
+    tabs.forEach(x=>x.classList.toggle('on', x.dataset.tab===t));
+    Object.keys(forms).forEach(k=> forms[k].classList.toggle('on', k===t));
+    if(t==='login'){ title.textContent='خوش آمدید'; sub.textContent='برای ادامه وارد شوید'; }
+    else if(t==='register'){ title.textContent='ساخت حساب'; sub.textContent='کمتر از ۳۰ ثانیه تا پنل شما'; }
+    else { title.textContent='بازیابی رمز'; sub.textContent='لینک بازیابی به ایمیل شما ارسال می‌شود'; }
+    document.querySelectorAll('.auth-msg').forEach(m=>{ m.className='auth-msg'; m.textContent=''; });
+  }
+  tabs.forEach(b=> b.addEventListener('click', ()=> setTab(b.dataset.tab)));
+  document.getElementById('goRegister').addEventListener('click', ()=> setTab('register'));
+  document.getElementById('goLogin').addEventListener('click', ()=> setTab('login'));
+  document.getElementById('forgotLink').addEventListener('click', ()=> setTab('forgot'));
+  document.getElementById('backToLogin').addEventListener('click', ()=> setTab('login'));
+  function open(tab='login'){ setTab(tab); overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; setTimeout(()=>{ const inp=overlay.querySelector('.auth-form.on input'); if(inp) inp.focus(); },80); }
+  function close(){ overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) close(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && overlay.classList.contains('open')) close(); });
+  function showMsg(id, text, ok){
+    const el=document.getElementById(id);
+    el.textContent=text; el.className='auth-msg show '+(ok?'ok':'err');
+  }
+  async function apiPost(path, body){
+    const r=await fetch(path, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok) throw new Error(j.error||'خطا');
+    return j;
+  }
+  document.getElementById('formLogin').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const btn=document.getElementById('btnLogin'); btn.disabled=true; btn.textContent='در حال ورود...';
+    try{
+      const j=await apiPost('/api/auth/login', {email:document.getElementById('loginEmail').value.trim(), password:document.getElementById('loginPass').value});
+      localStorage.setItem('token', j.token); localStorage.setItem('user', JSON.stringify(j.user));
+      showMsg('loginMsg','ورود موفق — در حال انتقال...', true);
+      setTimeout(()=>{ close(); location.reload(); },600);
+    }catch(err){ showMsg('loginMsg', err.message, false); } finally{ btn.disabled=false; btn.textContent='ورود →'; }
+  });
+  document.getElementById('formRegister').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const btn=document.getElementById('btnRegister'); btn.disabled=true; btn.textContent='در حال ساخت...';
+    try{
+      const j=await apiPost('/api/auth/register', {name:document.getElementById('regName').value.trim(), email:document.getElementById('regEmail').value.trim(), phone:document.getElementById('regPhone').value.trim(), password:document.getElementById('regPass').value});
+      localStorage.setItem('token', j.token); localStorage.setItem('user', JSON.stringify(j.user));
+      showMsg('regMsg','حساب ساخته شد — خوش آمدید ✓', true);
+      setTimeout(()=>{ close(); location.reload(); },600);
+    }catch(err){ showMsg('regMsg', err.message, false); } finally{ btn.disabled=false; btn.textContent='ساخت حساب →'; }
+  });
+  document.getElementById('formForgot').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const btn=document.getElementById('btnForgot'); btn.disabled=true; btn.textContent='در حال ارسال...';
+    try{
+      const j=await apiPost('/api/auth/forgot', {email:document.getElementById('forgotEmail').value.trim()});
+      showMsg('forgotMsg', j.message||'اگر ایمیل وجود داشته باشد، لینک ارسال شد', true);
+    }catch(err){ showMsg('forgotMsg', err.message, false); } finally{ btn.disabled=false; btn.textContent='ارسال لینک بازیابی →'; }
+  });
+  window.PHAuth={open, close, setTab};
+  // if URL has ?auth=login or register, auto open
+  try{
+    const u=new URL(location.href);
+    if(u.searchParams.get('auth')) open(u.searchParams.get('auth')==='register'?'register':'login');
+    if(location.pathname.endsWith('login.html')||location.pathname.endsWith('register.html')){
+      // redirect old direct visits to popup
+      open(location.pathname.includes('register')?'register':'login');
+      history.replaceState(null,'',location.pathname.replace('login.html','').replace('register.html',''));
+    }
+  }catch(e){}
 })();
 
 // Form — honest submit: opens the visitor's email client with prefilled message (no fake success)

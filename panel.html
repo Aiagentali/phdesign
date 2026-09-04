@@ -24,7 +24,7 @@
 <script src="js/main.js"></script>
 <script>
 const token=localStorage.getItem('token');
-if(!token){ location.href='login.html'; throw new Error('no token'); }
+if(!token){ if(window.PHAuth) PHAuth.open('login'); else location.href='login.html'; throw new Error('no token'); }
 const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
 const fa=n=>n.toLocaleString('fa-IR');
 const statusMap={pending:'ثبت شد',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل داده شد',completed:'تکمیل شد',cancelled:'لغو شد'};
