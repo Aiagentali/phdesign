@@ -379,7 +379,7 @@ img, svg, video { max-width: 100%; height: auto; }
   .section-title { font-size: 1.7rem; }
   .section-sub { font-size: .95rem; }
   .nav-links { background: var(--bg, #0a0a0f); }
-  .logo-mark { width: 34px; height: 30px; margin-inline-end: 8px; }
+  .logo-mark { width: 36px; height: 31px; margin-inline-end: 8px; }
   .logo-word .lw-ph { font-size: 1.12rem; }
   .logo-word .lw-web { font-size: .92rem; letter-spacing: .18em; }
   .theme-toggle { width: 40px; height: 40px; }
@@ -391,10 +391,10 @@ img, svg, video { max-width: 100%; height: auto; }
 /* ---- webPH logo lockup (origami W + wordmark) ---- */
 .logo { gap: 0; }
 .logo-mark {
-  width: 41px; height: 36px; flex: 0 0 auto;
-  display: block; border-radius: 9px;
-  object-fit: cover;
-  box-shadow: 0 2px 12px rgba(200,149,108,.28);
+  width: 42px; height: 36px; flex: 0 0 auto;
+  display: block; border-radius: 0;
+  object-fit: contain;
+  box-shadow: none;
   margin-inline-end: 10px;
 }
 .logo-word {
