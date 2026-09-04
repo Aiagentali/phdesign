@@ -215,7 +215,7 @@ ul { list-style: none; }
 .section-sub { color: var(--text-soft); margin-top: 14px; font-weight: 300; }
 
 /* ---------- WORK GRID ---------- */
-.work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+.work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 26px; }
 .work-card {
   position: relative; border-radius: var(--radius-lg); overflow: hidden;
   border: 1px solid var(--line); background: var(--bg-card);
@@ -382,3 +382,40 @@ ul { list-style: none; }
   padding-inline-end: .24em; /* balance letter-spacing */
 }
 [data-theme="light"] .logo-word .lw-web { color: #66666f; }
+
+
+/* ---- mobile & tablet refinement (v2) ---- */
+html, body { overflow-x: hidden; }
+img, svg, video { max-width: 100%; height: auto; }
+
+@media (max-width: 900px) {
+  .section { padding: 84px 0; }
+  .hero { padding: 120px 0 64px; min-height: auto; }
+  .nav-actions { gap: 10px; }
+  .theme-toggle { width: 44px; height: 44px; }
+  .nav-burger { width: 44px; height: 44px; align-items: center; justify-content: center; }
+  .btn { padding: 13px 24px; font-size: .95rem; }
+  .cat-btn { padding: 11px 18px !important; font-size: .85rem !important; }
+  .filters, .filter-bar { flex-wrap: wrap; gap: 10px; }
+  .footer-grid { gap: 28px; }
+}
+
+@media (max-width: 520px) {
+  .section { padding: 64px 0; }
+  .hero { padding: 108px 0 48px; }
+  .hero h1, h1 { font-size: clamp(2rem, 9vw, 2.6rem); letter-spacing: -.5px; margin-bottom: 18px; }
+  .hero p.lead { font-size: .98rem; margin-bottom: 28px; line-height: 1.8; }
+  .hero-cta .btn, .cta-row .btn { width: 100%; text-align: center; }
+  .work-grid { grid-template-columns: 1fr; gap: 18px; }
+  .work-thumb { font-size: 3rem; }
+  .section-title { font-size: 1.7rem; }
+  .section-sub { font-size: .95rem; }
+  .nav-links { background: var(--bg, #0a0a0f); }
+  .logo-mark { width: 32px; height: 32px; margin-inline-end: 8px; }
+  .logo-word .lw-ph { font-size: 1.12rem; }
+  .logo-word .lw-web { font-size: .92rem; letter-spacing: .18em; }
+  .theme-toggle { width: 40px; height: 40px; }
+  .btn { padding: 12px 20px; }
+  input, textarea, select { font-size: 16px; } /* prevent iOS zoom */
+  .footer-grid { text-align: center; }
+}
