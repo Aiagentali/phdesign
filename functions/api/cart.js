@@ -1,5 +1,5 @@
-import { getUserFromRequest, json, corsHeaders, sanitize } from '../../lib/auth.js';
-import { q, q1, exec, nowSec, uuid } from '../../lib/db.js';
+import { getUserFromRequest, json, corsHeaders, sanitize } from '../lib/auth.js';
+import { q, q1, exec, nowSec, uuid } from '../lib/db.js';
 
 // DELETE order in cart (owner only)
 export async function onRequestDelete({ request, env }) {
