@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>سوپرادمین — PH Web</title>
-<link rel="stylesheet" href="css/main.css?v=3">
+<link rel="stylesheet" href="css/main.css?v=4">
 <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
@@ -20,7 +20,7 @@
   </aside>
   <main class="panel-main" id="main"></main>
 </div>
-<script src="js/main.js?v=3"></script>
+<script src="js/main.js?v=4"></script>
 <script>
 const token=localStorage.getItem('token');
 if(!token){ location.href='login.html'; throw new Error('no token'); }
@@ -71,6 +71,8 @@ async function savePricing(){
   const msg=document.getElementById('pMsg');
   try{ const val=JSON.parse(document.getElementById('pricingJson').value); await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'pricing', value:val})}); msg.style.color='#10b981'; msg.textContent='ذخیره شد ✓'; }catch(e){ msg.style.color='#ef4444'; msg.textContent='JSON نامعتبر: '+e.message; }
 }
+async function loadTerms(){ try{ const j=await api('/api/settings'); const t=j.payment_terms||{}; const d=document.getElementById('depPct'); if(d) d.value=t.deposit_percent||50; const dl=document.getElementById('depLabel'); if(dl) dl.value=t.deposit_label||''; const rl=document.getElementById('remLabel'); if(rl) rl.value=t.remaining_label||''; }catch(e){} }
+async function saveTerms(){ const v={deposit_percent: parseInt(document.getElementById('depPct').value)||50, deposit_label: document.getElementById('depLabel').value, remaining_label: document.getElementById('remLabel').value, allow_deposit:true, allow_full:true}; const m=document.getElementById('termsMsg'); try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'payment_terms', value:v})}); m.style.color='#10b981'; m.textContent='ذخیره شد ✓'; }catch(e){ m.style.color='#ef4444'; m.textContent=e.message; } }
 async function showPayments(){
   const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
   const j=await api('/api/superadmin?action=settings');
@@ -82,7 +84,16 @@ async function showPayments(){
       <label>آدرس USDT TRC20</label><input id="usdt" value="${pi.crypto_addresses?.USDT_TRC20||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text);direction:ltr">
       <label>آدرس BTC</label><input id="btc" value="${pi.crypto_addresses?.BTC||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text);direction:ltr">
       <button class="btn btn-primary" onclick="savePay()">ذخیره</button><p id="payMsg" style="font-size:.85rem;margin-top:6px"></p>
-    </div>`;
+    </div>
+    <div class="panel-card" style="margin-top:14px">
+      <h4>شرایط پرداخت (بیعانه)</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+        <div><label style="font-size:.82rem;color:var(--text-mute)">درصد بیعانه</label><input id="depPct" type="number" min="10" max="90" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
+        <div><label style="font-size:.82rem;color:var(--text-mute)">عنوان بیعانه</label><input id="depLabel" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
+      </div>
+      <div style="margin-top:8px"><label style="font-size:.82rem;color:var(--text-mute)">عنوان تسویه</label><input id="remLabel" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
+      <button class="btn btn-primary" style="margin-top:10px" onclick="saveTerms()">ذخیره شرایط</button><p id="termsMsg" style="font-size:.82rem;margin-top:6px"></p>
+    </div>`; setTimeout(loadTerms,100);
 }
 async function savePay(){
   const val={card_number: document.getElementById('cardNum').value, card_holder: document.getElementById('cardHolder').value, crypto_addresses:{USDT_TRC20: document.getElementById('usdt').value, BTC: document.getElementById('btc').value}};

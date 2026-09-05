@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS orders (
   addons_price INTEGER NOT NULL DEFAULT 0,
   total_price INTEGER NOT NULL,
   days INTEGER NOT NULL,
-  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','reviewing','in_progress','delivered','completed','cancelled')),
+  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('cart','pending','reviewing','in_progress','delivered','completed','cancelled')),
   customer_note TEXT,
   admin_note TEXT,
   created_at INTEGER NOT NULL,
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 CREATE TABLE IF NOT EXISTS payments (
+  -- payment_phase: deposit|remaining|full
   id TEXT PRIMARY KEY,
   order_id TEXT NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
   user_id TEXT NOT NULL REFERENCES users(id),
@@ -83,6 +84,7 @@ CREATE TABLE IF NOT EXISTS audit_logs (
 -- Default pricing (editable from superadmin)
 INSERT OR IGNORE INTO settings (key, value, updated_at) VALUES
   ('pricing', '{"types":{"corporate":{"name":"شرکتی","price":4000000,"days":14},"shop":{"name":"فروشگاهی","price":7000000,"days":21},"portfolio":{"name":"پورتفولیو","price":3000000,"days":10},"restaurant":{"name":"رستوران / کافه","price":4500000,"days":12},"medical":{"name":"پزشکی / کلینیک","price":5000000,"days":14},"education":{"name":"آموزشی","price":6000000,"days":18}},"addons":{"about":{"name":"صفحه درباره ما","price":500000,"days":2},"blog":{"name":"وبلاگ","price":800000,"days":3},"gallery":{"name":"گالری تصاویر","price":600000,"days":2},"booking":{"name":"فرم رزرو / سفارش آنلاین","price":1200000,"days":4},"multilang":{"name":"چندزبانه","price":1500000,"days":5},"cms":{"name":"پنل مدیریت محتوا","price":2000000,"days":6},"seo":{"name":"سئوی پیشرفته","price":800000,"days":2},"gateway":{"name":"درگاه پرداخت آنلاین","price":1200000,"days":3},"chat":{"name":"چت آنلاین","price":400000,"days":1}}}', strftime('%s','now')),
+  ('payment_terms', '{"deposit_percent":50,"allow_deposit":true,"allow_full":true,"deposit_label":"بیعانه برای شروع پروژه","remaining_label":"تسویه پس از تحویل"}', strftime('%s','now')),
   ('payment_info', '{"card_number":"6037-XXXX-XXXX-1234","card_holder":"PH Web","crypto_addresses":{"USDT_TRC20":"TXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX","BTC":"1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"}}', strftime('%s','now'));
 
 CREATE INDEX IF NOT EXISTS idx_orders_user ON orders(user_id);

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>سبد خرید — PH Web</title>
+<link rel="stylesheet" href="css/main.css?v=4">
+<link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+<style>
+.cart-layout{max-width:900px;margin:0 auto;padding:110px 16px 40px}
+.cart-item{background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.cart-item h3{margin:0 0 8px;font-size:1.05rem}
+.cart-paybox{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:12px}
+.pay-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.pay-opt{border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;text-align:center;transition:.2s}
+.pay-opt.on{border-color:#C8956C;background:color-mix(in srgb,#C8956C 8%,var(--bg-elev))}
+.pay-opt b{display:block;font-size:1rem}
+.pay-opt small{color:var(--text-mute);font-size:.8rem}
+.cart-summary{position:sticky;bottom:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+@media(max-width:600px){.pay-opts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="shop.html">فروشگاه</a><a href="cart.html" class="active">سبد خرید <span id="cartBadge" style="background:#C8956C;color:#07070A;border-radius:10px;padding:1px 7px;font-size:.75rem;display:none"></span></a><a href="panel.html">پنل من</a></div><div class="nav-actions"><div class="nav-auth" id="navAuth"></div><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
+
+<div class="cart-layout">
+  <h1 style="margin:0 0 6px">🛒 سبد خرید</h1>
+  <p style="color:var(--text-mute);margin:0 0 18px">سفارش را بررسی کنید و بیعانه یا کل مبلغ را پرداخت کنید</p>
+  <div id="cartList"><p>در حال بارگذاری...</p></div>
+  <div id="cartSummary" class="cart-summary" style="display:none">
+    <div><b id="sumTotal">—</b><br><small id="sumNote" style="color:var(--text-mute)"></small></div>
+    <button class="btn btn-primary" id="goPanel" style="display:none" onclick="location.href='panel.html'">مشاهده در پنل →</button>
+  </div>
+</div>
+
+<script src="js/main.js?v=4"></script>
+<script>
+const token=localStorage.getItem('token');
+if(!token){ location.href='shop.html'; throw new Error('no token'); }
+const headers={Authorization:'Bearer '+token,'Content-Type':'application/json'};
+const fa=n=>n.toLocaleString('fa-IR');
+let terms={deposit_percent:50,allow_deposit:true,allow_full:true,deposit_label:'بیعانه برای شروع پروژه',remaining_label:'تسویه پس از تحویل'};
+let orders=[];
+let selectedPhase={}; // orderId -> 'deposit'|'remaining'|'full'
+let selectedMethod={}; // orderId -> 'crypto'|'card'
+
+async function api(p,o={}){ const r=await fetch(p,{...o,headers:{...headers,...(o.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
+
+async function load(){
+  const s=await fetch('/api/settings').then(r=>r.json()).catch(()=>({}));
+  if(s.payment_terms) terms=s.payment_terms;
+  const j=await api('/api/orders');
+  orders=(j.orders||[]).filter(o=>o.status==='cart' || o.status==='pending');
+  // also include reviewing orders that still have remaining unpaid for second payment
+  const reviewingWithRemaining=(j.orders||[]).filter(o=> o.status==='reviewing' && o.remaining>0);
+  orders=[...orders, ...reviewingWithRemaining];
+  render();
+}
+function render(){
+  const list=document.getElementById('cartList');
+  const sumEl=document.getElementById('cartSummary');
+  if(!orders.length){
+    list.innerHTML='<div class="panel-card" style="text-align:center;padding:32px"><p>سبد خرید شما خالی است</p><a href="shop.html" class="btn btn-primary" style="margin-top:12px">رفتن به فروشگاه →</a></div>';
+    sumEl.style.display='none';
+    document.getElementById('cartBadge').style.display='none';
+    return;
+  }
+  document.getElementById('cartBadge').textContent=orders.length;
+  document.getElementById('cartBadge').style.display='inline-block';
+  const depositPct=terms.deposit_percent;
+  list.innerHTML=orders.map(o=>{
+    const deposit=Math.round(o.total_price*depositPct/100);
+    const remaining=o.total_price-deposit;
+    const phase=selectedPhase[o.id]|| (terms.allow_deposit?'deposit':'full');
+    const method=selectedMethod[o.id]||'crypto';
+    const pays=o.payments||[];
+    const verifiedDeposit=pays.some(p=>p.payment_phase==='deposit'&&p.status==='verified');
+    const canRemaining=verifiedDeposit || o.status!=='cart';
+    // determine available phases
+    let opts='';
+    if(terms.allow_deposit) opts+=`<div class="pay-opt ${phase==='deposit'?'on':''}" onclick="pickPhase('${o.id}','deposit')"><b>بیعانه ${depositPct}٪</b><small>${fa(deposit)} تومان</small><br><small style="color:#C8956C">${terms.deposit_label}</small></div>`;
+    if(terms.allow_full) opts+=`<div class="pay-opt ${phase==='full'?'on':''}" onclick="pickPhase('${o.id}','full')"><b>پرداخت کامل</b><small>${fa(o.total_price)} تومان</small></div>`;
+    if(canRemaining && o.remaining>0 && o.remaining!==o.total_price) opts+=`<div class="pay-opt ${phase==='remaining'?'on':''}" onclick="pickPhase('${o.id}','remaining')"><b>تسویه باقیمانده</b><small>${fa(o.remaining)} تومان</small><br><small>${terms.remaining_label}</small></div>`;
+    const amount = phase==='deposit'?deposit : phase==='remaining'?o.remaining : o.total_price;
+    const alreadyPaidPhase = pays.find(p=>p.payment_phase===phase && p.status!=='rejected');
+    const progress = o.pay_progress||0;
+    return `<div class="cart-item">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+        <h3>${o.type_name} — ${fa(o.total_price)} تومان</h3>
+        <span class="badge badge-${o.status==='cart'?'pending':'reviewing'}">${o.status==='cart'?'در سبد':o.status==='pending'?'در انتظار پرداخت':'در حال انجام'}</span>
+      </div>
+      <small style="color:var(--text-mute)">#${o.id.slice(0,8)} · ${o.days} روز · ${(o.addons||[]).map(a=>a.name).join('، ')||'بدون افزونه'}</small>
+      ${o.pay_progress>0?`<div style="margin-top:10px"><div style="height:6px;background:var(--line);border-radius:6px;overflow:hidden"><div style="width:${progress}%;height:100%;background:linear-gradient(90deg,#C8956C,#EDC39A)"></div></div><small style="color:var(--text-mute)">${progress}٪ پرداخت شده — باقیمانده ${fa(o.remaining)} تومان</small></div>`:''}
+      <div class="cart-paybox">
+        <b>نوع پرداخت</b>
+        <div class="pay-opts">${opts}</div>
+        <div style="display:flex;gap:8px;margin:8px 0">
+          <label style="flex:1;display:flex;align-items:center;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:${method==='crypto'?'#10b98111':''};border-color:${method==='crypto'?'#10b98144':''}"><input type="radio" name="m-${o.id}" ${method==='crypto'?'checked':''} onchange="pickMethod('${o.id}','crypto')"> ₿ کریپتو (تایید آنی)</label>
+          <label style="flex:1;display:flex;align-items:center;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:${method==='card'?'#f59e0b11':''};border-color:${method==='card'?'#f59e0b44':''}"><input type="radio" name="m-${o.id}" ${method==='card'?'checked':''} onchange="pickMethod('${o.id}','card')"> 💳 کارت (تایید ادمین)</label>
+        </div>
+        ${alreadyPaidPhase?`<div style="padding:8px;background:${alreadyPaidPhase.status==='verified'?'#10b98122':'#f59e0b22'};border-radius:8px;font-size:.85rem">${alreadyPaidPhase.status==='verified'?'✓ این بخش پرداخت و تایید شد':'⏳ این بخش در انتظار تایید ادمین است'}</div>`:
+          `<div>
+            ${method==='crypto'?`<input id="tx-${o.id}" placeholder="Tx Hash تراکنش" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text);margin-bottom:8px" dir="ltr">`:`<input id="receipt-${o.id}" placeholder="لینک فیش (یا URL تصویر فیش)" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text);margin-bottom:8px" dir="ltr">`}
+            <button class="btn btn-primary" style="width:100%" onclick="doPay('${o.id}',${amount})">پرداخت ${fa(amount)} تومان ${method==='crypto'?'— تایید آنی':'— ارسال فیش'}</button>
+            <p id="msg-${o.id}" style="font-size:.82rem;margin-top:8px"></p>
+          </div>`}
+        <button class="btn btn-ghost" style="width:100%;margin-top:8px;font-size:.82rem" onclick="removeCart('${o.id}')">حذف از سبد</button>
+      </div>
+    </div>`;
+  }).join('');
+  // summary
+  const totalCart=orders.filter(o=>o.status==='cart').reduce((s,o)=>s+o.total_price,0);
+  document.getElementById('sumTotal').textContent='جمع سبد: '+fa(totalCart)+' تومان';
+  document.getElementById('sumNote').textContent= totalCart? `بیعانه ${depositPct}٪ = ${fa(Math.round(totalCart*depositPct/100))} تومان برای شروع` : 'سفارشی در سبد نیست';
+  sumEl.style.display='flex';
+}
+window.pickPhase=(id,p)=>{ selectedPhase[id]=p; render(); };
+window.pickMethod=(id,m)=>{ selectedMethod[id]=m; render(); };
+window.doPay=async(id,amount)=>{
+  const phase=selectedPhase[id]|| (terms.allow_deposit?'deposit':'full');
+  const method=selectedMethod[id]||'crypto';
+  const msg=document.getElementById('msg-'+id);
+  let tx_hash='', receipt_url='';
+  if(method==='crypto'){ tx_hash=document.getElementById('tx-'+id).value.trim(); if(!tx_hash) return msg.textContent='Tx Hash را وارد کنید'; }
+  else { receipt_url=document.getElementById('receipt-'+id).value.trim(); if(!receipt_url) return msg.textContent='لینک فیش را وارد کنید'; }
+  msg.textContent='در حال ثبت...'; msg.style.color='var(--text-mute)';
+  try{
+    const j=await api('/api/payments',{method:'POST', body:JSON.stringify({order_id:id, method, payment_phase:phase, tx_hash, receipt_url})});
+    msg.style.color=j.payment.status==='verified'?'#10b981':'#f59e0b';
+    msg.textContent= j.payment.status==='verified'?'✓ پرداخت تایید شد — سفارش به پنل منتقل شد':'✓ فیش ارسال شد — منتظر تایید ادمین';
+    setTimeout(load,1200);
+  }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+};
+window.removeCart=async(id)=>{
+  if(!confirm('حذف از سبد؟')) return;
+  try{ await api('/api/cart?id='+id,{method:'DELETE'}); load(); }catch(e){ alert(e.message); }
+};
+load();
+</script>
+</body>
+</html>

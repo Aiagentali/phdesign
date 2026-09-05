@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>پنل کاربری — PH Web</title>
-<link rel="stylesheet" href="css/main.css?v=3">
+<link rel="stylesheet" href="css/main.css?v=4">
 <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
@@ -13,21 +13,21 @@
 <div class="panel-layout">
   <aside class="panel-side">
     <h3 id="userName">...</h3>
+    <a href="cart.html">🛒 سبد خرید</a>
     <a href="#" data-tab="orders" class="active">📦 سفارشات من</a>
-    <a href="#" data-tab="payments">💳 پرداختها</a>
     <a href="#" data-tab="tickets">💬 پشتیبانی</a>
     <a href="#" data-tab="profile">👤 پروفایل</a>
   </aside>
   <main class="panel-main" id="main"></main>
 </div>
 
-<script src="js/main.js?v=3"></script>
+<script src="js/main.js?v=4"></script>
 <script>
 const token=localStorage.getItem('token');
 if(!token){ if(window.PHAuth) PHAuth.open('login'); else location.href='login.html'; throw new Error('no token'); }
 const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
 const fa=n=>n.toLocaleString('fa-IR');
-const statusMap={pending:'ثبت شد',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل داده شد',completed:'تکمیل شد',cancelled:'لغو شد'};
+const statusMap={cart:'در سبد',pending:'در انتظار پرداخت',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل داده شد',completed:'تکمیل شد',cancelled:'لغو شد'};
 
 async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{...headers, ...(opts.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
 
@@ -51,6 +51,8 @@ async function showOrders(){
         </div>
         <small style="color:var(--text-mute)">#${o.id.slice(0,8)} · ${new Date(o.created_at*1000).toLocaleDateString('fa-IR')} · تحویل ${fa(o.days)} روز</small>
         <div style="margin-top:8px;font-size:.85rem">${(o.addons||[]).map(a=>a.name).join('، ')||'بدون افزونه'}</div>
+        ${o.pay_progress>0?`<div style="margin-top:10px"><div style="height:6px;background:var(--line);border-radius:6px;overflow:hidden"><div style="width:${o.pay_progress}%;height:100%;background:linear-gradient(90deg,#C8956C,#EDC39A)"></div></div><small style="color:var(--text-mute)">${o.pay_progress}% پرداخت شده — باقیمانده ${fa(o.remaining)} تومان ${o.remaining===0? '✓ تسویه کامل':''}</small></div>`:''}
+        ${o.status==='cart'?`<div style="margin-top:8px"><a href="cart.html" class="btn btn-primary" style="font-size:.82rem">رفتن به سبد و پرداخت →</a></div>`:''}
         ${o.admin_note?`<div style="margin-top:8px;padding:8px;background:#C8956C11;border-radius:8px;font-size:.85rem">📝 ${o.admin_note}</div>`:''}
         <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn btn-outline" onclick="openPay('${o.id}')">💳 پرداخت</button>
@@ -147,7 +149,7 @@ document.querySelectorAll('.panel-side a[data-tab]').forEach(a=>{
   a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-side a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
     const tab=a.dataset.tab;
     if(tab==='orders') showOrders();
-    else if(tab==='payments') showPayments();
+    else if(tab==='payments') location.href='cart.html';
     else if(tab==='tickets') showTickets();
     else if(tab==='profile') showProfile();
   };
