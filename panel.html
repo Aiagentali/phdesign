@@ -5,20 +5,189 @@
 <title>پنل کاربری — PH Web</title>
 <link rel="stylesheet" href="css/main.css?v=4">
 <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
+<style>
+/* Premium panel - Linear + Stripe + PH bronze */
+:root{ --panel-accent:#C8956C; --panel-accent-2:#EDC39A; }
+.panel-app{min-height:100vh;display:flex;background:var(--bg);}
+
+ /* Sidebar */
+.panel-sidebar{
+  width:280px;flex-shrink:0;
+  background:linear-gradient(180deg, #0f0f12 0%, #0a0a0f 100%);
+  border-left:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;
+  position:sticky;top:0;height:100vh;overflow:hidden;
+}
+.panel-sidebar-top{padding:22px 18px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.panel-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.panel-brand img{width:32px;height:28px;object-fit:contain}
+.panel-brand b{font-size:.95rem;font-weight:800;letter-spacing:.02em}
+.panel-brand b span{font-weight:400;color:var(--text-mute)}
+.panel-user{margin-top:16px;display:flex;align-items:center;gap:12px;padding:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:14px}
+.panel-user-av{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--panel-accent-2),var(--panel-accent));color:#07070A;flex-shrink:0}
+.panel-user-av svg{width:18px;height:18px}
+.panel-user-info{min-width:0;flex:1}
+.panel-user-info b{display:block;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel-user-info span{font-size:.72rem;color:var(--text-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.panel-nav{padding:12px 10px;flex:1;overflow-y:auto}
+.panel-nav-title{font-size:.68rem;letter-spacing:.14em;color:var(--text-mute);font-weight:700;margin:14px 8px 8px;text-transform:uppercase}
+.panel-nav a{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 12px;border-radius:12px;
+  color:var(--text-soft);font-size:.88rem;font-weight:500;
+  text-decoration:none;transition:all .22s var(--ease);
+  border:1px solid transparent; position:relative;
+}
+.panel-nav a:hover{background:rgba(255,255,255,.05);color:var(--text);border-color:rgba(255,255,255,.06)}
+.panel-nav a.active{
+  background:linear-gradient(135deg, rgba(200,149,108,.14), rgba(237,195,154,.08));
+  color:var(--panel-accent);border-color:rgba(200,149,108,.22);
+  box-shadow:0 4px 16px rgba(200,149,108,.12);
+}
+.panel-nav a .ico{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:.9}
+.panel-nav a .ico svg{width:18px;height:18px}
+.panel-nav a.active .ico{opacity:1}
+.panel-nav a .badge-count{margin-inline-start:auto;background:var(--panel-accent);color:#07070A;font-size:.7rem;font-weight:800;padding:2px 7px;border-radius:20px;min-width:18px;text-align:center;display:none}
+.panel-sidebar-bottom{padding:12px 10px;border-top:1px solid rgba(255,255,255,.06)}
+.panel-sidebar-bottom a{font-size:.84rem;color:var(--text-mute)}
+.panel-sidebar-bottom a:hover{color:#ef4444}
+
+ /* Main */
+.panel-main-wrap{flex:1;min-width:0;display:flex;flex-direction:column}
+.panel-topbar{
+  position:sticky;top:0;z-index:10;
+  backdrop-filter:blur(16px) saturate(1.1);
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  border-bottom:1px solid var(--line);
+  padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.panel-topbar h1{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin:0}
+.panel-topbar p{font-size:.82rem;color:var(--text-mute);margin:2px 0 0}
+.panel-topbar-actions{display:flex;gap:8px;align-items:center}
+.panel-content{padding:22px 28px 40px;max-width:1100px;width:100%;}
+.panel-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.stat-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px}
+.stat-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stat-icon svg{width:18px;height:18px}
+.stat-card b{font-size:1.15rem;display:block}
+.stat-card span{font-size:.75rem;color:var(--text-mute)}
+
+ /* Order cards - premium */
+.order-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.order-card{
+  background:var(--bg-elev);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;
+  transition:all .3s var(--ease); position:relative;
+}
+.order-card::before{content:'';position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--order-accent,#C8956C);opacity:.9}
+.order-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.1);box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.order-card-head{padding:16px 18px 12px 18px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.order-card-title{display:flex;gap:12px;align-items:center;min-width:0}
+.order-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(200,149,108,.1);border:1px solid rgba(200,149,108,.18);color:var(--panel-accent)}
+.order-icon svg{width:20px;height:20px}
+.order-card-title h3{font-size:.95rem;font-weight:800;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.order-card-title small{font-size:.75rem;color:var(--text-mute);display:block;margin-top:2px}
+.price{font-size:1.05rem;font-weight:900;letter-spacing:-.02em;white-space:nowrap}
+.price small{font-size:.72rem;color:var(--text-mute);font-weight:600}
+.status-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:20px;font-size:.72rem;font-weight:800;border:1px solid}
+.status-pill .dot{width:6px;height:6px;border-radius:50%}
+.order-card-body{padding:0 18px 14px 18px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:.72rem;padding:4px 8px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);color:var(--text-soft)}
+.pay-row{margin-top:12px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pay-bar{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden;min-width:100px}
+.pay-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--panel-accent),var(--panel-accent-2));transition:width .6s var(--ease)}
+.order-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn-soft{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:10px;font-size:.82rem;font-weight:700;border:1px solid var(--line);background:var(--bg);color:var(--text);cursor:pointer;transition:.2s;text-decoration:none}
+.btn-soft:hover{border-color:var(--panel-accent);color:var(--panel-accent);transform:translateY(-1px)}
+.btn-accent{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:10px;font-size:.82rem;font-weight:800;background:linear-gradient(135deg,var(--panel-accent-2),var(--panel-accent));color:#07070A;border:none;cursor:pointer;transition:.2s;text-decoration:none}
+.btn-accent:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(200,149,108,.3)}
+.empty-state{text-align:center;padding:48px 20px;background:var(--bg-elev);border:1px dashed var(--line);border-radius:16px}
+.empty-state .ill{width:64px;height:64px;margin:0 auto 14px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(200,149,108,.08);border:1px solid rgba(200,149,108,.15);color:var(--panel-accent)}
+.empty-state .ill svg{width:28px;height:28px}
+ /* Tickets & profile polish */
+.ticket-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:14px}
+.msg-bubble{padding:10px 12px;border-radius:12px;margin:6px 0;font-size:.88rem;line-height:1.6}
+.msg-bubble.me{background:linear-gradient(135deg, rgba(200,149,108,.14), rgba(200,149,108,.06));border:1px solid rgba(200,149,108,.18)}
+.msg-bubble.other{background:var(--bg);border:1px solid var(--line)}
+
+@media(max-width:900px){
+  .panel-app{flex-direction:column}
+  .panel-sidebar{width:100%;height:auto;position:static;border-left:none;border-bottom:1px solid var(--line)}
+  .panel-topbar{padding:14px 16px}
+  .panel-content{padding:16px}
+  .panel-stats{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .panel-stats{grid-template-columns:1fr}
+  .order-card-head{flex-direction:column}
+}
+</style>
 </head>
 <body>
-<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="shop.html">فروشگاه</a><a href="panel.html" class="active">پنل من</a><a href="#" id="logout">خروج</a></div><div class="nav-actions">
-      <div class="nav-auth" id="navAuth"></div><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
-
-<div class="panel-layout">
-  <aside class="panel-side">
-    <h3 id="userName">...</h3>
-    <a href="cart.html">🛒 سبد خرید</a>
-    <a href="#" data-tab="orders" class="active">📦 سفارشات من</a>
-    <a href="#" data-tab="tickets">💬 پشتیبانی</a>
-    <a href="#" data-tab="profile">👤 پروفایل</a>
+<div class="panel-app">
+  <aside class="panel-sidebar">
+    <div class="panel-sidebar-top">
+      <a href="index.html" class="panel-brand">
+        <img src="assets/logo.png?v=2" alt=""><b dir="ltr"><span>web</span>PH</b>
+      </a>
+      <div class="panel-user" id="panelUser">
+        <div class="panel-user-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="panel-user-info"><b id="userName">در حال بارگذاری...</b><span id="userEmail">—</span></div>
+      </div>
+    </div>
+    <nav class="panel-nav">
+      <div class="panel-nav-title">منو</div>
+      <a href="#" data-tab="orders" class="active">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 16l-4 4-4-4"/><path d="M12 12v8"/><path d="M20 12a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8h2l3 3h3a8 8 0 0 1 0 16z" opacity=".15"/><rect x="2" y="7" width="20" height="14" rx="2"/></svg></span>
+        سفارشات من
+        <span class="badge-count" id="ordersCount"></span>
+      </a>
+      <a href="cart.html">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
+        سبد خرید
+        <span class="badge-count" id="cartCount"></span>
+      </a>
+      <a href="#" data-tab="tickets">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+        پشتیبانی
+      </a>
+      <a href="#" data-tab="profile">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></span>
+        پروفایل
+      </a>
+      <div class="panel-nav-title">دسترسی سریع</div>
+      <a href="shop.html">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        سفارش جدید
+      </a>
+      <a href="index.html">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        بازگشت به سایت
+      </a>
+    </nav>
+    <div class="panel-sidebar-bottom">
+      <a href="#" id="logout" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        خروج از حساب
+      </a>
+    </div>
   </aside>
-  <main class="panel-main" id="main"></main>
+
+  <div class="panel-main-wrap">
+    <div class="panel-topbar">
+      <div>
+        <h1 id="greetTitle">سلام 👋</h1>
+        <p id="greetSub">سفارشات و پرداختهای خود را اینجا مدیریت کنید</p>
+      </div>
+      <div class="panel-topbar-actions">
+        <a href="cart.html" class="btn-accent">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          سبد خرید
+        </a>
+      </div>
+    </div>
+    <div class="panel-content" id="main"></div>
+  </div>
 </div>
 
 <script src="js/main.js?v=4"></script>
@@ -27,102 +196,118 @@ const token=localStorage.getItem('token');
 if(!token){ if(window.PHAuth) PHAuth.open('login'); else location.href='login.html'; throw new Error('no token'); }
 const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
 const fa=n=>n.toLocaleString('fa-IR');
-const statusMap={cart:'در سبد',pending:'در انتظار پرداخت',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل داده شد',completed:'تکمیل شد',cancelled:'لغو شد'};
-
+const statusCfg={
+  cart:{label:'در سبد',color:'#f59e0b',bg:'rgba(245,158,11,.14)',dot:'#f59e0b'},
+  pending:{label:'در انتظار پرداخت',color:'#f59e0b',bg:'rgba(245,158,11,.14)',dot:'#f59e0b'},
+  reviewing:{label:'در حال بررسی',color:'#3b82f6',bg:'rgba(59,130,246,.14)',dot:'#3b82f6'},
+  in_progress:{label:'در حال انجام',color:'#8b5cf6',bg:'rgba(139,92,246,.14)',dot:'#8b5cf6'},
+  delivered:{label:'تحویل داده شد',color:'#10b981',bg:'rgba(16,185,129,.14)',dot:'#10b981'},
+  completed:{label:'تکمیل شد',color:'#10b981',bg:'rgba(16,185,129,.18)',dot:'#10b981'},
+  cancelled:{label:'لغو شد',color:'#ef4444',bg:'rgba(239,68,68,.14)',dot:'#ef4444'}
+};
+const typeIcons={
+  corporate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>',
+  shop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+  portfolio:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
+  restaurant:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2h4v10a4 4 0 0 1-4 4 4 4 0 0 1-4-4V2z"/><path d="M12 2h4v10a4 4 0 0 1-4 4 4 4 0 0 1-4-4V2z"/><path d="M18 2h4a4 4 0 0 1 0 8h-4z"/></svg>',
+  medical:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2.08C10.5 3.5 9.5 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>',
+  education:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>'
+};
 async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{...headers, ...(opts.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
-
 let ordersCache=[];
-
 async function loadUser(){
-  try{ const j=await api('/api/auth/me'); document.getElementById('userName').textContent=j.user.name+' ('+j.user.email+')'; }catch(e){ if(String(e.message).includes('وارد نشده')||String(e.message).includes('401')){ localStorage.clear(); location.href='login.html'; } else { document.getElementById('userName').textContent='خطا در بارگذاری'; } }
+  try{
+    const j=await api('/api/auth/me');
+    document.getElementById('userName').textContent=j.user.name;
+    document.getElementById('userEmail').textContent=j.user.email;
+    document.getElementById('greetTitle').textContent='سلام، '+j.user.name.split(' ')[0]+' 👋';
+  }catch(e){
+    if(String(e.message).includes('وارد نشده')||String(e.message).includes('401')){ localStorage.clear(); location.href='login.html'; }
+    else document.getElementById('userName').textContent='خطا در بارگذاری';
+  }
+}
+function renderStats(orders){
+  const total=orders.length, cart=orders.filter(o=>o.status==='cart').length, prog=orders.filter(o=>['reviewing','in_progress'].includes(o.status)).length;
+  const paid=orders.reduce((s,o)=>s+(o.paid_verified||0),0);
+  return `<div class="panel-stats">
+    <div class="stat-card"><div class="stat-icon" style="background:rgba(200,149,108,.12);color:#C8956C;border:1px solid rgba(200,149,108,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div><div><b>${fa(total)}</b><span>کل سفارشات</span></div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div><b>${fa(cart)}</b><span>در سبد</span></div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><b>${fa(prog)}</b><span>در حال انجام</span></div></div>
+    <div class="stat-card"><div class="stat-icon" style="background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.18)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><b>${fa(paid)} ت</b><span>پرداخت شده</span></div></div>
+  </div>`;
 }
 async function showOrders(){
   const main=document.getElementById('main');
-  main.innerHTML='<p>در حال بارگذاری...</p>';
+  main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   try{
     const j=await api('/api/orders');
     ordersCache=j.orders||[];
-    if(!ordersCache.length) return main.innerHTML='<div class="panel-card"><p>هنوز سفارشی ثبت نکرده‌اید. <a href="shop.html">از فروشگاه</a> سفارش دهید.</p></div>';
-    main.innerHTML=ordersCache.map(o=>`
-      <div class="panel-card">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-          <b>${o.type_name} — ${fa(o.total_price)} تومان</b>
-          <span class="badge badge-${o.status}">${statusMap[o.status]||o.status}</span>
+    document.getElementById('ordersCount').textContent=ordersCache.length||'';
+    document.getElementById('ordersCount').style.display=ordersCache.length?'inline-block':'none';
+    const cartCount=ordersCache.filter(o=>o.status==='cart').length;
+    document.getElementById('cartCount').textContent=cartCount||'';
+    document.getElementById('cartCount').style.display=cartCount?'inline-block':'none';
+    if(!ordersCache.length){
+      main.innerHTML=renderStats([])+`<div class="empty-state">
+        <div class="ill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <h3 style="margin:0 0 6px">هنوز سفارشی ندارید</h3><p style="color:var(--text-mute);font-size:.88rem">از فروشگاه شروع کنید — پیکربندی کنید و به سبد اضافه کنید</p>
+        <a href="shop.html" class="btn-accent" style="margin-top:14px">رفتن به فروشگاه →</a>
+      </div>`;
+      return;
+    }
+    main.innerHTML=renderStats(ordersCache)+`<div class="order-grid">`+ordersCache.map(o=>{
+      const st=statusCfg[o.status]||statusCfg.pending;
+      const icon=typeIcons[o.type]||typeIcons.corporate;
+      const progress=o.pay_progress||0;
+      return `<div class="order-card" style="--order-accent:${st.color}">
+        <div class="order-card-head">
+          <div class="order-card-title">
+            <div class="order-icon">${icon}</div>
+            <div>
+              <h3>${o.type_name}</h3>
+              <small>#${o.id.slice(0,8)} · ${new Date(o.created_at*1000).toLocaleDateString('fa-IR')} · ${fa(o.days)} روز</small>
+            </div>
+          </div>
+          <div style="text-align:left">
+            <div class="price">${fa(o.total_price)} <small>تومان</small></div>
+            <span class="status-pill" style="background:${st.bg};color:${st.color};border-color:${st.color}33"><span class="dot" style="background:${st.dot}"></span>${st.label}</span>
+          </div>
         </div>
-        <small style="color:var(--text-mute)">#${o.id.slice(0,8)} · ${new Date(o.created_at*1000).toLocaleDateString('fa-IR')} · تحویل ${fa(o.days)} روز</small>
-        <div style="margin-top:8px;font-size:.85rem">${(o.addons||[]).map(a=>a.name).join('، ')||'بدون افزونه'}</div>
-        ${o.pay_progress>0?`<div style="margin-top:10px"><div style="height:6px;background:var(--line);border-radius:6px;overflow:hidden"><div style="width:${o.pay_progress}%;height:100%;background:linear-gradient(90deg,#C8956C,#EDC39A)"></div></div><small style="color:var(--text-mute)">${o.pay_progress}% پرداخت شده — باقیمانده ${fa(o.remaining)} تومان ${o.remaining===0? '✓ تسویه کامل':''}</small></div>`:''}
-        ${o.status==='cart'?`<div style="margin-top:8px"><a href="cart.html" class="btn btn-primary" style="font-size:.82rem">رفتن به سبد و پرداخت →</a></div>`:''}
-        ${o.admin_note?`<div style="margin-top:8px;padding:8px;background:#C8956C11;border-radius:8px;font-size:.85rem">📝 ${o.admin_note}</div>`:''}
-        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn btn-outline" onclick="openPay('${o.id}')">💳 پرداخت</button>
-          <button class="btn btn-outline" onclick="openTicket('${o.id}')">💬 پشتیبانی</button>
+        <div class="order-card-body">
+          <div class="chips">${(o.addons||[]).map(a=>`<span class="chip">✦ ${a.name}</span>`).join('')||'<span class="chip" style="opacity:.6">بدون افزونه</span>'}</div>
+          ${o.customer_note?`<div style="margin-top:10px;padding:10px;background:rgba(200,149,108,.06);border:1px solid rgba(200,149,108,.12);border-radius:10px;font-size:.82rem">📝 ${o.customer_note}</div>`:''}
+          ${o.admin_note?`<div style="margin-top:10px;padding:10px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12);border-radius:10px;font-size:.82rem">💬 ${o.admin_note}</div>`:''}
+          <div class="pay-row">
+            <span style="font-size:.78rem;color:var(--text-mute);font-weight:600">پرداخت</span>
+            <div class="pay-bar"><div class="pay-fill" style="width:${progress}%"></div></div>
+            <span style="font-size:.78rem;font-weight:800;color:${progress===100?'#10b981':'var(--text)'}">${progress}%</span>
+            <span style="font-size:.72rem;color:var(--text-mute);margin-inline-start:auto">${progress===100?'✓ تسویه کامل':`باقیمانده ${fa(o.remaining)} تومان`}</span>
+          </div>
+          ${(o.payments||[]).length?`<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">${o.payments.map(p=>`<span class="chip" style="background:${p.status==='verified'?'rgba(16,185,129,.12)':p.status==='rejected'?'rgba(239,68,68,.12)':'rgba(245,158,11,.12)'};border-color:${p.status==='verified'?'rgba(16,185,129,.2)':p.status==='rejected'?'rgba(239,68,68,.2)':'rgba(245,158,11,.2)'};color:${p.status==='verified'?'#10b981':p.status==='rejected'?'#ef4444':'#f59e0b'}">${p.payment_phase==='deposit'?'بیعانه':p.payment_phase==='remaining'?'باقیمانده':'کامل'} · ${p.method==='crypto'?'کریپتو':'کارت'} · ${p.status==='verified'?'تایید':'در انتظار'}</span>`).join('')}</div>`:''}
+          <div class="order-actions">
+            ${o.status==='cart'?`<a href="cart.html" class="btn-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> پرداخت در سبد</a>`:`<a href="cart.html" class="btn-soft"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> مدیریت پرداخت</a>`}
+            <button class="btn-soft" onclick="openTicket('${o.id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> پشتیبانی</button>
+          </div>
         </div>
-        <div style="margin-top:10px">
-          ${(o.payments||[]).map(p=>`<span class="badge ${p.status==='verified'?'badge-verified':p.status==='rejected'?'badge-rejected':'badge-pending'}" style="margin-left:6px">${p.method==='crypto'?'کریپتو':'کارت'}: ${p.status==='verified'?'تایید شد':p.status==='rejected'?'رد شد':'در انتظار'}</span>`).join('')}
-        </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('')+`</div>`;
   }catch(e){ main.innerHTML='<p style="color:#ef4444">'+e.message+'</p>'; }
 }
-
-async function showPayments(){
-  if(!ordersCache.length){
-    try{ const j=await api('/api/orders'); ordersCache=j.orders||[]; }catch{}
-  }
-  const main=document.getElementById('main');
-  main.innerHTML=`<h3>پرداخت</h3>
-    <div class="panel-card">
-      <p>سفارش را انتخاب کنید:</p>
-      <select id="payOrder" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)">${ordersCache.map(o=>`<option value="${o.id}">${o.type_name} — ${fa(o.total_price)} تومان (#${o.id.slice(0,6)})</option>`).join('') || '<option>سفارشی نیست</option>'}</select>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
-        <div style="border:1px solid #10b98144;background:#10b98111;padding:14px;border-radius:10px">
-          <b>₿ پرداخت کریپتو (تایید خودکار)</b><br><small id="cryptoAddr">در حال بارگذاری...</small><br>
-          <input id="txHash" placeholder="Tx Hash تراکنش" style="width:100%;margin-top:8px;padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
-          <button class="btn btn-primary" style="margin-top:8px;width:100%" onclick="payCrypto()">ثبت پرداخت کریپتو</button>
-        </div>
-        <div style="border:1px solid #f59e0b44;background:#f59e0b11;padding:14px;border-radius:10px">
-          <b>💳 کارت به کارت (نیاز تایید ادمین)</b><br><small id="cardInfo">در حال بارگذاری...</small><br>
-          <input id="receiptUrl" placeholder="لینک فیش (یا آپلود کنید - فعلاً URL)" style="width:100%;margin-top:8px;padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
-          <button class="btn btn-primary" style="margin-top:8px;width:100%" onclick="payCard()">ثبت فیش کارت</button>
-        </div>
-      </div>
-      <p id="payMsg" style="margin-top:10px;font-size:.85rem"></p>
-    </div>`;
-  // load payment_info
-  try{ const s=await fetch('/api/settings').then(r=>r.json()); const pi=s.payment_info||{}; document.getElementById('cryptoAddr').textContent='USDT TRC20: '+(pi.crypto_addresses?.USDT_TRC20||'—'); document.getElementById('cardInfo').textContent='شماره کارت: '+(pi.card_number||'—')+' به نام '+(pi.card_holder||''); }catch{ document.getElementById('cryptoAddr').textContent='—'; document.getElementById('cardInfo').textContent='—'; }
-}
-
-async function payCrypto(){
-  const order_id=document.getElementById('payOrder').value;
-  const tx_hash=document.getElementById('txHash').value.trim();
-  const msg=document.getElementById('payMsg');
-  if(!tx_hash) return msg.textContent='Tx Hash را وارد کنید';
-  try{ const j=await api('/api/payments',{method:'POST', body:JSON.stringify({order_id, method:'crypto', tx_hash})}); msg.style.color='#10b981'; msg.textContent='پرداخت کریپتو ثبت و تایید شد ✓'; await loadOrdersCache(); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
-}
-async function payCard(){
-  const order_id=document.getElementById('payOrder').value;
-  const receipt_url=document.getElementById('receiptUrl').value.trim();
-  const msg=document.getElementById('payMsg');
-  if(!receipt_url) return msg.textContent='لینک فیش را وارد کنید';
-  try{ const j=await api('/api/payments',{method:'POST', body:JSON.stringify({order_id, method:'card', receipt_url})}); msg.style.color='#f59e0b'; msg.textContent='فیش ثبت شد — منتظر تایید ادمین'; await loadOrdersCache(); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
-}
-async function loadOrdersCache(){ const j=await api('/api/orders'); ordersCache=j.orders||[]; }
-
 async function showTickets(){
   const main=document.getElementById('main');
-  main.innerHTML='<p>در حال بارگذاری...</p>';
+  main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   try{
     const j=await api('/api/tickets');
     const tickets=j.tickets||[];
-    main.innerHTML=`<h3>پشتیبانی</h3>
-      <div class="panel-card">
-        <input id="tSubject" placeholder="موضوع تیکت" style="width:100%;padding:10px;margin-bottom:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
-        <textarea id="tBody" placeholder="پیام شما..." rows="3" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></textarea>
-        <button class="btn btn-primary" style="margin-top:8px" onclick="createTicket()">ارسال تیکت</button>
-        <p id="tMsg" style="font-size:.85rem;margin-top:8px"></p>
+    main.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px"><h3 style="margin:0">پشتیبانی</h3><span style="font-size:.75rem;color:var(--text-mute)">${tickets.length} تیکت</span></div>
+      <div class="ticket-card" style="margin-bottom:14px">
+        <h4 style="margin:0 0 10px;font-size:.95rem">تیکت جدید</h4>
+        <input id="tSubject" placeholder="موضوع — مثلاً سوال درباره سفارش" style="width:100%;padding:11px 12px;margin-bottom:8px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+        <textarea id="tBody" placeholder="پیام خود را بنویسید..." rows="3" style="width:100%;padding:11px 12px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></textarea>
+        <button class="btn-accent" style="margin-top:10px" onclick="createTicket()">ارسال تیکت →</button>
+        <p id="tMsg" style="font-size:.82rem;margin-top:8px"></p>
       </div>
-      ${tickets.map(t=>`<div class="panel-card"><b>${t.subject}</b> <span class="badge badge-${t.status==='open'?'pending':t.status==='answered'?'reviewing':'verified'}">${t.status}</span><br><small>${new Date(t.created_at*1000).toLocaleDateString('fa-IR')}</small><div style="margin-top:8px">${(t.messages||[]).map(m=>`<div style="padding:8px;margin:4px 0;background:var(--bg);border-radius:8px"><b>${m.sender_name}:</b> ${m.body}</div>`).join('')}</div><div style="display:flex;gap:8px;margin-top:8px"><input id="reply-${t.id}" placeholder="پاسخ..." style="flex:1;padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"><button class="btn btn-outline" onclick="replyTicket('${t.id}')">ارسال</button></div></div>`).join('') || '<p>تیکتی نیست</p>'}`;
+      ${tickets.map(t=>`<div class="ticket-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>${t.subject}</b><span class="status-pill" style="background:${t.status==='open'?'rgba(245,158,11,.12)':t.status==='answered'?'rgba(59,130,246,.12)':'rgba(16,185,129,.12)'};color:${t.status==='open'?'#f59e0b':t.status==='answered'?'#3b82f6':'#10b981'};border-color:currentColor">${t.status==='open'?'باز':t.status==='answered'?'پاسخ داده شد':'بسته'}</span></div><small style="color:var(--text-mute)">${new Date(t.created_at*1000).toLocaleDateString('fa-IR')}</small><div style="margin-top:10px">${(t.messages||[]).map(m=>`<div class="msg-bubble ${m.sender_role==='customer'?'other':'me'}"><b style="font-size:.78rem;opacity:.7">${m.sender_name}:</b> ${m.body}</div>`).join('')}</div><div style="display:flex;gap:8px;margin-top:10px"><input id="reply-${t.id}" placeholder="پاسخ..." style="flex:1;padding:10px 12px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)"><button class="btn-soft" onclick="replyTicket('${t.id}')">ارسال</button></div></div>`).join('') || '<div class="empty-state"><div class="ill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><p style="color:var(--text-mute)">هنوز تیکتی ندارید</p></div>'}`;
   }catch(e){ main.innerHTML='<p style="color:#ef4444">'+e.message+'</p>'; }
 }
 async function createTicket(){
@@ -140,22 +325,29 @@ async function replyTicket(id){
 }
 function showProfile(){
   const u=JSON.parse(localStorage.getItem('user')||'{}');
-  document.getElementById('main').innerHTML=`<div class="panel-card"><h3>پروفایل</h3><p>نام: ${u.name||'—'}</p><p>ایمیل: ${u.email||'—'}</p><p>نقش: ${u.role||'—'}</p></div>`;
+  document.getElementById('main').innerHTML=`<div class="ticket-card" style="max-width:480px">
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px">
+      <div style="width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#EDC39A,#C8956C);color:#07070A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div><b style="font-size:1.05rem">${u.name||'—'}</b><br><span style="font-size:.82rem;color:var(--text-mute)">${u.email||'—'}</span></div>
+    </div>
+    <div style="display:grid;gap:10px;font-size:.88rem">
+      <div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg);border:1px solid var(--line);border-radius:10px"><span style="color:var(--text-mute)">نام</span><b>${u.name||'—'}</b></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg);border:1px solid var(--line);border-radius:10px"><span style="color:var(--text-mute)">ایمیل</span><b dir="ltr">${u.email||'—'}</b></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg);border:1px solid var(--line);border-radius:10px"><span style="color:var(--text-mute)">نقش</span><b>${u.role==='superadmin'?'سوپرادمین':u.role==='admin'?'ادمین':'مشتری'}</b></div>
+    </div>
+  </div>`;
 }
-function openPay(id){ document.querySelector('[data-tab=\"payments\"]').click(); }
-function openTicket(id){ document.querySelector('[data-tab=\"tickets\"]').click(); }
+function openTicket(id){ document.querySelector('[data-tab="tickets"]').click(); }
 
-document.querySelectorAll('.panel-side a[data-tab]').forEach(a=>{
-  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-side a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
+document.querySelectorAll('.panel-nav a[data-tab]').forEach(a=>{
+  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-nav a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
     const tab=a.dataset.tab;
     if(tab==='orders') showOrders();
-    else if(tab==='payments') location.href='cart.html';
     else if(tab==='tickets') showTickets();
     else if(tab==='profile') showProfile();
   };
 });
-document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='login.html'; };
-
+document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='index.html'; };
 loadUser().then(()=> showOrders()).catch(()=>{});
 </script>
 </body>
