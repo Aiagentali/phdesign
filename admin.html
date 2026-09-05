@@ -3,55 +3,125 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>پنل ادمین — PH Web</title>
-<link rel="stylesheet" href="css/main.css?v=4">
+<link rel="stylesheet" href="css/main.css?v=5">
 <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
-<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="admin.html" class="active">ادمین</a><a href="panel.html">پنل مشتری</a><a href="#" id="logout">خروج</a></div><div class="nav-actions">
-      <div class="nav-auth" id="navAuth"></div><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
-<div class="panel-layout">
-  <aside class="panel-side">
-    <h3>پنل ادمین</h3>
-    <a href="#" data-tab="orders" class="active">📦 سفارشات</a>
-    <a href="#" data-tab="payments">💳 پرداختها</a>
-    <a href="#" data-tab="tickets">💬 تیکتها</a>
+<div class="panel-app">
+  <aside class="panel-sidebar">
+    <div class="panel-sidebar-top">
+      <a href="index.html" class="panel-brand"><img src="assets/logo.png?v=2" alt=""><b dir="ltr"><span>web</span>PH</b> <span style="font-size:.62rem;background:rgba(59,130,246,.14);color:#3b82f6;border:1px solid rgba(59,130,246,.2);padding:2px 7px;border-radius:20px;margin-inline-start:6px">ADMIN</span></a>
+      <div class="panel-user" id="panelUser">
+        <div class="panel-user-av" style="background:linear-gradient(135deg,#60a5fa,#3b82f6)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3z"/></svg></div>
+        <div class="panel-user-info"><b id="userName">ادمین</b><span id="userEmail">—</span></div>
+      </div>
+    </div>
+    <nav class="panel-nav">
+      <div class="panel-nav-title">مدیریت</div>
+      <a href="#" data-tab="orders" class="active">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+        سفارشات
+        <span class="badge-count" id="ordersCount"></span>
+      </a>
+      <a href="#" data-tab="payments">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+        پرداختها
+        <span class="badge-count" id="paysCount" style="background:#f59e0b"></span>
+      </a>
+      <a href="#" data-tab="tickets">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+        تیکتها
+      </a>
+      <div class="panel-nav-title">دسترسی</div>
+      <a href="panel.html">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></span>
+        پنل مشتری
+      </a>
+      <a href="index.html">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        سایت
+      </a>
+    </nav>
+    <div class="panel-sidebar-bottom">
+      <a href="#" id="logout" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> خروج</a>
+    </div>
   </aside>
-  <main class="panel-main" id="main"></main>
+  <div class="panel-main-wrap">
+    <div class="panel-topbar">
+      <div><h1>پنل ادمین</h1><p>سفارشات، پرداختها و تیکتها را مدیریت کنید</p></div>
+    </div>
+    <div class="panel-content" id="main"></div>
+  </div>
 </div>
-<script src="js/main.js?v=4"></script>
+<script src="js/main.js?v=5"></script>
 <script>
 const token=localStorage.getItem('token');
-if(!token){ location.href='login.html'; throw new Error('no token'); }
+if(!token) location.href='login.html';
 const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
-async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{...headers, ...(opts.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
-const statusMap={pending:'ثبت شد',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل شد',completed:'تکمیل شد',cancelled:'لغو'};
-async function checkRole(){ try{ const j=await api('/api/auth/me'); if(!['admin','superadmin'].includes(j.user.role)) location.href='panel.html'; }catch{ location.href='login.html'; } }
+async function api(p,o={}){ const r=await fetch(p,{...o,headers:{...headers,...(o.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
+const stMap={cart:'در سبد',pending:'در انتظار',reviewing:'در حال بررسی',in_progress:'در حال انجام',delivered:'تحویل',completed:'تکمیل',cancelled:'لغو'};
+const stColor={cart:'#f59e0b',pending:'#f59e0b',reviewing:'#3b82f6',in_progress:'#8b5cf6',delivered:'#10b981',completed:'#10b981',cancelled:'#ef4444'};
+async function checkRole(){ const j=await api('/api/auth/me'); document.getElementById('userName').textContent=j.user.name; document.getElementById('userEmail').textContent=j.user.email; if(!['admin','superadmin'].includes(j.user.role)) location.href='panel.html'; }
 async function showOrders(){
-  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const main=document.getElementById('main'); main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   const j=await api('/api/admin/orders');
-  main.innerHTML=`<h3>سفارشات (${j.orders.length})</h3><table class="panel-table"><tr><th>مشتری</th><th>نوع</th><th>مبلغ</th><th>وضعیت</th><th>عملیات</th></tr>${j.orders.map(o=>`<tr><td>${o.user_name}<br><small>${o.user_email}</small></td><td>${o.type_name}</td><td>${o.total_price.toLocaleString('fa-IR')}</td><td><select data-id="${o.id}" class="stSel" style="padding:6px;border-radius:6px;background:var(--bg);color:var(--text);border:1px solid var(--line)">${Object.entries(statusMap).map(([k,v])=>`<option value="${k}" ${o.status===k?'selected':''}>${v}</option>`).join('')}</select></td><td><button class="btn btn-primary" onclick="saveStatus('${o.id}')">ذخیره</button></td></tr>`).join('')}</table><p id="msg" style="font-size:.85rem;margin-top:8px"></p>`;
+  document.getElementById('ordersCount').textContent=j.orders.length||''; document.getElementById('ordersCount').style.display=j.orders.length?'inline-block':'none';
+  if(!j.orders.length) return main.innerHTML='<div class="empty-state"><div class="ill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/></svg></div><p style="color:var(--text-mute)">سفارشی نیست</p></div>';
+  main.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><h3 style="margin:0">سفارشات (${j.orders.length})</h3><span style="font-size:.75rem;color:var(--text-mute)">وضعیت را تغییر و ذخیره کنید</span></div>
+  <div style="display:grid;gap:10px">${j.orders.map(o=>`<div class="order-card" style="--order-accent:${stColor[o.status]||'#C8956C'}">
+    <div style="padding:14px 16px;display:grid;gap:10px">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <div><b>${o.type_name}</b> — ${o.user_name}<br><small style="color:var(--text-mute)" dir="ltr">${o.user_email}</small><br><small style="color:var(--text-mute)">#${o.id.slice(0,8)} · ${o.total_price.toLocaleString('fa-IR')} تومان · ${o.days} روز</small></div>
+        <div style="text-align:left"><span class="status-pill" style="background:${stColor[o.status]}22;color:${stColor[o.status]};border-color:${stColor[o.status]}33">${stMap[o.status]||o.status}</span></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <select data-id="${o.id}" class="stSel" style="padding:8px 10px;border-radius:10px;background:var(--bg);color:var(--text);border:1px solid var(--line);min-width:140px">${Object.entries(stMap).map(([k,v])=>`<option value="${k}" ${o.status===k?'selected':''}>${v}</option>`).join('')}</select>
+        <button class="btn-accent" onclick="saveStatus('${o.id}')">ذخیره</button>
+        ${o.admin_note?`<span style="font-size:.78rem;color:var(--text-mute)">📝 ${o.admin_note}</span>`:''}
+      </div>
+    </div>
+  </div>`).join('')}</div><p id="msg" style="font-size:.85rem;margin-top:10px"></p>`;
   document.querySelectorAll('.stSel').forEach(s=> s.onchange=()=> s.dataset.changed='1');
 }
 async function saveStatus(id){
   const sel=document.querySelector(`select[data-id="${id}"]`);
   const status=sel.value;
   const msg=document.getElementById('msg');
-  try{ await api('/api/admin/orders',{method:'PUT', body:JSON.stringify({id, status})}); msg.style.color='#10b981'; msg.textContent='وضعیت بروز شد ✓'; }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+  try{ await api('/api/admin/orders',{method:'PUT', body:JSON.stringify({id, status})}); msg.style.color='#10b981'; msg.textContent='✓ بروز شد'; setTimeout(()=>msg.textContent='',2000); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
 }
 async function showPayments(){
-  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
-  const j=await api('/api/admin/payments?status=pending');
-  const all=await api('/api/admin/payments');
-  main.innerHTML=`<h3>پرداختهای در انتظار (${j.payments.length})</h3>${j.payments.map(p=>`<div class="panel-card"><b>${p.user_name} — ${p.type_name}</b> — ${p.method==='crypto'?'کریپتو':'کارت'} — ${p.amount.toLocaleString('fa-IR')} تومان<br><small>Tx: ${p.tx_hash||'—'} | فیش: ${p.receipt_url?`<a href="${p.receipt_url}" target="_blank">مشاهده</a>`:'—'}</small><div style="margin-top:8px"><button class="btn btn-primary" onclick="verifyPay('${p.id}','verify')">✅ تایید</button> <button class="btn btn-outline" onclick="verifyPay('${p.id}','reject')">❌ رد</button></div></div>`).join('')||'<p>موردی نیست</p>'}<h3 style="margin-top:20px">همه پرداختها</h3><table class="panel-table"><tr><th>کاربر</th><th>روش</th><th>مبلغ</th><th>وضعیت</th></tr>${all.payments.map(p=>`<tr><td>${p.user_name}</td><td>${p.method}</td><td>${p.amount.toLocaleString('fa-IR')}</td><td>${p.status}</td></tr>`).join('')}</table>`;
+  const main=document.getElementById('main'); main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
+  const pend=await api('/api/admin/payments');
+  const pending=pend.payments.filter(p=>p.status==='pending');
+  document.getElementById('paysCount').textContent=pending.length||''; document.getElementById('paysCount').style.display=pending.length?'inline-block':'none';
+  const renderCard=p=>`<div class="order-card" style="--order-accent:${p.method==='crypto'?'#10b981':'#f59e0b'}">
+    <div style="padding:14px 16px">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <div><b>${p.user_name}</b> — ${p.type_name||'—'}<br><small style="color:var(--text-mute)">${p.method==='crypto'?'₿ کریپتو':'💳 کارت'} · ${p.payment_phase==='deposit'?'بیعانه':p.payment_phase==='remaining'?'باقیمانده':'کامل'} · ${p.amount.toLocaleString('fa-IR')} تومان</small><br><small style="color:var(--text-mute)" dir="ltr">${p.tx_hash? 'Tx: '+p.tx_hash.slice(0,20)+'...':''} ${p.receipt_url? `<a href="${p.receipt_url}" target="_blank" style="color:#C8956C">مشاهده فیش →</a>`:''}</small></div>
+        <span class="status-pill" style="background:${p.status==='verified'?'rgba(16,185,129,.14)':p.status==='rejected'?'rgba(239,68,68,.14)':'rgba(245,158,11,.14)'};color:${p.status==='verified'?'#10b981':p.status==='rejected'?'#ef4444':'#f59e0b'};border-color:currentColor">${p.status==='verified'?'تایید':p.status==='rejected'?'رد':'در انتظار'}</span>
+      </div>
+      ${p.status==='pending'?`<div style="margin-top:10px;display:flex;gap:8px"><button class="btn-accent" onclick="verifyPay('${p.id}','verify')">✅ تایید</button><button class="btn-soft" onclick="verifyPay('${p.id}','reject')">❌ رد</button></div>`:''}
+    </div>
+  </div>`;
+  main.innerHTML=`<h3 style="margin:0 0 12px">پرداختهای در انتظار (${pending.length})</h3>
+  ${pending.length? '<div style="display:grid;gap:10px;margin-bottom:18px">'+pending.map(renderCard).join('')+'</div>' : '<div class="empty-state"><p style="color:var(--text-mute)">موردی در انتظار نیست</p></div>'}
+  <h3 style="margin:14px 0 10px">همه پرداختها (${pend.payments.length})</h3>
+  <div style="display:grid;gap:10px">${pend.payments.map(renderCard).join('')}</div>`;
 }
 async function verifyPay(id, action){
-  await api('/api/admin/payments',{method:'PUT', body:JSON.stringify({id, action})});
+  await api('/api/admin/payments',{method:'POST', body:JSON.stringify({id, action})});
   showPayments();
 }
 async function showTickets(){
-  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const main=document.getElementById('main'); main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   const j=await api('/api/tickets');
-  main.innerHTML=`<h3>تیکتها (${j.tickets.length})</h3>${j.tickets.map(t=>`<div class="panel-card"><b>${t.subject}</b> — ${t.user_name} <span class="badge badge-${t.status==='open'?'pending':'reviewing'}">${t.status}</span><div>${(t.messages||[]).map(m=>`<div style="padding:6px;margin:4px 0;background:var(--bg);border-radius:6px"><b>${m.sender_name} (${m.sender_role}):</b> ${m.body}</div>`).join('')}</div><div style="display:flex;gap:8px;margin-top:8px"><input id="rep-${t.id}" placeholder="پاسخ..." style="flex:1;padding:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)"><button class="btn btn-primary" onclick="reply('${t.id}')">ارسال</button></div></div>`).join('')||'<p>تیکتی نیست</p>'}`;
+  if(!j.tickets.length) return main.innerHTML='<div class="empty-state"><div class="ill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7"/></svg></div><p style="color:var(--text-mute)">تیکتی نیست</p></div>';
+  main.innerHTML=`<h3 style="margin:0 0 12px">تیکتها (${j.tickets.length})</h3><div style="display:grid;gap:12px">${j.tickets.map(t=>`<div class="ticket-card" style="background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:14px">
+    <div style="display:flex;justify-content:space-between;gap:8px"><b>${t.subject}</b><span class="status-pill" style="background:${t.status==='open'?'rgba(245,158,11,.12)':'rgba(16,185,129,.12)'};color:${t.status==='open'?'#f59e0b':'#10b981'}">${t.status==='open'?'باز':'پاسخ داده شد'}</span></div>
+    <small style="color:var(--text-mute)">${t.user_name||''} · ${new Date(t.created_at*1000).toLocaleDateString('fa-IR')}</small>
+    <div style="margin-top:10px">${(t.messages||[]).map(m=>`<div class="msg-bubble ${m.sender_role==='customer'?'other':'me'}" style="padding:10px;border-radius:12px;margin:6px 0;font-size:.88rem;${m.sender_role==='customer'?'background:var(--bg);border:1px solid var(--line)':'background:linear-gradient(135deg, rgba(200,149,108,.14), rgba(200,149,108,.06));border:1px solid rgba(200,149,108,.18)'}"><b style="font-size:.78rem;opacity:.7">${m.sender_name} (${m.sender_role}):</b> ${m.body}</div>`).join('')}</div>
+    <div style="display:flex;gap:8px;margin-top:10px"><input id="rep-${t.id}" placeholder="پاسخ..." style="flex:1;padding:10px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)"><button class="btn-accent" onclick="reply('${t.id}')">ارسال</button></div>
+  </div>`).join('')}</div>`;
 }
 async function reply(id){
   const body=document.getElementById('rep-'+id).value.trim();
@@ -59,13 +129,13 @@ async function reply(id){
   await api('/api/tickets',{method:'PUT', body:JSON.stringify({ticket_id:id, message:body})});
   showTickets();
 }
-document.querySelectorAll('.panel-side a[data-tab]').forEach(a=>{
-  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-side a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
+document.querySelectorAll('.panel-nav a[data-tab]').forEach(a=>{
+  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-nav a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
     const t=a.dataset.tab;
     if(t==='orders') showOrders(); else if(t==='payments') showPayments(); else if(t==='tickets') showTickets();
   };
 });
-document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='login.html'; };
+document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='index.html'; };
 checkRole().then(showOrders);
 </script>
 </body>

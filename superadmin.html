@@ -3,115 +3,157 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>سوپرادمین — PH Web</title>
-<link rel="stylesheet" href="css/main.css?v=4">
+<link rel="stylesheet" href="css/main.css?v=5">
 <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
-<nav class="nav"><div class="nav-inner"><a href="index.html" class="logo"><img src="assets/logo.png?v=2" alt="webPH" class="logo-mark"><span class="logo-word" dir="ltr"><span class="lw-web">web</span><span class="lw-ph">PH</span></span></a><div class="nav-links"><a href="superadmin.html" class="active">سوپرادمین</a><a href="admin.html">ادمین</a><a href="#" id="logout">خروج</a></div><div class="nav-actions">
-      <div class="nav-auth" id="navAuth"></div><div class="theme-toggle" id="themeToggle"></div></div></div></nav>
-<div class="panel-layout">
-  <aside class="panel-side">
-    <h3>سوپرادمین</h3>
-    <a href="#" data-tab="stats" class="active">📊 داشبورد مالی</a>
-    <a href="#" data-tab="admins">👥 ادمینها</a>
-    <a href="#" data-tab="pricing">💲 قیمتها</a>
-    <a href="#" data-tab="payments">⚙️ پرداخت</a>
-    <a href="#" data-tab="logs">📜 لاگها</a>
+<div class="panel-app">
+  <aside class="panel-sidebar">
+    <div class="panel-sidebar-top">
+      <a href="index.html" class="panel-brand"><img src="assets/logo.png?v=2" alt=""><b dir="ltr"><span>web</span>PH</b> <span style="font-size:.62rem;background:linear-gradient(135deg,#EDC39A,#C8956C);color:#07070A;padding:2px 7px;border-radius:20px;margin-inline-start:6px;font-weight:800">SUPER</span></a>
+      <div class="panel-user" style="background:linear-gradient(135deg, rgba(200,149,108,.14), rgba(237,195,154,.08));border-color:rgba(200,149,108,.18)">
+        <div class="panel-user-av" style="background:linear-gradient(135deg,#EDC39A,#C8956C)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <div class="panel-user-info"><b id="userName">سوپرادمین</b><span id="userEmail">—</span></div>
+      </div>
+    </div>
+    <nav class="panel-nav">
+      <div class="panel-nav-title">سوپرادمین</div>
+      <a href="#" data-tab="stats" class="active">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+        داشبورد مالی
+      </a>
+      <a href="#" data-tab="admins">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        ادمینها
+      </a>
+      <a href="#" data-tab="pricing">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+        قیمتها
+      </a>
+      <a href="#" data-tab="payments">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+        پرداخت
+      </a>
+      <a href="#" data-tab="logs">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+        لاگها
+      </a>
+      <div class="panel-nav-title">دسترسی</div>
+      <a href="admin.html">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+        پنل ادمین
+      </a>
+      <a href="panel.html">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></span>
+        پنل مشتری
+      </a>
+    </nav>
+    <div class="panel-sidebar-bottom">
+      <a href="#" id="logout" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> خروج</a>
+    </div>
   </aside>
-  <main class="panel-main" id="main"></main>
+  <div class="panel-main-wrap">
+    <div class="panel-topbar">
+      <div><h1>سوپرادمین 👑</h1><p>کنترل کامل فروشگاه، مالی و دسترسیها</p></div>
+      <a href="shop.html" class="btn-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg> مشاهده سایت</a>
+    </div>
+    <div class="panel-content" id="main"></div>
+  </div>
 </div>
-<script src="js/main.js?v=4"></script>
+<script src="js/main.js?v=5"></script>
 <script>
 const token=localStorage.getItem('token');
-if(!token){ location.href='login.html'; throw new Error('no token'); }
+if(!token) location.href='login.html';
 const headers={Authorization:'Bearer '+token, 'Content-Type':'application/json'};
-async function api(path, opts={}){ const r=await fetch(path,{...opts, headers:{...headers, ...(opts.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
-async function check(){ const j=await api('/api/auth/me'); if(j.user.role!=='superadmin') location.href='admin.html'; }
+async function api(p,o={}){ const r=await fetch(p,{...o,headers:{...headers,...(o.headers||{})}}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'خطا'); return j; }
+async function check(){ const j=await api('/api/auth/me'); document.getElementById('userName').textContent=j.user.name; document.getElementById('userEmail').textContent=j.user.email; if(j.user.role!=='superadmin') location.href='admin.html'; }
 async function showStats(){
-  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const main=document.getElementById('main'); main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   const j=await api('/api/superadmin?action=stats');
   const s=j.stats;
-  main.innerHTML=`<h3>داشبورد مالی</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">
-      <div class="panel-card" style="text-align:center"><b style="font-size:1.6rem">${s.totalOrders}</b><br><small>کل سفارشات</small></div>
-      <div class="panel-card" style="text-align:center"><b style="font-size:1.6rem">${s.totalUsers}</b><br><small>مشتریان</small></div>
-      <div class="panel-card" style="text-align:center"><b style="font-size:1.2rem">${s.verifiedSum.toLocaleString('fa-IR')} ت</b><br><small>درآمد تاییدشده</small></div>
-      <div class="panel-card" style="text-align:center"><b style="font-size:1.6rem">${s.pendingPays}</b><br><small>پرداخت در انتظار</small></div>
+  main.innerHTML=`<div class="panel-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+      <div class="stat-card" style="background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:14px;align-items:center"><div class="stat-icon" style="width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(200,149,108,.12);color:#C8956C"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/></svg></div><div><b style="font-size:1.2rem">${s.totalOrders}</b><br><small style="color:var(--text-mute)">کل سفارشات</small></div></div>
+      <div class="stat-card" style="background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:14px;align-items:center"><div class="stat-icon" style="width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.12);color:#3b82f6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><b style="font-size:1.2rem">${s.totalUsers}</b><br><small style="color:var(--text-mute)">مشتریان</small></div></div>
+      <div class="stat-card" style="background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:14px;align-items:center"><div class="stat-icon" style="width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.12);color:#10b981"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><b style="font-size:1rem">${s.verifiedSum.toLocaleString('fa-IR')} ت</b><br><small style="color:var(--text-mute)">درآمد تاییدشده</small></div></div>
+      <div class="stat-card" style="background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:14px;align-items:center"><div class="stat-icon" style="width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.12);color:#f59e0b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><b style="font-size:1.2rem">${s.pendingPays}</b><br><small style="color:var(--text-mute)">در انتظار</small></div></div>
     </div>
-    <div class="panel-card"><h4>سفارشات به تفکیک وضعیت</h4><table class="panel-table"><tr><th>وضعیت</th><th>تعداد</th></tr>${(s.byStatus||[]).map(r=>`<tr><td>${r.status}</td><td>${r.c}</td></tr>`).join('')}</table></div>`;
+    <div class="order-card" style="--order-accent:#C8956C;padding:16px"><h4 style="margin:0 0 10px">سفارشات به تفکیک وضعیت</h4><div style="display:flex;flex-wrap:wrap;gap:8px">${(s.byStatus||[]).map(r=>`<span class="chip" style="padding:6px 10px;border-radius:20px;background:var(--bg);border:1px solid var(--line)">${r.status}: <b>${r.c}</b></span>`).join('')}</div></div>`;
 }
 async function showAdmins(){
-  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const main=document.getElementById('main'); main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   const j=await api('/api/superadmin?action=admins');
-  main.innerHTML=`<h3>مدیریت ادمینها</h3>
-    <div class="panel-card">
-      <h4>افزودن ادمین جدید</h4>
-      <input id="aName" placeholder="نام" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
-      <input id="aEmail" placeholder="ایمیل" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
-      <input id="aPass" placeholder="رمز" type="password" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
-      <button class="btn btn-primary" onclick="createAdmin()">افزودن</button>
-      <p id="aMsg" style="font-size:.85rem;margin-top:6px"></p>
+  main.innerHTML=`<h3 style="margin:0 0 12px">مدیریت ادمینها</h3>
+    <div class="order-card" style="--order-accent:#3b82f6;padding:16px;margin-bottom:12px">
+      <h4 style="margin:0 0 10px">افزودن ادمین جدید</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <input id="aName" placeholder="نام" style="padding:11px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+        <input id="aEmail" placeholder="ایمیل" style="padding:11px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)" dir="ltr">
+      </div>
+      <input id="aPass" placeholder="رمز" type="password" style="width:100%;padding:11px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text);margin-top:8px" dir="ltr">
+      <button class="btn-accent" style="margin-top:10px" onclick="createAdmin()">افزودن ادمین →</button>
+      <p id="aMsg" style="font-size:.85rem;margin-top:8px"></p>
     </div>
-    <table class="panel-table"><tr><th>نام</th><th>ایمیل</th><th>نقش</th><th>عملیات</th></tr>${j.admins.map(a=>`<tr><td>${a.name}</td><td>${a.email}</td><td>${a.role}</td><td>${a.role==='admin'?`<button class="btn btn-outline" onclick="delAdmin('${a.id}')">حذف</button>`:''}</td></tr>`).join('')}</table>`;
+    <div class="order-card" style="--order-accent:#C8956C;padding:16px"><h4 style="margin:0 0 10px">لیست</h4><div style="display:grid;gap:8px">${j.admins.map(a=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg);border:1px solid var(--line);border-radius:10px"><div><b>${a.name}</b> <span style="font-size:.75rem;background:${a.role==='superadmin'?'linear-gradient(135deg,#EDC39A,#C8956C)':'rgba(59,130,246,.12)'};color:${a.role==='superadmin'?'#07070A':'#3b82f6'};padding:2px 7px;border-radius:20px">${a.role}</span><br><small style="color:var(--text-mute)" dir="ltr">${a.email}</small></div>${a.role==='admin'?`<button class="btn-soft" style="color:#ef4444;border-color:rgba(239,68,68,.2)" onclick="delAdmin('${a.id}')">حذف</button>`:''}</div>`).join('')}</div></div>`;
 }
 async function createAdmin(){
   const name=document.getElementById('aName').value.trim();
   const email=document.getElementById('aEmail').value.trim();
   const password=document.getElementById('aPass').value;
   const msg=document.getElementById('aMsg');
-  try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'create_admin', name, email, password})}); msg.style.color='#10b981'; msg.textContent='ادمین ساخته شد ✓'; showAdmins(); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+  try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'create_admin', name, email, password})}); msg.style.color='#10b981'; msg.textContent='✓ ادمین ساخته شد'; showAdmins(); }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
 }
 async function delAdmin(id){ if(!confirm('حذف ادمین؟')) return; await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'delete_admin', id})}); showAdmins(); }
 async function showPricing(){
-  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const main=document.getElementById('main'); main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   const j=await api('/api/superadmin?action=settings');
-  main.innerHTML=`<h3>تنظیم قیمتها (JSON)</h3><p style="font-size:.85rem;color:var(--text-mute)">قیمتها را ویرایش و ذخیره کنید — فروشگاه خودکار بروز میشود</p><textarea id="pricingJson" rows="18" style="width:100%;padding:12px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text);font-family:monospace;direction:ltr">${JSON.stringify(j.pricing, null, 2)}</textarea><button class="btn btn-primary" style="margin-top:8px" onclick="savePricing()">ذخیره قیمتها</button><p id="pMsg" style="font-size:.85rem;margin-top:6px"></p>`;
+  main.innerHTML=`<h3 style="margin:0 0 6px">قیمتها</h3><p style="font-size:.82rem;color:var(--text-mute);margin-bottom:12px">JSON را ویرایش کنید — فروشگاه زنده بروز میشود</p><div class="order-card" style="--order-accent:#8b5cf6;padding:16px"><textarea id="pricingJson" rows="20" style="width:100%;padding:12px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text);font-family:monospace;direction:ltr;font-size:.82rem">${JSON.stringify(j.pricing, null, 2)}</textarea><button class="btn-accent" style="margin-top:10px" onclick="savePricing()">ذخیره قیمتها →</button><p id="pMsg" style="font-size:.85rem;margin-top:8px"></p></div>`;
 }
 async function savePricing(){
   const msg=document.getElementById('pMsg');
-  try{ const val=JSON.parse(document.getElementById('pricingJson').value); await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'pricing', value:val})}); msg.style.color='#10b981'; msg.textContent='ذخیره شد ✓'; }catch(e){ msg.style.color='#ef4444'; msg.textContent='JSON نامعتبر: '+e.message; }
+  try{ const val=JSON.parse(document.getElementById('pricingJson').value); await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'pricing', value:val})}); msg.style.color='#10b981'; msg.textContent='✓ ذخیره شد'; }catch(e){ msg.style.color='#ef4444'; msg.textContent='JSON نامعتبر: '+e.message; }
 }
 async function loadTerms(){ try{ const j=await api('/api/settings'); const t=j.payment_terms||{}; const d=document.getElementById('depPct'); if(d) d.value=t.deposit_percent||50; const dl=document.getElementById('depLabel'); if(dl) dl.value=t.deposit_label||''; const rl=document.getElementById('remLabel'); if(rl) rl.value=t.remaining_label||''; }catch(e){} }
-async function saveTerms(){ const v={deposit_percent: parseInt(document.getElementById('depPct').value)||50, deposit_label: document.getElementById('depLabel').value, remaining_label: document.getElementById('remLabel').value, allow_deposit:true, allow_full:true}; const m=document.getElementById('termsMsg'); try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'payment_terms', value:v})}); m.style.color='#10b981'; m.textContent='ذخیره شد ✓'; }catch(e){ m.style.color='#ef4444'; m.textContent=e.message; } }
+async function saveTerms(){ const v={deposit_percent: parseInt(document.getElementById('depPct').value)||50, deposit_label: document.getElementById('depLabel').value, remaining_label: document.getElementById('remLabel').value, allow_deposit:true, allow_full:true}; const m=document.getElementById('termsMsg'); try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'payment_terms', value:v})}); m.style.color='#10b981'; m.textContent='✓ ذخیره شد'; }catch(e){ m.style.color='#ef4444'; m.textContent=e.message; } }
 async function showPayments(){
-  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const main=document.getElementById('main'); main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   const j=await api('/api/superadmin?action=settings');
   const pi=j.payment_info||{};
-  main.innerHTML=`<h3>تنظیمات پرداخت</h3>
-    <div class="panel-card">
-      <label>شماره کارت</label><input id="cardNum" value="${pi.card_number||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
-      <label>به نام</label><input id="cardHolder" value="${pi.card_holder||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
-      <label>آدرس USDT TRC20</label><input id="usdt" value="${pi.crypto_addresses?.USDT_TRC20||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text);direction:ltr">
-      <label>آدرس BTC</label><input id="btc" value="${pi.crypto_addresses?.BTC||''}" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text);direction:ltr">
-      <button class="btn btn-primary" onclick="savePay()">ذخیره</button><p id="payMsg" style="font-size:.85rem;margin-top:6px"></p>
+  main.innerHTML=`<h3 style="margin:0 0 12px">پرداخت و بیعانه</h3>
+    <div class="order-card" style="--order-accent:#10b981;padding:16px">
+      <h4 style="margin:0 0 12px">درگاهها</h4>
+      <label style="font-size:.82rem;color:var(--text-mute)">شماره کارت</label><input id="cardNum" value="${pi.card_number||''}" style="width:100%;padding:11px;margin-bottom:8px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)" dir="ltr">
+      <label style="font-size:.82rem;color:var(--text-mute)">به نام</label><input id="cardHolder" value="${pi.card_holder||''}" style="width:100%;padding:11px;margin-bottom:8px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)">
+      <label style="font-size:.82rem;color:var(--text-mute)">USDT TRC20</label><input id="usdt" value="${pi.crypto_addresses?.USDT_TRC20||''}" style="width:100%;padding:11px;margin-bottom:8px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text);direction:ltr">
+      <label style="font-size:.82rem;color:var(--text-mute)">BTC</label><input id="btc" value="${pi.crypto_addresses?.BTC||''}" style="width:100%;padding:11px;margin-bottom:12px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text);direction:ltr">
+      <button class="btn-accent" onclick="savePay()">ذخیره درگاهها →</button><p id="payMsg" style="font-size:.85rem;margin-top:8px"></p>
     </div>
-    <div class="panel-card" style="margin-top:14px">
-      <h4>شرایط پرداخت (بیعانه)</h4>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-        <div><label style="font-size:.82rem;color:var(--text-mute)">درصد بیعانه</label><input id="depPct" type="number" min="10" max="90" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
-        <div><label style="font-size:.82rem;color:var(--text-mute)">عنوان بیعانه</label><input id="depLabel" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
+    <div class="order-card" style="--order-accent:#C8956C;padding:16px;margin-top:12px">
+      <h4 style="margin:0 0 12px">شرایط بیعانه</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><label style="font-size:.82rem;color:var(--text-mute)">درصد بیعانه</label><input id="depPct" type="number" min="10" max="90" style="width:100%;padding:11px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
+        <div><label style="font-size:.82rem;color:var(--text-mute)">عنوان بیعانه</label><input id="depLabel" style="width:100%;padding:11px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
       </div>
-      <div style="margin-top:8px"><label style="font-size:.82rem;color:var(--text-mute)">عنوان تسویه</label><input id="remLabel" style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
-      <button class="btn btn-primary" style="margin-top:10px" onclick="saveTerms()">ذخیره شرایط</button><p id="termsMsg" style="font-size:.82rem;margin-top:6px"></p>
+      <div style="margin-top:8px"><label style="font-size:.82rem;color:var(--text-mute)">عنوان تسویه</label><input id="remLabel" style="width:100%;padding:11px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--text)"></div>
+      <button class="btn-accent" style="margin-top:10px" onclick="saveTerms()">ذخیره شرایط →</button><p id="termsMsg" style="font-size:.85rem;margin-top:8px"></p>
     </div>`; setTimeout(loadTerms,100);
 }
 async function savePay(){
   const val={card_number: document.getElementById('cardNum').value, card_holder: document.getElementById('cardHolder').value, crypto_addresses:{USDT_TRC20: document.getElementById('usdt').value, BTC: document.getElementById('btc').value}};
   const msg=document.getElementById('payMsg');
-  try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'payment_info', value:val})}); msg.style.color='#10b981'; msg.textContent='ذخیره شد ✓'; }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
+  try{ await api('/api/superadmin',{method:'POST', body:JSON.stringify({action:'update_settings', key:'payment_info', value:val})}); msg.style.color='#10b981'; msg.textContent='✓ ذخیره شد'; }catch(e){ msg.style.color='#ef4444'; msg.textContent=e.message; }
 }
 async function showLogs(){
-  const main=document.getElementById('main'); main.innerHTML='در حال بارگذاری...';
+  const main=document.getElementById('main'); main.innerHTML='<p style="color:var(--text-mute)">در حال بارگذاری...</p>';
   const j=await api('/api/superadmin?action=logs');
-  main.innerHTML=`<h3>لاگ فعالیتها (۱۰۰ اخیر)</h3><table class="panel-table"><tr><th>زمان</th><th>کاربر</th><th>اکشن</th><th>هدف</th></tr>${j.logs.map(l=>`<tr><td>${new Date(l.created_at*1000).toLocaleString('fa-IR')}</td><td>${l.actor_name||l.actor_id||'—'}</td><td>${l.action}</td><td>${l.target_type||''} ${l.target_id?l.target_id.slice(0,6):''}</td></tr>`).join('')}</table>`;
+  main.innerHTML=`<h3 style="margin:0 0 12px">لاگها (۱۰۰ اخیر)</h3><div class="order-card" style="--order-accent:#6b7280;padding:0;overflow:hidden"><div style="overflow-x:auto"><table class="panel-table" style="width:100%;min-width:500px"><tr><th>زمان</th><th>کاربر</th><th>اکشن</th><th>هدف</th></tr>${j.logs.map(l=>`<tr><td style="white-space:nowrap">${new Date(l.created_at*1000).toLocaleString('fa-IR')}</td><td>${l.actor_name||l.actor_id||'—'}</td><td><span class="chip">${l.action}</span></td><td>${l.target_type||''} ${l.target_id?l.target_id.slice(0,6):''}</td></tr>`).join('')}</table></div></div>`;
 }
-document.querySelectorAll('.panel-side a[data-tab]').forEach(a=>{
-  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-side a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
+document.querySelectorAll('.panel-nav a[data-tab]').forEach(a=>{
+  a.onclick=(e)=>{ e.preventDefault(); document.querySelectorAll('.panel-nav a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
     const t=a.dataset.tab;
     if(t==='stats') showStats(); else if(t==='admins') showAdmins(); else if(t==='pricing') showPricing(); else if(t==='payments') showPayments(); else if(t==='logs') showLogs();
   };
 });
-document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='login.html'; };
+document.getElementById('logout').onclick=(e)=>{ e.preventDefault(); localStorage.clear(); location.href='index.html'; };
 check().then(showStats);
 </script>
 </body>
