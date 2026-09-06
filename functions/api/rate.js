@@ -43,6 +43,16 @@ async function getRate() {
       if (rate > 10000) { cache = { rate, ts: now }; return rate; }
     }
   } catch (e) {}
+  // 3) Binance USDTTRY -> تومان تقریبی
+  try {
+    const r = await fetch(GLOBAL_URL);
+    if (r.ok) {
+      const j = await r.json();
+      const tryRate = parseFloat(j.price||0);
+      const rate = Math.round(tryRate * 1.04); // TRY->تومان تقریبی
+      if (rate > 10000) { cache = { rate, ts: now }; return rate; }
+    }
+  } catch (e) {}
   return 0;
 }
 

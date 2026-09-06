@@ -53,14 +53,27 @@ export async function onRequestPost({ request, env }) {
       } catch(e) { rj = null; }
       if (!rj || !rj.rate) {
         // direct wallex fallback
-        const rw = await fetch('https://api.wallex.ir/v1/markets');
-        if (rw.ok) {
-          const jw = await rw.json();
-          const st = jw.result?.symbols?.USDTTMN?.stats;
-          const bid = parseFloat(st?.bidPrice||0), ask = parseFloat(st?.askPrice||0);
-          const mid = (bid&&ask)?(bid+ask)/2:(bid||ask||0);
-          if (mid>10000) rj = { rate: Math.round(mid) };
-        }
+        try {
+          const rw = await fetch('https://api.wallex.ir/v1/markets');
+          if (rw.ok) {
+            const jw = await rw.json();
+            const st = jw.result?.symbols?.USDTTMN?.stats;
+            const bid = parseFloat(st?.bidPrice||0), ask = parseFloat(st?.askPrice||0);
+            const mid = (bid&&ask)?(bid+ask)/2:(bid||ask||0);
+            if (mid>10000) rj = { rate: Math.round(mid) };
+          }
+        } catch(e) {}
+      }
+      if (!rj || !rj.rate) {
+        // binance USDTTRY fallback
+        try {
+          const rb = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=USDTTRY');
+          if (rb.ok) {
+            const jb = await rb.json();
+            const t = parseFloat(jb.price||0);
+            if (t>1000) rj = { rate: Math.round(t*1.04) };
+          }
+        } catch(e) {}
       }
       if (rj && rj.rate) {
         rateUsed = rj.rate;
