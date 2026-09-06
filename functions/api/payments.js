@@ -46,9 +46,23 @@ export async function onRequestPost({ request, env }) {
   let cryptoAmount = null, rateUsed = null;
   if (method==='crypto' && cryptoAsset==='USDT_TRC20') {
     try {
-      const rr = await fetch(new URL('/api/rate', request.url).toString());
-      const rj = await rr.json();
-      if (rj.rate) {
+      let rj = null;
+      try {
+        const rr = await fetch(new URL('/api/rate', request.url).toString());
+        rj = await rr.json();
+      } catch(e) { rj = null; }
+      if (!rj || !rj.rate) {
+        // direct wallex fallback
+        const rw = await fetch('https://api.wallex.ir/v1/markets');
+        if (rw.ok) {
+          const jw = await rw.json();
+          const st = jw.result?.symbols?.USDTTMN?.stats;
+          const bid = parseFloat(st?.bidPrice||0), ask = parseFloat(st?.askPrice||0);
+          const mid = (bid&&ask)?(bid+ask)/2:(bid||ask||0);
+          if (mid>10000) rj = { rate: Math.round(mid) };
+        }
+      }
+      if (rj && rj.rate) {
         rateUsed = rj.rate;
         const base = amount / rj.rate;
         // cents یونیک از 4 رقم آخر order id (1..99) تا هر سفارش قابل شناسایی باشه
