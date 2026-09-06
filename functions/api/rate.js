@@ -13,15 +13,15 @@ let cache = { rate: 0, ts: 0 };
 async function getRate() {
   const now = Date.now();
   if (cache.rate && now - cache.ts < 120000) return cache.rate;
-  // 1) Bitpin (ایرانی، تومان مستقیم): بازار USDT-IRT
+  // 1) Bitpin (ایرانی، تومان مستقیم): بازار USDT-IRT (قیمت به ریال → /10)
   try {
     const r = await fetch('https://api.bitpin.ir/v1/mkt/markets/', { headers:{'User-Agent':'Mozilla/5.0'} });
     if (r.ok) {
       const j = await r.json();
-      const usdt = (Array.isArray(j)?j:[]).find(m=>(m.title||'').includes('تتر') && (m.currency1?.code||'').toUpperCase()==='USDT' && (m.currency2?.code||'').toUpperCase()==='IRT');
+      const results = j.results || (Array.isArray(j)?j:[]);
+      const usdt = results.find(m=>(m.currency1?.code||'').toUpperCase()==='USDT' && (m.currency2?.code||'').toUpperCase()==='IRT');
       if (usdt) {
-        const price = parseFloat(usdt.price_info?.p||0) || Math.round((parseFloat(usdt.price_info?.l||0)+parseFloat(usdt.price_info?.h||0))/2);
-        // bitpin IRT = ریال → تومان
+        const price = parseFloat(usdt.price_info?.price||0);
         const rate = Math.round(price/10);
         if (rate > 10000) { cache = { rate, ts: now }; return rate; }
       }

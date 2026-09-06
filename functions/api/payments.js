@@ -52,6 +52,19 @@ export async function onRequestPost({ request, env }) {
         rj = await rr.json();
       } catch(e) { rj = null; }
       if (!rj || !rj.rate) {
+        // Bitpin direct fallback
+        try {
+          const rb2 = await fetch('https://api.bitpin.ir/v1/mkt/markets/', { headers:{'User-Agent':'Mozilla/5.0'} });
+          if (rb2.ok) {
+            const jb2 = await rb2.json();
+            const results = jb2.results || (Array.isArray(jb2)?jb2:[]);
+            const usdt = results.find(m=>(m.currency1?.code||'').toUpperCase()==='USDT' && (m.currency2?.code||'').toUpperCase()==='IRT');
+            const price = parseFloat(usdt?.price_info?.price||0);
+            if (price>100000) rj = { rate: Math.round(price/10) };
+          }
+        } catch(e) {}
+      }
+      if (!rj || !rj.rate) {
         // OKX USDT-TRY fallback
         try {
           const ro = await fetch('https://www.okx.com/api/v5/market/ticker?instId=USDT-TRY', { headers:{'User-Agent':'Mozilla/5.0'} });
