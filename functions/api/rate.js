@@ -49,4 +49,3 @@ export async function onRequestGet({ request, env }) {
   }
 }
 export async function onRequestOptions({ request }) { return new Response(null, { headers: corsHeaders(request) }); }
-function json(data, status, headers) { return new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json', ...headers } }); }
