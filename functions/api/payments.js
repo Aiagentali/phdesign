@@ -19,7 +19,7 @@ export async function onRequestPost({ request, env }) {
   const cryptoAsset = sanitize(body.crypto_asset||'USDT_TRC20',20);
   if (!orderId || !['crypto','card'].includes(method)) return json({error:'پارامتر نامعتبر'},400,corsHeaders(request));
   if (!['deposit','remaining','full'].includes(phase)) return json({error:'نوع پرداخت نامعتبر'},400,corsHeaders(request));
-  if (!['USDT_TRC20','BTC'].includes(cryptoAsset)) cryptoAsset='USDT_TRC20';
+  const asset = ['USDT_TRC20','BTC'].includes(cryptoAsset) ? cryptoAsset : 'USDT_TRC20';
   if (method==='card') {
     const hasReceiptFile = receiptData && receiptData.length > 100;
     const hasReceiptUrl = receiptUrl && receiptUrl.length > 4;
@@ -75,13 +75,13 @@ export async function onRequestPost({ request, env }) {
   // همه pending — حتی کریپتو
   const status = 'pending';
   await exec(env.DB, 'INSERT INTO payments (id,order_id,user_id,method,amount,status,payment_phase,tx_hash,receipt_url,receipt_name,receipt_mime,receipt_data,crypto_asset,crypto_amount,rate_used,verified_by,verified_at,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-    [id, orderId, user.id, method, amount, status, phase, txHash||null, receiptUrl||null, receiptName||null, receiptMime||null, receiptData||null, cryptoAsset, cryptoAmount, rateUsed, null, null, now]);
+    [id, orderId, user.id, method, amount, status, phase, txHash||null, receiptUrl||null, receiptName||null, receiptMime||null, receiptData||null, asset, cryptoAmount, rateUsed, null, null, now]);
 
   if (order.status==='cart') await exec(env.DB, 'UPDATE orders SET status=?, updated_at=? WHERE id=?', ['pending', now, orderId]);
 
   await exec(env.DB, 'INSERT INTO audit_logs (id,actor_id,action,target_type,target_id,meta_json,created_at) VALUES (?,?,?,?,?,?,?)',
     [uuid(), user.id, 'create_payment','payment',id, JSON.stringify({method, status, phase, amount}), now]);
-  return json({ok:true, payment:{id, method, status, amount, payment_phase:phase, crypto_asset:cryptoAsset, crypto_amount:cryptoAmount, rate_used:rateUsed}},200,corsHeaders(request));
+  return json({ok:true, payment:{id, method, status, amount, payment_phase:phase, crypto_asset:asset, crypto_amount:cryptoAmount, rate_used:rateUsed}},200,corsHeaders(request));
 }
 export async function onRequestGet({ request, env }) {
   const user = await getUserFromRequest(request, env);

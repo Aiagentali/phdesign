@@ -1,5 +1,5 @@
-import { getUserFromRequest, json, corsHeaders, sanitize } from '../lib/auth.js';
-import { q, q1, exec, nowSec, uuid } from '../lib/db.js';
+import { getUserFromRequest, json, corsHeaders, sanitize } from '../../lib/auth.js';
+import { q, q1, exec, nowSec, uuid } from '../../lib/db.js';
 
 // GET /api/payments/verify?payment_id=xxx
 // تایید خودکار آنچین: تراکنش TRC20 USDT را در بلاکچین Tron جستجو میکند
