@@ -19,7 +19,9 @@ async function getRate() {
     if (r.ok) {
       const j = await r.json();
       const st = j.result?.symbols?.USDTTMN?.stats;
-      const rate = Math.round(parseFloat(st?.latestTradePrice || st?.bidPrice || 0));
+      const bid = parseFloat(st?.bidPrice||0), ask = parseFloat(st?.askPrice||0);
+      const mid = (bid&&ask)? (bid+ask)/2 : (bid||ask||0);
+      const rate = Math.round(mid);
       if (rate > 10000) { cache = { rate, ts: now }; return rate; }
     }
   } catch (e) {}
