@@ -52,25 +52,23 @@ export async function onRequestPost({ request, env }) {
         rj = await rr.json();
       } catch(e) { rj = null; }
       if (!rj || !rj.rate) {
-        // direct wallex fallback
+        // OKX USDT-TRY fallback
         try {
-          const rw = await fetch('https://api.wallex.ir/v1/markets');
-          if (rw.ok) {
-            const jw = await rw.json();
-            const st = jw.result?.symbols?.USDTTMN?.stats;
-            const bid = parseFloat(st?.bidPrice||0), ask = parseFloat(st?.askPrice||0);
-            const mid = (bid&&ask)?(bid+ask)/2:(bid||ask||0);
-            if (mid>10000) rj = { rate: Math.round(mid) };
+          const ro = await fetch('https://www.okx.com/api/v5/market/ticker?instId=USDT-TRY', { headers:{'User-Agent':'Mozilla/5.0'} });
+          if (ro.ok) {
+            const jo = await ro.json();
+            const t = parseFloat(jo.data?.[0]?.last||0);
+            if (t>1000) rj = { rate: Math.round(t*1.04) };
           }
         } catch(e) {}
       }
       if (!rj || !rj.rate) {
-        // binance USDTTRY fallback
+        // KuCoin USDT-TRY fallback
         try {
-          const rb = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=USDTTRY');
-          if (rb.ok) {
-            const jb = await rb.json();
-            const t = parseFloat(jb.price||0);
+          const rk = await fetch('https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=USDT-TRY', { headers:{'User-Agent':'Mozilla/5.0'} });
+          if (rk.ok) {
+            const jk = await rk.json();
+            const t = parseFloat(jk.data?.price||0);
             if (t>1000) rj = { rate: Math.round(t*1.04) };
           }
         } catch(e) {}

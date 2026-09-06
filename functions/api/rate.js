@@ -12,44 +12,38 @@ let cache = { rate: 0, ts: 0 };
 
 async function getRate() {
   const now = Date.now();
-  if (cache.rate && now - cache.ts < 60000) return cache.rate;
-  // 1) Wallex USDT-Toman
+  if (cache.rate && now - cache.ts < 120000) return cache.rate;
+  // 1) Bitpin (ایرانی، تومان مستقیم): بازار USDT-IRT
   try {
-    const r = await fetch(WALLEX_URL, { headers: { 'User-Agent': 'PHWeb/1.0' } });
+    const r = await fetch('https://api.bitpin.ir/v1/mkt/markets/', { headers:{'User-Agent':'Mozilla/5.0'} });
     if (r.ok) {
       const j = await r.json();
-      const st = j.result?.symbols?.USDTTMN?.stats;
-      const bid = parseFloat(st?.bidPrice||0), ask = parseFloat(st?.askPrice||0);
-      const mid = (bid&&ask)? (bid+ask)/2 : (bid||ask||0);
-      const rate = Math.round(mid);
+      const usdt = (Array.isArray(j)?j:[]).find(m=>(m.title||'').includes('تتر') && (m.currency1?.code||'').toUpperCase()==='USDT' && (m.currency2?.code||'').toUpperCase()==='IRT');
+      if (usdt) {
+        const price = parseFloat(usdt.price_info?.p||0) || Math.round((parseFloat(usdt.price_info?.l||0)+parseFloat(usdt.price_info?.h||0))/2);
+        // bitpin IRT = ریال → تومان
+        const rate = Math.round(price/10);
+        if (rate > 10000) { cache = { rate, ts: now }; return rate; }
+      }
+    }
+  } catch (e) {}
+  // 2) OKX USDT-TRY
+  try {
+    const r = await fetch('https://www.okx.com/api/v5/market/ticker?instId=USDT-TRY', { headers:{'User-Agent':'Mozilla/5.0'} });
+    if (r.ok) {
+      const j = await r.json();
+      const tryRate = parseFloat(j.data?.[0]?.last||0);
+      const rate = Math.round(tryRate * 1.04);
       if (rate > 10000) { cache = { rate, ts: now }; return rate; }
     }
   } catch (e) {}
-  // 2) Nobitex
+  // 3) KuCoin USDT-TRY
   try {
-    const r = await fetch(NOBITEX_URL, { method:'POST', headers: { 'User-Agent': 'PHWeb/1.0' } });
+    const r = await fetch('https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=USDT-TRY', { headers:{'User-Agent':'Mozilla/5.0'} });
     if (r.ok) {
       const j = await r.json();
-      const rate = Math.round((j.stats?.USDTIRT?.latestTradePrice || 0) / 10);
-      if (rate > 10000) { cache = { rate, ts: now }; return rate; }
-    }
-  } catch (e) { /* fallthrough */ }
-  try {
-    // fallback: binance USDTTRY (TRY ~= toman/1000 تقریبا) — فقط برای اضطرار
-    const r2 = await fetch(GLOBAL_URL);
-    if (r2.ok) {
-      const j2 = await r2.json();
-      const rate = Math.round(parseFloat(j2.price) / 10); // very rough
-      if (rate > 10000) { cache = { rate, ts: now }; return rate; }
-    }
-  } catch (e) {}
-  // 3) Binance USDTTRY -> تومان تقریبی
-  try {
-    const r = await fetch(GLOBAL_URL);
-    if (r.ok) {
-      const j = await r.json();
-      const tryRate = parseFloat(j.price||0);
-      const rate = Math.round(tryRate * 1.04); // TRY->تومان تقریبی
+      const tryRate = parseFloat(j.data?.price||0);
+      const rate = Math.round(tryRate * 1.04);
       if (rate > 10000) { cache = { rate, ts: now }; return rate; }
     }
   } catch (e) {}
