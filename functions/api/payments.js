@@ -16,14 +16,16 @@ export async function onRequestPost({ request, env }) {
   const receiptData = body.receipt_data ? String(body.receipt_data).slice(0, 8*1024*1024) : '';
   const receiptMime = sanitize(body.receipt_mime||'',50);
   const receiptName = sanitize(body.receipt_name||'',120);
+  const cryptoAsset = sanitize(body.crypto_asset||'USDT_TRC20',20);
   if (!orderId || !['crypto','card'].includes(method)) return json({error:'پارامتر نامعتبر'},400,corsHeaders(request));
   if (!['deposit','remaining','full'].includes(phase)) return json({error:'نوع پرداخت نامعتبر'},400,corsHeaders(request));
-  // receipt: at least one of receipt_data or receipt_url required for both methods
-  const hasReceiptFile = receiptData && receiptData.length > 100;
-  const hasReceiptUrl = receiptUrl && receiptUrl.length > 4;
-  if (!hasReceiptFile && !hasReceiptUrl) return json({error:'لطفاً تصویر فیش / اسکرین‌شات تراکنش را آپلود کنید'},400,corsHeaders(request));
-  if (hasReceiptFile && receiptData.length > 6*1024*1024) return json({error:'حجم فایل زیاد است (حداکثر 4MB)'},400,corsHeaders(request));
-  if (method==='crypto' && !txHash) return json({error:'Tx Hash الزامی است'},400,corsHeaders(request));
+  if (!['USDT_TRC20','BTC'].includes(cryptoAsset)) cryptoAsset='USDT_TRC20';
+  if (method==='card') {
+    const hasReceiptFile = receiptData && receiptData.length > 100;
+    const hasReceiptUrl = receiptUrl && receiptUrl.length > 4;
+    if (!hasReceiptFile && !hasReceiptUrl) return json({error:'لطفاً تصویر فیش را آپلود کنید'},400,corsHeaders(request));
+    if (hasReceiptFile && receiptData.length > 6*1024*1024) return json({error:'حجم فایل زیاد است (حداکثر 4MB)'},400,corsHeaders(request));
+  }
 
   const order = await q1(env.DB, 'SELECT id,user_id,total_price,status FROM orders WHERE id=?', [orderId]);
   if (!order) return json({error:'سفارش یافت نشد'},404,corsHeaders(request));
@@ -39,6 +41,22 @@ export async function onRequestPost({ request, env }) {
   if (phase==='deposit') amount = depositAmount;
   else if (phase==='remaining') amount = remainingAmount;
   else amount = order.total_price;
+
+  // crypto: قفل مبلغ USDT با نرخ لحظه‌ای + شناسه یونیک (اعشار 1-99)
+  let cryptoAmount = null, rateUsed = null;
+  if (method==='crypto' && cryptoAsset==='USDT_TRC20') {
+    try {
+      const rr = await fetch(new URL('/api/rate', request.url).toString());
+      const rj = await rr.json();
+      if (rj.rate) {
+        rateUsed = rj.rate;
+        const base = amount / rj.rate;
+        // cents یونیک از 4 رقم آخر order id (1..99) تا هر سفارش قابل شناسایی باشه
+        const cents = parseInt(orderId.replace(/-/g,'').slice(-4), 36) % 99 + 1;
+        cryptoAmount = Math.floor(base) + cents/100;
+      }
+    } catch(e) {}
+  }
 
   const existing = await q(env.DB, 'SELECT * FROM payments WHERE order_id=? AND payment_phase=? AND status!=?', [orderId, phase, 'rejected']);
   const verifiedExists = (existing.results||[]).some(p=>p.status==='verified');
@@ -56,14 +74,14 @@ export async function onRequestPost({ request, env }) {
   const now = nowSec();
   // همه pending — حتی کریپتو
   const status = 'pending';
-  await exec(env.DB, 'INSERT INTO payments (id,order_id,user_id,method,amount,status,payment_phase,tx_hash,receipt_url,receipt_name,receipt_mime,receipt_data,verified_by,verified_at,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-    [id, orderId, user.id, method, amount, status, phase, txHash||null, receiptUrl||null, receiptName||null, receiptMime||null, receiptData||null, null, null, now]);
+  await exec(env.DB, 'INSERT INTO payments (id,order_id,user_id,method,amount,status,payment_phase,tx_hash,receipt_url,receipt_name,receipt_mime,receipt_data,crypto_asset,crypto_amount,rate_used,verified_by,verified_at,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+    [id, orderId, user.id, method, amount, status, phase, txHash||null, receiptUrl||null, receiptName||null, receiptMime||null, receiptData||null, cryptoAsset, cryptoAmount, rateUsed, null, null, now]);
 
   if (order.status==='cart') await exec(env.DB, 'UPDATE orders SET status=?, updated_at=? WHERE id=?', ['pending', now, orderId]);
 
   await exec(env.DB, 'INSERT INTO audit_logs (id,actor_id,action,target_type,target_id,meta_json,created_at) VALUES (?,?,?,?,?,?,?)',
     [uuid(), user.id, 'create_payment','payment',id, JSON.stringify({method, status, phase, amount}), now]);
-  return json({ok:true, payment:{id, method, status, amount, payment_phase:phase}},200,corsHeaders(request));
+  return json({ok:true, payment:{id, method, status, amount, payment_phase:phase, crypto_asset:cryptoAsset, crypto_amount:cryptoAmount, rate_used:rateUsed}},200,corsHeaders(request));
 }
 export async function onRequestGet({ request, env }) {
   const user = await getUserFromRequest(request, env);

@@ -44,6 +44,9 @@ CREATE TABLE IF NOT EXISTS payments (
   receipt_name TEXT,
   receipt_mime TEXT,
   receipt_data TEXT,
+  crypto_asset TEXT,
+  crypto_amount REAL,
+  rate_used REAL,
   verified_by TEXT REFERENCES users(id),
   verified_at INTEGER,
   created_at INTEGER NOT NULL
