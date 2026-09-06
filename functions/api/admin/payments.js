@@ -5,7 +5,13 @@ export async function onRequestGet({ request, env }) {
   const user = await getUserFromRequest(request, env);
   if (!user) return json({error:'وارد نشدهاید'},401,corsHeaders(request));
   if (user.role!=='admin' && user.role!=='superadmin') return json({error:'دسترسی ندارید'},403,corsHeaders(request));
-  const pays = await q(env.DB, 'SELECT p.*, o.type_name, o.total_price, u.name as user_name FROM payments p JOIN orders o ON o.id=p.order_id JOIN users u ON u.id=p.user_id ORDER BY p.created_at DESC LIMIT 100');
+  const url = new URL(request.url);
+  const payId = url.searchParams.get('receipt'); // fetch single payment receipt data
+  if (payId) {
+    const one = await q(env.DB, 'SELECT id, receipt_name, receipt_mime, LENGTH(receipt_data) as rlen FROM payments WHERE id=?', [sanitize(payId,64)]);
+    return json({payment: one.results?.[0]||null},200,corsHeaders(request));
+  }
+  const pays = await q(env.DB, 'SELECT p.id, p.order_id, p.user_id, p.method, p.amount, p.status, p.payment_phase, p.tx_hash, p.receipt_url, p.receipt_name, p.receipt_mime, p.verified_by, p.verified_at, p.created_at, o.type_name, o.total_price, u.name as user_name FROM payments p JOIN orders o ON o.id=p.order_id JOIN users u ON u.id=p.user_id ORDER BY p.created_at DESC LIMIT 100');
   return json({payments: pays.results||[]},200,corsHeaders(request));
 }
 export async function onRequestPost({ request, env }) {
@@ -14,8 +20,16 @@ export async function onRequestPost({ request, env }) {
   if (user.role!=='admin' && user.role!=='superadmin') return json({error:'دسترسی ندارید'},403,corsHeaders(request));
   let body; try { body = await request.json(); } catch { return json({error:'نامعتبر'},400,corsHeaders(request)); }
   const id = sanitize(body.id,64);
-  const action = sanitize(body.action,10); // verify | reject
-  if (!id || !['verify','reject'].includes(action)) return json({error:'پارامتر نامعتبر'},400,corsHeaders(request));
+  const action = sanitize(body.action,10); // verify | reject | receipt
+  if (!id) return json({error:'پارامتر نامعتبر'},400,corsHeaders(request));
+  // Receipt proxy: return receipt_data only on demand (admin viewing the image)
+  if (action==='receipt') {
+    const r = await q(env.DB, 'SELECT receipt_name, receipt_mime, receipt_data FROM payments WHERE id=?', [id]);
+    const p = r.results?.[0];
+    if (!p || !p.receipt_data) return json({error:'فایلی ثبت نشده'},404,corsHeaders(request));
+    return json({receipt:{name:p.receipt_name, mime:p.receipt_mime, data:p.receipt_data}},200,corsHeaders(request));
+  }
+  if (!['verify','reject'].includes(action)) return json({error:'پارامتر نامعتبر'},400,corsHeaders(request));
   const pay = await q(env.DB, 'SELECT * FROM payments WHERE id=?', [id]);
   const p = pay.results?.[0];
   if (!p) return json({error:'یافت نشد'},404,corsHeaders(request));
@@ -23,7 +37,6 @@ export async function onRequestPost({ request, env }) {
   const now = nowSec();
   const newStatus = action==='verify' ? 'verified' : 'rejected';
   await exec(env.DB, 'UPDATE payments SET status=?, verified_by=?, verified_at=? WHERE id=?', [newStatus, user.id, now, id]);
-  // Update order status logic
   if (newStatus==='verified') {
     const order = await q(env.DB, 'SELECT total_price FROM orders WHERE id=?', [p.order_id]);
     const o = order.results?.[0];

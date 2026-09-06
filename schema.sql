@@ -41,6 +41,9 @@ CREATE TABLE IF NOT EXISTS payments (
   tx_hash TEXT,
   receipt_url TEXT,
   card_last4 TEXT,
+  receipt_name TEXT,
+  receipt_mime TEXT,
+  receipt_data TEXT,
   verified_by TEXT REFERENCES users(id),
   verified_at INTEGER,
   created_at INTEGER NOT NULL

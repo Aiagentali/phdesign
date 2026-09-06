@@ -10,7 +10,7 @@ export async function onRequestGet({ request, env }) {
     ? (await q(env.DB, 'SELECT o.*, u.name as user_name, u.email as user_email FROM orders o JOIN users u ON u.id=o.user_id ORDER BY o.created_at DESC')).results
     : (await q(env.DB, 'SELECT * FROM orders WHERE user_id=? ORDER BY created_at DESC', [user.id])).results;
   for (const o of rows) {
-    const pays = await q(env.DB, 'SELECT * FROM payments WHERE order_id=? ORDER BY created_at DESC', [o.id]);
+    const pays = await q(env.DB, 'SELECT id,method,amount,status,payment_phase,tx_hash,receipt_url,receipt_name,receipt_mime,verified_at,created_at FROM payments WHERE order_id=? ORDER BY created_at DESC', [o.id]);
     o.payments = pays.results || [];
     try { o.addons = JSON.parse(o.addons_json||'[]'); } catch { o.addons=[]; }
     // compute paid/remaining
