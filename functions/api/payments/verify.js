@@ -76,9 +76,8 @@ async function scanRecent(env, addr, needAmount, afterTs) {
 
 async function finishVerify(env, p, r, request) {
   const now = nowSec();
-  await exec(env.DB, 'UPDATE payments SET status=?, tx_hash=?, verified_at=? WHERE id=?', ['pending_admin', r.tx_hash||p.tx_hash, now, p.id]);
-  // auto-verify: مستقیم verified میکنیم چون بلاکچین گواهی میدهد
-  await exec(env.DB, 'UPDATE payments SET status=?, verified_at=? WHERE id=?', ['verified', now, p.id]);
+  // auto-verify: بلاکچین گواهی میدهد — مستقیم verified
+  await exec(env.DB, 'UPDATE payments SET status=?, tx_hash=?, verified_at=? WHERE id=?', ['verified', r.tx_hash||p.tx_hash, now, p.id]);
   // order status
   const sums = await q(env.DB, 'SELECT COALESCE(SUM(amount),0) as s FROM payments WHERE order_id=? AND status=?', [p.order_id, 'verified']);
   const verifiedSum = sums.results?.[0]?.s || 0;
