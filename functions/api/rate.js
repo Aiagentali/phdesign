@@ -3,7 +3,8 @@ import { json, corsHeaders } from '../lib/auth.js';
 // GET /api/rate?fiat=usdt&amount=4150000
 // نرخ لحظه‌ای تتر از نوبیتکس (بازار USDT-IRT و USDT-TTM)
 // اگر نوبیتکس در دسترس نبود: فالبک به قیمت جهانی + حاشیه
-const NOBITEX_URL = 'https://api.nobitex.ir/v2/orderbook/USDTIRT';
+const WALLEX_URL = 'https://api.wallex.ir/v1/markets';
+const NOBITEX_URL = 'https://api.nobitex.ir/market/stats?srcCurrency=usdt&dstCurrency=irt';
 const GLOBAL_URL = 'https://api.binance.com/api/v3/ticker/price?symbol=USDTTRY';
 
 // ساده: cache در ماژول برای 60 ثانیه (per-isolate)
@@ -12,12 +13,22 @@ let cache = { rate: 0, ts: 0 };
 async function getRate() {
   const now = Date.now();
   if (cache.rate && now - cache.ts < 60000) return cache.rate;
+  // 1) Wallex USDT-Toman
   try {
-    const r = await fetch(NOBITEX_URL, { headers: { 'User-Agent': 'PHWeb/1.0' } });
+    const r = await fetch(WALLEX_URL, { headers: { 'User-Agent': 'PHWeb/1.0' } });
     if (r.ok) {
       const j = await r.json();
-      // nobitex orderbook: lastTradePrice or stats
-      const rate = Math.round((j.lastTradePrice || (j.stats?.latestTradePrice) || 0) / 10); // Rial -> Toman
+      const st = j.result?.symbols?.USDTTMN?.stats;
+      const rate = Math.round(parseFloat(st?.latestTradePrice || st?.bidPrice || 0));
+      if (rate > 10000) { cache = { rate, ts: now }; return rate; }
+    }
+  } catch (e) {}
+  // 2) Nobitex
+  try {
+    const r = await fetch(NOBITEX_URL, { method:'POST', headers: { 'User-Agent': 'PHWeb/1.0' } });
+    if (r.ok) {
+      const j = await r.json();
+      const rate = Math.round((j.stats?.USDTIRT?.latestTradePrice || 0) / 10);
       if (rate > 10000) { cache = { rate, ts: now }; return rate; }
     }
   } catch (e) { /* fallthrough */ }
