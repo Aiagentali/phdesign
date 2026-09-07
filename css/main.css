@@ -650,7 +650,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .cfg-mobile-bar{
   display:none;
   position:fixed; bottom:14px; inset-inline:14px; z-index:120;
-  background:color-mix(in srgb, var(--bg-elev,#101016) 88%, transparent);
+  background:color-mix(in srgb, var(--bg-elev,#101016) 96%, transparent);
   backdrop-filter:blur(16px) saturate(1.2);
   border:1px solid rgba(200,149,108,.3);
   border-radius:16px; padding:12px 16px;
