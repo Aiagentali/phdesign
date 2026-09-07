@@ -126,6 +126,18 @@
   <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
+<!-- ===== INTRO SPLASH ===== -->
+<div class="splash" id="splash">
+  <div class="splash-ring"></div>
+  <div class="splash-logo">
+    <img src="assets/logo.png?v=2" alt="webPH">
+  </div>
+  <div class="splash-text" dir="ltr">
+    <span class="sw">web</span><span class="sp">PH</span>
+  </div>
+  <div class="splash-bar"><div class="splash-fill" id="splashFill"></div></div>
+</div>
+
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
@@ -151,17 +163,18 @@
 
 <section class="hero">
   <div class="hero-glow"></div>
+  <canvas id="heroParticles" class="hero-particles"></canvas>
   <div class="container hero-inner">
-    <div class="eyebrow reveal"><span class="dot"></span> استودیو طراحی تجربه‌های دیجیتال</div>
-    <h1 class="reveal">
-      سایتی که<br>
-      <span class="out">مشتری</span> رو <em>مبهوت</em> می‌کند
+    <div class="eyebrow reveal" data-intro><span class="dot"></span> استودیو طراحی تجربه‌های دیجیتال</div>
+    <h1 class="reveal" data-intro data-intro-delay="0.3">
+      <span class="line" data-intro-line>سایتی که</span><br>
+      <span class="line" data-intro-line><span class="out">مشتری</span> رو <em>مبهوت</em> می‌کند</span>
     </h1>
-    <p class="lead reveal">
+    <p class="lead reveal" data-intro data-intro-delay="0.6">
       ما در PH Web وب‌سایت‌هایی می‌سازیم که با رویکردی مینیمال، تایپوگرافی بولد و انیمیشن‌های شیک،
       برند شما را به شکلی متفاوت به نمایش می‌گذارند.
     </p>
-    <div class="hero-cta reveal">
+    <div class="hero-cta reveal" data-intro data-intro-delay="0.8">
       <a href="portfolio.html" class="btn btn-primary">مشاهده نمونه‌کارها →</a>
       <a href="contact.html" class="btn btn-ghost">شروع پروژه</a>
     </div>
@@ -279,5 +292,99 @@
 </footer>
 
 <script src="js/main.js?v=4"></script>
+<script>
+(function(){
+  /* ===== INTRO ORCHESTRATOR ===== */
+  const isMobile = window.matchMedia('(max-width:768px)').matches;
+  const isReduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const splash = document.getElementById('splash');
+  const splashFill = document.getElementById('splashFill');
+  let introDone = false;
+
+  if(isReduced){ splash.style.display='none'; document.body.classList.add('intro-done'); introDone=true; }
+
+  function runIntro(){
+    if(introDone) return;
+    introDone = true;
+    /* fade out splash */
+    splash.classList.add('fade-out');
+    setTimeout(()=> splash.remove(), 800);
+    document.body.classList.add('intro-done');
+    /* animate hero elements */
+    document.querySelectorAll('[data-intro]').forEach(el=>{
+      const delay = parseFloat(el.dataset.introDelay||0);
+      setTimeout(()=> el.classList.add('intro-visible'), 300 + delay*1000);
+    });
+    /* particles */
+    if(!isMobile) startParticles();
+  }
+
+  /* splash progress fake */
+  let progress = 0;
+  const iv = setInterval(()=>{
+    progress += Math.random()*18 + 5;
+    if(progress >= 100){ progress=100; clearInterval(iv); }
+    if(splashFill) splashFill.style.width = progress+'%';
+    if(progress>=100) setTimeout(runIntro, 350);
+  }, 120);
+  /* safety: force close splash after 2.8s */
+  setTimeout(()=>{ if(!introDone) runIntro(); }, 2800);
+
+  /* ===== FLOATING PARTICLES ===== */
+  function startParticles(){
+    const canvas = document.getElementById('heroParticles');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.parentElement;
+    let W, H;
+    function resize(){ W=canvas.width=hero.offsetWidth; H=canvas.height=hero.offsetHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORS = ['rgba(200,149,108,','rgba(237,195,154,','rgba(255,255,255,'];
+    const shapes = [];
+    const COUNT = isMobile ? 14 : 28;
+    for(let i=0;i<COUNT;i++){
+      const sz = Math.random()*4+1.5;
+      const col = COLORS[Math.floor(Math.random()*COLORS.length)];
+      const alpha = Math.random()*.35+.08;
+      shapes.push({
+        x: Math.random()*W, y: Math.random()*H,
+        r: sz, type: Math.random()>.6?'ring':(Math.random()>.5?'diamond':'circle'),
+        vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)-.12,
+        alpha, col, phase: Math.random()*Math.PI*2
+      });
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      const t = Date.now()*.001;
+      shapes.forEach(s=>{
+        s.x += s.vx + Math.sin(t*.4+s.phase)*.15;
+        s.y += s.vy;
+        if(s.y < -10) { s.y = H+10; s.x = Math.random()*W; }
+        if(s.x < -10) s.x = W+10;
+        if(s.x > W+10) s.x = -10;
+        const a = s.alpha * (.7 + Math.sin(t*1.5+s.phase)*.3);
+        ctx.globalAlpha = a;
+        ctx.fillStyle = s.col + '1)';
+        ctx.strokeStyle = s.col + '1)';
+        if(s.type==='circle'){
+          ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
+        } else if(s.type==='ring'){
+          ctx.lineWidth=1;
+          ctx.beginPath(); ctx.arc(s.x,s.y,s.r+1,0,Math.PI*2); ctx.stroke();
+        } else {
+          ctx.save(); ctx.translate(s.x,s.y); ctx.rotate(t*.3);
+          ctx.fillRect(-s.r,-s.r,s.r*2,s.r*2);
+          ctx.restore();
+        }
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+})();
+</script>
+
 </body>
 </html>
