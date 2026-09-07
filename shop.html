@@ -35,7 +35,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/main.css?v=4">
+  <link rel="stylesheet" href="css/main.css?v=9">
   <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
@@ -144,15 +144,31 @@
 
       <!-- ============ ستون قیمت ============ -->
       <aside class="cfg-summary" id="cfgSummary">
-        <h3>خلاصه سفارش</h3>
-        <div class="cfg-line" id="cfgTypeLine"><span>نوع سایت</span><b id="cfgTypeName">— انتخاب کن —</b></div>
-        <div class="cfg-line"><span>قیمت پایه</span><b id="cfgBase">۰ تومان</b></div>
-        <div class="cfg-addons-list" id="cfgSelected"></div>
-        <div class="cfg-line"><span>زمان تحویل تقریبی</span><b id="cfgDays">— روز</b></div>
+        <div class="cfg-sum-head">
+          <h3>خلاصه سفارش</h3>
+          <span class="cfg-sum-badge" id="cfgBadge">پیش‌نویس</span>
+        </div>
+        <div class="cfg-sum-extra">
+          <div class="cfg-sum-dots" title="پیشرفت پیکربندی"><i id="dotType"></i><i id="dotAddons"></i></div>
+          <div class="cfg-line"><span>نوع سایت</span><b id="cfgTypeName">— انتخاب کن —</b></div>
+          <div class="cfg-line"><span>قیمت پایه</span><b id="cfgBase">۰ تومان</b></div>
+          <div class="cfg-addons-list" id="cfgSelected"></div>
+          <div class="cfg-line"><span>زمان تحویل تقریبی</span><b id="cfgDays">— روز</b></div>
+        </div>
+        <div class="cfg-sum-mini">
+          <div class="cmb-total"><small>جمع کل</small><b id="cfgTotalMini">۰ تومان</b></div>
+          <button class="btn btn-outline" id="cfgExpandBtn" style="padding:7px 12px;font-size:.75rem;border-radius:10px">جزئیات ↓</button>
+        </div>
         <div class="cfg-total-row"><span>جمع کل</span><b id="cfgTotal">۰ تومان</b></div>
-        <p class="cfg-note">پیش‌پرداخت ۵۰٪ — تحویل مرحله‌ای — پشتیبانی ۳ ماهه رایگان</p>
+        <p class="cfg-note">پرداخت بیعانه یا کامل — تحویل مرحله‌ای — پشتیبانی ۳ ماهه رایگان</p>
         <button class="btn btn-primary cfg-order-btn" id="cfgOrderBtn" disabled>افزودن به سبد خرید →</button>
       </aside>
+
+      <!-- نوار شناور موبایل -->
+      <div class="cfg-mobile-bar" id="cfgMobileBar">
+        <div class="cmb-total"><small id="cfgMiniDays">—</small><b id="cfgMiniTotal">۰ تومان</b></div>
+        <button class="btn btn-primary" id="cfgMiniBtn" disabled>افزودن به سبد ←</button>
+      </div>
 
     </div>
   </div>
@@ -188,7 +204,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=4"></script>
+<script src="js/main.js?v=9"></script>
 <script>
 (function(){
   const fa = n => n.toLocaleString('fa-IR');
@@ -223,7 +239,19 @@
       : '<div class="cfg-empty">هنوز آپشنی انتخاب نشده</div>';
 
     orderBtn.disabled = !base;
-    document.getElementById('cfgMiniTotal') && (document.getElementById('cfgMiniTotal').textContent = fa(total) + ' تومان');
+    // پیشرفت + بج + مینی‌بار
+    const dT=document.getElementById('dotType'), dA=document.getElementById('dotAddons');
+    if(dT) dT.classList.toggle('on', !!base);
+    if(dA) dA.classList.toggle('on', chosen.length>0);
+    const badge=document.getElementById('cfgBadge');
+    if(badge) badge.textContent = !base ? 'پیش‌نویس' : (chosen.length ? 'آماده سفارش ✓' : 'آماده افزودن');
+    const mt=document.getElementById('cfgMiniTotal'); if(mt) mt.textContent = fa(total)+' تومان';
+    const md=document.getElementById('cfgMiniDays'); if(md) md.textContent = base? fa(days+addDays)+' روز کاری' : '—';
+    const mbBtn=document.getElementById('cfgMiniBtn'); if(mbBtn) mbBtn.disabled = !base;
+    const mb=document.getElementById('cfgMobileBar'); if(mb) mb.classList.toggle('show', !!base && window.innerWidth<=960);
+    // افکت
+    totalEl.classList.remove('cfg-sum-flash'); void totalEl.offsetWidth; totalEl.classList.add('cfg-sum-flash');
+    selEl.querySelectorAll('.cfg-line').forEach(r=>r.classList.add('row-in'));
   }
 
   types.forEach(t => t.addEventListener('click', () => {
@@ -293,6 +321,37 @@
   });
 
   update();
+
+  // ---- داینامیک با اسکرول: جمع شدن هنگام پایین، باز شدن هنگام بالا ----
+  const summary = document.getElementById('cfgSummary');
+  const miniBar = document.getElementById('cfgMobileBar');
+  const miniBtn = document.getElementById('cfgMiniBtn');
+  const expandBtn = document.getElementById('cfgExpandBtn');
+  let lastY = window.scrollY, ticking = false;
+
+  function onScroll(){
+    const y = window.scrollY;
+    const goingDown = y > lastY + 4;
+    const goingUp = y < lastY - 6;
+    const docH = document.documentElement.scrollHeight;
+    const atBottom = window.innerHeight + y >= docH - 140;
+    if (summary && window.innerWidth > 960) {
+      if (goingDown && y > 240 && !summary.classList.contains('is-collapsed')) summary.classList.add('is-collapsed');
+      else if ((goingUp || y < 160) && summary.classList.contains('is-collapsed') && !atBottom) summary.classList.remove('is-collapsed');
+      if (atBottom) summary.classList.remove('is-collapsed');
+    }
+    if (miniBar) {
+      miniBar.classList.toggle('show', window.innerWidth<=960 && !!base && y > 350);
+    }
+    lastY = y;
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive:true });
+
+  document.getElementById('cfgExpandBtn')?.addEventListener('click', () => summary.classList.remove('is-collapsed'));
+  document.getElementById('cfgMiniBtn')?.addEventListener('click', () => orderBtn.click());
 })();
 </script>
 </body>

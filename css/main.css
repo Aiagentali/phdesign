@@ -626,6 +626,61 @@ img, svg, video { max-width: 100%; height: auto; }
   position: sticky; top: 90px;
   background: var(--bg-elev, #101016); border: 1px solid var(--line, #23232b);
   border-radius: 16px; padding: 24px;
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .3s;
+  will-change: transform;
+}
+/* حالت جمع‌شده هنگام اسکرول پایین: جمع میشه و فقط جمع کل دیده میشه */
+.cfg-summary.is-collapsed{
+  transform: translateY(calc(-1 * var(--cfg-collapsed, 0px)));
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  border-color: rgba(200,149,108,.25);
+}
+.cfg-summary .cfg-sum-extra{ opacity:1; max-height:600px; overflow:hidden; transition:opacity .35s var(--ease), max-height .45s var(--ease); }
+.cfg-summary.is-collapsed .cfg-sum-extra{ opacity:0; max-height:0; }
+/* mini mode: هدر کارت جمع میشه */
+.cfg-summary .cfg-sum-mini{ display:none; align-items:center; justify-content:space-between; gap:10px; }
+.cfg-summary.is-collapsed .cfg-sum-mini{ display:flex; }
+.cfg-summary.is-collapsed h3{ display:none; }
+/* هاله اسکرول برای آیتمهای انتخابی */
+.cfg-addons-list{ scrollbar-width:thin; scrollbar-color:rgba(200,149,108,.35) transparent; }
+.cfg-addons-list::-webkit-scrollbar{ width:4px }
+.cfg-addons-list::-webkit-scrollbar-thumb{ background:rgba(200,149,108,.35); border-radius:4px }
+
+/* --- موبایل: نوار شناور پایین --- */
+.cfg-mobile-bar{
+  display:none;
+  position:fixed; bottom:14px; inset-inline:14px; z-index:120;
+  background:color-mix(in srgb, var(--bg-elev,#101016) 88%, transparent);
+  backdrop-filter:blur(16px) saturate(1.2);
+  border:1px solid rgba(200,149,108,.3);
+  border-radius:16px; padding:12px 16px;
+  box-shadow:0 12px 36px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);
+  align-items:center; justify-content:space-between; gap:12px;
+  transform:translateY(140%);
+  transition:transform .4s var(--ease);
+}
+.cfg-mobile-bar.show{ transform:translateY(0); }
+.cfg-mobile-bar .cmb-total{ display:flex; flex-direction:column; }
+.cfg-mobile-bar .cmb-total b{ font-size:1.02rem; color:#EDC39A; }
+.cfg-mobile-bar .cmb-total small{ color:var(--text-mute,#8b8b96); font-size:.7rem; }
+.cfg-mobile-bar .btn{ padding:10px 18px; font-size:.85rem; border-radius:12px; white-space:nowrap; }
+
+/* --- دیتایلز اضافه برای کارت خلاصه --- */
+.cfg-sum-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.cfg-sum-head h3{ margin:0 }
+.cfg-sum-badge{ font-size:.68rem; font-weight:800; padding:3px 9px; border-radius:20px; background:rgba(200,149,108,.12); color:#EDC39A; border:1px solid rgba(200,149,108,.25); }
+.cfg-sum-dots{ display:flex; gap:5px; margin:10px 0 4px; }
+.cfg-sum-dots i{ height:4px; flex:1; border-radius:4px; background:var(--line,#23232b); transition:background .3s; }
+.cfg-sum-dots i.on{ background:linear-gradient(90deg,#EDC39A,#C8956C); box-shadow:0 0 8px rgba(200,149,108,.4); }
+.cfg-sum-flash{ animation:sumFlash .6s var(--ease); }
+@keyframes sumFlash{ 0%{box-shadow:0 0 0 0 rgba(200,149,108,0)} 40%{box-shadow:0 0 0 4px rgba(200,149,108,.22)} 100%{box-shadow:0 0 0 0 rgba(200,149,108,0)} }
+.cfg-line.row-in{ animation:rowIn .35s var(--ease); }
+@keyframes rowIn{ from{ opacity:0; transform:translateX(-8px) } to{ opacity:1; transform:none } }
+
+@media (max-width: 960px) {
+  .cfg-layout { grid-template-columns: 1fr; }
+  .cfg-summary{ display:none; }
+  .cfg-mobile-bar{ display:flex; }
 }
 .cfg-summary h3 { margin: 0 0 16px; font-size: 1.15rem; }
 .cfg-line { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--line, #23232b); font-size: .9rem; }
@@ -655,10 +710,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .cfg-modal-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
 .cfg-modal-x { position: absolute; top: 14px; left: 14px; background: none; border: none; color: var(--text-mute, #8b8b96); font-size: 1.1rem; cursor: pointer; padding: 6px; }
 
-@media (max-width: 960px) {
-  .cfg-layout { grid-template-columns: 1fr; }
-  .cfg-summary { position: static; }
-}
+
 @media (max-width: 520px) {
   .cfg-types { grid-template-columns: 1fr 1fr; }
   .cfg-modal-actions .btn { width: 100%; text-align: center; }
