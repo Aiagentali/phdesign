@@ -49,7 +49,7 @@ document.querySelectorAll('.skill-fill').forEach(b => sbs.observe(b));
   const authWrap = document.getElementById('navAuth');
   if(!authWrap) return;
   function guestUI(){
-    authWrap.innerHTML = '<button class="nav-auth-btn primary" id="openAuthBtn" style="cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg><span>ورود / ثبت‌نام</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="opacity:.7"><polyline points="9 18 15 12 9 6"/></svg></button>';
+    authWrap.innerHTML = '<button class="nav-auth-btn primary" id="openAuthBtn" style="cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg><span>ورود / ثبت‌نام</span><svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="opacity:.7"><polyline points="9 18 15 12 9 6"/></svg></button>';
   }
   function userUI(role){
     let panelHref='panel.html';
