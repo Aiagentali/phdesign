@@ -480,14 +480,24 @@ img, svg, video { max-width: 100%; height: auto; }
 .nav-avatar-menu .sep{height:1px;background:var(--line);margin:6px 0}
 .nav-auth .nav-avatar-menu{inset-inline-start:0;inset-inline-end:auto}
 @media(max-width:900px){
-  .nav-auth-btn{padding:8px 14px;font-size:.78rem;gap:5px}
-  .nav-auth-btn span.txt{display:inline}
   .nav-avatar{width:36px;height:36px}
-  .nav-avatar::after{display:none}
 }
 @media(max-width:520px){
-  .nav-auth-btn{padding:7px 11px;font-size:.74rem;border-radius:9px}
-  .nav-auth-btn svg.chev{display:none}
+  /* دکمه ورود/ثبتنام در موبایل: توپُر برنزی، لمسپذیر، خوانا */
+  .nav-auth-btn.primary{
+    padding:10px 18px;
+    font-size:.82rem;
+    font-weight:800;
+    border-radius:24px;
+    background:linear-gradient(120deg,#EDC39A,#C8956C);
+    color:#0B0B0F;
+    border-color:transparent;
+    box-shadow:0 4px 16px rgba(200,149,108,.32);
+  }
+  .nav-auth-btn.primary svg{opacity:1;stroke-width:2.4}
+  .nav-auth-btn.primary svg.chev{display:none}
+  .nav-auth-btn.primary:active{transform:scale(.96)}
+  /* آواتار در موبایل کمی کوچکتر */
   .nav-avatar{width:34px;height:34px}
 }
 
