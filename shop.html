@@ -35,7 +35,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/main.css?v=17">
+  <link rel="stylesheet" href="css/main.css?v=18">
   <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
@@ -336,9 +336,11 @@
     const docH = document.documentElement.scrollHeight;
     const atBottom = window.innerHeight + y >= docH - 140;
     if (summary && window.innerWidth > 960) {
-      if (goingDown && y > 240 && !summary.classList.contains('is-collapsed')) summary.classList.add('is-collapsed');
-      else if ((goingUp || y < 160) && summary.classList.contains('is-collapsed') && !atBottom) summary.classList.remove('is-collapsed');
-      if (atBottom) summary.classList.remove('is-collapsed');
+      const collapsed = summary.classList.contains('is-collapsed');
+      if (goingDown && y > 300 && !collapsed) summary.classList.add('is-collapsed');
+      else if ((goingUp && y > 120) && collapsed) summary.classList.remove('is-collapsed');
+      if (y < 140 && collapsed) summary.classList.remove('is-collapsed');
+      if (atBottom && collapsed) summary.classList.remove('is-collapsed');
     }
     if (miniBar) {
       miniBar.classList.toggle('show', window.innerWidth<=960 && !!base && y > 350);
@@ -350,7 +352,11 @@
     if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
   }, { passive:true });
 
-  document.getElementById('cfgExpandBtn')?.addEventListener('click', () => summary.classList.remove('is-collapsed'));
+  const expandBtn2 = document.getElementById('cfgExpandBtn');
+  if (expandBtn2) expandBtn2.addEventListener('click', () => {
+    summary.classList.remove('is-collapsed');
+    lastY = window.scrollY; // ایمن: تا اسکرول جدید پایین نره دوباره جمع نشه
+  });
   document.getElementById('cfgMiniBtn')?.addEventListener('click', () => orderBtn.click());
 })();
 </script>
