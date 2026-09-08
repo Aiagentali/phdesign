@@ -35,7 +35,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/main.css?v=18">
+  <link rel="stylesheet" href="css/main.css?v=19">
   <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
@@ -154,10 +154,6 @@
           <div class="cfg-line"><span>قیمت پایه</span><b id="cfgBase">۰ تومان</b></div>
           <div class="cfg-addons-list" id="cfgSelected"></div>
           <div class="cfg-line"><span>زمان تحویل تقریبی</span><b id="cfgDays">— روز</b></div>
-        </div>
-        <div class="cfg-sum-mini">
-          <div class="cmb-total"><small>جمع کل</small><b id="cfgTotalMini">۰ تومان</b></div>
-          <button class="btn btn-outline" id="cfgExpandBtn" style="padding:7px 12px;font-size:.75rem;border-radius:10px">جزئیات ↓</button>
         </div>
         <div class="cfg-total-row"><span>جمع کل</span><b id="cfgTotal">۰ تومان</b></div>
         <p class="cfg-note">پرداخت بیعانه یا کامل — تحویل مرحله‌ای — پشتیبانی ۳ ماهه رایگان</p>
@@ -322,26 +318,13 @@
 
   update();
 
-  // ---- داینامیک با اسکرول: جمع شدن هنگام پایین، باز شدن هنگام بالا ----
-  const summary = document.getElementById('cfgSummary');
+  // ---- نوار شناور موبایل (دسکتاپ: کارت sticky همیشه کامل دیده میشه) ----
   const miniBar = document.getElementById('cfgMobileBar');
   const miniBtn = document.getElementById('cfgMiniBtn');
-  const expandBtn = document.getElementById('cfgExpandBtn');
   let lastY = window.scrollY, ticking = false;
 
   function onScroll(){
     const y = window.scrollY;
-    const goingDown = y > lastY + 4;
-    const goingUp = y < lastY - 6;
-    const docH = document.documentElement.scrollHeight;
-    const atBottom = window.innerHeight + y >= docH - 140;
-    if (summary && window.innerWidth > 960) {
-      const collapsed = summary.classList.contains('is-collapsed');
-      if (goingDown && y > 300 && !collapsed) summary.classList.add('is-collapsed');
-      else if ((goingUp && y > 120) && collapsed) summary.classList.remove('is-collapsed');
-      if (y < 140 && collapsed) summary.classList.remove('is-collapsed');
-      if (atBottom && collapsed) summary.classList.remove('is-collapsed');
-    }
     if (miniBar) {
       miniBar.classList.toggle('show', window.innerWidth<=960 && !!base && y > 350);
     }
@@ -352,11 +335,6 @@
     if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
   }, { passive:true });
 
-  const expandBtn2 = document.getElementById('cfgExpandBtn');
-  if (expandBtn2) expandBtn2.addEventListener('click', () => {
-    summary.classList.remove('is-collapsed');
-    lastY = window.scrollY; // ایمن: تا اسکرول جدید پایین نره دوباره جمع نشه
-  });
   document.getElementById('cfgMiniBtn')?.addEventListener('click', () => orderBtn.click());
 })();
 </script>

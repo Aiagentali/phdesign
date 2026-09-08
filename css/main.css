@@ -729,28 +729,8 @@ img, svg, video { max-width: 100%; height: auto; }
   transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .3s;
   will-change: transform;
 }
-/* حالت جمع‌شده: کارت سرجاش میمونه، فقط جزئیات جمع میشه — جمع کل و دکمه همیشه دیده میشن */
-.cfg-summary{ transition:border-color .3s, box-shadow .4s var(--ease); }
-.cfg-summary.is-collapsed{
-  box-shadow:0 14px 36px rgba(0,0,0,.4);
-  border-color:rgba(200,149,108,.3);
-}
-.cfg-summary .cfg-sum-extra{
-  opacity:1; max-height:640px;
-  overflow:hidden;
-  transition:opacity .32s var(--ease), max-height .42s var(--ease), margin .42s var(--ease);
-}
-.cfg-summary.is-collapsed .cfg-sum-extra{
-  opacity:0; max-height:0; margin-bottom:0;
-  pointer-events:none;
-}
-/* ردیف جمع کل در حالت جمع هم پررنگ */
-.cfg-summary.is-collapsed .cfg-total-row{ padding:14px 0 4px; }
-/* mini header جای h3 میشینه */
-.cfg-summary .cfg-sum-mini{ display:none; align-items:center; justify-content:space-between; gap:10px; }
-.cfg-summary.is-collapsed .cfg-sum-mini{ display:flex; animation:miniIn .35s var(--ease); }
-.cfg-summary.is-collapsed .cfg-sum-head{ display:none; }
-@keyframes miniIn{ from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none} }
+/* کارت خلاصه دسکتاپ: sticky و همیشه کامل — بدون collapse */
+to{opacity:1; transform:none} }
 /* هاله اسکرول برای آیتمهای انتخابی */
 .cfg-addons-list{ scrollbar-width:thin; scrollbar-color:rgba(200,149,108,.35) transparent; }
 .cfg-addons-list::-webkit-scrollbar{ width:4px }
