@@ -578,10 +578,71 @@ img, svg, video { max-width: 100%; height: auto; }
 .auth-close:hover{background:rgba(255,255,255,.1);color:var(--text)}
 .auth-modal{position:relative}
 @media(max-width:520px){
-  .auth-modal{border-radius:16px}
-  .auth-modal-head{padding:22px 20px 0}
-  .auth-tabs{margin:18px 20px 0}
-  .auth-form{padding:16px 20px 22px}
+  /* — bottom-sheet: modal از پایین میاد بالا، استاندارد اپهای موبایل — */
+  .auth-overlay{
+    padding:0;
+    align-items:flex-end;
+    background:rgba(0,0,0,.66);
+    backdrop-filter:blur(10px) saturate(1.1);
+  }
+  .auth-modal{
+    max-width:100%;
+    width:100%;
+    border-radius:22px 22px 0 0;
+    border:1px solid rgba(255,255,255,.08);
+    border-bottom:none;
+    max-height:92vh;
+    max-height:92dvh;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    transform:translateY(100%);
+    transition:transform .45s cubic-bezier(.32,.72,0,1);
+    padding-bottom:env(safe-area-inset-bottom,0);
+    box-shadow:0 -16px 48px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.06) inset;
+  }
+  .auth-overlay.open .auth-modal{transform:none}
+  /* grab handle */
+  .auth-modal::before{
+    content:'';
+    position:sticky;top:10px;z-index:5;
+    display:block;width:44px;height:4px;border-radius:4px;
+    margin:10px auto 2px;
+    background:rgba(255,255,255,.18);
+  }
+  .auth-close{
+    position:absolute;top:10px;left:12px;
+    width:36px;height:36px;
+    background:rgba(255,255,255,.07);
+    font-size:1.05rem;
+  }
+  .auth-modal-head{padding:8px 18px 0}
+  .auth-modal-logo{margin-bottom:10px}
+  .auth-modal-logo img{width:28px;height:24px}
+  .auth-modal-logo span{font-size:.98rem}
+  .auth-modal-head h2{font-size:1.18rem;margin-bottom:4px}
+  .auth-modal-head p{font-size:.8rem}
+  /* tabs: همهجا بدون حاشیهبیرونی، فول ویدت */
+  .auth-tabs{margin:16px 18px 0;border-radius:26px;padding:3px}
+  .auth-tab{padding:10px 10px;font-size:.85rem;border-radius:22px}
+  .auth-form{padding:16px 18px calc(20px + env(safe-area-inset-bottom,0))}
+  /* inputها ≥16px تا iOS زوم نکنه */
+  .auth-field input{
+    padding:13px 14px;
+    font-size:16px;
+    border-radius:12px;
+  }
+  .auth-field{margin-bottom:13px}
+  .auth-field label{font-size:.76rem;margin-bottom:6px}
+  .auth-btn{padding:14px 16px;font-size:.95rem;border-radius:13px}
+  .auth-btn:hover{transform:none} /* هاور لیفت در لمس معنی نداره */
+  .auth-row{font-size:.8rem;margin:4px 0 14px}
+  .auth-msg{font-size:.78rem}
+  .auth-divider{margin:14px 0}
+  .auth-alt{font-size:.8rem}
+}
+@media(max-width:360px){
+  .auth-modal-head h2{font-size:1.08rem}
+  .auth-tab{font-size:.8rem;padding:9px 6px}
 }
 
 /* ---- shop configurator ---- */
