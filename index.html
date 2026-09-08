@@ -126,6 +126,15 @@
   <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-line" id="introLine"></div>
+  <div class="intro-brand" id="introBrand">
+    <h1>webPH</h1>
+    <p>Design Studio</p>
+  </div>
+  <div class="intro-counter" id="introCounter">000</div>
+</div>
+
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
@@ -279,5 +288,55 @@
 </footer>
 
 <script src="js/main.js?v=4"></script>
+<script>
+(function(){
+  var intro=document.getElementById('intro');
+  if(!intro) return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    intro.remove(); return;
+  }
+  document.documentElement.classList.add('intro-lock');
+  var line=document.getElementById('introLine'),
+      brand=document.getElementById('introBrand'),
+      counter=document.getElementById('introCounter'),
+      p=0;
+  /* line grows */
+  requestAnimationFrame(function(){ line.style.transition='transform 1s cubic-bezier(.4,0,.2,1)'; line.style.transform='scaleX(1)'; });
+  /* brand in */
+  setTimeout(function(){
+    brand.style.transition='opacity .6s cubic-bezier(.23,1,.32,1), transform .6s cubic-bezier(.23,1,.32,1)';
+    brand.style.opacity='1'; brand.style.transform='none';
+  }, 500);
+  /* counter 000 -> 100 */
+  var t0=performance.now(), DUR=1900;
+  function tick(now){
+    var k=Math.min((now-t0)/DUR,1);
+    var eased=k<.5? 2*k*k : 1-Math.pow(-2*k+2,2)/2;
+    p=Math.round(eased*100);
+    counter.textContent=(p<100?'0'+p:''+p).padStart? (p<100? '0'+p : ''+p) : String(p);
+    if(k<1){ requestAnimationFrame(tick); }
+    else{
+      setTimeout(function(){
+        document.body.classList.add('intro-out');
+        document.documentElement.classList.remove('intro-lock');
+        setTimeout(function(){
+          document.body.classList.add('intro-done');
+          var el=document.getElementById('intro'); if(el) el.remove();
+        }, 850);
+      }, 250);
+    }
+  }
+  requestAnimationFrame(tick);
+  /* safety */
+  setTimeout(function(){
+    if(!document.body.classList.contains('intro-out')){
+      document.body.classList.add('intro-out','intro-done');
+      document.documentElement.classList.remove('intro-lock');
+      var el=document.getElementById('intro'); if(el) el.remove();
+    }
+  }, 5000);
+})();
+</script>
+
 </body>
 </html>
