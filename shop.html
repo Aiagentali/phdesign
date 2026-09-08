@@ -35,7 +35,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/main.css?v=19">
+  <link rel="stylesheet" href="css/main.css?v=20">
   <link rel="icon" type="image/png" href="assets/favicon180.png?v=2">
 </head>
 <body>
@@ -244,7 +244,7 @@
     const mt=document.getElementById('cfgMiniTotal'); if(mt) mt.textContent = fa(total)+' تومان';
     const md=document.getElementById('cfgMiniDays'); if(md) md.textContent = base? fa(days+addDays)+' روز کاری' : '—';
     const mbBtn=document.getElementById('cfgMiniBtn'); if(mbBtn) mbBtn.disabled = !base;
-    const mb=document.getElementById('cfgMobileBar'); if(mb) mb.classList.toggle('show', !!base && window.innerWidth<=960);
+    // floating bar visibility is controlled by onScroll()
     // افکت
     totalEl.classList.remove('cfg-sum-flash'); void totalEl.offsetWidth; totalEl.classList.add('cfg-sum-flash');
     selEl.querySelectorAll('.cfg-line').forEach(r=>r.classList.add('row-in'));
@@ -325,8 +325,11 @@
 
   function onScroll(){
     const y = window.scrollY;
-    if (miniBar) {
-      miniBar.classList.toggle('show', window.innerWidth<=960 && !!base && y > 350);
+    const summary = document.getElementById('cfgSummary');
+    if (miniBar && summary && base) {
+      const rect = summary.getBoundingClientRect();
+      const cardBelow = rect.bottom < 80; // card scrolled out of view above
+      miniBar.classList.toggle('show', cardBelow);
     }
     lastY = y;
     ticking = false;
